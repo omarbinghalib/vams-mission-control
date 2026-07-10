@@ -104,7 +104,7 @@
   },
   {
     "title": "Coverage sweep (nothing-missing audit: original VAMS 2.0 vs new)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit"
   },
   {
