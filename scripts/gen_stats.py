@@ -226,8 +226,8 @@ def commit_activity():
 # ---------- delivery progress + dual-unit ETA (per-track % is a manual estimate) ----------
 PROGRESS_CFG = {
   "tracks": [
-    {"track": "backend",  "label": "Backend",  "pct": 100, "remaining_hours": [0, 2], "remaining_sessions": [0, 1], "weight": 1},
-    {"track": "frontend", "label": "Frontend", "pct": 90,  "remaining_hours": [3, 6], "remaining_sessions": [1, 2], "weight": 1},
+    {"track": "backend",  "label": "Backend",  "pct": 100, "remaining_hours": [0, 1], "remaining_sessions": [0, 1], "weight": 1},
+    {"track": "frontend", "label": "Frontend", "pct": 92,  "remaining_hours": [2, 5], "remaining_sessions": [1, 2], "weight": 1},
   ],
   "basis": ("Per-track % and remaining hours/sessions are ESTIMATES from the resume docs "
             "(milestone completion), not measurements. Overall % is equal-weighted across the "
@@ -421,15 +421,18 @@ def build_stats():
     workers = discover_workers()
     tx, subs = build_sessions(workers)
     sessions = tx + subs
-    # RECENCY: keep the main view to the CURRENT fleet — live workers + anything active within
-    # RECENT_MIN. Everything older (idle/stopped/done from earlier phases) is flagged not-recent
-    # so the UI can collapse it into a summary WITHOUT losing the underlying data.
+    # RECENCY: keep the main view to the CURRENT fleet — live workers + IDLE workers still active
+    # within RECENT_MIN. Terminal states (stopped = harness-cancelled, done = retired mission) are
+    # never "current" regardless of how recently they last ticked — they belong in the collapsed
+    # tail. Everything flagged not-recent is summarised by the UI WITHOUT losing the data.
     def _recent(status, age):
+        if status in ("stopped", "done"):
+            return False
         return status == "live" or (age is not None and age < RECENT_MIN)
     for w in workers:
         w["recent"] = _recent(w["status"], w.get("out_age_min"))
     for s in sessions:
-        s["recent"] = bool(s.get("live")) or (s.get("age_min") is not None and s["age_min"] < RECENT_MIN)
+        s["recent"] = _recent(s.get("status"), s.get("age_min"))
     out_t = sum(s["output_tokens"] or 0 for s in tx)
     cr_t  = sum(s["cache_read_tokens"] or 0 for s in tx)
     cc_t  = sum(s["cache_creation_tokens"] or 0 for s in tx)

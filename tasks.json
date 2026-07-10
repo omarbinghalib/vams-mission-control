@@ -58,15 +58,21 @@
   },
   {
     "title": "Reporting suite + documents screens",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "gap-build"
+    "note": "landed"
   },
   {
     "title": "Ops / integrations / projects screens",
     "status": "in_progress",
     "track": "frontend",
-    "note": "gap-build"
+    "note": "in flight"
+  },
+  {
+    "title": "Reporting-analytics endpoint + screen",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "in flight"
   },
   {
     "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + reusable kit",
