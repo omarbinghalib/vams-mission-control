@@ -1,11 +1,53 @@
 [
-  { "title": "GET /me/ session-bootstrap (user + org + modules + roles + flags)", "status": "pending", "track": "backend", "note": "go-live blocker" },
-  { "title": "Roles in /me/ or the JWT (approval / admin gating)", "status": "pending", "track": "backend", "note": "go-live blocker" },
-  { "title": "Signup + invitation APIs (self-serve org creation)", "status": "in_progress", "track": "backend" },
-  { "title": "Uniform async-task contract (/tasks/<id>/)", "status": "in_progress", "track": "backend", "note": "powers the Tasks tray" },
-  { "title": "SO->MR + request-leave + line-item persistence saga", "status": "in_progress", "track": "backend" },
-  { "title": "Payroll-run trigger endpoint", "status": "pending", "track": "backend", "note": "Celery deferred" },
-  { "title": "Mock->real contract reconciliation (31 CL + 3 FS)", "status": "pending", "track": "frontend", "note": "gated on backend carve" },
-  { "title": "Phase 5 native build (Android / iOS APK+IPA)", "status": "in_progress", "track": "frontend", "note": "waits on JDK/SDK + signing" },
-  { "title": "Dashboard: tasks panel + never-go-stale", "status": "in_progress", "track": "mission-control" }
+  {
+    "title": "GET /me/ session-bootstrap (user + org + modules + roles + flags)",
+    "status": "pending",
+    "track": "backend",
+    "note": "go-live blocker"
+  },
+  {
+    "title": "Roles in /me/ or the JWT (approval / admin gating)",
+    "status": "pending",
+    "track": "backend",
+    "note": "go-live blocker"
+  },
+  {
+    "title": "Signup + invitation APIs (self-serve org creation)",
+    "status": "in_progress",
+    "track": "backend"
+  },
+  {
+    "title": "Uniform async-task contract (/tasks/<id>/)",
+    "status": "done",
+    "track": "backend",
+    "note": "powers the Tasks tray"
+  },
+  {
+    "title": "SO->MR + request-leave + line-item persistence saga",
+    "status": "in_progress",
+    "track": "backend"
+  },
+  {
+    "title": "Payroll-run trigger endpoint",
+    "status": "pending",
+    "track": "backend",
+    "note": "Celery deferred"
+  },
+  {
+    "title": "Mock->real contract reconciliation (31 CL + 3 FS)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "gated on backend carve"
+  },
+  {
+    "title": "Phase 5 native build (Android / iOS APK+IPA)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "waits on JDK/SDK + signing"
+  },
+  {
+    "title": "Dashboard: tasks panel + never-go-stale",
+    "status": "in_progress",
+    "track": "mission-control"
+  }
 ]
