@@ -1,6 +1,10 @@
 {
-  "active": false,
-  "message": "",
-  "options": [],
-  "raised_at": null
+  "active": true,
+  "message": "TEST: Ship gateway v2 to production now, or hold for QC sign-off?",
+  "options": [
+    "A: Ship v2 to production now",
+    "B: Hold for QC sign-off first",
+    "C: Ship to staging only, decide prod tomorrow"
+  ],
+  "raised_at": "2026-07-10T08:24:18Z"
 }
