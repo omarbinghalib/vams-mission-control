@@ -1,16 +1,18 @@
 {
-  "updated": "2026-07-10T06:15:48Z",
+  "updated": "2026-07-10T06:26:24Z",
   "generated_by": "mission-control (ad6db55e)",
-  "schema": 4,
+  "schema": 5,
   "totals": {
-    "output_tokens": 14399252,
-    "cache_read_tokens": 6250489570,
-    "cache_creation_tokens": 56587965,
-    "msgs": 14927,
-    "sessions": 11,
-    "live_sessions": 1,
+    "output_tokens": 14441238,
+    "cache_read_tokens": 6256523801,
+    "cache_creation_tokens": 56640869,
+    "msgs": 14945,
+    "sessions": 16,
+    "live_sessions": 4,
+    "transcript_sessions": 11,
+    "subagent_sessions": 5,
     "workers": 6,
-    "live_workers": 5
+    "live_workers": 4
   },
   "workers": [
     {
@@ -23,29 +25,12 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:15:48Z",
+      "out_last_active": "2026-07-10T06:26:24Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "status": "live",
       "live": true,
       "signal": "coordinating (orchestrator)"
-    },
-    {
-      "name": "Backend worker",
-      "role": "backend",
-      "branch": "microservices-backend",
-      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
-      "agent_id": "ae451668eb8dc9c2e",
-      "short_id": "ae451668",
-      "head_commit": "docs: record live parity re-run results on restored data",
-      "head_commit_at": "2026-07-10T10:05:30+04:00",
-      "head_ago_min": 10.3,
-      "out_last_active": "2026-07-10T06:15:48Z",
-      "out_age_min": -0.0,
-      "log_bytes": 1683571,
-      "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
     },
     {
       "name": "Mission-control",
@@ -54,12 +39,46 @@
       "focus": "Dashboard accuracy · full sanity sweep · workers roster + liveness · stats freshness.",
       "agent_id": "ad6db55e2596a925a",
       "short_id": "ad6db55e",
-      "head_commit": "feat(mission-control): dual-unit ETAs (hours + sessions) + backend advance",
-      "head_commit_at": "2026-07-10T09:31:29+04:00",
-      "head_ago_min": 44.3,
-      "out_last_active": "2026-07-10T06:15:44Z",
-      "out_age_min": 0.1,
-      "log_bytes": 1990432,
+      "head_commit": "fix(mission-control): task-mtime worker liveness + full sanity sweep",
+      "head_commit_at": "2026-07-10T10:16:38+04:00",
+      "head_ago_min": 9.8,
+      "out_last_active": "2026-07-10T06:26:22Z",
+      "out_age_min": 0.0,
+      "log_bytes": 2313288,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Frontend worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
+      "agent_id": "a1c13e5479df44612",
+      "short_id": "a1c13e54",
+      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
+      "head_commit_at": "2026-07-10T09:56:18+04:00",
+      "head_ago_min": 30.1,
+      "out_last_active": "2026-07-10T06:26:11Z",
+      "out_age_min": 0.2,
+      "log_bytes": 965041,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Backend worker",
+      "role": "backend",
+      "branch": "microservices-backend",
+      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
+      "agent_id": "ae451668eb8dc9c2e",
+      "short_id": "ae451668",
+      "head_commit": "feat(flows): carve request-leave wizard into hr",
+      "head_commit_at": "2026-07-10T10:25:00+04:00",
+      "head_ago_min": 1.4,
+      "out_last_active": "2026-07-10T06:25:36Z",
+      "out_age_min": 0.8,
+      "log_bytes": 1913890,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
@@ -75,28 +94,11 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:08:33Z",
-      "out_age_min": 7.2,
+      "out_age_min": 17.9,
       "log_bytes": 0,
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "signal": "task-output mtime"
-    },
-    {
-      "name": "Frontend worker",
-      "role": "frontend",
-      "branch": "microservices-frontend",
-      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
-      "agent_id": "a1c13e5479df44612",
-      "short_id": "a1c13e54",
-      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
-      "head_commit_at": "2026-07-10T09:56:18+04:00",
-      "head_ago_min": 19.5,
-      "out_last_active": "2026-07-10T06:07:22Z",
-      "out_age_min": 8.4,
-      "log_bytes": 857783,
-      "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
     },
     {
       "name": "Environment worker",
@@ -109,7 +111,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 42.6,
+      "out_age_min": 53.2,
       "log_bytes": 218452,
       "status": "idle",
       "live": false,
@@ -126,8 +128,9 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1351.3,
-      "live": false
+      "age_min": 1361.9,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "1f403dd5",
@@ -138,8 +141,9 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10174.4,
-      "live": false
+      "age_min": 10185.0,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "479c5f63",
@@ -150,8 +154,9 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4304.5,
-      "live": false
+      "age_min": 4315.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "2eb0ee20",
@@ -162,20 +167,22 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4077.5,
-      "live": false
+      "age_min": 4088.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 665840,
-      "cache_read_tokens": 59644678,
-      "cache_creation_tokens": 1694576,
-      "msgs": 363,
-      "last_active": "2026-07-10T06:12:08Z",
-      "age_min": 3.7,
-      "live": true
+      "output_tokens": 707826,
+      "cache_read_tokens": 65678909,
+      "cache_creation_tokens": 1747480,
+      "msgs": 381,
+      "last_active": "2026-07-10T06:25:38Z",
+      "age_min": 0.8,
+      "live": true,
+      "subagent": false
     },
     {
       "id": "a3607e93",
@@ -186,8 +193,9 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1460.7,
-      "live": false
+      "age_min": 1471.3,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "bca1b96d",
@@ -198,8 +206,9 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 145.2,
-      "live": false
+      "age_min": 155.8,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "3f777a8b",
@@ -210,8 +219,9 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4258.4,
-      "live": false
+      "age_min": 4269.0,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "649d5b29",
@@ -222,8 +232,9 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4304.5,
-      "live": false
+      "age_min": 4315.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "070e42cb",
@@ -234,8 +245,9 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10879.7,
-      "live": false
+      "age_min": 10890.3,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "a7ec81c1",
@@ -246,9 +258,85 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10897.1,
-      "live": false
+      "age_min": 10907.7,
+      "live": false,
+      "subagent": false
+    },
+    {
+      "id": "ad6db55e",
+      "full_id": "ad6db55e2596a925a",
+      "group": "mission-control",
+      "group_label": "Mission-control",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:26:22Z",
+      "age_min": 0.0,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 2313288
+    },
+    {
+      "id": "a1c13e54",
+      "full_id": "a1c13e5479df44612",
+      "group": "frontend",
+      "group_label": "Frontend worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:26:11Z",
+      "age_min": 0.2,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 965041
+    },
+    {
+      "id": "ae451668",
+      "full_id": "ae451668eb8dc9c2e",
+      "group": "backend",
+      "group_label": "Backend worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:25:36Z",
+      "age_min": 0.8,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 1913890
+    },
+    {
+      "id": "a90719d7",
+      "full_id": "a90719d7d38e41e26",
+      "group": "provisioning",
+      "group_label": "Provisioning worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:08:33Z",
+      "age_min": 17.9,
+      "live": false,
+      "subagent": true,
+      "log_bytes": 0
+    },
+    {
+      "id": "a9bea1c0",
+      "full_id": "a9bea1c0e2cc2bc25",
+      "group": "environment",
+      "group_label": "Environment worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T05:33:12Z",
+      "age_min": 53.2,
+      "live": false,
+      "subagent": true,
+      "log_bytes": 218452
     }
   ],
-  "total_tokens": 14399252
+  "total_tokens": 14441238
 }

@@ -439,10 +439,13 @@
   <section class="panel">
     <div class="split">
       <div>
-        <p class="eyebrow">Raw transcripts behind the roster — every session across all three project slugs</p>
+        <p class="eyebrow">Every session — project-slug transcripts + the commander's subagent workers</p>
         <h2>Session activity &amp; tokens</h2>
       </div>
-      <span class="foot mono" id="sessAge">—</span>
+      <div class="row">
+        <span class="foot mono" id="sessStamp">last refreshed —</span>
+        <span class="foot mono" id="sessAge">—</span>
+      </div>
     </div>
 
     <div class="kpis" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
@@ -453,15 +456,16 @@
       <div class="kpi"><div class="v mono" id="rollLive" style="color:var(--ok-ink)">—</div><div class="k">Live now (&lt;10m)</div></div>
     </div>
 
-    <p class="eyebrow" style="margin:18px 0 6px">Output tokens by session — colour is the project track</p>
+    <p class="eyebrow" style="margin:18px 0 6px">Output tokens by session — colour is the project track (transcript sessions only)</p>
     <div class="legend" style="margin-bottom:8px">
       <span><i style="background:var(--fe)"></i>Frontend</span>
       <span><i style="background:var(--be)"></i>Backend</span>
       <span><i style="background:var(--cmd)"></i>Commander</span>
+      <span><i style="background:var(--muted)"></i>Subagent (n/a tokens)</span>
     </div>
     <div id="tokChart" class="hbars"></div>
 
-    <p class="eyebrow" style="margin:18px 0 6px">All tracked sessions</p>
+    <p class="eyebrow" style="margin:18px 0 6px">All tracked sessions — transcripts + subagent workers</p>
     <div class="scroll">
       <table id="sessTable">
         <thead><tr><th>Session</th><th>Track</th><th>Status</th>
@@ -469,32 +473,34 @@
         <tbody id="sessBody"></tbody>
       </table>
     </div>
-    <p class="foot" style="margin:10px 0 0">Output tokens are what the model generated; cache-read is the (cheap) re-read context and dwarfs output by ~450×. Status is derived from each transcript's file mtime — <b>live</b> = touched in the last 10&nbsp;min. Most build sessions are now idle: the build phase is complete.</p>
+    <p class="foot" style="margin:10px 0 0">This is now <b>every session</b> — the three project-slug transcripts <b>plus the commander's subagent workers</b> (deduped), so it agrees with the roster above: each live worker shows here too. <b>Live</b> = file mtime touched in the last 10&nbsp;min (transcript <span class="mono">.jsonl</span> for slug sessions, task-output file for subagents). Subagent rows show <b>n/a</b> tokens because their usage lives in the worker process, not a separate transcript — the point is no session is missing. Output tokens are what the model generated; cache-read is the (cheap) re-read context and dwarfs output by ~450×.</p>
   </section>
 
   <p class="foot" style="text-align:center">
     Unified mission-control view · frontend + backend + Claude sessions. Session/token panel refreshes from
     <span class="mono">stats.json</span>; the page auto-reloads on new deploys. Sources: frontend
     <span class="mono">backend-requirements-from-frontend.md</span> · backend <span class="mono">local-parity-status.md</span> ·
-    <span class="mono">~/.claude/projects</span> transcripts (3 slugs).
+    <span class="mono">~/.claude/projects</span> transcripts (3 slugs) + the commander's subagent task-output files.
   </p>
 </div>
 
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T06:15:48Z",
+  "updated": "2026-07-10T06:26:24Z",
   "generated_by": "mission-control (ad6db55e)",
-  "schema": 4,
+  "schema": 5,
   "totals": {
-    "output_tokens": 14399252,
-    "cache_read_tokens": 6250489570,
-    "cache_creation_tokens": 56587965,
-    "msgs": 14927,
-    "sessions": 11,
-    "live_sessions": 1,
+    "output_tokens": 14441238,
+    "cache_read_tokens": 6256523801,
+    "cache_creation_tokens": 56640869,
+    "msgs": 14945,
+    "sessions": 16,
+    "live_sessions": 4,
+    "transcript_sessions": 11,
+    "subagent_sessions": 5,
     "workers": 6,
-    "live_workers": 5
+    "live_workers": 4
   },
   "workers": [
     {
@@ -507,29 +513,12 @@ const STATS = /*__STATS__*/{
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:15:48Z",
+      "out_last_active": "2026-07-10T06:26:24Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "status": "live",
       "live": true,
       "signal": "coordinating (orchestrator)"
-    },
-    {
-      "name": "Backend worker",
-      "role": "backend",
-      "branch": "microservices-backend",
-      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
-      "agent_id": "ae451668eb8dc9c2e",
-      "short_id": "ae451668",
-      "head_commit": "docs: record live parity re-run results on restored data",
-      "head_commit_at": "2026-07-10T10:05:30+04:00",
-      "head_ago_min": 10.3,
-      "out_last_active": "2026-07-10T06:15:48Z",
-      "out_age_min": -0.0,
-      "log_bytes": 1683571,
-      "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
     },
     {
       "name": "Mission-control",
@@ -538,12 +527,46 @@ const STATS = /*__STATS__*/{
       "focus": "Dashboard accuracy · full sanity sweep · workers roster + liveness · stats freshness.",
       "agent_id": "ad6db55e2596a925a",
       "short_id": "ad6db55e",
-      "head_commit": "feat(mission-control): dual-unit ETAs (hours + sessions) + backend advance",
-      "head_commit_at": "2026-07-10T09:31:29+04:00",
-      "head_ago_min": 44.3,
-      "out_last_active": "2026-07-10T06:15:44Z",
-      "out_age_min": 0.1,
-      "log_bytes": 1990432,
+      "head_commit": "fix(mission-control): task-mtime worker liveness + full sanity sweep",
+      "head_commit_at": "2026-07-10T10:16:38+04:00",
+      "head_ago_min": 9.8,
+      "out_last_active": "2026-07-10T06:26:22Z",
+      "out_age_min": 0.0,
+      "log_bytes": 2313288,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Frontend worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
+      "agent_id": "a1c13e5479df44612",
+      "short_id": "a1c13e54",
+      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
+      "head_commit_at": "2026-07-10T09:56:18+04:00",
+      "head_ago_min": 30.1,
+      "out_last_active": "2026-07-10T06:26:11Z",
+      "out_age_min": 0.2,
+      "log_bytes": 965041,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Backend worker",
+      "role": "backend",
+      "branch": "microservices-backend",
+      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
+      "agent_id": "ae451668eb8dc9c2e",
+      "short_id": "ae451668",
+      "head_commit": "feat(flows): carve request-leave wizard into hr",
+      "head_commit_at": "2026-07-10T10:25:00+04:00",
+      "head_ago_min": 1.4,
+      "out_last_active": "2026-07-10T06:25:36Z",
+      "out_age_min": 0.8,
+      "log_bytes": 1913890,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
@@ -559,28 +582,11 @@ const STATS = /*__STATS__*/{
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:08:33Z",
-      "out_age_min": 7.2,
+      "out_age_min": 17.9,
       "log_bytes": 0,
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "signal": "task-output mtime"
-    },
-    {
-      "name": "Frontend worker",
-      "role": "frontend",
-      "branch": "microservices-frontend",
-      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
-      "agent_id": "a1c13e5479df44612",
-      "short_id": "a1c13e54",
-      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
-      "head_commit_at": "2026-07-10T09:56:18+04:00",
-      "head_ago_min": 19.5,
-      "out_last_active": "2026-07-10T06:07:22Z",
-      "out_age_min": 8.4,
-      "log_bytes": 857783,
-      "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
     },
     {
       "name": "Environment worker",
@@ -593,7 +599,7 @@ const STATS = /*__STATS__*/{
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 42.6,
+      "out_age_min": 53.2,
       "log_bytes": 218452,
       "status": "idle",
       "live": false,
@@ -610,8 +616,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1351.3,
-      "live": false
+      "age_min": 1361.9,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "1f403dd5",
@@ -622,8 +629,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10174.4,
-      "live": false
+      "age_min": 10185.0,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "479c5f63",
@@ -634,8 +642,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4304.5,
-      "live": false
+      "age_min": 4315.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "2eb0ee20",
@@ -646,20 +655,22 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4077.5,
-      "live": false
+      "age_min": 4088.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 665840,
-      "cache_read_tokens": 59644678,
-      "cache_creation_tokens": 1694576,
-      "msgs": 363,
-      "last_active": "2026-07-10T06:12:08Z",
-      "age_min": 3.7,
-      "live": true
+      "output_tokens": 707826,
+      "cache_read_tokens": 65678909,
+      "cache_creation_tokens": 1747480,
+      "msgs": 381,
+      "last_active": "2026-07-10T06:25:38Z",
+      "age_min": 0.8,
+      "live": true,
+      "subagent": false
     },
     {
       "id": "a3607e93",
@@ -670,8 +681,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1460.7,
-      "live": false
+      "age_min": 1471.3,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "bca1b96d",
@@ -682,8 +694,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 145.2,
-      "live": false
+      "age_min": 155.8,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "3f777a8b",
@@ -694,8 +707,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4258.4,
-      "live": false
+      "age_min": 4269.0,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "649d5b29",
@@ -706,8 +720,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4304.5,
-      "live": false
+      "age_min": 4315.1,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "070e42cb",
@@ -718,8 +733,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10879.7,
-      "live": false
+      "age_min": 10890.3,
+      "live": false,
+      "subagent": false
     },
     {
       "id": "a7ec81c1",
@@ -730,11 +746,87 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10897.1,
-      "live": false
+      "age_min": 10907.7,
+      "live": false,
+      "subagent": false
+    },
+    {
+      "id": "ad6db55e",
+      "full_id": "ad6db55e2596a925a",
+      "group": "mission-control",
+      "group_label": "Mission-control",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:26:22Z",
+      "age_min": 0.0,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 2313288
+    },
+    {
+      "id": "a1c13e54",
+      "full_id": "a1c13e5479df44612",
+      "group": "frontend",
+      "group_label": "Frontend worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:26:11Z",
+      "age_min": 0.2,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 965041
+    },
+    {
+      "id": "ae451668",
+      "full_id": "ae451668eb8dc9c2e",
+      "group": "backend",
+      "group_label": "Backend worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:25:36Z",
+      "age_min": 0.8,
+      "live": true,
+      "subagent": true,
+      "log_bytes": 1913890
+    },
+    {
+      "id": "a90719d7",
+      "full_id": "a90719d7d38e41e26",
+      "group": "provisioning",
+      "group_label": "Provisioning worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:08:33Z",
+      "age_min": 17.9,
+      "live": false,
+      "subagent": true,
+      "log_bytes": 0
+    },
+    {
+      "id": "a9bea1c0",
+      "full_id": "a9bea1c0e2cc2bc25",
+      "group": "environment",
+      "group_label": "Environment worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T05:33:12Z",
+      "age_min": 53.2,
+      "live": false,
+      "subagent": true,
+      "log_bytes": 218452
     }
   ],
-  "total_tokens": 14399252
+  "total_tokens": 14441238
 }/*__/STATS__*/;
 
 const FRONTEND = {
@@ -867,7 +959,8 @@ function renderWorkers(j){
 }
 
 /* ================= sessions & tokens ================= */
-const TRACK={frontend:"var(--fe)",backend:"var(--be)",commander:"var(--cmd)"};
+const TRACK={frontend:"var(--fe)",backend:"var(--be)",commander:"var(--cmd)",
+  "mission-control":"var(--ink-2)",provisioning:"var(--muted)",environment:"var(--muted)",worker:"var(--line-strong)"};
 function renderSessions(j){
   const t=j.totals||{};
   $("rollOut").textContent=fmt(t.output_tokens);
@@ -879,26 +972,32 @@ function renderSessions(j){
   $("kpiTok").textContent=fmt(t.output_tokens);
   const upd=j.updated?new Date(j.updated):null;
   $("sessAge").textContent = upd&&!isNaN(upd) ? "stats built "+ago((Date.now()-upd.getTime())/60000) : "stats: unknown";
+  if($("sessStamp")) $("sessStamp").textContent = upd&&!isNaN(upd)
+    ? "last refreshed "+upd.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}) : "last refreshed —";
 
-  const s=(j.sessions||[]).slice().sort((a,b)=>b.output_tokens-a.output_tokens);
-  const max=Math.max(1,...s.map(x=>x.output_tokens));
-  $("tokChart").innerHTML=s.map(x=>{
+  // subagents sort after transcripts (null tokens = -1); token chart is transcript-only
+  const s=(j.sessions||[]).slice().sort((a,b)=>((b.output_tokens??-1)-(a.output_tokens??-1)));
+  const tx=s.filter(x=>x.output_tokens!=null);
+  const max=Math.max(1,...tx.map(x=>x.output_tokens));
+  $("tokChart").innerHTML=tx.map(x=>{
     const col=TRACK[x.group]||"var(--muted)";
     return `<div class="hbar"><div class="lab mono" title="${esc(x.group_label)} ${esc(x.id)}">${esc(x.id)}</div>
       <div class="barwrap"><div class="bar" style="width:${(x.output_tokens/max*100).toFixed(1)}%;background:${col}"></div>
       <span class="val mono">${fmt(x.output_tokens)}</span></div></div>`;}).join("");
 
+  const NA='<span style="color:var(--muted)">n/a</span>';
   $("sessBody").innerHTML=s.map(x=>{
-    const live=x.live, col=TRACK[x.group]||"var(--muted)";
+    const live=x.live, sub=!!x.subagent, col=TRACK[x.group]||"var(--muted)";
     const dot=live?"var(--ok)":"var(--muted)";
-    const status=live?'<b style="color:var(--ok-ink)">live</b>':"idle "+ago(x.age_min);
+    const status=live?'<b style="color:var(--ok-ink)">live</b>':"idle "+ago(x.age_min==null?0:x.age_min);
+    const kind=sub?' <span class="chip mute" style="padding:1px 6px;font-size:9px;vertical-align:middle" title="subagent worker — token detail lives in the worker process, not a transcript">subagent</span>':'';
     return `<tr>
-      <td><span class="sdot" style="background:${dot}"></span><span class="mono">${esc(x.id)}</span></td>
+      <td><span class="sdot" style="background:${dot}"></span><span class="mono">${esc(x.id)}</span>${kind}</td>
       <td><span class="sdot" style="background:${col};border-radius:2px"></span>${esc(x.group_label)}</td>
       <td>${status}</td>
-      <td class="num mono">${fmt(x.output_tokens)}</td>
-      <td class="num mono">${fmt(x.cache_read_tokens)}</td>
-      <td class="num mono">${fmtInt(x.msgs)}</td></tr>`;}).join("");
+      <td class="num mono">${x.output_tokens==null?NA:fmt(x.output_tokens)}</td>
+      <td class="num mono">${x.cache_read_tokens==null?NA:fmt(x.cache_read_tokens)}</td>
+      <td class="num mono">${x.msgs==null?NA:fmtInt(x.msgs)}</td></tr>`;}).join("");
 }
 renderSessions(STATS); renderWorkers(STATS);
 async function pollStats(){
