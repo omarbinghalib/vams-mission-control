@@ -10,7 +10,7 @@
     "track": "backend"
   },
   {
-    "title": "Uniform async-task contract (/tasks/<id>/)",
+    "title": "Uniform async-task contract (9 services)",
     "status": "done",
     "track": "backend"
   },
@@ -30,71 +30,97 @@
     "track": "backend"
   },
   {
-    "title": "Product decisions (full-parity, 11 modules, polished theme, local-FS)",
+    "title": "Integration & finalize (5 cross-service seams + rebuild-all)",
     "status": "done",
-    "track": "mission-control"
-  },
-  {
-    "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + kit",
-    "status": "done",
-    "track": "mission-control"
+    "track": "backend",
+    "note": "29/29 containers"
   },
   {
     "title": "QC depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "Purchasing depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "CRM depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "Engineering depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "Production + Inventory depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "Accounting depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
     "title": "HR depth",
     "status": "done",
     "track": "backend",
-    "note": "full-parity"
+    "note": "full-parity, cent-verified"
   },
   {
-    "title": "Polished theme",
+    "title": "Polished default theme",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "Server-rendered XLSX/PDF documents",
+    "title": "Server-rendered documents (PDF / XLSX)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "Flip-to-gateway + verify per module",
+    "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + reusable kit",
+    "status": "done",
+    "track": "mission-control"
+  },
+  {
+    "title": "Product decisions (full-parity / 11 modules / theme / local-FS)",
+    "status": "done",
+    "track": "mission-control"
+  },
+  {
+    "title": "Flip-to-gateway + verify all 8 modules",
     "status": "in_progress",
-    "track": "frontend",
-    "note": "after each service's depth lands"
+    "track": "frontend"
+  },
+  {
+    "title": "Coverage sweep (nothing-missing audit: original VAMS 2.0 vs new)",
+    "status": "in_progress",
+    "track": "audit"
+  },
+  {
+    "title": "Carve any genuine gaps the sweep finds",
+    "status": "pending",
+    "track": "audit"
+  },
+  {
+    "title": "Capstone: full parity audit (capability/logic/depth/complexity) + comparison artifact",
+    "status": "pending",
+    "track": "audit"
+  },
+  {
+    "title": "Phase-5 production cutover",
+    "status": "pending",
+    "track": "audit",
+    "note": "reserved for Omar's sign-off"
   }
 ]
