@@ -225,8 +225,8 @@ def commit_activity():
 # ---------- delivery progress + dual-unit ETA (per-track % is a manual estimate) ----------
 PROGRESS_CFG = {
   "tracks": [
-    {"track": "frontend", "label": "Frontend", "pct": 82, "remaining_hours": [10, 15], "remaining_sessions": [4, 5], "weight": 1},
-    {"track": "backend",  "label": "Backend",  "pct": 95, "remaining_hours": [3, 5],   "remaining_sessions": [2, 2], "weight": 1},
+    {"track": "backend",  "label": "Backend",  "pct": 100, "remaining_hours": [0, 2], "remaining_sessions": [0, 1], "weight": 1},
+    {"track": "frontend", "label": "Frontend", "pct": 90,  "remaining_hours": [3, 6], "remaining_sessions": [1, 2], "weight": 1},
   ],
   "basis": ("Per-track % and remaining hours/sessions are ESTIMATES from the resume docs "
             "(milestone completion), not measurements. Overall % is equal-weighted across the "
