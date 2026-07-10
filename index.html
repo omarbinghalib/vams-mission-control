@@ -487,17 +487,17 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T06:26:24Z",
-  "generated_by": "mission-control (ad6db55e)",
+  "updated": "2026-07-10T06:53:53Z",
+  "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 14441238,
-    "cache_read_tokens": 6256523801,
-    "cache_creation_tokens": 56640869,
-    "msgs": 14945,
-    "sessions": 16,
+    "output_tokens": 14558747,
+    "cache_read_tokens": 6267974779,
+    "cache_creation_tokens": 57207801,
+    "msgs": 15034,
+    "sessions": 17,
     "live_sessions": 4,
-    "transcript_sessions": 11,
+    "transcript_sessions": 12,
     "subagent_sessions": 5,
     "workers": 6,
     "live_workers": 4
@@ -507,32 +507,32 @@ const STATS = /*__STATS__*/{
       "name": "Commander",
       "role": "commander",
       "branch": null,
-      "focus": "Orchestrating all workers, integration, and dashboard publishing.",
-      "agent_id": "b0a25ec9 (main)",
-      "short_id": "b0a25ec9",
+      "focus": "Orchestrating the relaunched backend + frontend workers, integration, and dashboard publishing.",
+      "agent_id": "a49f5cc3 (root)",
+      "short_id": "a49f5cc3",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:26:24Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-10T06:48:32Z",
+      "out_age_min": 5.4,
       "log_bytes": null,
       "status": "live",
       "live": true,
       "signal": "coordinating (orchestrator)"
     },
     {
-      "name": "Mission-control",
-      "role": "mission-control",
-      "branch": "microservices-frontend",
-      "focus": "Dashboard accuracy · full sanity sweep · workers roster + liveness · stats freshness.",
-      "agent_id": "ad6db55e2596a925a",
-      "short_id": "ad6db55e",
-      "head_commit": "fix(mission-control): task-mtime worker liveness + full sanity sweep",
-      "head_commit_at": "2026-07-10T10:16:38+04:00",
-      "head_ago_min": 9.8,
-      "out_last_active": "2026-07-10T06:26:22Z",
-      "out_age_min": 0.0,
-      "log_bytes": 2313288,
+      "name": "Backend worker",
+      "role": "backend",
+      "branch": "microservices-backend",
+      "focus": "Relaunched under the new commander. Real-data parity complete; continuing SO->MR + request-leave + line-item persistence saga.",
+      "agent_id": "a7aa95fb33d1db66d",
+      "short_id": "a7aa95fb",
+      "head_commit": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
+      "head_commit_at": "2026-07-10T10:51:18+04:00",
+      "head_ago_min": 2.6,
+      "out_last_active": "2026-07-10T06:51:09Z",
+      "out_age_min": 2.7,
+      "log_bytes": 188336,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
@@ -541,32 +541,32 @@ const STATS = /*__STATS__*/{
       "name": "Frontend worker",
       "role": "frontend",
       "branch": "microservices-frontend",
-      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
-      "agent_id": "a1c13e5479df44612",
-      "short_id": "a1c13e54",
-      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
-      "head_commit_at": "2026-07-10T09:56:18+04:00",
-      "head_ago_min": 30.1,
-      "out_last_active": "2026-07-10T06:26:11Z",
-      "out_age_min": 0.2,
-      "log_bytes": 965041,
+      "focus": "Relaunched under the new commander. Phase 5 Android + iOS done, /api/v1 aligned (220 green); authenticated E2E + reconciliation.",
+      "agent_id": "a84f4e234ffc22a31",
+      "short_id": "a84f4e23",
+      "head_commit": "chore(mission-control): salvage dashboard tweak from retired worker",
+      "head_commit_at": "2026-07-10T10:42:30+04:00",
+      "head_ago_min": 11.4,
+      "out_last_active": "2026-07-10T06:50:44Z",
+      "out_age_min": 3.2,
+      "log_bytes": 216666,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
     },
     {
-      "name": "Backend worker",
-      "role": "backend",
-      "branch": "microservices-backend",
-      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
-      "agent_id": "ae451668eb8dc9c2e",
-      "short_id": "ae451668",
-      "head_commit": "feat(flows): carve request-leave wizard into hr",
-      "head_commit_at": "2026-07-10T10:25:00+04:00",
-      "head_ago_min": 1.4,
-      "out_last_active": "2026-07-10T06:25:36Z",
-      "out_age_min": 0.8,
-      "log_bytes": 1913890,
+      "name": "Mission-control",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Dashboard accuracy - roster + liveness honesty - stats freshness - republish public page.",
+      "agent_id": "ad796e2c1ded647f8",
+      "short_id": "ad796e2c",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T06:51:11Z",
+      "out_age_min": 2.7,
+      "log_bytes": 203741,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
@@ -575,38 +575,52 @@ const STATS = /*__STATS__*/{
       "name": "Provisioning worker",
       "role": "provisioning",
       "branch": null,
-      "focus": "django-tenants acme org + JWT user + module/role grants — starting to unlock the /me/ + roles blockers.",
+      "focus": "COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked).",
       "agent_id": "a90719d7d38e41e26",
       "short_id": "a90719d7",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:08:33Z",
-      "out_age_min": 17.9,
-      "log_bytes": 0,
-      "status": "idle",
+      "out_last_active": "2026-07-10T06:21:47Z",
+      "out_age_min": 32.1,
+      "log_bytes": 488835,
+      "status": "done",
       "live": false,
-      "signal": "task-output mtime"
+      "signal": "mission complete"
     },
     {
       "name": "Environment worker",
       "role": "environment",
       "branch": null,
-      "focus": "Installing JDK 17 + Android SDK (long toolchain download).",
+      "focus": "COMPLETE - JDK 17 + Android SDK toolchain installed; Android + iOS native builds done.",
       "agent_id": "a9bea1c0e2cc2bc25",
       "short_id": "a9bea1c0",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 53.2,
+      "out_age_min": 80.7,
       "log_bytes": 218452,
-      "status": "idle",
+      "status": "done",
       "live": false,
-      "signal": "task-output mtime"
+      "signal": "mission complete"
     }
   ],
   "sessions": [
+    {
+      "id": "a49f5cc3",
+      "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 83240,
+      "cache_read_tokens": 3960060,
+      "cache_creation_tokens": 530517,
+      "msgs": 68,
+      "last_active": "2026-07-10T06:48:32Z",
+      "age_min": 5.4,
+      "live": true,
+      "subagent": false
+    },
     {
       "id": "aa30f33e",
       "group": "commander",
@@ -616,7 +630,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1361.9,
+      "age_min": 1389.4,
       "live": false,
       "subagent": false
     },
@@ -629,7 +643,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10185.0,
+      "age_min": 10212.5,
       "live": false,
       "subagent": false
     },
@@ -642,7 +656,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4315.1,
+      "age_min": 4342.6,
       "live": false,
       "subagent": false
     },
@@ -655,7 +669,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4088.1,
+      "age_min": 4115.6,
       "live": false,
       "subagent": false
     },
@@ -663,13 +677,13 @@ const STATS = /*__STATS__*/{
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 707826,
-      "cache_read_tokens": 65678909,
-      "cache_creation_tokens": 1747480,
-      "msgs": 381,
-      "last_active": "2026-07-10T06:25:38Z",
-      "age_min": 0.8,
-      "live": true,
+      "output_tokens": 742095,
+      "cache_read_tokens": 73169827,
+      "cache_creation_tokens": 1783895,
+      "msgs": 402,
+      "last_active": "2026-07-10T06:30:41Z",
+      "age_min": 23.2,
+      "live": false,
       "subagent": false
     },
     {
@@ -681,7 +695,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1471.3,
+      "age_min": 1498.8,
       "live": false,
       "subagent": false
     },
@@ -694,7 +708,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 155.8,
+      "age_min": 183.3,
       "live": false,
       "subagent": false
     },
@@ -707,7 +721,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4269.0,
+      "age_min": 4296.5,
       "live": false,
       "subagent": false
     },
@@ -720,7 +734,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4315.1,
+      "age_min": 4342.6,
       "live": false,
       "subagent": false
     },
@@ -733,7 +747,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10890.3,
+      "age_min": 10917.8,
       "live": false,
       "subagent": false
     },
@@ -746,87 +760,87 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10907.7,
+      "age_min": 10935.2,
       "live": false,
       "subagent": false
     },
     {
-      "id": "ad6db55e",
-      "full_id": "ad6db55e2596a925a",
-      "group": "mission-control",
-      "group_label": "Mission-control",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T06:26:22Z",
-      "age_min": 0.0,
-      "live": true,
-      "subagent": true,
-      "log_bytes": 2313288
-    },
-    {
-      "id": "a1c13e54",
-      "full_id": "a1c13e5479df44612",
-      "group": "frontend",
-      "group_label": "Frontend worker",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T06:26:11Z",
-      "age_min": 0.2,
-      "live": true,
-      "subagent": true,
-      "log_bytes": 965041
-    },
-    {
-      "id": "ae451668",
-      "full_id": "ae451668eb8dc9c2e",
+      "id": "a7aa95fb",
+      "full_id": "a7aa95fb33d1db66d",
       "group": "backend",
       "group_label": "Backend worker",
+      "last_active": "2026-07-10T06:51:09Z",
+      "log_bytes": 188336,
+      "live": true,
       "output_tokens": null,
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T06:25:36Z",
-      "age_min": 0.8,
+      "age_min": 2.7,
+      "subagent": true
+    },
+    {
+      "id": "a84f4e23",
+      "full_id": "a84f4e234ffc22a31",
+      "group": "frontend",
+      "group_label": "Frontend worker",
+      "last_active": "2026-07-10T06:50:44Z",
+      "log_bytes": 216666,
       "live": true,
-      "subagent": true,
-      "log_bytes": 1913890
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "age_min": 3.2,
+      "subagent": true
+    },
+    {
+      "id": "ad796e2c",
+      "full_id": "ad796e2c1ded647f8",
+      "group": "mission-control",
+      "group_label": "Mission-control",
+      "last_active": "2026-07-10T06:51:11Z",
+      "log_bytes": 203741,
+      "live": true,
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "age_min": 2.7,
+      "subagent": true
     },
     {
       "id": "a90719d7",
       "full_id": "a90719d7d38e41e26",
       "group": "provisioning",
       "group_label": "Provisioning worker",
+      "last_active": "2026-07-10T06:21:47Z",
+      "log_bytes": 488835,
+      "live": false,
       "output_tokens": null,
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T06:08:33Z",
-      "age_min": 17.9,
-      "live": false,
-      "subagent": true,
-      "log_bytes": 0
+      "age_min": 32.1,
+      "subagent": true
     },
     {
       "id": "a9bea1c0",
       "full_id": "a9bea1c0e2cc2bc25",
       "group": "environment",
       "group_label": "Environment worker",
+      "last_active": "2026-07-10T05:33:12Z",
+      "log_bytes": 218452,
+      "live": false,
       "output_tokens": null,
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 53.2,
-      "live": false,
-      "subagent": true,
-      "log_bytes": 218452
+      "age_min": 80.7,
+      "subagent": true
     }
   ],
-  "total_tokens": 14441238
+  "total_tokens": 14558747
 }/*__/STATS__*/;
 
 const FRONTEND = {
@@ -926,9 +940,10 @@ function renderWorkers(j){
     : "last refreshed —";
   $("workers").innerHTML=ws.map(w=>{
     const live=w.status==="live";
+    const done=w.status==="done"||w.status==="complete";
     const chipCls=live?"ok":"mute";
     const dotCls=live?"dp beat":"dp";
-    const stTxt=live?"live":"idle";
+    const stTxt=live?"live":(done?"complete ✓":"idle");
     const role=w.role||"worker";
     const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`
                           :`<span class="mono">${esc(w.short_id||"")}</span> · no branch`;
@@ -945,7 +960,8 @@ function renderWorkers(j){
     }
     // liveness meta from the task-output file mtime (the real heartbeat)
     const oa=w.out_age_min;
-    const laTxt = oa==null ? (live?"active now":"—")
+    const laTxt = done ? "completed "+ago(oa==null?0:oa)
+                 : oa==null ? (live?"active now":"—")
                  : (oa<1?"active just now":"active "+ago(oa));
     const logTxt = w.log_bytes ? `<span title="worker task-output log size">${fmtBytes(w.log_bytes)} log</span>` : "";
     return `<div class="wcard r-${esc(role)}">
@@ -975,9 +991,9 @@ function renderSessions(j){
   if($("sessStamp")) $("sessStamp").textContent = upd&&!isNaN(upd)
     ? "last refreshed "+upd.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}) : "last refreshed —";
 
-  // subagents sort after transcripts (null tokens = -1); token chart is transcript-only
-  const s=(j.sessions||[]).slice().sort((a,b)=>((b.output_tokens??-1)-(a.output_tokens??-1)));
-  const tx=s.filter(x=>x.output_tokens!=null);
+  const arr=(j.sessions||[]).slice();
+  // token bar chart: LIVE sessions first, then magnitude (tokens desc) within each group
+  const tx=arr.filter(x=>x.output_tokens!=null).sort((a,b)=> (a.live!==b.live) ? (a.live?-1:1) : (b.output_tokens-a.output_tokens));
   const max=Math.max(1,...tx.map(x=>x.output_tokens));
   $("tokChart").innerHTML=tx.map(x=>{
     const col=TRACK[x.group]||"var(--muted)";
@@ -985,6 +1001,8 @@ function renderSessions(j){
       <div class="barwrap"><div class="bar" style="width:${(x.output_tokens/max*100).toFixed(1)}%;background:${col}"></div>
       <span class="val mono">${fmt(x.output_tokens)}</span></div></div>`;}).join("");
 
+  // table: LIVE first, then idle; within each group freshest last-active first
+  const s=arr.sort((a,b)=> (a.live!==b.live) ? (a.live?-1:1) : ((a.age_min==null?1e9:a.age_min)-(b.age_min==null?1e9:b.age_min)));
   const NA='<span style="color:var(--muted)">n/a</span>';
   $("sessBody").innerHTML=s.map(x=>{
     const live=x.live, sub=!!x.subagent, col=TRACK[x.group]||"var(--muted)";
