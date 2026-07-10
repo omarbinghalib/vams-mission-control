@@ -85,12 +85,27 @@
     "track": "mission-control"
   },
   {
-    "title": "Capstone: full parity audit (capability/logic/depth/complexity) + comparison artifact",
+    "title": "VAMS tenant + login — rename acme→vams, VAMS branding, real VAMS admin login, real data verified",
+    "status": "pending",
+    "track": "deploy"
+  },
+  {
+    "title": "Full local deployment — frontend built+served as a container in docker-compose (gateway mode); whole stack; VAMS login → real data E2E",
+    "status": "pending",
+    "track": "deploy"
+  },
+  {
+    "title": "Separate frontend configs — local-deployment build vs cloud/online build, documented",
+    "status": "pending",
+    "track": "deploy"
+  },
+  {
+    "title": "Capstone: full parity audit (vs running VAMS) + comparison artifact",
     "status": "pending",
     "track": "audit"
   },
   {
-    "title": "Capstone: knowledge capture",
+    "title": "Capstone: knowledge capture — lessons + playbook + skills + agent definitions",
     "status": "pending",
     "track": "audit"
   }

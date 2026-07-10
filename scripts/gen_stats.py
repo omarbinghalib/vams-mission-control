@@ -223,23 +223,65 @@ def commit_activity():
     feed.sort(key=lambda x: x["at"], reverse=True)
     return {"tracks": tracks, "recent": feed[:8]}
 
-# ---------- delivery progress + dual-unit ETA (per-track % is a manual estimate) ----------
-PROGRESS_CFG = {
-  "tracks": [
-    {"track": "backend",  "label": "Backend",  "pct": 100, "remaining_hours": [0, 1], "remaining_sessions": [0, 1], "weight": 1},
-    {"track": "frontend", "label": "Frontend", "pct": 92,  "remaining_hours": [2, 5], "remaining_sessions": [1, 2], "weight": 1},
-  ],
-  "basis": ("Per-track % and remaining hours/sessions are ESTIMATES from the resume docs "
-            "(milestone completion), not measurements. Overall % is equal-weighted across the "
-            "two tracks. The real, measured signal is commit velocity (below)."),
-}
+# ---------- delivery progress + dual-unit ETA — DERIVED from tasks.json ----------
+# Overall % and per-track % come straight from the task tracker: done=100%, in_progress=50%,
+# pending=0%. So whenever the commander edits tasks (tasks.sh), the progress + ETA AUTO-RESYNC
+# with zero code change and can never lag behind scope. ETA hours/sessions scale off the same
+# remaining-work ratio. Everything here stays honestly labelled an ESTIMATE — the real, measured
+# signal is commit velocity (below).
+TASKS_PATH     = os.path.join(REPO, "tasks.json")
+HOURS_PER_UNIT = (1.5, 3.0)   # remaining hours   per remaining task-unit (pending=1, in_progress=0.5)
+SESS_PER_UNIT  = (0.4, 0.8)   # remaining sessions per remaining task-unit
+TRACK_LABELS   = {"backend": "Backend", "frontend": "Frontend", "mission-control": "Mission-control",
+                  "audit": "Capstones", "deploy": "Deployment"}
+TRACK_ORDER    = ["backend", "frontend", "deploy", "audit", "mission-control"]
+
+def _load_tasks():
+    try:
+        t = json.load(open(TASKS_PATH, encoding="utf-8"))
+        return t if isinstance(t, list) else []
+    except Exception:
+        return []
+
+def _task_weights(tasks):
+    """(completed_weight, total, remaining_units) with done=1, in_progress=0.5, pending=0."""
+    done   = sum(1 for t in tasks if t.get("status") == "done")
+    inprog = sum(1 for t in tasks if t.get("status") == "in_progress")
+    total  = len(tasks)
+    return (done + 0.5 * inprog), total, ((total - done) - 0.5 * inprog)
+
+def _hrs(u):  return [round(u * HOURS_PER_UNIT[0]), round(u * HOURS_PER_UNIT[1])]
+def _sess(u): return [round(u * SESS_PER_UNIT[0]),  round(u * SESS_PER_UNIT[1])]
+
 def progress_block():
-    tr = PROGRESS_CFG["tracks"]; wsum = sum(t["weight"] for t in tr) or 1
-    overall = round(sum(t["pct"] * t["weight"] for t in tr) / wsum)
-    rh = [sum(t["remaining_hours"][0] for t in tr), sum(t["remaining_hours"][1] for t in tr)]
-    rs = [sum(t["remaining_sessions"][0] for t in tr), sum(t["remaining_sessions"][1] for t in tr)]
-    return {"overall_pct": overall, "remaining_hours": rh, "remaining_sessions": rs,
-            "tracks": tr, "basis": PROGRESS_CFG["basis"], "estimate": True}
+    tasks = _load_tasks()
+    if not tasks:
+        return {"overall_pct": 0, "remaining_hours": [0, 0], "remaining_sessions": [0, 0],
+                "tracks": [], "estimate": True,
+                "basis": "tasks.json unavailable — progress cannot be derived."}
+    cw, total, rem = _task_weights(tasks)
+    overall = round(cw / total * 100) if total else 0
+    # per-track, grouped straight from the tracker
+    groups = {}
+    for t in tasks:
+        groups.setdefault(t.get("track", "other"), []).append(t)
+    tracks_out = []
+    for tr in TRACK_ORDER + [k for k in groups if k not in TRACK_ORDER]:
+        items = groups.get(tr)
+        if not items:
+            continue
+        cwt, tot, remt = _task_weights(items)
+        tracks_out.append({"track": tr, "label": TRACK_LABELS.get(tr, tr.title()),
+                           "pct": round(cwt / tot * 100) if tot else 0,
+                           "remaining_hours": _hrs(remt), "remaining_sessions": _sess(remt),
+                           "weight": 1})
+    return {"overall_pct": overall, "remaining_hours": _hrs(rem), "remaining_sessions": _sess(rem),
+            "tracks": tracks_out, "estimate": True,
+            "basis": ("Overall % and per-track % are DERIVED from the task tracker "
+                      "(done=100%, in-progress=50%, pending=0%) — they auto-resync whenever tasks "
+                      "are updated, so the number can't lag scope. Remaining hours/sessions scale "
+                      "off the same remaining-work ratio. All ESTIMATES; the measured signal is "
+                      "commit velocity (below).")}
 
 # ---------- transcript-session baseline (numbers preserved for sessions whose .jsonl is gone) ----------
 # Files that still exist on this machine are recomputed live; the rest fall back to these.
