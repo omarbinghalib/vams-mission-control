@@ -394,11 +394,20 @@ def discover_workers():
         status = _status_for(age, stopped)
         rm     = ROLE_MAP.get(role, {})
         branch = rm.get("branch")
+        # Per-worker tokens + turns: RE-READ from the worker's OWN transcript every cycle so the
+        # numbers track live activity instead of showing n/a. Bounded to the CURRENT fleet (live or
+        # recently active) to keep each heartbeat fast and off the collapsed long tail.
+        out_tok = cr_tok = cc_tok = msgs = None
+        current = (status == "live") or (status == "idle" and age is not None and age < RECENT_MIN)
+        if os.path.exists(jsonl) and current:
+            out_tok, cr_tok, cc_tok, msgs = token_usage(jsonl)
         rec = dict(name=desc, role=role, branch=branch,
                    focus=(objective_of(jsonl, desc) if os.path.exists(jsonl) else desc),
                    agent_id=agent_id, short_id=agent_id[:8],
                    head_commit=None, head_commit_at=None, head_ago_min=None,
                    out_last_active=la2, out_age_min=age, log_bytes=lb,
+                   output_tokens=out_tok, cache_read_tokens=cr_tok,
+                   cache_creation_tokens=cc_tok, msgs=msgs,
                    signal=("stopped by user (harness-cancelled)" if stopped else "task-output mtime + git commit"),
                    status=status, live=(status == "live"))
         if branch and rm.get("repo") and status in ("live", "idle"):
@@ -444,8 +453,10 @@ def build_sessions(workers):
         if w["role"] == "commander":
             continue
         subs.append(dict(id=w["short_id"], full_id=w["agent_id"], group=w["role"],
-                         group_label=w["name"], output_tokens=None, cache_read_tokens=None,
-                         cache_creation_tokens=None, msgs=None, last_active=w["out_last_active"],
+                         group_label=w["name"], output_tokens=w.get("output_tokens"),
+                         cache_read_tokens=w.get("cache_read_tokens"),
+                         cache_creation_tokens=w.get("cache_creation_tokens"), msgs=w.get("msgs"),
+                         last_active=w["out_last_active"],
                          age_min=w["out_age_min"], live=(w["status"] == "live"),
                          status=w["status"], subagent=True, log_bytes=w["log_bytes"]))
     return tx, subs
@@ -514,16 +525,33 @@ def live_key(stats):
     return sorted(s["id"] for s in stats["sessions"] if s["live"]), \
            sorted(w["short_id"] for w in stats["workers"] if w["live"])
 
+def live_sig(stats):
+    """Mutable DETAILS of the live fleet — the fields that move as a live worker actually works:
+    its task-output timestamp, log size, tokens/turns, status, and latest commit. Lets the
+    heartbeat republish WITHIN a cycle whenever a live worker's details change, so the page never
+    looks frozen between the coarse staleness windows — without no-op spam when the fleet is quiet."""
+    sig = []
+    for w in sorted(stats["workers"], key=lambda w: w.get("short_id") or ""):
+        if w.get("status") == "live" or w.get("live"):
+            sig.append((w.get("short_id"), w.get("status"), w.get("out_last_active"),
+                        w.get("log_bytes"), w.get("head_commit"),
+                        w.get("output_tokens"), w.get("msgs")))
+    return sig
+
 def heartbeat_decision(old, new):
-    """NEVER-GO-STALE push policy. Push when the live-set changed, or when the published stats
-    are older than the applicable threshold: STALE_MIN with an active fleet, IDLE_PULSE_MIN when
-    the fleet is fully idle (a low-frequency pulse so freshness never freezes — bounded, no spam).
+    """NEVER-GO-STALE push policy. Push when: the live-SET changed; OR (while any worker is live)
+    the live fleet's DETAILS changed this cycle — tokens/turns/last-active/commit — so live workers
+    refresh on the normal ~3-min heartbeat cadence instead of lagging up to STALE_MIN; OR the
+    published stats are older than the applicable threshold (STALE_MIN active / IDLE_PULSE_MIN idle,
+    a low-frequency pulse so freshness never freezes). Bounded — no push when nothing changed.
     Returns (push:bool, any_live:bool, age:float, threshold:int, changed:bool)."""
     any_live = new["totals"]["live_workers"] > 0
     age = age_of(old.get("updated")) if old else None
     age = 1e9 if age is None else age
-    changed = (live_key(old) != live_key(new)) if old else True
+    set_changed = (live_key(old) != live_key(new)) if old else True
+    sig_changed = (live_sig(old) != live_sig(new)) if old else True
     threshold = STALE_MIN if any_live else IDLE_PULSE_MIN
+    changed = set_changed or (any_live and sig_changed)
     return (changed or age >= threshold), any_live, age, threshold, changed
 
 def main():
