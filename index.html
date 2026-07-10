@@ -156,15 +156,18 @@
   .wcard.r-backend{border-left-color:var(--be)}
   .wcard.r-frontend{border-left-color:var(--fe)}
   .wcard.r-mission-control{border-left-color:var(--ink-2)}
+  .wcard.r-environment{border-left-color:var(--muted)}
+  .wcard.r-provisioning{border-left-color:var(--muted)}
+  .wcard.r-worker{border-left-color:var(--line-strong)}
   .wcard .whead{display:flex;justify-content:space-between;align-items:center;gap:8px}
   .wname{font-weight:650;font-size:14px}
   .wbranch{font-size:11px;color:var(--muted)}
   .wfocus{font-size:12px;color:var(--ink-2);line-height:1.45}
   .wact{font-size:11.5px;color:var(--ink);display:flex;gap:6px;align-items:baseline;
-    background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
+    background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 9px;line-height:1.4}
   .wact .arrow{color:var(--muted);flex:none}
-  .wact .sub{color:var(--muted)}
-  .wmeta{display:flex;gap:14px;flex-wrap:wrap;margin-top:1px;font-size:11px;color:var(--muted)}
+  .wact .sub,.wmeta .sub{color:var(--muted);font-size:inherit}
+  .wmeta{display:flex;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:2px;font-size:11px;color:var(--muted)}
   .wmeta b{color:var(--ink-2);font-weight:600}
   .chip .dp{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
   .chip .dp.beat{animation:pulse 1.6s ease-in-out infinite}
@@ -240,10 +243,10 @@
       <div class="prog">
         <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--fe)"></span><h2>Frontend</h2></div>
         <div class="phead">
-          <div class="ppct" style="color:var(--fe)">78<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
+          <div class="ppct" style="color:var(--fe)">82<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
           <div class="peta">build complete · go-live-ready <b>est. ~10–15h · ~4–5 sessions</b>, tracking backend carve + the 5 blockers</div>
         </div>
-        <div class="projbar" title="Frontend ~78% complete (est.)"><i class="fill-fe" style="width:78%"></i></div>
+        <div class="projbar" title="Frontend ~82% complete (est.)"><i class="fill-fe" style="width:82%"></i></div>
 
         <div class="tasks">
           <div class="task">
@@ -254,15 +257,15 @@
           </div>
           <div class="task">
             <div class="tname">Phase 5 — native shell (Capacitor) <span class="chip warn"><span class="d"></span>In progress</span></div>
-            <div class="eta">~65% · est. <b>~2–3h · ~1 session</b><br><span style="color:var(--muted)">gated: JDK/SDK + Omar</span></div>
-            <div class="ttrack"><i class="fill-prog" style="width:65%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Config + Android scaffold + cap-sync clean; native APK build needs a JDK/Android SDK (not on this box) + Omar's bundle-ID / signing / iOS-scope calls</div>
+            <div class="eta">~90% · est. <b>~1–2h · ~1 session</b><br><span style="color:var(--muted)">build gated: JDK/SDK + Omar</span></div>
+            <div class="ttrack"><i class="fill-prog" style="width:90%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Android + iOS platforms both DONE (Capacitor 6) + SPA aligned to /api/v1 (220 green); only the native APK/IPA build waits on the JDK/Android SDK (env worker installing) + Omar's bundle-ID / signing calls</div>
           </div>
           <div class="task">
             <div class="tname">Mock&rarr;real contract reconciliation <span class="chip mute"><span class="d"></span>To do</span></div>
             <div class="eta">est. <b>~8–12h · ~3–4 sessions</b><br><span style="color:var(--muted)">follows backend carve</span></div>
             <div class="ttrack"><i class="fill-prog" style="width:6%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">31 [CL] + 3 [FS] contract items reconciling mock shapes against carved services — mostly gated on backend; a few field-shape items shipped</div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">31 [CL] + 3 [FS] contract items reconciling mock shapes against carved services — gated on backend; frontend holding for provisioning creds to run authenticated E2E</div>
           </div>
         </div>
       </div>
@@ -271,10 +274,10 @@
       <div class="prog">
         <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--be)"></span><h2>Backend</h2></div>
         <div class="phead">
-          <div class="ppct" style="color:var(--be)">92<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
-          <div class="peta">foundation + most bespoke done · <b>remainder est. ~2–4h · ~1–2 sessions</b> (SO→MR + request-leave flows)</div>
+          <div class="ppct" style="color:var(--be)">95<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
+          <div class="peta">bespoke + real-data parity done · <b>remainder est. ~3–5h · ~2 sessions</b> (SO→MR + request-leave + line-item persistence saga)</div>
         </div>
-        <div class="projbar" title="Backend ~92% complete (est.)"><i class="fill-be" style="width:92%"></i></div>
+        <div class="projbar" title="Backend ~95% complete (est.)"><i class="fill-be" style="width:95%"></i></div>
 
         <div class="tasks">
           <div class="task">
@@ -287,13 +290,19 @@
             <div class="tname">Cost-engine remaining terms <span class="chip ok"><span class="d"></span>Done</span></div>
             <div class="eta"><b>shipped</b></div>
             <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Machine-cost + indirect-labour overhead terms + SalesOrder.actual_cost roll-up (live re-run pending Docker)</div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Machine-cost + indirect-labour overhead terms + SalesOrder.actual_cost roll-up — live parity re-run recorded on restored data</div>
           </div>
           <div class="task">
             <div class="tname">Shopfloor / MES state machine <span class="chip ok"><span class="d"></span>Done</span></div>
             <div class="eta"><b>shipped</b></div>
             <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
             <div class="foot" style="grid-column:1/-1;margin-top:1px">Operator/supervisor/manager/QC WO state machine carved into production + WIP posting</div>
+          </div>
+          <div class="task">
+            <div class="tname">Real-data parity verification <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>verified</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">BOM cost 9/9 · SalesOrder 6/6 · shop-floor→GL fan-out — all to the cent, 0 mismatches (3 bugs found+fixed); restored 990k GL / 209k BOMs</div>
           </div>
           <div class="task">
             <div class="tname">Valve-builder configurator <span class="chip ok"><span class="d"></span>Done</span></div>
@@ -309,9 +318,9 @@
           </div>
           <div class="task">
             <div class="tname">Cross-service wizard flows <span class="chip warn"><span class="d"></span>In progress</span></div>
-            <div class="eta">~35% · est. <b>~2–4h · ~1–2 sessions</b></div>
-            <div class="ttrack"><i class="fill-prog" style="width:35%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Quote&rarr;SO shipped; SO&rarr;MR + request-leave remain — transactional, span crm + engineering + hr (larger sagas, 1–2 sessions)</div>
+            <div class="eta">~40% · est. <b>~3–5h · ~2 sessions</b></div>
+            <div class="ttrack"><i class="fill-prog" style="width:40%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Quote&rarr;SO shipped; SO&rarr;MR + request-leave + line-item persistence saga remain — transactional, span crm + engineering + hr (larger sagas)</div>
           </div>
         </div>
       </div>
@@ -346,7 +355,7 @@
 
       <p class="eyebrow" style="margin:16px 0 4px">Remaining</p>
       <ul class="list">
-        <li><span class="mk wait"></span><span>Phase 5 — Capacitor native wrap + device/PWA testing, performance, release.</span></li>
+        <li><span class="mk part"></span><span>Phase 5 — Android + iOS platforms in parity + /api/v1 wired; native APK/IPA build waits on the JDK/Android SDK toolchain + device testing/release.</span></li>
         <li><span class="mk wait"></span><span>Backend contract reconciliation — the mock shapes vs. the carved services (see go-live gate).</span></li>
       </ul>
     </section>
@@ -376,9 +385,10 @@
         <li><span class="mk done"></span><span>Data migration DONE across all 7 domains; smoke test passes on real data.</span></li>
         <li><span class="mk done"></span><span>HR payroll engine ported — parity <b>0 mismatches</b> across 3 months, to the cent.</span></li>
         <li><span class="mk done"></span><span>Reports read-side proven: trial-balance on 989,768 GL rows.</span></li>
-        <li><span class="mk done"></span><span>Deep cost engine complete — recursive per-BOM/per-SO actual-cost + overhead terms (live re-run pending Docker).</span></li>
+        <li><span class="mk done"></span><span>Deep cost engine complete — recursive per-BOM/per-SO actual-cost + overhead terms; live parity re-run recorded on restored data.</span></li>
         <li><span class="mk done"></span><span>Shopfloor / MES WO state machine + valve-builder configurator + quote-sizing (BOQ) carved &amp; verified.</span></li>
-        <li><span class="mk part"></span><span>In progress: cross-service wizard flows — quote→SO shipped; SO→MR + request-leave remain.</span></li>
+        <li><span class="mk done"></span><span>Real-data parity <b>verified to the cent</b>: BOM cost 9/9, SalesOrder 6/6, shop-floor→GL — 0 mismatches (3 bugs fixed).</span></li>
+        <li><span class="mk part"></span><span>In progress: cross-service flows — quote→SO shipped; SO→MR + request-leave + line-item persistence saga remain.</span></li>
         <li><span class="mk open"></span><span>NOT done: per-row salary generation (batch→GL half done).</span></li>
       </ul>
     </section>
@@ -399,7 +409,7 @@
     <div class="grid2" style="gap:24px;margin-top:6px">
       <div>
         <div id="blockers"></div>
-        <p class="foot" style="margin:10px 0 0">These are the <b>[BLOCKER]</b> items from the frontend↔backend contract. The frontend runs on mocked shapes today; each must land on a real carved service before go-live. (Backend has a BFF-aggregated <span class="mono">/me/</span> for the parity SPA — partial coverage of bootstrap, not yet the productization contract.)</p>
+        <p class="foot" style="margin:10px 0 0">These are the <b>[BLOCKER]</b> items from the frontend↔backend contract. The frontend runs on mocked shapes today; each must land on a real carved service before go-live. <b>Now moving:</b> the provisioning worker is carving django-tenants org + JWT user + module/role grants — the first cut at the <span class="mono">/me/</span> + roles blockers; gate stays 0/5 until it confirms live.</p>
       </div>
       <div>
         <p class="eyebrow" style="margin:0 0 8px">Depth / parity reconciliation backlog</p>
@@ -416,9 +426,12 @@
         <p class="eyebrow">Command roster — who is on the job right now</p>
         <h2>Workers</h2>
       </div>
-      <span class="chip ok"><span class="dp beat"></span><span id="wLive">4</span> live</span>
+      <div class="row">
+        <span class="foot mono" id="wStamp">last refreshed —</span>
+        <span class="chip ok"><span class="dp beat"></span><span id="wLive">4</span> live</span>
+      </div>
     </div>
-    <p class="foot" style="margin:6px 0 0">Each worker's <b>current activity</b> is the latest commit on its branch (self-updates as they commit); <b>live/idle</b> is the freshest of transcript recency (&lt;10&nbsp;min) or that commit; the Commander is the orchestrator (no branch). Token/msg totals are cumulative per track — some are <b>last known</b> where a worker's live transcript sits outside the three parsed slugs.</p>
+    <p class="foot" style="margin:6px 0 0"><b>Live/idle</b> is each worker subagent's <b>task-output file mtime</b> (&lt;10&nbsp;min&nbsp;=&nbsp;live), combined with branch-commit recency; workers are <b>auto-detected</b> from the commander's task dir, so new ones appear on the next refresh. <b>Current activity</b> is the latest commit on the worker's branch (self-updates as they commit); the Commander is the orchestrator (no branch). The panel reflects the last refresh above — <b>idle means no activity since then, not dead</b>.</p>
     <div id="workers" class="wgrid"></div>
   </section>
 
@@ -470,18 +483,18 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T05:30:24Z",
-  "generated_by": "mission-control worker (b0a25ec9)",
-  "schema": 3,
+  "updated": "2026-07-10T06:15:48Z",
+  "generated_by": "mission-control (ad6db55e)",
+  "schema": 4,
   "totals": {
-    "output_tokens": 14255258,
-    "cache_read_tokens": 6229287883,
-    "cache_creation_tokens": 56436478,
-    "msgs": 14855,
+    "output_tokens": 14399252,
+    "cache_read_tokens": 6250489570,
+    "cache_creation_tokens": 56587965,
+    "msgs": 14927,
     "sessions": 11,
     "live_sessions": 1,
-    "workers": 4,
-    "live_workers": 2
+    "workers": 6,
+    "live_workers": 5
   },
   "workers": [
     {
@@ -489,64 +502,102 @@ const STATS = /*__STATS__*/{
       "role": "commander",
       "branch": null,
       "focus": "Orchestrating all workers, integration, and dashboard publishing.",
+      "agent_id": "b0a25ec9 (main)",
+      "short_id": "b0a25ec9",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "signal": "coordinating",
+      "out_last_active": "2026-07-10T06:15:48Z",
+      "out_age_min": 0.0,
+      "log_bytes": null,
       "status": "live",
       "live": true,
-      "output_tokens": 10638650,
-      "msgs": 11431,
-      "last_active": "2026-07-09T07:44:28Z",
-      "metrics_note": "cumulative track · last known"
+      "signal": "coordinating (orchestrator)"
     },
     {
       "name": "Backend worker",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Valve-builder + quote-sizing + quote→SO shipped; on SO→MR + request-leave flows. Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
-      "head_commit": "feat(flows): carve quote-to-SO wizard into crm",
-      "head_commit_at": "2026-07-10T09:14:25+04:00",
-      "head_ago_min": 16.0,
-      "signal": "git commit",
-      "status": "idle",
-      "live": false,
-      "output_tokens": 3084854,
-      "msgs": 3111,
-      "last_active": "2026-07-10T09:14:25+04:00",
-      "metrics_note": "cumulative track · last known"
-    },
-    {
-      "name": "Frontend worker",
-      "role": "frontend",
-      "branch": "microservices-frontend",
-      "focus": "Phase 5 Capacitor native build (config + Android scaffold done; native APK gated on JDK/SDK + Omar).",
-      "head_commit": "test(mocks): collapse mock gateway latency to zero under Vitest",
-      "head_commit_at": "2026-07-10T09:04:05+04:00",
-      "head_ago_min": 26.4,
-      "signal": "git commit",
-      "status": "idle",
-      "live": false,
-      "output_tokens": 9908,
-      "msgs": 22,
-      "last_active": "2026-07-10T09:04:05+04:00",
-      "metrics_note": "cumulative track"
+      "focus": "Real-data parity COMPLETE (BOM 9/9, SO 6/6, shop-floor→GL, 0 mismatches). Now on SO→MR + request-leave flows + line-item persistence saga.",
+      "agent_id": "ae451668eb8dc9c2e",
+      "short_id": "ae451668",
+      "head_commit": "docs: record live parity re-run results on restored data",
+      "head_commit_at": "2026-07-10T10:05:30+04:00",
+      "head_ago_min": 10.3,
+      "out_last_active": "2026-07-10T06:15:48Z",
+      "out_age_min": -0.0,
+      "log_bytes": 1683571,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
     },
     {
       "name": "Mission-control",
       "role": "mission-control",
       "branch": "microservices-frontend",
-      "focus": "Dashboard maintenance · progress/ETA + workers roster · stats freshness.",
-      "head_commit": "feat(mission-control): Workers command-roster panel",
-      "head_commit_at": "2026-07-10T09:11:55+04:00",
-      "head_ago_min": 18.5,
-      "signal": "git commit + transcript",
+      "focus": "Dashboard accuracy · full sanity sweep · workers roster + liveness · stats freshness.",
+      "agent_id": "ad6db55e2596a925a",
+      "short_id": "ad6db55e",
+      "head_commit": "feat(mission-control): dual-unit ETAs (hours + sessions) + backend advance",
+      "head_commit_at": "2026-07-10T09:31:29+04:00",
+      "head_ago_min": 44.3,
+      "out_last_active": "2026-07-10T06:15:44Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1990432,
       "status": "live",
       "live": true,
-      "output_tokens": 521846,
-      "msgs": 291,
-      "last_active": "2026-07-10T05:30:13Z",
-      "metrics_note": "this session"
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Provisioning worker",
+      "role": "provisioning",
+      "branch": null,
+      "focus": "django-tenants acme org + JWT user + module/role grants — starting to unlock the /me/ + roles blockers.",
+      "agent_id": "a90719d7d38e41e26",
+      "short_id": "a90719d7",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T06:08:33Z",
+      "out_age_min": 7.2,
+      "log_bytes": 0,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime"
+    },
+    {
+      "name": "Frontend worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Phase 5 Android + iOS done · /api/v1 aligned (220 green). Holding for provisioning creds → authenticated E2E + reconciliation.",
+      "agent_id": "a1c13e5479df44612",
+      "short_id": "a1c13e54",
+      "head_commit": "feat(native): add iOS platform in parity with Android (Capacitor 6)",
+      "head_commit_at": "2026-07-10T09:56:18+04:00",
+      "head_ago_min": 19.5,
+      "out_last_active": "2026-07-10T06:07:22Z",
+      "out_age_min": 8.4,
+      "log_bytes": 857783,
+      "status": "live",
+      "live": true,
+      "signal": "task-output mtime + git commit"
+    },
+    {
+      "name": "Environment worker",
+      "role": "environment",
+      "branch": null,
+      "focus": "Installing JDK 17 + Android SDK (long toolchain download).",
+      "agent_id": "a9bea1c0e2cc2bc25",
+      "short_id": "a9bea1c0",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T05:33:12Z",
+      "out_age_min": 42.6,
+      "log_bytes": 218452,
+      "status": "idle",
+      "live": false,
+      "signal": "task-output mtime"
     }
   ],
   "sessions": [
@@ -559,7 +610,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1305.9,
+      "age_min": 1351.3,
       "live": false
     },
     {
@@ -571,7 +622,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10129.0,
+      "age_min": 10174.4,
       "live": false
     },
     {
@@ -583,7 +634,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4259.1,
+      "age_min": 4304.5,
       "live": false
     },
     {
@@ -595,19 +646,19 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4032.1,
+      "age_min": 4077.5,
       "live": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 521846,
-      "cache_read_tokens": 38442991,
-      "cache_creation_tokens": 1543089,
-      "msgs": 291,
-      "last_active": "2026-07-10T05:30:13Z",
-      "age_min": 0.2,
+      "output_tokens": 665840,
+      "cache_read_tokens": 59644678,
+      "cache_creation_tokens": 1694576,
+      "msgs": 363,
+      "last_active": "2026-07-10T06:12:08Z",
+      "age_min": 3.7,
       "live": true
     },
     {
@@ -619,7 +670,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1415.3,
+      "age_min": 1460.7,
       "live": false
     },
     {
@@ -631,7 +682,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 99.8,
+      "age_min": 145.2,
       "live": false
     },
     {
@@ -643,7 +694,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4213.0,
+      "age_min": 4258.4,
       "live": false
     },
     {
@@ -655,7 +706,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4259.1,
+      "age_min": 4304.5,
       "live": false
     },
     {
@@ -667,7 +718,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10834.3,
+      "age_min": 10879.7,
       "live": false
     },
     {
@@ -679,11 +730,11 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10851.7,
+      "age_min": 10897.1,
       "live": false
     }
   ],
-  "total_tokens": 14255258
+  "total_tokens": 14399252
 }/*__/STATS__*/;
 
 const FRONTEND = {
@@ -769,38 +820,49 @@ $("blockers").innerHTML=BLOCKERS.map(([svc,t])=>
 })();
 
 /* ================= workers — command roster ================= */
+function fmtBytes(b){b=Number(b)||0;if(b>=1048576)return (b/1048576).toFixed(1).replace(/\.0$/,"")+" MB";
+  if(b>=1024)return Math.round(b/1024)+" KB";return b+" B";}
 function renderWorkers(j){
   const ws=j.workers||[];
   if(!ws.length) return;
   const t=j.totals||{};
   $("wLive").textContent=(t.live_workers!=null?t.live_workers:ws.filter(w=>w.live).length);
+  // "last refreshed HH:MM" stamp (from stats.updated)
+  const upd=j.updated?new Date(j.updated):null;
+  if($("wStamp")) $("wStamp").textContent = upd&&!isNaN(upd)
+    ? "last refreshed "+upd.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})
+    : "last refreshed —";
   $("workers").innerHTML=ws.map(w=>{
-    const live=w.status==="live", done=w.status==="done";
-    const chipCls=live?"ok":(done?"":"mute");
+    const live=w.status==="live";
+    const chipCls=live?"ok":"mute";
     const dotCls=live?"dp beat":"dp";
-    const stTxt=live?"live":(done?"done":"idle");
-    const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`:"orchestrator · no branch";
-    // current activity = latest branch commit (or "coordinating" for the orchestrator)
+    const stTxt=live?"live":"idle";
+    const role=w.role||"worker";
+    const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`
+                          :`<span class="mono">${esc(w.short_id||"")}</span> · no branch`;
+    // current activity: latest branch commit → else the focus (for no-branch roles)
     let act;
     if(w.head_commit){
       const rel=w.head_ago_min==null?"":(w.head_ago_min<1?"just now":ago(w.head_ago_min));
       act=`<span class="arrow">▸</span><span><span class="mono">${esc(w.head_commit)}</span>`+
-          `<span class="sub"> · ${esc(rel)}${w.signal?" · "+esc(w.signal):""}</span></span>`;
+          `<span class="sub"> · commit ${esc(rel)}</span></span>`;
+    } else if(role==="commander"){
+      act=`<span class="arrow">▸</span><span>orchestrating live <span class="sub">· ${esc(w.signal||"coordinating")}</span></span>`;
     } else {
-      act=`<span class="arrow">▸</span><span>coordinating live${w.signal?` <span class="sub">· ${esc(w.signal)}</span>`:""}</span>`;
+      act=`<span class="arrow">▸</span><span>${esc(w.focus||"working")} <span class="sub">· no branch</span></span>`;
     }
-    // last-active label
-    let la="";
-    if(w.last_active){const m=(Date.now()-new Date(w.last_active).getTime())/60000;
-      if(!isNaN(m)) la=`<span>active ${live?"now":ago(m)}</span>`;}
-    const note=w.metrics_note?` <span title="${esc(w.metrics_note)}" style="cursor:help">·</span>`:"";
-    return `<div class="wcard r-${esc(w.role)}">
+    // liveness meta from the task-output file mtime (the real heartbeat)
+    const oa=w.out_age_min;
+    const laTxt = oa==null ? (live?"active now":"—")
+                 : (oa<1?"active just now":"active "+ago(oa));
+    const logTxt = w.log_bytes ? `<span title="worker task-output log size">${fmtBytes(w.log_bytes)} log</span>` : "";
+    return `<div class="wcard r-${esc(role)}">
       <div class="whead"><span class="wname">${esc(w.name)}</span>
         <span class="chip ${chipCls}"><span class="${dotCls}"></span>${stTxt}</span></div>
       <div class="wbranch">${branch}</div>
       <div class="wfocus">${esc(w.focus)}</div>
       <div class="wact">${act}</div>
-      <div class="wmeta"><span><b>${fmt(w.output_tokens)}</b> out tok</span><span><b>${fmtInt(w.msgs)}</b> msgs</span>${la}${note}</div>
+      <div class="wmeta"><span>${laTxt}</span>${logTxt?`<span>${logTxt}</span>`:""}<span class="sub" title="liveness signal">${esc(w.signal||"")}</span></div>
     </div>`;}).join("");
 }
 
