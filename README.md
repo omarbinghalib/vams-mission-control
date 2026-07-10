@@ -33,22 +33,37 @@ runs the generator.
 
 ## How liveness is computed (`scripts/gen_stats.py`)
 
-Honest signals only — never hand-stamped:
+Honest signals only — never hand-stamped. The **fleet is auto-detected**: one card per
+`subagents/agent-*.jsonl`, named from its `meta.json` description, so new/relaunched workers
+appear automatically. Status is an honest **4-state** disambiguation (no collapsing to "idle"):
 
-- **Subagent workers** (backend / frontend / mission-control): task-output file mtime in the
-  live commander's subagents dir
-  `<projects_base>/<commander_project>/<commander_session>/subagents/agent-<id>.jsonl`
-  — `<10 min` old = **live** — combined with the latest commit on the worker's branch.
-- **Commander**: live while ANY of its subagents is (its own root transcript goes quiet
-  whenever a worker holds the turn), i.e. freshest mtime across the whole session tree.
-- **Completed workers** (provisioning, environment): fixed **done** — missions shipped
-  (real `GET /me/` + roles; Android + iOS native).
+- **live** — task-output `.jsonl` mtime `< 10 min`.
+- **idle** — alive subagent, just quiet (mtime `>= 10 min`, no stop flag).
+- **stopped** — harness-cancelled: the worker's `meta.json` has `"stoppedByUser": true`.
+- **done** — completed & retired mission (fixed historical list: provisioning, environment).
+- **Commander**: live while ANY subagent is (its root transcript goes quiet while a worker
+  holds the turn), i.e. freshest mtime across the whole session tree.
 - **Transcript sessions**: token totals + mtime from the `~/.claude/projects` `.jsonl`
   transcripts; numbers for transcripts no longer on disk fall back to a baked baseline.
 
+**Publisher freshness**: the generator reads the heartbeat scheduled-task state
+(`Get-ScheduledTask`) and emits `publisher.paused`. When the task is disabled the page shows a
+visible **"publisher paused — page frozen at &lt;time&gt;"** banner, so a stale page is
+obviously stale rather than silently misleading.
+
 The two machine-absolute path groups (`~/.claude/projects` transcript dirs and the
-`VAMS-frontend` / `VAMS-backend` git checkouts) are inherently local to Omar's machine and
-are documented at the top of `gen_stats.py`; everything else resolves relative to this repo.
+`VAMS-frontend` / `VAMS-backend` git checkouts), plus the optional docker path / gateway ports
+/ watched repos, live in the gitignored `scripts/local-config.json`; everything else resolves
+relative to this repo.
+
+## Panels
+
+Beyond the roster + session/token tables: **Time to go-live** (overall % + remaining hours &
+worker-sessions — a labelled estimate, with real commit velocity as the measured cadence);
+**Active workers** (live-only); **Live stack** (`docker ps` container grid + gateway HTTP
+smoke checks, degrading to "unavailable" if unreachable); **Recent commits** feed across both
+service branches. All non-liveness numbers are real signals; every estimate is labelled.
+Every external call (git / docker / powershell) goes through the `run_safe()` choke point.
 
 ## Publish
 
