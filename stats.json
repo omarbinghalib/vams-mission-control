@@ -1,104 +1,139 @@
 {
-  "updated": "2026-07-10T07:29:33Z",
+  "updated": "2026-07-10T07:48:00Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 14726991,
-    "cache_read_tokens": 6281713377,
-    "cache_creation_tokens": 57387081,
-    "msgs": 15133,
-    "sessions": 17,
-    "live_sessions": 2,
+    "output_tokens": 14826949,
+    "cache_read_tokens": 6289940372,
+    "cache_creation_tokens": 57496636,
+    "msgs": 15175,
+    "sessions": 20,
+    "live_sessions": 5,
     "transcript_sessions": 12,
-    "subagent_sessions": 5,
-    "workers": 6,
-    "live_workers": 2
+    "subagent_sessions": 8,
+    "workers": 9,
+    "live_workers": 5,
+    "stopped_workers": 1
   },
   "workers": [
     {
       "name": "Commander",
       "role": "commander",
       "branch": null,
-      "focus": "Orchestrating the relaunched backend + frontend workers, integration, and dashboard publishing.",
+      "focus": "Orchestrating the live fleet, integration, and dashboard publishing.",
       "agent_id": "a49f5cc3 (root)",
       "short_id": "a49f5cc3",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T07:29:31Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-10T07:47:57Z",
+      "out_age_min": 0.1,
       "log_bytes": null,
+      "signal": "coordinating (orchestrator)",
       "status": "live",
-      "live": true,
-      "signal": "coordinating (orchestrator)"
+      "live": true
     },
     {
       "name": "Backend worker",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Relaunched under the new commander. Real-data parity complete; continuing SO->MR + request-leave + line-item persistence saga.",
+      "focus": "Work autonomously; the commander (main session) only relays your blockers to Omar.",
       "agent_id": "a7aa95fb33d1db66d",
       "short_id": "a7aa95fb",
-      "head_commit": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
-      "head_commit_at": "2026-07-10T10:51:18+04:00",
-      "head_ago_min": 38.3,
-      "out_last_active": "2026-07-10T07:29:31Z",
-      "out_age_min": 0.0,
-      "log_bytes": 537646,
+      "head_commit": "docs(payroll): salary GENERATION parity BLOCKED - no reproducible oracle",
+      "head_commit_at": "2026-07-10T11:29:46+04:00",
+      "head_ago_min": 18.2,
+      "out_last_active": "2026-07-10T07:46:03Z",
+      "out_age_min": 2.0,
+      "log_bytes": 820235,
+      "signal": "task-output mtime + git commit",
       "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
+      "live": true
+    },
+    {
+      "name": "Frontend E2E worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Work autonomously; report results/blockers to the commander (main session).",
+      "agent_id": "abd34ab9ae4ef6278",
+      "short_id": "abd34ab9",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:52Z",
+      "out_age_min": 0.1,
+      "log_bytes": 276439,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Frontend platform-blocker worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Work autonomously; report results/blockers to the commander (main session).",
+      "agent_id": "a7fe2d3833a9ac26f",
+      "short_id": "a7fe2d38",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:49Z",
+      "out_age_min": 0.2,
+      "log_bytes": 418407,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Mission-control worker",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Your job is dashboard accuracy + freshness.",
+      "agent_id": "ad796e2c1ded647f8",
+      "short_id": "ad796e2c",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:57Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1085301,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Mission-control reusability worker",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Your job is to investigate and design how to make the \"mission control\" dashboard a SIMPLE, REUSABLE drop-in that can be deployed in minutes for ANY future multi-agent / commander-",
+      "agent_id": "a2d39918a877cc324",
+      "short_id": "a2d39918",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:22:35Z",
+      "out_age_min": 25.4,
+      "log_bytes": 515042,
+      "signal": "task-output mtime + git commit",
+      "status": "idle",
+      "live": false
     },
     {
       "name": "Frontend worker",
       "role": "frontend",
       "branch": "microservices-frontend",
-      "focus": "Relaunched under the new commander. Phase 5 Android + iOS done, /api/v1 aligned (220 green); authenticated E2E + reconciliation.",
+      "focus": "Work autonomously; the commander (main session) only relays your blockers to Omar.",
       "agent_id": "a84f4e234ffc22a31",
       "short_id": "a84f4e23",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 11.9,
-      "out_last_active": "2026-07-10T06:59:04Z",
-      "out_age_min": 30.5,
-      "log_bytes": 386062,
-      "status": "idle",
-      "live": false,
-      "signal": "task-output mtime + git commit"
-    },
-    {
-      "name": "Mission-control",
-      "role": "mission-control",
-      "branch": "microservices-frontend",
-      "focus": "Dashboard accuracy - roster + liveness honesty - stats freshness - single-repo publish.",
-      "agent_id": "ad796e2c1ded647f8",
-      "short_id": "ad796e2c",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 11.9,
-      "out_last_active": "2026-07-10T07:18:25Z",
-      "out_age_min": 11.1,
-      "log_bytes": 654976,
-      "status": "idle",
-      "live": false,
-      "signal": "task-output mtime + git commit"
-    },
-    {
-      "name": "Provisioning worker",
-      "role": "provisioning",
-      "branch": null,
-      "focus": "COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked).",
-      "agent_id": "a90719d7d38e41e26",
-      "short_id": "a90719d7",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:21:47Z",
-      "out_age_min": 67.8,
-      "log_bytes": 488835,
-      "status": "done",
-      "live": false,
-      "signal": "mission complete"
+      "out_last_active": "2026-07-10T06:59:04Z",
+      "out_age_min": 48.9,
+      "log_bytes": 386062,
+      "signal": "stopped by user (harness-cancelled)",
+      "status": "stopped",
+      "live": false
     },
     {
       "name": "Environment worker",
@@ -111,11 +146,28 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 116.4,
+      "out_age_min": 134.8,
       "log_bytes": 218452,
+      "signal": "mission complete",
       "status": "done",
-      "live": false,
-      "signal": "mission complete"
+      "live": false
+    },
+    {
+      "name": "Provisioning worker",
+      "role": "provisioning",
+      "branch": null,
+      "focus": "COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked).",
+      "agent_id": "a90719d7d38e41e26",
+      "short_id": "a90719d7",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T06:21:47Z",
+      "out_age_min": 86.2,
+      "log_bytes": 488835,
+      "signal": "mission complete",
+      "status": "done",
+      "live": false
     }
   ],
   "sessions": [
@@ -123,13 +175,14 @@
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 251484,
-      "cache_read_tokens": 17698658,
-      "cache_creation_tokens": 709797,
-      "msgs": 167,
-      "last_active": "2026-07-10T07:29:31Z",
-      "age_min": 0.0,
+      "output_tokens": 351442,
+      "cache_read_tokens": 25925653,
+      "cache_creation_tokens": 819352,
+      "msgs": 209,
+      "last_active": "2026-07-10T07:47:57Z",
+      "age_min": 0.1,
       "live": true,
+      "status": "live",
       "subagent": false,
       "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d"
     },
@@ -142,8 +195,9 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1425.1,
+      "age_min": 1443.5,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -155,8 +209,9 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10248.2,
+      "age_min": 10266.6,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -168,8 +223,9 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4378.2,
+      "age_min": 4396.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -181,8 +237,9 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4151.3,
+      "age_min": 4169.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -194,8 +251,9 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 58.9,
+      "age_min": 77.3,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -207,8 +265,9 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1534.4,
+      "age_min": 1552.9,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -220,8 +279,9 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 218.9,
+      "age_min": 237.4,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -233,8 +293,9 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4332.1,
+      "age_min": 4350.6,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -246,8 +307,9 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4378.2,
+      "age_min": 4396.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -259,8 +321,9 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10953.4,
+      "age_min": 10971.9,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -272,8 +335,9 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10970.9,
+      "age_min": 10989.4,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -285,11 +349,76 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T07:29:31Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-10T07:46:03Z",
+      "age_min": 2.0,
       "live": true,
+      "status": "live",
       "subagent": true,
-      "log_bytes": 537646
+      "log_bytes": 820235
+    },
+    {
+      "id": "abd34ab9",
+      "full_id": "abd34ab9ae4ef6278",
+      "group": "frontend",
+      "group_label": "Frontend E2E worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:52Z",
+      "age_min": 0.1,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 276439
+    },
+    {
+      "id": "a7fe2d38",
+      "full_id": "a7fe2d3833a9ac26f",
+      "group": "frontend",
+      "group_label": "Frontend platform-blocker worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:49Z",
+      "age_min": 0.2,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 418407
+    },
+    {
+      "id": "ad796e2c",
+      "full_id": "ad796e2c1ded647f8",
+      "group": "mission-control",
+      "group_label": "Mission-control worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:57Z",
+      "age_min": 0.1,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 1085301
+    },
+    {
+      "id": "a2d39918",
+      "full_id": "a2d39918a877cc324",
+      "group": "mission-control",
+      "group_label": "Mission-control reusability worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:22:35Z",
+      "age_min": 25.4,
+      "live": false,
+      "status": "idle",
+      "subagent": true,
+      "log_bytes": 515042
     },
     {
       "id": "a84f4e23",
@@ -301,40 +430,11 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:59:04Z",
-      "age_min": 30.5,
+      "age_min": 48.9,
       "live": false,
+      "status": "stopped",
       "subagent": true,
       "log_bytes": 386062
-    },
-    {
-      "id": "ad796e2c",
-      "full_id": "ad796e2c1ded647f8",
-      "group": "mission-control",
-      "group_label": "Mission-control",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T07:18:25Z",
-      "age_min": 11.1,
-      "live": false,
-      "subagent": true,
-      "log_bytes": 654976
-    },
-    {
-      "id": "a90719d7",
-      "full_id": "a90719d7d38e41e26",
-      "group": "provisioning",
-      "group_label": "Provisioning worker",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T06:21:47Z",
-      "age_min": 67.8,
-      "live": false,
-      "subagent": true,
-      "log_bytes": 488835
     },
     {
       "id": "a9bea1c0",
@@ -346,11 +446,355 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 116.4,
+      "age_min": 134.8,
       "live": false,
+      "status": "done",
       "subagent": true,
       "log_bytes": 218452
+    },
+    {
+      "id": "a90719d7",
+      "full_id": "a90719d7d38e41e26",
+      "group": "provisioning",
+      "group_label": "Provisioning worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:21:47Z",
+      "age_min": 86.2,
+      "live": false,
+      "status": "done",
+      "subagent": true,
+      "log_bytes": 488835
     }
   ],
-  "total_tokens": 14726991
+  "total_tokens": 14826949,
+  "progress": {
+    "overall_pct": 88,
+    "remaining_hours": [
+      13,
+      20
+    ],
+    "remaining_sessions": [
+      6,
+      7
+    ],
+    "tracks": [
+      {
+        "track": "frontend",
+        "label": "Frontend",
+        "pct": 82,
+        "remaining_hours": [
+          10,
+          15
+        ],
+        "remaining_sessions": [
+          4,
+          5
+        ],
+        "weight": 1
+      },
+      {
+        "track": "backend",
+        "label": "Backend",
+        "pct": 95,
+        "remaining_hours": [
+          3,
+          5
+        ],
+        "remaining_sessions": [
+          2,
+          2
+        ],
+        "weight": 1
+      }
+    ],
+    "basis": "Per-track % and remaining hours/sessions are ESTIMATES from the resume docs (milestone completion), not measurements. Overall % is equal-weighted across the two tracks. The real, measured signal is commit velocity (below).",
+    "estimate": true
+  },
+  "docker": {
+    "available": true,
+    "containers": [
+      {
+        "name": "vams_accounting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8008",
+        "up": true
+      },
+      {
+        "name": "vams_accounting_relay",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_bff",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8013",
+        "up": true
+      },
+      {
+        "name": "vams_crm",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8005",
+        "up": true
+      },
+      {
+        "name": "vams_engineering",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8006",
+        "up": true
+      },
+      {
+        "name": "vams_frontend",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "3000",
+        "up": true
+      },
+      {
+        "name": "vams_gateway",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8080",
+        "up": true
+      },
+      {
+        "name": "vams_hr",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8004",
+        "up": true
+      },
+      {
+        "name": "vams_integrations",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8010",
+        "up": true
+      },
+      {
+        "name": "vams_ops",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8009",
+        "up": true
+      },
+      {
+        "name": "vams_platform",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8001",
+        "up": true
+      },
+      {
+        "name": "vams_production",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8007",
+        "up": true
+      },
+      {
+        "name": "vams_production_relay",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8003",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing_relay",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_qc",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8002",
+        "up": true
+      },
+      {
+        "name": "vams_reporting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8011",
+        "up": true
+      },
+      {
+        "name": "vams_services_postgres",
+        "state": "running",
+        "status": "Up 3 hours (healthy)",
+        "health": "healthy",
+        "uptime": "3 hours",
+        "ports": "5432",
+        "up": true
+      },
+      {
+        "name": "vams_monolith_app",
+        "state": "exited",
+        "status": "Exited (0) 18 minutes ago",
+        "health": "none",
+        "uptime": "",
+        "ports": "",
+        "up": false
+      }
+    ],
+    "summary": {
+      "running": 18,
+      "total": 19,
+      "healthy": 1,
+      "problem": 1
+    }
+  },
+  "health": [
+    {
+      "name": "gateway /health",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/health/",
+      "status": 200,
+      "expect": [
+        200
+      ],
+      "ok": true,
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "auth token",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/auth/token/",
+      "status": 400,
+      "expect": [
+        200,
+        400,
+        401
+      ],
+      "ok": true,
+      "reachable": true,
+      "error": null
+    }
+  ],
+  "commits": {
+    "tracks": [
+      {
+        "track": "backend",
+        "branch": "microservices-backend",
+        "available": true,
+        "commits_24h": 151,
+        "commits_7d": 250
+      },
+      {
+        "track": "frontend",
+        "branch": "microservices-frontend",
+        "available": true,
+        "commits_24h": 110,
+        "commits_7d": 209
+      }
+    ],
+    "recent": [
+      {
+        "hash": "498e16b",
+        "at": "2026-07-10T11:29:46+04:00",
+        "subject": "docs(payroll): salary GENERATION parity BLOCKED - no reproducible oracle",
+        "track": "backend"
+      },
+      {
+        "hash": "d0e2e0f",
+        "at": "2026-07-10T11:17:39+04:00",
+        "subject": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+        "track": "frontend"
+      },
+      {
+        "hash": "f4c78e4",
+        "at": "2026-07-10T10:56:45+04:00",
+        "subject": "fix(mission-control): honest roster + fresh stats + repaired publish scripts",
+        "track": "frontend"
+      },
+      {
+        "hash": "764a0ce",
+        "at": "2026-07-10T10:53:21+04:00",
+        "subject": "feat(auth): canonical module-code alignment (real platform <-> SPA registry)",
+        "track": "frontend"
+      },
+      {
+        "hash": "c752de0",
+        "at": "2026-07-10T10:51:18+04:00",
+        "subject": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
+        "track": "backend"
+      },
+      {
+        "hash": "9db589e",
+        "at": "2026-07-10T10:42:30+04:00",
+        "subject": "chore(mission-control): salvage dashboard tweak from retired worker",
+        "track": "frontend"
+      },
+      {
+        "hash": "37a8a20",
+        "at": "2026-07-10T10:42:22+04:00",
+        "subject": "feat(auth): consume real GET /me/ + JWT roles (retire /me/ shim)",
+        "track": "frontend"
+      },
+      {
+        "hash": "2c0c0fe",
+        "at": "2026-07-10T10:28:29+04:00",
+        "subject": "fix(mission-control): sessions table = transcripts UNION subagent workers",
+        "track": "frontend"
+      }
+    ]
+  },
+  "publisher": {
+    "task": "VAMS-MissionControl-Heartbeat",
+    "state": "Disabled",
+    "paused": true,
+    "checked_at": "2026-07-10T07:48:00Z"
+  }
 }

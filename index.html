@@ -184,10 +184,49 @@
   .legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
   .banner{display:none;position:sticky;top:0;z-index:99;background:var(--bad);color:#fff;
     font:600 13px/1.4 system-ui;padding:11px 16px;text-align:center;border-radius:0 0 8px 8px;margin:-24px -18px 4px}
+  .banner.warn{background:var(--warn);color:#3a2c00}
+  .banner b{text-decoration:underline}
+
+  /* time-to-go-live ETA (dual unit) */
+  .etahero{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:12px}
+  @media(max-width:620px){.etahero{grid-template-columns:1fr}}
+  .etabig{font-size:52px;font-weight:700;line-height:1;letter-spacing:-1px}
+  .etadual{display:flex;gap:10px;flex-wrap:wrap}
+  .etaunit{background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:9px 15px}
+  .etaunit .u{font-size:19px;font-weight:650;line-height:1.1}
+  .etaunit .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+  .etavel{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--ink-2)}
+
+  /* docker container grid */
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px;margin-top:12px}
+  .dcell{border:1px solid var(--line);border-left:3px solid var(--muted);border-radius:8px;
+    padding:8px 10px;background:var(--panel-2);display:flex;flex-direction:column;gap:2px}
+  .dcell.up{border-left-color:var(--ok)}
+  .dcell.warn{border-left-color:var(--warn)}
+  .dcell.bad{border-left-color:var(--bad)}
+  .dcell.down{border-left-color:var(--bad);opacity:.7}
+  .dcell .dname{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dcell .dmeta{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* stack-health strip */
+  .hstrip{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .hpill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);
+    border-radius:999px;padding:5px 12px;font-size:12px;color:var(--ink-2)}
+  .hpill .hd{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+  .hpill.up{border-color:var(--ok);color:var(--ok-ink)} .hpill.up .hd{background:var(--ok)}
+  .hpill.warn{border-color:var(--warn)} .hpill.warn .hd{background:var(--warn)}
+  .hpill.down{border-color:var(--bad);color:var(--bad)} .hpill.down .hd{background:var(--bad)}
+
+  /* recent-commits feed */
+  .cfeed{list-style:none;margin:8px 0 0;padding:0}
+  .cfeed li{display:flex;gap:9px;align-items:baseline;padding:5px 0;border-top:1px solid var(--line);font-size:12.5px}
+  .cfeed li:first-child{border-top:none}
+  .cfeed .cmk{width:8px;height:8px;border-radius:2px;flex:none;position:relative;top:2px}
 </style>
 </head>
 <body>
 <div id="attn" class="banner"></div>
+<div id="pubBanner" class="banner warn"></div>
 <div class="wrap">
 
   <header class="top">
@@ -224,6 +263,33 @@
         <span class="chip bad"><span class="d"></span>Go-live · 5 blockers open</span>
       </div>
     </div>
+  </section>
+
+  <!-- ============ TIME TO GO-LIVE — DUAL-UNIT ETA ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Overall completion + remaining effort, in two units — hours &amp; worker-sessions</p>
+        <h2>Time to go-live &mdash; estimate</h2>
+      </div>
+      <span class="chip mute"><span class="d"></span>estimate · not a commitment</span>
+    </div>
+    <div class="etahero">
+      <div>
+        <div class="etabig" id="etaPct">—</div>
+        <p class="foot" style="margin:2px 0 0">overall complete <span style="font-size:10px">(est.)</span></p>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin:0 0 6px">Estimated remaining</p>
+        <div class="etadual">
+          <div class="etaunit"><div class="u" id="etaHours">—</div><div class="l">active work</div></div>
+          <div class="etaunit"><div class="u" id="etaSessions">—</div><div class="l">worker-sessions</div></div>
+        </div>
+        <div class="etavel" id="etaVel"></div>
+      </div>
+    </div>
+    <div id="etaTracks" class="hbars" style="margin-top:16px"></div>
+    <p class="foot" id="etaBasis" style="margin:12px 0 0"></p>
   </section>
 
   <!-- ============ DELIVERY PROGRESS & ETA ============ -->
@@ -419,11 +485,23 @@
     </div>
   </section>
 
+  <!-- ============ ACTIVE WORKERS — LIVE ONLY ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Who is working right now — live subagents only (task-output touched &lt;10m)</p>
+        <h2>Active workers</h2>
+      </div>
+      <span class="chip ok"><span class="dp beat"></span><span id="awCount">—</span> live now</span>
+    </div>
+    <div id="activeWorkers" class="wgrid"></div>
+  </section>
+
   <!-- ============ WORKERS — COMMAND ROSTER ============ -->
   <section class="panel">
     <div class="split">
       <div>
-        <p class="eyebrow">Command roster — who is on the job right now</p>
+        <p class="eyebrow">Command roster — full history (live + idle + completed)</p>
         <h2>Workers</h2>
       </div>
       <div class="row">
@@ -433,6 +511,34 @@
     </div>
     <p class="foot" style="margin:6px 0 0"><b>Live/idle</b> is each worker subagent's <b>task-output file mtime</b> (&lt;10&nbsp;min&nbsp;=&nbsp;live), combined with branch-commit recency; workers are <b>auto-detected</b> from the commander's task dir, so new ones appear on the next refresh. <b>Current activity</b> is the latest commit on the worker's branch (self-updates as they commit); the Commander is the orchestrator (no branch). The panel reflects the last refresh above — <b>idle means no activity since then, not dead</b>.</p>
     <div id="workers" class="wgrid"></div>
+  </section>
+
+  <!-- ============ LIVE STACK — CONTAINERS & HEALTH ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">VAMS local stack — Docker containers + gateway smoke checks (real, from the generator host)</p>
+        <h2>Live stack &mdash; containers &amp; health</h2>
+      </div>
+      <span class="foot mono" id="dockerSummary">—</span>
+    </div>
+    <p class="eyebrow" style="margin:14px 0 2px">Gateway / endpoint health</p>
+    <div id="healthStrip" class="hstrip"></div>
+    <p class="eyebrow" style="margin:16px 0 2px">Containers <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(green = up, amber = starting/unhealthy-checkable, red = down/unhealthy)</span></p>
+    <div id="dockerGrid" class="dgrid"></div>
+    <p class="foot" style="margin:10px 0 0">Live from <span class="mono">docker ps</span> + HTTP smoke on the generator's host (LOCAL/dev). If Docker or the gateway is unreachable the generator degrades to <b>"unavailable"</b> rather than guessing.</p>
+  </section>
+
+  <!-- ============ RECENT COMMITS ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Latest commits across both service branches — real cadence signal</p>
+        <h2>Recent commits</h2>
+      </div>
+      <span class="foot mono" id="commitVel">—</span>
+    </div>
+    <ul id="commitFeed" class="cfeed"></ul>
   </section>
 
   <!-- ============ CLAUDE SESSIONS & TOKENS ============ -->
@@ -487,106 +593,141 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T07:13:44Z",
+  "updated": "2026-07-10T07:48:00Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 14672852,
-    "cache_read_tokens": 6276631278,
-    "cache_creation_tokens": 57335106,
-    "msgs": 15103,
-    "sessions": 17,
-    "live_sessions": 3,
+    "output_tokens": 14826949,
+    "cache_read_tokens": 6289940372,
+    "cache_creation_tokens": 57496636,
+    "msgs": 15175,
+    "sessions": 20,
+    "live_sessions": 5,
     "transcript_sessions": 12,
-    "subagent_sessions": 5,
-    "workers": 6,
-    "live_workers": 3
+    "subagent_sessions": 8,
+    "workers": 9,
+    "live_workers": 5,
+    "stopped_workers": 1
   },
   "workers": [
     {
       "name": "Commander",
       "role": "commander",
       "branch": null,
-      "focus": "Orchestrating the relaunched backend + frontend workers, integration, and dashboard publishing.",
+      "focus": "Orchestrating the live fleet, integration, and dashboard publishing.",
       "agent_id": "a49f5cc3 (root)",
       "short_id": "a49f5cc3",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T07:13:42Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-10T07:47:57Z",
+      "out_age_min": 0.1,
       "log_bytes": null,
+      "signal": "coordinating (orchestrator)",
       "status": "live",
-      "live": true,
-      "signal": "coordinating (orchestrator)"
+      "live": true
     },
     {
       "name": "Backend worker",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Relaunched under the new commander. Real-data parity complete; continuing SO->MR + request-leave + line-item persistence saga.",
+      "focus": "Work autonomously; the commander (main session) only relays your blockers to Omar.",
       "agent_id": "a7aa95fb33d1db66d",
       "short_id": "a7aa95fb",
-      "head_commit": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
-      "head_commit_at": "2026-07-10T10:51:18+04:00",
-      "head_ago_min": 22.4,
-      "out_last_active": "2026-07-10T07:13:36Z",
-      "out_age_min": 0.1,
-      "log_bytes": 356429,
+      "head_commit": "docs(payroll): salary GENERATION parity BLOCKED - no reproducible oracle",
+      "head_commit_at": "2026-07-10T11:29:46+04:00",
+      "head_ago_min": 18.2,
+      "out_last_active": "2026-07-10T07:46:03Z",
+      "out_age_min": 2.0,
+      "log_bytes": 820235,
+      "signal": "task-output mtime + git commit",
       "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
+      "live": true
+    },
+    {
+      "name": "Frontend E2E worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Work autonomously; report results/blockers to the commander (main session).",
+      "agent_id": "abd34ab9ae4ef6278",
+      "short_id": "abd34ab9",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:52Z",
+      "out_age_min": 0.1,
+      "log_bytes": 276439,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Frontend platform-blocker worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Work autonomously; report results/blockers to the commander (main session).",
+      "agent_id": "a7fe2d3833a9ac26f",
+      "short_id": "a7fe2d38",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:49Z",
+      "out_age_min": 0.2,
+      "log_bytes": 418407,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Mission-control worker",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Your job is dashboard accuracy + freshness.",
+      "agent_id": "ad796e2c1ded647f8",
+      "short_id": "ad796e2c",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:47:57Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1085301,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "Mission-control reusability worker",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Your job is to investigate and design how to make the \"mission control\" dashboard a SIMPLE, REUSABLE drop-in that can be deployed in minutes for ANY future multi-agent / commander-",
+      "agent_id": "a2d39918a877cc324",
+      "short_id": "a2d39918",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 30.4,
+      "out_last_active": "2026-07-10T07:22:35Z",
+      "out_age_min": 25.4,
+      "log_bytes": 515042,
+      "signal": "task-output mtime + git commit",
+      "status": "idle",
+      "live": false
     },
     {
       "name": "Frontend worker",
       "role": "frontend",
       "branch": "microservices-frontend",
-      "focus": "Relaunched under the new commander. Phase 5 Android + iOS done, /api/v1 aligned (220 green); authenticated E2E + reconciliation.",
+      "focus": "Work autonomously; the commander (main session) only relays your blockers to Omar.",
       "agent_id": "a84f4e234ffc22a31",
       "short_id": "a84f4e23",
-      "head_commit": "fix(mission-control): honest roster + fresh stats + repaired publish scripts",
-      "head_commit_at": "2026-07-10T10:56:45+04:00",
-      "head_ago_min": 17.0,
-      "out_last_active": "2026-07-10T06:59:04Z",
-      "out_age_min": 14.7,
-      "log_bytes": 386062,
-      "status": "idle",
-      "live": false,
-      "signal": "task-output mtime + git commit"
-    },
-    {
-      "name": "Mission-control",
-      "role": "mission-control",
-      "branch": "microservices-frontend",
-      "focus": "Dashboard accuracy - roster + liveness honesty - stats freshness - single-repo publish.",
-      "agent_id": "ad796e2c1ded647f8",
-      "short_id": "ad796e2c",
-      "head_commit": "fix(mission-control): honest roster + fresh stats + repaired publish scripts",
-      "head_commit_at": "2026-07-10T10:56:45+04:00",
-      "head_ago_min": 17.0,
-      "out_last_active": "2026-07-10T07:13:42Z",
-      "out_age_min": 0.0,
-      "log_bytes": 598042,
-      "status": "live",
-      "live": true,
-      "signal": "task-output mtime + git commit"
-    },
-    {
-      "name": "Provisioning worker",
-      "role": "provisioning",
-      "branch": null,
-      "focus": "COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked).",
-      "agent_id": "a90719d7d38e41e26",
-      "short_id": "a90719d7",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T06:21:47Z",
-      "out_age_min": 52.0,
-      "log_bytes": 488835,
-      "status": "done",
-      "live": false,
-      "signal": "mission complete"
+      "out_last_active": "2026-07-10T06:59:04Z",
+      "out_age_min": 48.9,
+      "log_bytes": 386062,
+      "signal": "stopped by user (harness-cancelled)",
+      "status": "stopped",
+      "live": false
     },
     {
       "name": "Environment worker",
@@ -599,11 +740,28 @@ const STATS = /*__STATS__*/{
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 100.5,
+      "out_age_min": 134.8,
       "log_bytes": 218452,
+      "signal": "mission complete",
       "status": "done",
-      "live": false,
-      "signal": "mission complete"
+      "live": false
+    },
+    {
+      "name": "Provisioning worker",
+      "role": "provisioning",
+      "branch": null,
+      "focus": "COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked).",
+      "agent_id": "a90719d7d38e41e26",
+      "short_id": "a90719d7",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T06:21:47Z",
+      "out_age_min": 86.2,
+      "log_bytes": 488835,
+      "signal": "mission complete",
+      "status": "done",
+      "live": false
     }
   ],
   "sessions": [
@@ -611,13 +769,14 @@ const STATS = /*__STATS__*/{
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 197345,
-      "cache_read_tokens": 12616559,
-      "cache_creation_tokens": 657822,
-      "msgs": 137,
-      "last_active": "2026-07-10T07:13:42Z",
-      "age_min": 0.0,
+      "output_tokens": 351442,
+      "cache_read_tokens": 25925653,
+      "cache_creation_tokens": 819352,
+      "msgs": 209,
+      "last_active": "2026-07-10T07:47:57Z",
+      "age_min": 0.1,
       "live": true,
+      "status": "live",
       "subagent": false,
       "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d"
     },
@@ -630,8 +789,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1409.3,
+      "age_min": 1443.5,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -643,8 +803,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10232.3,
+      "age_min": 10266.6,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -656,8 +817,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4362.4,
+      "age_min": 4396.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -669,8 +831,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4135.5,
+      "age_min": 4169.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -682,8 +845,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 43.1,
+      "age_min": 77.3,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -695,8 +859,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1518.6,
+      "age_min": 1552.9,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -708,8 +873,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 203.1,
+      "age_min": 237.4,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -721,8 +887,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4316.3,
+      "age_min": 4350.6,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -734,8 +901,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4362.4,
+      "age_min": 4396.7,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -747,8 +915,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10937.6,
+      "age_min": 10971.9,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -760,8 +929,9 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10955.1,
+      "age_min": 10989.4,
       "live": false,
+      "status": "idle",
       "subagent": false
     },
     {
@@ -773,11 +943,76 @@ const STATS = /*__STATS__*/{
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T07:13:36Z",
+      "last_active": "2026-07-10T07:46:03Z",
+      "age_min": 2.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 820235
+    },
+    {
+      "id": "abd34ab9",
+      "full_id": "abd34ab9ae4ef6278",
+      "group": "frontend",
+      "group_label": "Frontend E2E worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:52Z",
       "age_min": 0.1,
       "live": true,
+      "status": "live",
       "subagent": true,
-      "log_bytes": 356429
+      "log_bytes": 276439
+    },
+    {
+      "id": "a7fe2d38",
+      "full_id": "a7fe2d3833a9ac26f",
+      "group": "frontend",
+      "group_label": "Frontend platform-blocker worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:49Z",
+      "age_min": 0.2,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 418407
+    },
+    {
+      "id": "ad796e2c",
+      "full_id": "ad796e2c1ded647f8",
+      "group": "mission-control",
+      "group_label": "Mission-control worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:47:57Z",
+      "age_min": 0.1,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 1085301
+    },
+    {
+      "id": "a2d39918",
+      "full_id": "a2d39918a877cc324",
+      "group": "mission-control",
+      "group_label": "Mission-control reusability worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T07:22:35Z",
+      "age_min": 25.4,
+      "live": false,
+      "status": "idle",
+      "subagent": true,
+      "log_bytes": 515042
     },
     {
       "id": "a84f4e23",
@@ -789,40 +1024,11 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:59:04Z",
-      "age_min": 14.7,
+      "age_min": 48.9,
       "live": false,
+      "status": "stopped",
       "subagent": true,
       "log_bytes": 386062
-    },
-    {
-      "id": "ad796e2c",
-      "full_id": "ad796e2c1ded647f8",
-      "group": "mission-control",
-      "group_label": "Mission-control",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T07:13:42Z",
-      "age_min": 0.0,
-      "live": true,
-      "subagent": true,
-      "log_bytes": 598042
-    },
-    {
-      "id": "a90719d7",
-      "full_id": "a90719d7d38e41e26",
-      "group": "provisioning",
-      "group_label": "Provisioning worker",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T06:21:47Z",
-      "age_min": 52.0,
-      "live": false,
-      "subagent": true,
-      "log_bytes": 488835
     },
     {
       "id": "a9bea1c0",
@@ -834,13 +1040,357 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 100.5,
+      "age_min": 134.8,
       "live": false,
+      "status": "done",
       "subagent": true,
       "log_bytes": 218452
+    },
+    {
+      "id": "a90719d7",
+      "full_id": "a90719d7d38e41e26",
+      "group": "provisioning",
+      "group_label": "Provisioning worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T06:21:47Z",
+      "age_min": 86.2,
+      "live": false,
+      "status": "done",
+      "subagent": true,
+      "log_bytes": 488835
     }
   ],
-  "total_tokens": 14672852
+  "total_tokens": 14826949,
+  "progress": {
+    "overall_pct": 88,
+    "remaining_hours": [
+      13,
+      20
+    ],
+    "remaining_sessions": [
+      6,
+      7
+    ],
+    "tracks": [
+      {
+        "track": "frontend",
+        "label": "Frontend",
+        "pct": 82,
+        "remaining_hours": [
+          10,
+          15
+        ],
+        "remaining_sessions": [
+          4,
+          5
+        ],
+        "weight": 1
+      },
+      {
+        "track": "backend",
+        "label": "Backend",
+        "pct": 95,
+        "remaining_hours": [
+          3,
+          5
+        ],
+        "remaining_sessions": [
+          2,
+          2
+        ],
+        "weight": 1
+      }
+    ],
+    "basis": "Per-track % and remaining hours/sessions are ESTIMATES from the resume docs (milestone completion), not measurements. Overall % is equal-weighted across the two tracks. The real, measured signal is commit velocity (below).",
+    "estimate": true
+  },
+  "docker": {
+    "available": true,
+    "containers": [
+      {
+        "name": "vams_accounting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8008",
+        "up": true
+      },
+      {
+        "name": "vams_accounting_relay",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_bff",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8013",
+        "up": true
+      },
+      {
+        "name": "vams_crm",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8005",
+        "up": true
+      },
+      {
+        "name": "vams_engineering",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8006",
+        "up": true
+      },
+      {
+        "name": "vams_frontend",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "3000",
+        "up": true
+      },
+      {
+        "name": "vams_gateway",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8080",
+        "up": true
+      },
+      {
+        "name": "vams_hr",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8004",
+        "up": true
+      },
+      {
+        "name": "vams_integrations",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8010",
+        "up": true
+      },
+      {
+        "name": "vams_ops",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8009",
+        "up": true
+      },
+      {
+        "name": "vams_platform",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8001",
+        "up": true
+      },
+      {
+        "name": "vams_production",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8007",
+        "up": true
+      },
+      {
+        "name": "vams_production_relay",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8003",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing_relay",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_qc",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "8002",
+        "up": true
+      },
+      {
+        "name": "vams_reporting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8011",
+        "up": true
+      },
+      {
+        "name": "vams_services_postgres",
+        "state": "running",
+        "status": "Up 3 hours (healthy)",
+        "health": "healthy",
+        "uptime": "3 hours",
+        "ports": "5432",
+        "up": true
+      },
+      {
+        "name": "vams_monolith_app",
+        "state": "exited",
+        "status": "Exited (0) 18 minutes ago",
+        "health": "none",
+        "uptime": "",
+        "ports": "",
+        "up": false
+      }
+    ],
+    "summary": {
+      "running": 18,
+      "total": 19,
+      "healthy": 1,
+      "problem": 1
+    }
+  },
+  "health": [
+    {
+      "name": "gateway /health",
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/health/",
+      "status": 200,
+      "expect": [
+        200
+      ],
+      "ok": true,
+      "reachable": true,
+      "error": null
+    },
+    {
+      "name": "auth token",
+      "method": "POST",
+      "url": "http://localhost:8080/api/v1/auth/token/",
+      "status": 400,
+      "expect": [
+        200,
+        400,
+        401
+      ],
+      "ok": true,
+      "reachable": true,
+      "error": null
+    }
+  ],
+  "commits": {
+    "tracks": [
+      {
+        "track": "backend",
+        "branch": "microservices-backend",
+        "available": true,
+        "commits_24h": 151,
+        "commits_7d": 250
+      },
+      {
+        "track": "frontend",
+        "branch": "microservices-frontend",
+        "available": true,
+        "commits_24h": 110,
+        "commits_7d": 209
+      }
+    ],
+    "recent": [
+      {
+        "hash": "498e16b",
+        "at": "2026-07-10T11:29:46+04:00",
+        "subject": "docs(payroll): salary GENERATION parity BLOCKED - no reproducible oracle",
+        "track": "backend"
+      },
+      {
+        "hash": "d0e2e0f",
+        "at": "2026-07-10T11:17:39+04:00",
+        "subject": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+        "track": "frontend"
+      },
+      {
+        "hash": "f4c78e4",
+        "at": "2026-07-10T10:56:45+04:00",
+        "subject": "fix(mission-control): honest roster + fresh stats + repaired publish scripts",
+        "track": "frontend"
+      },
+      {
+        "hash": "764a0ce",
+        "at": "2026-07-10T10:53:21+04:00",
+        "subject": "feat(auth): canonical module-code alignment (real platform <-> SPA registry)",
+        "track": "frontend"
+      },
+      {
+        "hash": "c752de0",
+        "at": "2026-07-10T10:51:18+04:00",
+        "subject": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
+        "track": "backend"
+      },
+      {
+        "hash": "9db589e",
+        "at": "2026-07-10T10:42:30+04:00",
+        "subject": "chore(mission-control): salvage dashboard tweak from retired worker",
+        "track": "frontend"
+      },
+      {
+        "hash": "37a8a20",
+        "at": "2026-07-10T10:42:22+04:00",
+        "subject": "feat(auth): consume real GET /me/ + JWT roles (retire /me/ shim)",
+        "track": "frontend"
+      },
+      {
+        "hash": "2c0c0fe",
+        "at": "2026-07-10T10:28:29+04:00",
+        "subject": "fix(mission-control): sessions table = transcripts UNION subagent workers",
+        "track": "frontend"
+      }
+    ]
+  },
+  "publisher": {
+    "task": "VAMS-MissionControl-Heartbeat",
+    "state": "Disabled",
+    "paused": true,
+    "checked_at": "2026-07-10T07:48:00Z"
+  }
 }/*__/STATS__*/;
 
 const FRONTEND = {
@@ -939,11 +1489,12 @@ function renderWorkers(j){
     ? "last refreshed "+upd.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})
     : "last refreshed —";
   $("workers").innerHTML=ws.map(w=>{
-    const live=w.status==="live";
-    const done=w.status==="done"||w.status==="complete";
-    const chipCls=live?"ok":"mute";
-    const dotCls=live?"dp beat":"dp";
-    const stTxt=live?"live":(done?"complete ✓":"idle");
+    const st=w.status||"idle";
+    const live=st==="live", done=st==="done"||st==="complete", stopped=st==="stopped";
+    const M={live:{c:"ok",t:"live",d:"dp beat"},idle:{c:"mute",t:"idle",d:"dp"},
+             stopped:{c:"bad",t:"stopped",d:"dp"},done:{c:"mute",t:"complete ✓",d:"dp"},
+             complete:{c:"mute",t:"complete ✓",d:"dp"}}[st]||{c:"mute",t:st,d:"dp"};
+    const chipCls=M.c, dotCls=M.d, stTxt=M.t;
     const role=w.role||"worker";
     const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`
                           :`<span class="mono">${esc(w.short_id||"")}</span> · no branch`;
@@ -961,6 +1512,7 @@ function renderWorkers(j){
     // liveness meta from the task-output file mtime (the real heartbeat)
     const oa=w.out_age_min;
     const laTxt = done ? "completed "+ago(oa==null?0:oa)
+                 : stopped ? "stopped "+ago(oa==null?0:oa)+" · cancelled"
                  : oa==null ? (live?"active now":"—")
                  : (oa<1?"active just now":"active "+ago(oa));
     const logTxt = w.log_bytes ? `<span title="worker task-output log size">${fmtBytes(w.log_bytes)} log</span>` : "";
@@ -1006,8 +1558,12 @@ function renderSessions(j){
   const NA='<span style="color:var(--muted)">n/a</span>';
   $("sessBody").innerHTML=s.map(x=>{
     const live=x.live, sub=!!x.subagent, col=TRACK[x.group]||"var(--muted)";
-    const dot=live?"var(--ok)":"var(--muted)";
-    const status=live?'<b style="color:var(--ok-ink)">live</b>':"idle "+ago(x.age_min==null?0:x.age_min);
+    const st=x.status||(live?"live":"idle");
+    const dot=st==="live"?"var(--ok)":st==="stopped"?"var(--bad)":"var(--muted)";
+    const status=st==="live"?'<b style="color:var(--ok-ink)">live</b>'
+                :st==="stopped"?'<b style="color:var(--bad)">stopped</b>'
+                :st==="done"||st==="complete"?'complete ✓'
+                :"idle "+ago(x.age_min==null?0:x.age_min);
     const kind=sub?' <span class="chip mute" style="padding:1px 6px;font-size:9px;vertical-align:middle" title="subagent worker — token detail lives in the worker process, not a transcript">subagent</span>':'';
     return `<tr>
       <td><span class="sdot" style="background:${dot}"></span><span class="mono">${esc(x.id)}</span>${kind}</td>
@@ -1017,10 +1573,120 @@ function renderSessions(j){
       <td class="num mono">${x.cache_read_tokens==null?NA:fmt(x.cache_read_tokens)}</td>
       <td class="num mono">${x.msgs==null?NA:fmtInt(x.msgs)}</td></tr>`;}).join("");
 }
-renderSessions(STATS); renderWorkers(STATS);
+/* ================= time-to-go-live ETA (dual unit) ================= */
+function renderProgress(j){
+  const p=j.progress; if(!p||!$("etaPct")) return;
+  $("etaPct").textContent=p.overall_pct+"%";
+  const rng=(a)=>a&&a.length===2?(a[0]===a[1]?("~"+a[0]):("~"+a[0]+"–"+a[1])):"—";
+  $("etaHours").textContent=rng(p.remaining_hours)+" h";
+  $("etaSessions").textContent=rng(p.remaining_sessions);
+  $("etaTracks").innerHTML=(p.tracks||[]).map(t=>{
+    const col=t.track==="frontend"?"var(--fe)":t.track==="backend"?"var(--be)":"var(--muted)";
+    return `<div class="hbar" style="grid-template-columns:78px 1fr"><div class="lab">${esc(t.label)}</div>
+      <div class="barwrap"><div class="bar" style="width:${t.pct}%;background:${col}"></div>
+      <span class="val mono">${t.pct}% est · rem ${rng(t.remaining_hours)}h · ${rng(t.remaining_sessions)} sess</span></div></div>`;}).join("");
+  $("etaBasis").textContent=p.basis||"";
+  const cm=j.commits;
+  if(cm&&cm.tracks&&$("etaVel")){
+    $("etaVel").innerHTML='<span class="foot">commit velocity (real):</span> '+cm.tracks.map(t=>t.available
+      ?`<span class="mono"><b>${esc(t.track)}</b> ${t.commits_24h==null?"—":t.commits_24h}/24h · ${t.commits_7d==null?"—":t.commits_7d}/7d</span>`
+      :`<span class="mono">${esc(t.track)} n/a</span>`).join(" &nbsp;·&nbsp; ");
+  }
+}
+
+/* ================= active workers (live only) ================= */
+function renderActiveWorkers(j){
+  const host=$("activeWorkers"); if(!host) return;
+  const ws=(j.workers||[]).filter(w=>w.status==="live");
+  const byId={}; (j.sessions||[]).forEach(s=>byId[s.id]=s);
+  if($("awCount")) $("awCount").textContent=ws.length;
+  if(!ws.length){host.innerHTML='<p class="foot" style="margin:12px 0 0">No workers live right now — see the full roster below.</p>';return;}
+  host.innerHTML=ws.map(w=>{
+    const role=w.role||"worker";
+    const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`:`<span class="mono">${esc(w.short_id||"")}</span> · orchestrator`;
+    const oa=w.out_age_min, la=oa==null?"active now":(oa<1?"active just now":"active "+ago(oa));
+    const sess=byId[w.short_id]||{}; const tok=(sess.output_tokens!=null)?fmt(sess.output_tokens)+" out tok":"n/a (in worker)";
+    let act;
+    if(w.head_commit){const rel=w.head_ago_min==null?"":(w.head_ago_min<1?"just now":ago(w.head_ago_min));
+      act=`<span class="arrow">▸</span><span><span class="mono">${esc(w.head_commit)}</span><span class="sub"> · commit ${esc(rel)}</span></span>`;}
+    else if(role==="commander"){act=`<span class="arrow">▸</span><span>orchestrating live <span class="sub">· ${esc(w.signal||"coordinating")}</span></span>`;}
+    else{act=`<span class="arrow">▸</span><span>${esc(w.focus||"working")}</span>`;}
+    return `<div class="wcard r-${esc(role)}">
+      <div class="whead"><span class="wname">${esc(w.name)}</span><span class="chip ok"><span class="dp beat"></span>live</span></div>
+      <div class="wbranch">${branch}</div>
+      <div class="wfocus">${esc(w.focus)}</div>
+      <div class="wact">${act}</div>
+      <div class="wmeta"><span>${la}</span><span class="mono">${tok}</span></div>
+    </div>`;}).join("");
+}
+
+/* ================= docker container grid ================= */
+function renderDocker(j){
+  const dk=j.docker, host=$("dockerGrid"); if(!host) return;
+  if(!dk||!dk.available){
+    host.innerHTML=`<p class="foot" style="grid-column:1/-1">docker unavailable${dk&&dk.error?" — "+esc(dk.error):""}</p>`;
+    if($("dockerSummary")) $("dockerSummary").textContent="docker unavailable"; return;
+  }
+  const s=dk.summary||{};
+  if($("dockerSummary")) $("dockerSummary").textContent=`${s.running}/${s.total} up · ${s.healthy} healthy · ${s.problem} problem`;
+  host.innerHTML=(dk.containers||[]).map(c=>{
+    let cls="up"; if(!c.up) cls="down"; else if(c.health==="unhealthy") cls="bad"; else if(c.health==="starting") cls="warn";
+    const nm=c.name.replace(/^vams_/,"");
+    const meta=c.up?(c.uptime||"up")+(c.health&&c.health!=="none"?" · "+c.health:""):"down";
+    return `<div class="dcell ${cls}" title="${esc(c.name+" · "+c.status+(c.ports?" · ports "+c.ports:""))}">
+      <span class="dname">${esc(nm)}</span><span class="dmeta">${esc(meta)}</span></div>`;}).join("");
+}
+
+/* ================= stack-health strip ================= */
+function renderHealth(j){
+  const h=j.health, host=$("healthStrip"); if(!host) return;
+  if(!h||!h.length){host.innerHTML='<span class="foot">no health checks configured</span>';return;}
+  host.innerHTML=h.map(c=>{
+    const cls=c.ok?"up":(c.reachable?"warn":"down");
+    const st=c.status==null?"unreachable":c.status;
+    return `<span class="hpill ${cls}" title="${esc(c.method+" "+c.url)}"><span class="hd"></span>${esc(c.name)} <b class="mono">${esc(st)}</b></span>`;}).join("");
+}
+
+/* ================= recent-commits feed ================= */
+function renderCommits(j){
+  const cm=j.commits, host=$("commitFeed"); if(!host) return;
+  if(cm&&cm.tracks&&$("commitVel"))
+    $("commitVel").textContent=cm.tracks.filter(t=>t.available).map(t=>`${t.track} ${t.commits_24h==null?"—":t.commits_24h}/24h`).join(" · ");
+  const rows=(cm&&cm.recent||[]).map(c=>{
+    const col=TRACK[c.track]||"var(--muted)";
+    const t=new Date(c.at); const rel=isNaN(t)?"":ago((Date.now()-t.getTime())/60000);
+    return `<li><span class="cmk" style="background:${col}"></span>
+      <span class="mono" style="color:var(--muted)">${esc(c.hash)}</span>
+      <span style="flex:1">${esc(c.subject)}</span>
+      <span class="foot mono">${esc(rel)}</span></li>`;}).join("");
+  host.innerHTML=rows||'<li class="foot">no recent commits</li>';
+}
+
+/* ================= publisher freshness (is the heartbeat actually publishing?) ================= */
+function renderPublisher(j){
+  const b=$("pubBanner"); if(!b) return;
+  const p=j.publisher;
+  const upd=j.updated?new Date(j.updated):null;
+  const age=upd&&!isNaN(upd)?(Date.now()-upd.getTime())/60000:null;
+  const t=upd&&!isNaN(upd)?upd.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}):"—";
+  // Explicit paused signal from the generator, OR a client-side staleness fallback (>12m and no
+  // "fresh" publisher state) — either way, make a frozen page obviously frozen.
+  const paused = p && p.paused;
+  if(paused){
+    b.style.display="block";
+    b.innerHTML=`⏸ PUBLISHER PAUSED (heartbeat task <b>${esc(p.state||"disabled")}</b>) — dashboard frozen at <b>${t}</b>`
+      +(age!=null?` · data age ${ago(age)}`:"")+`. Live worker states below may be out of date until the heartbeat is re-enabled.`;
+  } else {
+    b.style.display="none";
+  }
+}
+
+function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);}
+
+renderSessions(STATS); renderWorkers(STATS); renderExtras(STATS);
 async function pollStats(){
   try{const r=await fetch("stats.json?t="+Date.now(),{cache:"no-store"});
-    if(r.ok){const j=await r.json();if(j&&j.totals){renderSessions(j);renderWorkers(j);}}}catch(e){}
+    if(r.ok){const j=await r.json();if(j&&j.totals){renderSessions(j);renderWorkers(j);renderExtras(j);}}}catch(e){}
 }
 pollStats(); setInterval(pollStats,45000);
 
@@ -1030,11 +1696,14 @@ function freshTick(){
   const upd=j.updated?new Date(j.updated):null;
   const mins= upd&&!isNaN(upd) ? (Date.now()-upd.getTime())/60000 : 1e9;
   const p=$("pulse"),f=$("freshTxt");
-  if(mins<30){f.textContent="data fresh · "+ago(mins);p.style.background="var(--ok)";p.classList.add("live");}
-  else if(mins<180){f.textContent="aging · "+ago(mins);p.style.background="var(--warn)";p.classList.remove("live");}
-  else{f.textContent="stale · "+ago(mins);p.style.background="var(--bad)";p.classList.remove("live");}
+  const pub=j.publisher;
+  const psuffix = pub ? (pub.paused ? " · publisher paused ⏸" : " · publisher "+String(pub.state||"").toLowerCase()) : "";
+  if(pub&&pub.paused){f.textContent="frozen · "+ago(mins)+psuffix;p.style.background="var(--warn)";p.classList.remove("live");}
+  else if(mins<30){f.textContent="data fresh · "+ago(mins)+psuffix;p.style.background="var(--ok)";p.classList.add("live");}
+  else if(mins<180){f.textContent="aging · "+ago(mins)+psuffix;p.style.background="var(--warn)";p.classList.remove("live");}
+  else{f.textContent="stale · "+ago(mins)+psuffix;p.style.background="var(--bad)";p.classList.remove("live");}
 }
-const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);renderWorkers(j);freshTick();};
+const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);renderWorkers(j);renderExtras(j);freshTick();};
 renderSessions(window.__lastStats||STATS);
 setInterval(freshTick,30000);
 

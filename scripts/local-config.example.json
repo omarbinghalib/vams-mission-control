@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy to local-config.json (gitignored) and fill in YOUR machine paths. This keeps local filesystem paths + OS username out of the public repo. commander_session/project identify the live commander whose subagent task-output files signal worker liveness.",
+  "_comment": "Copy to local-config.json (gitignored) and fill in YOUR machine paths. This keeps local filesystem paths + OS username out of the public repo. commander_session/project identify the live commander whose subagent task-output files signal worker liveness. docker/health_checks/repos are optional — the generator degrades gracefully if they are omitted or unreachable.",
   "projects_base": "C:\\Users\\<you>\\.claude\\projects",
   "commander_project": "<commander-project-slug>",
   "commander_session": "<commander-root-session-uuid>",
@@ -8,5 +8,17 @@
     "<other-project-slugs-to-scan-for-transcripts>"
   ],
   "vams_frontend": "C:\\path\\to\\VAMS-frontend",
-  "vams_backend": "C:\\path\\to\\VAMS-backend"
+  "vams_backend": "C:\\path\\to\\VAMS-backend",
+  "docker": {
+    "bin": "C:\\Program Files\\Docker\\Docker\\resources\\bin",
+    "name_filter": "<container-name-prefix e.g. vams_ (empty = all containers)>"
+  },
+  "health_checks": [
+    { "name": "gateway /health", "method": "GET", "url": "http://localhost:<port>/api/v1/health/", "expect": [200] },
+    { "name": "auth token", "method": "POST", "url": "http://localhost:<port>/api/v1/auth/token/", "body": {}, "expect": [200, 400, 401] }
+  ],
+  "repos": [
+    { "track": "backend",  "path": "C:\\path\\to\\VAMS-backend",  "branch": "<backend-branch>" },
+    { "track": "frontend", "path": "C:\\path\\to\\VAMS-frontend", "branch": "<frontend-branch>" }
+  ]
 }
