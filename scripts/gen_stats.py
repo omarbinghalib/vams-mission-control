@@ -457,6 +457,18 @@ def live_key(stats):
     return sorted(s["id"] for s in stats["sessions"] if s["live"]), \
            sorted(w["short_id"] for w in stats["workers"] if w["live"])
 
+def heartbeat_decision(old, new):
+    """NEVER-GO-STALE push policy. Push when the live-set changed, or when the published stats
+    are older than the applicable threshold: STALE_MIN with an active fleet, IDLE_PULSE_MIN when
+    the fleet is fully idle (a low-frequency pulse so freshness never freezes — bounded, no spam).
+    Returns (push:bool, any_live:bool, age:float, threshold:int, changed:bool)."""
+    any_live = new["totals"]["live_workers"] > 0
+    age = age_of(old.get("updated")) if old else None
+    age = 1e9 if age is None else age
+    changed = (live_key(old) != live_key(new)) if old else True
+    threshold = STALE_MIN if any_live else IDLE_PULSE_MIN
+    return (changed or age >= threshold), any_live, age, threshold, changed
+
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
     stats = build_stats()
@@ -469,12 +481,7 @@ def main():
             old = json.load(open(STATS_PATH, encoding="utf-8"))
         except Exception:
             old = None
-        any_live = stats["totals"]["live_workers"] > 0
-        age      = (age_of(old.get("updated")) if old else None)
-        age      = 1e9 if age is None else age
-        changed  = (live_key(old) != live_key(stats)) if old else True
-        threshold = STALE_MIN if any_live else IDLE_PULSE_MIN
-        do_push  = changed or age >= threshold
+        do_push, any_live, age, threshold, changed = heartbeat_decision(old, stats)
         if do_push:
             write_stats(stats)
             print("PUSH %s updated=%s live_workers=%d age=%.1f/%d%s"
