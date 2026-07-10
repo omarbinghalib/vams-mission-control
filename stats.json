@@ -1,21 +1,23 @@
 {
-  "updated": "2026-07-10T21:08:55Z",
-  "heartbeat_at": "2026-07-10T21:08:55Z",
-  "last_activity": "2026-07-10T21:08:51Z",
+  "updated": "2026-07-10T21:33:06Z",
+  "heartbeat_at": "2026-07-10T21:33:06Z",
+  "last_activity": "2026-07-10T21:33:06Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 15631201,
-    "cache_read_tokens": 6385489543,
-    "cache_creation_tokens": 60185637,
-    "msgs": 15433,
-    "sessions": 46,
-    "live_sessions": 3,
+    "output_tokens": 15682580,
+    "cache_read_tokens": 6400908556,
+    "cache_creation_tokens": 60234888,
+    "msgs": 15462,
+    "sessions": 48,
+    "live_sessions": 6,
     "transcript_sessions": 12,
-    "subagent_sessions": 34,
-    "workers": 35,
-    "live_workers": 3,
-    "stopped_workers": 1
+    "subagent_sessions": 36,
+    "workers": 37,
+    "live_workers": 6,
+    "stopped_workers": 1,
+    "current_workers": 12,
+    "recent_window_min": 120
   },
   "workers": [
     {
@@ -28,12 +30,49 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T21:08:51Z",
-      "out_age_min": 0.1,
+      "out_last_active": "2026-07-10T21:33:06Z",
+      "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
-      "live": true
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Mission-control worker",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Your job is dashboard accuracy + freshness.",
+      "agent_id": "ad796e2c1ded647f8",
+      "short_id": "ad796e2c",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 855.5,
+      "out_last_active": "2026-07-10T21:32:59Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1963866,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Ops screens recovery worker",
+      "role": "worker",
+      "branch": null,
+      "focus": "A prior worker BUILT the ops/integrations/projects SPA screens but got stuck in a test-wait loop and never committed \u2014 its work is sitting UNCOMMITTED in the frontend worktree righ",
+      "agent_id": "a905ee83660556de0",
+      "short_id": "a905ee83",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T21:33:06Z",
+      "out_age_min": 0.0,
+      "log_bytes": 115261,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
     },
     {
       "name": "Ops/integrations/projects screens worker",
@@ -45,12 +84,31 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T21:07:12Z",
-      "out_age_min": 1.7,
-      "log_bytes": 927018,
+      "out_last_active": "2026-07-10T21:25:42Z",
+      "out_age_min": 7.4,
+      "log_bytes": 1073729,
       "signal": "task-output mtime + git commit",
       "status": "live",
-      "live": true
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Reporting analytics endpoint worker",
+      "role": "worker",
+      "branch": null,
+      "focus": "Autonomous; report to the commander.",
+      "agent_id": "a26b2d8eccdab0d65",
+      "short_id": "a26b2d8e",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T21:33:05Z",
+      "out_age_min": 0.0,
+      "log_bytes": 126948,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
     },
     {
       "name": "Reporting suite + documents frontend worker",
@@ -59,15 +117,16 @@
       "focus": "Autonomous; report to the commander.",
       "agent_id": "ab03a9fa1cf87fe76",
       "short_id": "ab03a9fa",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
-      "out_last_active": "2026-07-10T21:08:51Z",
-      "out_age_min": 0.1,
-      "log_bytes": 674433,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
+      "out_last_active": "2026-07-10T21:30:52Z",
+      "out_age_min": 2.2,
+      "log_bytes": 942012,
       "signal": "task-output mtime + git commit",
       "status": "live",
-      "live": true
+      "live": true,
+      "recent": true
     },
     {
       "name": "AX payroll bugfix worker",
@@ -80,11 +139,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T18:34:37Z",
-      "out_age_min": 154.3,
+      "out_age_min": 178.5,
       "log_bytes": 347024,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Accounting depth worker",
@@ -97,11 +157,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:27:01Z",
-      "out_age_min": 101.9,
+      "out_age_min": 126.1,
       "log_bytes": 820241,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Backend async-task contract worker",
@@ -112,13 +173,14 @@
       "short_id": "aef92381",
       "head_commit": "feat(engineering,production): light-seed sparse acme screens",
       "head_commit_at": "2026-07-11T00:57:09+04:00",
-      "head_ago_min": 11.8,
+      "head_ago_min": 36.0,
       "out_last_active": "2026-07-10T18:32:28Z",
-      "out_age_min": 156.5,
+      "out_age_min": 180.6,
       "log_bytes": 1928921,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Backend gateway/reporting worker",
@@ -129,13 +191,14 @@
       "short_id": "aabd3c67",
       "head_commit": "feat(engineering,production): light-seed sparse acme screens",
       "head_commit_at": "2026-07-11T00:57:09+04:00",
-      "head_ago_min": 11.8,
+      "head_ago_min": 36.0,
       "out_last_active": "2026-07-10T08:09:31Z",
-      "out_age_min": 779.4,
+      "out_age_min": 803.6,
       "log_bytes": 289556,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Backend signup/invitation worker",
@@ -146,13 +209,14 @@
       "short_id": "a0d5ebc2",
       "head_commit": "feat(engineering,production): light-seed sparse acme screens",
       "head_commit_at": "2026-07-11T00:57:09+04:00",
-      "head_ago_min": 11.8,
+      "head_ago_min": 36.0,
       "out_last_active": "2026-07-10T08:26:46Z",
-      "out_age_min": 762.2,
+      "out_age_min": 786.3,
       "log_bytes": 494233,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Backend worker",
@@ -163,13 +227,14 @@
       "short_id": "a7aa95fb",
       "head_commit": "feat(engineering,production): light-seed sparse acme screens",
       "head_commit_at": "2026-07-11T00:57:09+04:00",
-      "head_ago_min": 11.8,
+      "head_ago_min": 36.0,
       "out_last_active": "2026-07-10T09:00:36Z",
-      "out_age_min": 728.3,
+      "out_age_min": 752.5,
       "log_bytes": 2015579,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "CRM depth worker",
@@ -182,11 +247,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:19:06Z",
-      "out_age_min": 109.8,
+      "out_age_min": 134.0,
       "log_bytes": 726559,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Completeness coverage sweep",
@@ -199,11 +265,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T20:18:48Z",
-      "out_age_min": 50.1,
+      "out_age_min": 74.3,
       "log_bytes": 336656,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Engineering depth worker",
@@ -216,11 +283,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:27:07Z",
-      "out_age_min": 101.8,
+      "out_age_min": 126.0,
       "log_bytes": 868479,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Frontend E2E worker",
@@ -229,15 +297,16 @@
       "focus": "Work autonomously; report results/blockers to the commander (main session).",
       "agent_id": "abd34ab9ae4ef6278",
       "short_id": "abd34ab9",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
       "out_last_active": "2026-07-10T08:00:44Z",
-      "out_age_min": 788.2,
+      "out_age_min": 812.4,
       "log_bytes": 560296,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Frontend design theme worker",
@@ -246,15 +315,16 @@
       "focus": "GOAL: a polished, modern, professional ERP aesthetic applied at the DESIGN-TOKEN / theme level \u2014 NOT a per-page rewrite. Cohesive and consistent across all 8 modules.",
       "agent_id": "ac39c4adfaf17e13e",
       "short_id": "ac39c4ad",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
       "out_last_active": "2026-07-10T19:07:11Z",
-      "out_age_min": 121.7,
+      "out_age_min": 145.9,
       "log_bytes": 513603,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Frontend flip-to-gateway worker",
@@ -263,15 +333,16 @@
       "focus": "The backend is now FULLY carved, integrated, and baked (all 11 services, full depth parity verified to the cent, all cross-service seams closed, 29/29 containers up).",
       "agent_id": "a51ff03e6c4912120",
       "short_id": "a51ff03e",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
       "out_last_active": "2026-07-10T20:30:06Z",
-      "out_age_min": 38.8,
+      "out_age_min": 63.0,
       "log_bytes": 861676,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Frontend platform-blocker worker",
@@ -280,15 +351,16 @@
       "focus": "Work autonomously; report results/blockers to the commander (main session).",
       "agent_id": "a7fe2d3833a9ac26f",
       "short_id": "a7fe2d38",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
       "out_last_active": "2026-07-10T08:04:35Z",
-      "out_age_min": 784.3,
+      "out_age_min": 808.5,
       "log_bytes": 744004,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "HR depth worker",
@@ -301,11 +373,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:22:34Z",
-      "out_age_min": 106.4,
+      "out_age_min": 130.5,
       "log_bytes": 808084,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Integration and finalize worker",
@@ -318,11 +391,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:55:31Z",
-      "out_age_min": 73.4,
+      "out_age_min": 97.6,
       "log_bytes": 757426,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Mission-control reusability worker",
@@ -333,30 +407,14 @@
       "short_id": "a2d39918",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 831.3,
+      "head_ago_min": 855.5,
       "out_last_active": "2026-07-10T08:38:11Z",
-      "out_age_min": 750.7,
+      "out_age_min": 774.9,
       "log_bytes": 1185477,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
-    },
-    {
-      "name": "Mission-control worker",
-      "role": "mission-control",
-      "branch": "microservices-frontend",
-      "focus": "Your job is dashboard accuracy + freshness.",
-      "agent_id": "ad796e2c1ded647f8",
-      "short_id": "ad796e2c",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 831.3,
-      "out_last_active": "2026-07-10T20:17:29Z",
-      "out_age_min": 51.4,
-      "log_bytes": 1837545,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Ops-misc and messaging worker",
@@ -369,11 +427,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T20:34:05Z",
-      "out_age_min": 34.8,
+      "out_age_min": 59.0,
       "log_bytes": 353434,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Platform cross-cutting APIs worker",
@@ -386,11 +445,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T20:58:32Z",
-      "out_age_min": 10.4,
+      "out_age_min": 34.6,
       "log_bytes": 670269,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Platform hardening worker",
@@ -403,11 +463,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T18:35:35Z",
-      "out_age_min": 153.3,
+      "out_age_min": 177.5,
       "log_bytes": 423570,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Production+Inventory depth worker",
@@ -420,11 +481,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:26:16Z",
-      "out_age_min": 102.7,
+      "out_age_min": 126.8,
       "log_bytes": 693498,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Purchasing depth worker",
@@ -437,11 +499,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:11:02Z",
-      "out_age_min": 117.9,
+      "out_age_min": 142.1,
       "log_bytes": 624749,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "QC depth worker",
@@ -454,11 +517,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:15:22Z",
-      "out_age_min": 113.6,
+      "out_age_min": 137.7,
       "log_bytes": 699215,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "QC seed data worker",
@@ -471,11 +535,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T20:58:34Z",
-      "out_age_min": 10.4,
+      "out_age_min": 34.5,
       "log_bytes": 413539,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": true
     },
     {
       "name": "Research frontend accounting mock shapes",
@@ -484,15 +549,16 @@
       "focus": "Explore the VAMS frontend at c:/Users/obing/Documents/GitHub/VAMS-frontend .",
       "agent_id": "afdad4fed5c55b5c9",
       "short_id": "afdad4fe",
-      "head_commit": "reporting: catalogue runner + analytics dashboards + doc buttons",
-      "head_commit_at": "2026-07-11T01:08:21+04:00",
-      "head_ago_min": 0.6,
+      "head_commit": "reporting: correct data-view run path to gateway contract + tests",
+      "head_commit_at": "2026-07-11T01:29:11+04:00",
+      "head_ago_min": 3.9,
       "out_last_active": "2026-07-10T18:43:05Z",
-      "out_age_min": 145.8,
+      "out_age_min": 170.0,
       "log_bytes": 314357,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Research monolith accounts/budgets/period",
@@ -505,11 +571,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T18:43:22Z",
-      "out_age_min": 145.6,
+      "out_age_min": 169.7,
       "log_bytes": 319932,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Research monolith currencies + FA depreciation",
@@ -522,11 +589,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T18:43:32Z",
-      "out_age_min": 145.4,
+      "out_age_min": 169.6,
       "log_bytes": 222752,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Server-rendered XLSX/PDF worker",
@@ -539,11 +607,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T19:24:29Z",
-      "out_age_min": 104.4,
+      "out_age_min": 128.6,
       "log_bytes": 658035,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "What's-left audit worker",
@@ -556,11 +625,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T18:29:57Z",
-      "out_age_min": 159.0,
+      "out_age_min": 183.2,
       "log_bytes": 285304,
       "signal": "task-output mtime + git commit",
       "status": "idle",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Frontend worker",
@@ -573,11 +643,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:59:04Z",
-      "out_age_min": 849.9,
+      "out_age_min": 874.0,
       "log_bytes": 386062,
       "signal": "stopped by user (harness-cancelled)",
       "status": "stopped",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Environment worker",
@@ -590,11 +661,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 935.7,
+      "out_age_min": 959.9,
       "log_bytes": 218452,
       "signal": "mission complete",
       "status": "done",
-      "live": false
+      "live": false,
+      "recent": false
     },
     {
       "name": "Provisioning worker",
@@ -607,11 +679,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:21:47Z",
-      "out_age_min": 887.1,
+      "out_age_min": 911.3,
       "log_bytes": 488835,
       "signal": "mission complete",
       "status": "done",
-      "live": false
+      "live": false,
+      "recent": false
     }
   ],
   "sessions": [
@@ -619,16 +692,17 @@
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 1155694,
-      "cache_read_tokens": 121474824,
-      "cache_creation_tokens": 3508353,
-      "msgs": 467,
-      "last_active": "2026-07-10T21:09:04Z",
+      "output_tokens": 1207073,
+      "cache_read_tokens": 136893837,
+      "cache_creation_tokens": 3557604,
+      "msgs": 496,
+      "last_active": "2026-07-10T21:33:07Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": false,
-      "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d"
+      "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d",
+      "recent": true
     },
     {
       "id": "aa30f33e",
@@ -639,10 +713,11 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 2244.5,
+      "age_min": 2268.6,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "1f403dd5",
@@ -653,10 +728,11 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 11067.5,
+      "age_min": 11091.7,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "479c5f63",
@@ -667,10 +743,11 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 5197.6,
+      "age_min": 5221.8,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "2eb0ee20",
@@ -681,10 +758,11 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4970.6,
+      "age_min": 4994.8,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "b0a25ec9",
@@ -695,10 +773,11 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 878.2,
+      "age_min": 902.4,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "a3607e93",
@@ -709,10 +788,11 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 2353.8,
+      "age_min": 2378.0,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "bca1b96d",
@@ -723,10 +803,11 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 1038.3,
+      "age_min": 1062.5,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "3f777a8b",
@@ -737,10 +818,11 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 5151.5,
+      "age_min": 5175.7,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "649d5b29",
@@ -751,10 +833,11 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 5197.6,
+      "age_min": 5221.8,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "070e42cb",
@@ -765,10 +848,11 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 11772.8,
+      "age_min": 11797.0,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
     },
     {
       "id": "a7ec81c1",
@@ -779,10 +863,45 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 11790.3,
+      "age_min": 11814.5,
       "live": false,
       "status": "idle",
-      "subagent": false
+      "subagent": false,
+      "recent": false
+    },
+    {
+      "id": "ad796e2c",
+      "full_id": "ad796e2c1ded647f8",
+      "group": "mission-control",
+      "group_label": "Mission-control worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T21:32:59Z",
+      "age_min": 0.1,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 1963866,
+      "recent": true
+    },
+    {
+      "id": "a905ee83",
+      "full_id": "a905ee83660556de0",
+      "group": "worker",
+      "group_label": "Ops screens recovery worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T21:33:06Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 115261,
+      "recent": true
     },
     {
       "id": "a8cd8aa3",
@@ -793,12 +912,30 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T21:07:12Z",
-      "age_min": 1.7,
+      "last_active": "2026-07-10T21:25:42Z",
+      "age_min": 7.4,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 927018
+      "log_bytes": 1073729,
+      "recent": true
+    },
+    {
+      "id": "a26b2d8e",
+      "full_id": "a26b2d8eccdab0d65",
+      "group": "worker",
+      "group_label": "Reporting analytics endpoint worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T21:33:05Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 126948,
+      "recent": true
     },
     {
       "id": "ab03a9fa",
@@ -809,12 +946,13 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T21:08:51Z",
-      "age_min": 0.1,
+      "last_active": "2026-07-10T21:30:52Z",
+      "age_min": 2.2,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 674433
+      "log_bytes": 942012,
+      "recent": true
     },
     {
       "id": "a622b498",
@@ -826,11 +964,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:34:37Z",
-      "age_min": 154.3,
+      "age_min": 178.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 347024
+      "log_bytes": 347024,
+      "recent": false
     },
     {
       "id": "abc0f969",
@@ -842,11 +981,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:27:01Z",
-      "age_min": 101.9,
+      "age_min": 126.1,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 820241
+      "log_bytes": 820241,
+      "recent": false
     },
     {
       "id": "aef92381",
@@ -858,11 +998,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:32:28Z",
-      "age_min": 156.5,
+      "age_min": 180.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 1928921
+      "log_bytes": 1928921,
+      "recent": false
     },
     {
       "id": "aabd3c67",
@@ -874,11 +1015,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:09:31Z",
-      "age_min": 779.4,
+      "age_min": 803.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 289556
+      "log_bytes": 289556,
+      "recent": false
     },
     {
       "id": "a0d5ebc2",
@@ -890,11 +1032,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:26:46Z",
-      "age_min": 762.2,
+      "age_min": 786.3,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 494233
+      "log_bytes": 494233,
+      "recent": false
     },
     {
       "id": "a7aa95fb",
@@ -906,11 +1049,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T09:00:36Z",
-      "age_min": 728.3,
+      "age_min": 752.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 2015579
+      "log_bytes": 2015579,
+      "recent": false
     },
     {
       "id": "abd5128d",
@@ -922,11 +1066,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:19:06Z",
-      "age_min": 109.8,
+      "age_min": 134.0,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 726559
+      "log_bytes": 726559,
+      "recent": false
     },
     {
       "id": "a727d653",
@@ -938,11 +1083,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T20:18:48Z",
-      "age_min": 50.1,
+      "age_min": 74.3,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 336656
+      "log_bytes": 336656,
+      "recent": true
     },
     {
       "id": "a4137d68",
@@ -954,11 +1100,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:27:07Z",
-      "age_min": 101.8,
+      "age_min": 126.0,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 868479
+      "log_bytes": 868479,
+      "recent": false
     },
     {
       "id": "abd34ab9",
@@ -970,11 +1117,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:00:44Z",
-      "age_min": 788.2,
+      "age_min": 812.4,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 560296
+      "log_bytes": 560296,
+      "recent": false
     },
     {
       "id": "ac39c4ad",
@@ -986,11 +1134,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:07:11Z",
-      "age_min": 121.7,
+      "age_min": 145.9,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 513603
+      "log_bytes": 513603,
+      "recent": false
     },
     {
       "id": "a51ff03e",
@@ -1002,11 +1151,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T20:30:06Z",
-      "age_min": 38.8,
+      "age_min": 63.0,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 861676
+      "log_bytes": 861676,
+      "recent": true
     },
     {
       "id": "a7fe2d38",
@@ -1018,11 +1168,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:04:35Z",
-      "age_min": 784.3,
+      "age_min": 808.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 744004
+      "log_bytes": 744004,
+      "recent": false
     },
     {
       "id": "a0b27c2f",
@@ -1034,11 +1185,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:22:34Z",
-      "age_min": 106.4,
+      "age_min": 130.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 808084
+      "log_bytes": 808084,
+      "recent": false
     },
     {
       "id": "a34f07dd",
@@ -1050,11 +1202,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:55:31Z",
-      "age_min": 73.4,
+      "age_min": 97.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 757426
+      "log_bytes": 757426,
+      "recent": true
     },
     {
       "id": "a2d39918",
@@ -1066,27 +1219,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:38:11Z",
-      "age_min": 750.7,
+      "age_min": 774.9,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 1185477
-    },
-    {
-      "id": "ad796e2c",
-      "full_id": "ad796e2c1ded647f8",
-      "group": "mission-control",
-      "group_label": "Mission-control worker",
-      "output_tokens": null,
-      "cache_read_tokens": null,
-      "cache_creation_tokens": null,
-      "msgs": null,
-      "last_active": "2026-07-10T20:17:29Z",
-      "age_min": 51.4,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1837545
+      "log_bytes": 1185477,
+      "recent": false
     },
     {
       "id": "a4ac3c07",
@@ -1098,11 +1236,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T20:34:05Z",
-      "age_min": 34.8,
+      "age_min": 59.0,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 353434
+      "log_bytes": 353434,
+      "recent": true
     },
     {
       "id": "a7330ea0",
@@ -1114,11 +1253,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T20:58:32Z",
-      "age_min": 10.4,
+      "age_min": 34.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 670269
+      "log_bytes": 670269,
+      "recent": true
     },
     {
       "id": "a672d831",
@@ -1130,11 +1270,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:35:35Z",
-      "age_min": 153.3,
+      "age_min": 177.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 423570
+      "log_bytes": 423570,
+      "recent": false
     },
     {
       "id": "a6394a43",
@@ -1146,11 +1287,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:26:16Z",
-      "age_min": 102.7,
+      "age_min": 126.8,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 693498
+      "log_bytes": 693498,
+      "recent": false
     },
     {
       "id": "a6741551",
@@ -1162,11 +1304,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:11:02Z",
-      "age_min": 117.9,
+      "age_min": 142.1,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 624749
+      "log_bytes": 624749,
+      "recent": false
     },
     {
       "id": "a10c11e8",
@@ -1178,11 +1321,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:15:22Z",
-      "age_min": 113.6,
+      "age_min": 137.7,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 699215
+      "log_bytes": 699215,
+      "recent": false
     },
     {
       "id": "a791ceef",
@@ -1194,11 +1338,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T20:58:34Z",
-      "age_min": 10.4,
+      "age_min": 34.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 413539
+      "log_bytes": 413539,
+      "recent": true
     },
     {
       "id": "afdad4fe",
@@ -1210,11 +1355,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:43:05Z",
-      "age_min": 145.8,
+      "age_min": 170.0,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 314357
+      "log_bytes": 314357,
+      "recent": false
     },
     {
       "id": "aed1b5d1",
@@ -1226,11 +1372,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:43:22Z",
-      "age_min": 145.6,
+      "age_min": 169.7,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 319932
+      "log_bytes": 319932,
+      "recent": false
     },
     {
       "id": "a7345b6f",
@@ -1242,11 +1389,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:43:32Z",
-      "age_min": 145.4,
+      "age_min": 169.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 222752
+      "log_bytes": 222752,
+      "recent": false
     },
     {
       "id": "ade77461",
@@ -1258,11 +1406,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T19:24:29Z",
-      "age_min": 104.4,
+      "age_min": 128.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 658035
+      "log_bytes": 658035,
+      "recent": false
     },
     {
       "id": "af4ea50d",
@@ -1274,11 +1423,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T18:29:57Z",
-      "age_min": 159.0,
+      "age_min": 183.2,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 285304
+      "log_bytes": 285304,
+      "recent": false
     },
     {
       "id": "a84f4e23",
@@ -1290,11 +1440,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:59:04Z",
-      "age_min": 849.9,
+      "age_min": 874.0,
       "live": false,
       "status": "stopped",
       "subagent": true,
-      "log_bytes": 386062
+      "log_bytes": 386062,
+      "recent": false
     },
     {
       "id": "a9bea1c0",
@@ -1306,11 +1457,12 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 935.7,
+      "age_min": 959.9,
       "live": false,
       "status": "done",
       "subagent": true,
-      "log_bytes": 218452
+      "log_bytes": 218452,
+      "recent": false
     },
     {
       "id": "a90719d7",
@@ -1322,14 +1474,15 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:21:47Z",
-      "age_min": 887.1,
+      "age_min": 911.3,
       "live": false,
       "status": "done",
       "subagent": true,
-      "log_bytes": 488835
+      "log_bytes": 488835,
+      "recent": false
     }
   ],
-  "total_tokens": 15631201,
+  "total_tokens": 15682580,
   "progress": {
     "overall_pct": 95,
     "remaining_hours": [
@@ -1374,10 +1527,276 @@
     "estimate": true
   },
   "docker": {
-    "available": false,
-    "error": "Command '['docker', 'ps', '-a', '--format', '{{json .}}', '--filter', 'name=vams_']' timed out after 20 seconds",
-    "containers": [],
-    "summary": {}
+    "available": true,
+    "containers": [
+      {
+        "name": "vams_accounting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8008",
+        "up": true
+      },
+      {
+        "name": "vams_accounting_relay",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_accounting_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_bff",
+        "state": "running",
+        "status": "Up 39 minutes",
+        "health": "none",
+        "uptime": "39 minutes",
+        "ports": "8013",
+        "up": true
+      },
+      {
+        "name": "vams_crm",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8005",
+        "up": true
+      },
+      {
+        "name": "vams_crm_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_engineering",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8006",
+        "up": true
+      },
+      {
+        "name": "vams_engineering_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_frontend",
+        "state": "running",
+        "status": "Up 17 hours",
+        "health": "none",
+        "uptime": "17 hours",
+        "ports": "3000",
+        "up": true
+      },
+      {
+        "name": "vams_gateway",
+        "state": "running",
+        "status": "Up 55 minutes",
+        "health": "none",
+        "uptime": "55 minutes",
+        "ports": "8080",
+        "up": true
+      },
+      {
+        "name": "vams_hr",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8004",
+        "up": true
+      },
+      {
+        "name": "vams_hr_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_integrations",
+        "state": "running",
+        "status": "Up 10 hours",
+        "health": "none",
+        "uptime": "10 hours",
+        "ports": "8010",
+        "up": true
+      },
+      {
+        "name": "vams_monolith_app",
+        "state": "running",
+        "status": "Up 12 hours",
+        "health": "none",
+        "uptime": "12 hours",
+        "ports": "8012",
+        "up": true
+      },
+      {
+        "name": "vams_ops",
+        "state": "running",
+        "status": "Up About an hour",
+        "health": "none",
+        "uptime": "About an hour",
+        "ports": "8009",
+        "up": true
+      },
+      {
+        "name": "vams_ops_worker",
+        "state": "running",
+        "status": "Up 3 hours",
+        "health": "none",
+        "uptime": "3 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_platform",
+        "state": "running",
+        "status": "Up 10 hours",
+        "health": "none",
+        "uptime": "10 hours",
+        "ports": "8001",
+        "up": true
+      },
+      {
+        "name": "vams_production",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8007",
+        "up": true
+      },
+      {
+        "name": "vams_production_relay",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_production_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8003",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing_relay",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_purchasing_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_qc",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8002",
+        "up": true
+      },
+      {
+        "name": "vams_qc_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_reporting",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "8011",
+        "up": true
+      },
+      {
+        "name": "vams_reporting_worker",
+        "state": "running",
+        "status": "Up 2 hours",
+        "health": "none",
+        "uptime": "2 hours",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_services_postgres",
+        "state": "running",
+        "status": "Up 17 hours (healthy)",
+        "health": "healthy",
+        "uptime": "17 hours",
+        "ports": "5432",
+        "up": true
+      },
+      {
+        "name": "vams_services_redis",
+        "state": "running",
+        "status": "Up 12 hours (healthy)",
+        "health": "healthy",
+        "uptime": "12 hours",
+        "ports": "6379",
+        "up": true
+      }
+    ],
+    "summary": {
+      "running": 29,
+      "total": 29,
+      "healthy": 2,
+      "problem": 0
+    }
   },
   "health": [
     {
@@ -1413,23 +1832,72 @@
         "track": "backend",
         "branch": "microservices-backend",
         "available": true,
-        "commits_24h": null,
-        "commits_7d": null
+        "commits_24h": 64,
+        "commits_7d": 295
       },
       {
         "track": "frontend",
         "branch": "microservices-frontend",
         "available": true,
-        "commits_24h": null,
-        "commits_7d": null
+        "commits_24h": 30,
+        "commits_7d": 218
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "1215265",
+        "at": "2026-07-11T01:29:11+04:00",
+        "subject": "reporting: correct data-view run path to gateway contract + tests",
+        "track": "frontend"
+      },
+      {
+        "hash": "8e914e0",
+        "at": "2026-07-11T01:08:21+04:00",
+        "subject": "reporting: catalogue runner + analytics dashboards + doc buttons",
+        "track": "frontend"
+      },
+      {
+        "hash": "f9a453b",
+        "at": "2026-07-11T00:57:09+04:00",
+        "subject": "feat(engineering,production): light-seed sparse acme screens",
+        "track": "backend"
+      },
+      {
+        "hash": "747211c",
+        "at": "2026-07-11T00:56:59+04:00",
+        "subject": "feat(platform,bff): cross-cutting platform capabilities the SPA expects",
+        "track": "backend"
+      },
+      {
+        "hash": "e6f91b9",
+        "at": "2026-07-11T00:50:03+04:00",
+        "subject": "feat(qc): seed acme tenant with demo QC rows in reshaped shape",
+        "track": "backend"
+      },
+      {
+        "hash": "30908b1",
+        "at": "2026-07-11T00:32:57+04:00",
+        "subject": "feat(ops): carve internal message-stream (messages app) into ops",
+        "track": "backend"
+      },
+      {
+        "hash": "8516974",
+        "at": "2026-07-11T00:27:20+04:00",
+        "subject": "fix(gateway): reconcile SPA to real backend contract; per-module E2E harness",
+        "track": "frontend"
+      },
+      {
+        "hash": "1301cfa",
+        "at": "2026-07-11T00:08:17+04:00",
+        "subject": "feat(dev): clean gateway run mode (dev:gateway -> live :8080 proxy)",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
-    "state": "unknown",
-    "paused": false,
-    "checked_at": "2026-07-10T21:08:55Z"
+    "state": "Disabled",
+    "paused": true,
+    "checked_at": "2026-07-10T21:33:06Z"
   }
 }

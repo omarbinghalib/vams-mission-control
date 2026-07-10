@@ -61,6 +61,7 @@ REPOS         = _CFG.get("repos", []) or []         # [{track,path,branch}] for 
 LIVE_MIN       = 10   # task-output/transcript mtime younger than this (min) = live
 STALE_MIN      = 6    # heartbeat (active fleet): republish if published stats older than this
 IDLE_PULSE_MIN = 15   # heartbeat (idle fleet): low-frequency pulse so freshness never freezes
+RECENT_MIN     = 120  # roster/sessions: "current" = live or active within this window (2h)
 
 now = datetime.datetime.now(datetime.timezone.utc)
 
@@ -420,6 +421,15 @@ def build_stats():
     workers = discover_workers()
     tx, subs = build_sessions(workers)
     sessions = tx + subs
+    # RECENCY: keep the main view to the CURRENT fleet — live workers + anything active within
+    # RECENT_MIN. Everything older (idle/stopped/done from earlier phases) is flagged not-recent
+    # so the UI can collapse it into a summary WITHOUT losing the underlying data.
+    def _recent(status, age):
+        return status == "live" or (age is not None and age < RECENT_MIN)
+    for w in workers:
+        w["recent"] = _recent(w["status"], w.get("out_age_min"))
+    for s in sessions:
+        s["recent"] = bool(s.get("live")) or (s.get("age_min") is not None and s["age_min"] < RECENT_MIN)
     out_t = sum(s["output_tokens"] or 0 for s in tx)
     cr_t  = sum(s["cache_read_tokens"] or 0 for s in tx)
     cc_t  = sum(s["cache_creation_tokens"] or 0 for s in tx)
@@ -429,7 +439,9 @@ def build_stats():
                   live_sessions=sum(1 for s in sessions if s["live"]),
                   transcript_sessions=len(tx), subagent_sessions=len(subs),
                   workers=len(workers), live_workers=sum(1 for w in workers if w["status"] == "live"),
-                  stopped_workers=sum(1 for w in workers if w["status"] == "stopped"))
+                  stopped_workers=sum(1 for w in workers if w["status"] == "stopped"),
+                  current_workers=sum(1 for w in workers if w["recent"]),
+                  recent_window_min=RECENT_MIN)
     acts = [w["out_last_active"] for w in workers if w.get("out_last_active")]
     last_activity = max(acts) if acts else None   # iso Z strings sort chronologically
     return dict(updated=iso(now), heartbeat_at=iso(now), last_activity=last_activity,
