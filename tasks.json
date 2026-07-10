@@ -1,53 +1,100 @@
 [
   {
-    "title": "GET /me/ session-bootstrap (user + org + modules + roles + flags)",
-    "status": "pending",
-    "track": "backend",
-    "note": "go-live blocker"
+    "title": "Payroll engine (valtek + AX, logic-parity)",
+    "status": "done",
+    "track": "backend"
   },
   {
-    "title": "Roles in /me/ or the JWT (approval / admin gating)",
-    "status": "pending",
-    "track": "backend",
-    "note": "go-live blocker"
-  },
-  {
-    "title": "Signup + invitation APIs (self-serve org creation)",
-    "status": "in_progress",
+    "title": "Durable Celery/Redis + 9 per-service workers",
+    "status": "done",
     "track": "backend"
   },
   {
     "title": "Uniform async-task contract (/tasks/<id>/)",
     "status": "done",
-    "track": "backend",
-    "note": "powers the Tasks tray"
-  },
-  {
-    "title": "SO->MR + request-leave + line-item persistence saga",
-    "status": "in_progress",
     "track": "backend"
   },
   {
-    "title": "Payroll-run trigger endpoint",
-    "status": "pending",
-    "track": "backend",
-    "note": "Celery deferred"
+    "title": "Gateway/reporting module codes + catalogue",
+    "status": "done",
+    "track": "backend"
   },
   {
-    "title": "Mock->real contract reconciliation (31 CL + 3 FS)",
-    "status": "pending",
-    "track": "frontend",
-    "note": "gated on backend carve"
+    "title": "Signup / invitations / members",
+    "status": "done",
+    "track": "backend"
   },
   {
-    "title": "Phase 5 native build (Android / iOS APK+IPA)",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "waits on JDK/SDK + signing"
+    "title": "Platform hardening (country/currency + invite-token)",
+    "status": "done",
+    "track": "backend"
   },
   {
-    "title": "Dashboard: tasks panel + never-go-stale",
-    "status": "in_progress",
+    "title": "Product decisions (full-parity, 11 modules, polished theme, local-FS)",
+    "status": "done",
     "track": "mission-control"
+  },
+  {
+    "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + kit",
+    "status": "done",
+    "track": "mission-control"
+  },
+  {
+    "title": "QC depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "Purchasing depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "CRM depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "Engineering depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "Production + Inventory depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "Accounting depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "HR depth",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "full-parity"
+  },
+  {
+    "title": "Polished theme",
+    "status": "in_progress",
+    "track": "frontend"
+  },
+  {
+    "title": "Server-rendered XLSX/PDF documents",
+    "status": "in_progress",
+    "track": "frontend"
+  },
+  {
+    "title": "Flip-to-gateway + verify per module",
+    "status": "pending",
+    "track": "frontend",
+    "note": "after each service's depth lands"
   }
 ]
