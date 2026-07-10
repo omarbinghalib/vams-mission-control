@@ -232,7 +232,7 @@
       </div>
       <span class="chip mute"><span class="d"></span>ETAs are estimates</span>
     </div>
-    <p class="foot" style="margin:6px 0 2px">Progress is <b>done-vs-total weighted by subtask effort</b> (foundation carries the platform bulk). ETAs are <b>rough estimates</b> from observed commit cadence — each carved subsystem has been landing in ~15–30&nbsp;min of active session — <b>not commitments</b>; calendar time depends on Omar's availability. Go-live blockers are tracked as a separate 0/5 gate below.</p>
+    <p class="foot" style="margin:6px 0 2px">Progress is <b>done-vs-total weighted by subtask effort</b> (foundation carries the platform bulk). Each ETA is a <b>rough estimate</b> given in two units — <b>~hours</b> of active work and <b>~worker-sessions</b> (historically each carved subsystem landed in ≈1 session of ~15–30&nbsp;min active time; larger sagas 1–2) — <b>not commitments</b>; wall-clock depends on Omar's availability. Go-live blockers are tracked as a separate 0/5 gate below.</p>
 
     <div class="grid2" style="margin-top:16px">
 
@@ -241,7 +241,7 @@
         <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--fe)"></span><h2>Frontend</h2></div>
         <div class="phead">
           <div class="ppct" style="color:var(--fe)">78<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
-          <div class="peta">build complete · <b>go-live-ready ~1–2 active sessions</b>, tracking backend carve + the 5 blockers</div>
+          <div class="peta">build complete · go-live-ready <b>est. ~10–15h · ~4–5 sessions</b>, tracking backend carve + the 5 blockers</div>
         </div>
         <div class="projbar" title="Frontend ~78% complete (est.)"><i class="fill-fe" style="width:78%"></i></div>
 
@@ -254,13 +254,13 @@
           </div>
           <div class="task">
             <div class="tname">Phase 5 — native shell (Capacitor) <span class="chip warn"><span class="d"></span>In progress</span></div>
-            <div class="eta">~65% · <b>gated</b>: JDK/SDK + Omar</div>
+            <div class="eta">~65% · est. <b>~2–3h · ~1 session</b><br><span style="color:var(--muted)">gated: JDK/SDK + Omar</span></div>
             <div class="ttrack"><i class="fill-prog" style="width:65%"></i></div>
             <div class="foot" style="grid-column:1/-1;margin-top:1px">Config + Android scaffold + cap-sync clean; native APK build needs a JDK/Android SDK (not on this box) + Omar's bundle-ID / signing / iOS-scope calls</div>
           </div>
           <div class="task">
             <div class="tname">Mock&rarr;real contract reconciliation <span class="chip mute"><span class="d"></span>To do</span></div>
-            <div class="eta"><b>follows backend</b> carve</div>
+            <div class="eta">est. <b>~8–12h · ~3–4 sessions</b><br><span style="color:var(--muted)">follows backend carve</span></div>
             <div class="ttrack"><i class="fill-prog" style="width:6%"></i></div>
             <div class="foot" style="grid-column:1/-1;margin-top:1px">31 [CL] + 3 [FS] contract items reconciling mock shapes against carved services — mostly gated on backend; a few field-shape items shipped</div>
           </div>
@@ -271,10 +271,10 @@
       <div class="prog">
         <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--be)"></span><h2>Backend</h2></div>
         <div class="phead">
-          <div class="ppct" style="color:var(--be)">80<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
-          <div class="peta">foundation done · <b>bespoke remainder ~1–2 active sessions</b> (valve-builder → quote-sizing → cross-flows)</div>
+          <div class="ppct" style="color:var(--be)">92<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
+          <div class="peta">foundation + most bespoke done · <b>remainder est. ~2–4h · ~1–2 sessions</b> (SO→MR + request-leave flows)</div>
         </div>
-        <div class="projbar" title="Backend ~80% complete (est.)"><i class="fill-be" style="width:80%"></i></div>
+        <div class="projbar" title="Backend ~92% complete (est.)"><i class="fill-be" style="width:92%"></i></div>
 
         <div class="tasks">
           <div class="task">
@@ -296,22 +296,22 @@
             <div class="foot" style="grid-column:1/-1;margin-top:1px">Operator/supervisor/manager/QC WO state machine carved into production + WIP posting</div>
           </div>
           <div class="task">
-            <div class="tname">Valve-builder configurator <span class="chip warn"><span class="d"></span>In progress</span></div>
-            <div class="eta">~40% · est. <b>&lt;1 session</b></div>
-            <div class="ttrack"><i class="fill-prog" style="width:40%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Option-matrix carve started (config/options/find-matches into crm + engineering)</div>
+            <div class="tname">Valve-builder configurator <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Configurator brain carved into engineering (config/options/find-matches) — verified live</div>
           </div>
           <div class="task">
-            <div class="tname">Quote-sizing (BOQ) <span class="chip mute"><span class="d"></span>To do</span></div>
-            <div class="eta">est. <b>~½–1 session</b></div>
-            <div class="ttrack"><i class="fill-prog" style="width:0%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Sizing steps + items-sizing + BOQ into crm (quotes)</div>
+            <div class="tname">Quote-sizing (BOQ) <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Valve-manager items-sizing + BOQ carved into crm (quotes) — verified live</div>
           </div>
           <div class="task">
-            <div class="tname">Cross-service wizard flows <span class="chip mute"><span class="d"></span>To do</span></div>
-            <div class="eta">est. <b>~1 session</b></div>
-            <div class="ttrack"><i class="fill-prog" style="width:0%"></i></div>
-            <div class="foot" style="grid-column:1/-1;margin-top:1px">Quote&rarr;SO / SO&rarr;MR / request-leave — transactional, span crm + engineering + hr (most complex remaining)</div>
+            <div class="tname">Cross-service wizard flows <span class="chip warn"><span class="d"></span>In progress</span></div>
+            <div class="eta">~35% · est. <b>~2–4h · ~1–2 sessions</b></div>
+            <div class="ttrack"><i class="fill-prog" style="width:35%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Quote&rarr;SO shipped; SO&rarr;MR + request-leave remain — transactional, span crm + engineering + hr (larger sagas, 1–2 sessions)</div>
           </div>
         </div>
       </div>
@@ -377,8 +377,8 @@
         <li><span class="mk done"></span><span>HR payroll engine ported — parity <b>0 mismatches</b> across 3 months, to the cent.</span></li>
         <li><span class="mk done"></span><span>Reports read-side proven: trial-balance on 989,768 GL rows.</span></li>
         <li><span class="mk done"></span><span>Deep cost engine complete — recursive per-BOM/per-SO actual-cost + overhead terms (live re-run pending Docker).</span></li>
-        <li><span class="mk done"></span><span>Shopfloor / MES WO state machine carved into production.</span></li>
-        <li><span class="mk part"></span><span>In progress: valve-builder configurator. To do: quote-sizing + cross-service wizard flows.</span></li>
+        <li><span class="mk done"></span><span>Shopfloor / MES WO state machine + valve-builder configurator + quote-sizing (BOQ) carved &amp; verified.</span></li>
+        <li><span class="mk part"></span><span>In progress: cross-service wizard flows — quote→SO shipped; SO→MR + request-leave remain.</span></li>
         <li><span class="mk open"></span><span>NOT done: per-row salary generation (batch→GL half done).</span></li>
       </ul>
     </section>
@@ -470,18 +470,18 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T05:10:58Z",
+  "updated": "2026-07-10T05:30:24Z",
   "generated_by": "mission-control worker (b0a25ec9)",
   "schema": 3,
   "totals": {
-    "output_tokens": 14172762,
-    "cache_read_tokens": 6219891836,
-    "cache_creation_tokens": 56333299,
-    "msgs": 14817,
+    "output_tokens": 14255258,
+    "cache_read_tokens": 6229287883,
+    "cache_creation_tokens": 56436478,
+    "msgs": 14855,
     "sessions": 11,
     "live_sessions": 1,
     "workers": 4,
-    "live_workers": 4
+    "live_workers": 2
   },
   "workers": [
     {
@@ -504,16 +504,16 @@ const STATS = /*__STATS__*/{
       "name": "Backend worker",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Valve-builder configurator → quote-sizing → cross-service flows; Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
-      "head_commit": "feat(valve-builder): carve configurator brain into engineering",
-      "head_commit_at": "2026-07-10T09:02:58+04:00",
-      "head_ago_min": 8.0,
+      "focus": "Valve-builder + quote-sizing + quote→SO shipped; on SO→MR + request-leave flows. Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
+      "head_commit": "feat(flows): carve quote-to-SO wizard into crm",
+      "head_commit_at": "2026-07-10T09:14:25+04:00",
+      "head_ago_min": 16.0,
       "signal": "git commit",
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "output_tokens": 3084854,
       "msgs": 3111,
-      "last_active": "2026-07-10T09:02:58+04:00",
+      "last_active": "2026-07-10T09:14:25+04:00",
       "metrics_note": "cumulative track · last known"
     },
     {
@@ -523,10 +523,10 @@ const STATS = /*__STATS__*/{
       "focus": "Phase 5 Capacitor native build (config + Android scaffold done; native APK gated on JDK/SDK + Omar).",
       "head_commit": "test(mocks): collapse mock gateway latency to zero under Vitest",
       "head_commit_at": "2026-07-10T09:04:05+04:00",
-      "head_ago_min": 6.9,
+      "head_ago_min": 26.4,
       "signal": "git commit",
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "output_tokens": 9908,
       "msgs": 22,
       "last_active": "2026-07-10T09:04:05+04:00",
@@ -537,15 +537,15 @@ const STATS = /*__STATS__*/{
       "role": "mission-control",
       "branch": "microservices-frontend",
       "focus": "Dashboard maintenance · progress/ETA + workers roster · stats freshness.",
-      "head_commit": "feat(mission-control): per-project + per-subtask progress bars & ETA",
-      "head_commit_at": "2026-07-10T08:59:58+04:00",
-      "head_ago_min": 11.0,
+      "head_commit": "feat(mission-control): Workers command-roster panel",
+      "head_commit_at": "2026-07-10T09:11:55+04:00",
+      "head_ago_min": 18.5,
       "signal": "git commit + transcript",
       "status": "live",
       "live": true,
-      "output_tokens": 439350,
-      "msgs": 253,
-      "last_active": "2026-07-10T05:10:49Z",
+      "output_tokens": 521846,
+      "msgs": 291,
+      "last_active": "2026-07-10T05:30:13Z",
       "metrics_note": "this session"
     }
   ],
@@ -559,7 +559,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1286.5,
+      "age_min": 1305.9,
       "live": false
     },
     {
@@ -571,7 +571,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10109.6,
+      "age_min": 10129.0,
       "live": false
     },
     {
@@ -583,7 +583,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4239.6,
+      "age_min": 4259.1,
       "live": false
     },
     {
@@ -595,18 +595,18 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4012.7,
+      "age_min": 4032.1,
       "live": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 439350,
-      "cache_read_tokens": 29046944,
-      "cache_creation_tokens": 1439910,
-      "msgs": 253,
-      "last_active": "2026-07-10T05:10:49Z",
+      "output_tokens": 521846,
+      "cache_read_tokens": 38442991,
+      "cache_creation_tokens": 1543089,
+      "msgs": 291,
+      "last_active": "2026-07-10T05:30:13Z",
       "age_min": 0.2,
       "live": true
     },
@@ -619,7 +619,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1395.8,
+      "age_min": 1415.3,
       "live": false
     },
     {
@@ -631,7 +631,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 80.3,
+      "age_min": 99.8,
       "live": false
     },
     {
@@ -643,7 +643,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4193.5,
+      "age_min": 4213.0,
       "live": false
     },
     {
@@ -655,7 +655,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4239.6,
+      "age_min": 4259.1,
       "live": false
     },
     {
@@ -667,7 +667,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10814.9,
+      "age_min": 10834.3,
       "live": false
     },
     {
@@ -679,11 +679,11 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10832.3,
+      "age_min": 10851.7,
       "live": false
     }
   ],
-  "total_tokens": 14172762
+  "total_tokens": 14255258
 }/*__/STATS__*/;
 
 const FRONTEND = {

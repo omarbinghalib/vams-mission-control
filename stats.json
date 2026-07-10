@@ -1,16 +1,16 @@
 {
-  "updated": "2026-07-10T05:10:58Z",
+  "updated": "2026-07-10T05:30:24Z",
   "generated_by": "mission-control worker (b0a25ec9)",
   "schema": 3,
   "totals": {
-    "output_tokens": 14172762,
-    "cache_read_tokens": 6219891836,
-    "cache_creation_tokens": 56333299,
-    "msgs": 14817,
+    "output_tokens": 14255258,
+    "cache_read_tokens": 6229287883,
+    "cache_creation_tokens": 56436478,
+    "msgs": 14855,
     "sessions": 11,
     "live_sessions": 1,
     "workers": 4,
-    "live_workers": 4
+    "live_workers": 2
   },
   "workers": [
     {
@@ -33,16 +33,16 @@
       "name": "Backend worker",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Valve-builder configurator → quote-sizing → cross-service flows; Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
-      "head_commit": "feat(valve-builder): carve configurator brain into engineering",
-      "head_commit_at": "2026-07-10T09:02:58+04:00",
-      "head_ago_min": 8.0,
+      "focus": "Valve-builder + quote-sizing + quote→SO shipped; on SO→MR + request-leave flows. Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
+      "head_commit": "feat(flows): carve quote-to-SO wizard into crm",
+      "head_commit_at": "2026-07-10T09:14:25+04:00",
+      "head_ago_min": 16.0,
       "signal": "git commit",
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "output_tokens": 3084854,
       "msgs": 3111,
-      "last_active": "2026-07-10T09:02:58+04:00",
+      "last_active": "2026-07-10T09:14:25+04:00",
       "metrics_note": "cumulative track · last known"
     },
     {
@@ -52,10 +52,10 @@
       "focus": "Phase 5 Capacitor native build (config + Android scaffold done; native APK gated on JDK/SDK + Omar).",
       "head_commit": "test(mocks): collapse mock gateway latency to zero under Vitest",
       "head_commit_at": "2026-07-10T09:04:05+04:00",
-      "head_ago_min": 6.9,
+      "head_ago_min": 26.4,
       "signal": "git commit",
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "output_tokens": 9908,
       "msgs": 22,
       "last_active": "2026-07-10T09:04:05+04:00",
@@ -66,15 +66,15 @@
       "role": "mission-control",
       "branch": "microservices-frontend",
       "focus": "Dashboard maintenance · progress/ETA + workers roster · stats freshness.",
-      "head_commit": "feat(mission-control): per-project + per-subtask progress bars & ETA",
-      "head_commit_at": "2026-07-10T08:59:58+04:00",
-      "head_ago_min": 11.0,
+      "head_commit": "feat(mission-control): Workers command-roster panel",
+      "head_commit_at": "2026-07-10T09:11:55+04:00",
+      "head_ago_min": 18.5,
       "signal": "git commit + transcript",
       "status": "live",
       "live": true,
-      "output_tokens": 439350,
-      "msgs": 253,
-      "last_active": "2026-07-10T05:10:49Z",
+      "output_tokens": 521846,
+      "msgs": 291,
+      "last_active": "2026-07-10T05:30:13Z",
       "metrics_note": "this session"
     }
   ],
@@ -88,7 +88,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1286.5,
+      "age_min": 1305.9,
       "live": false
     },
     {
@@ -100,7 +100,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10109.6,
+      "age_min": 10129.0,
       "live": false
     },
     {
@@ -112,7 +112,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4239.6,
+      "age_min": 4259.1,
       "live": false
     },
     {
@@ -124,18 +124,18 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4012.7,
+      "age_min": 4032.1,
       "live": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 439350,
-      "cache_read_tokens": 29046944,
-      "cache_creation_tokens": 1439910,
-      "msgs": 253,
-      "last_active": "2026-07-10T05:10:49Z",
+      "output_tokens": 521846,
+      "cache_read_tokens": 38442991,
+      "cache_creation_tokens": 1543089,
+      "msgs": 291,
+      "last_active": "2026-07-10T05:30:13Z",
       "age_min": 0.2,
       "live": true
     },
@@ -148,7 +148,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1395.8,
+      "age_min": 1415.3,
       "live": false
     },
     {
@@ -160,7 +160,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 80.3,
+      "age_min": 99.8,
       "live": false
     },
     {
@@ -172,7 +172,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4193.5,
+      "age_min": 4213.0,
       "live": false
     },
     {
@@ -184,7 +184,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4239.6,
+      "age_min": 4259.1,
       "live": false
     },
     {
@@ -196,7 +196,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10814.9,
+      "age_min": 10834.3,
       "live": false
     },
     {
@@ -208,9 +208,9 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10832.3,
+      "age_min": 10851.7,
       "live": false
     }
   ],
-  "total_tokens": 14172762
+  "total_tokens": 14255258
 }
