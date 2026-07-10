@@ -1,18 +1,20 @@
 {
-  "updated": "2026-07-10T18:17:35Z",
+  "updated": "2026-07-10T18:21:18Z",
+  "heartbeat_at": "2026-07-10T18:21:18Z",
+  "last_activity": "2026-07-10T18:21:19Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 15043146,
-    "cache_read_tokens": 6311408946,
-    "cache_creation_tokens": 59476714,
-    "msgs": 15261,
-    "sessions": 26,
-    "live_sessions": 6,
+    "output_tokens": 15151589,
+    "cache_read_tokens": 6316661598,
+    "cache_creation_tokens": 59625411,
+    "msgs": 15277,
+    "sessions": 27,
+    "live_sessions": 7,
     "transcript_sessions": 12,
-    "subagent_sessions": 14,
-    "workers": 15,
-    "live_workers": 6,
+    "subagent_sessions": 15,
+    "workers": 16,
+    "live_workers": 7,
     "stopped_workers": 1
   },
   "workers": [
@@ -26,7 +28,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T18:17:35Z",
+      "out_last_active": "2026-07-10T18:21:16Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -43,9 +45,9 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T18:17:34Z",
-      "out_age_min": 0.0,
-      "log_bytes": 12844,
+      "out_last_active": "2026-07-10T18:21:15Z",
+      "out_age_min": 0.1,
+      "log_bytes": 243488,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true
@@ -57,12 +59,12 @@
       "focus": "GOAL: a uniform `GET /api/<svc>/tasks/<id>/` status endpoint across services returning the canonical Task shape, so the frontend's one useTask()/Tasks-tray works everywhere.",
       "agent_id": "aef923814c3c18464",
       "short_id": "aef92381",
-      "head_commit": "docs(parity): record durable Redis/Celery task backend + restart-persistence",
-      "head_commit_at": "2026-07-10T15:30:29+04:00",
-      "head_ago_min": 407.1,
-      "out_last_active": "2026-07-10T18:17:35Z",
-      "out_age_min": 0.0,
-      "log_bytes": 1738853,
+      "head_commit": "fix(hr,payroll): coerce AX deduction float to Decimal (post-HCAP months)",
+      "head_commit_at": "2026-07-10T22:20:36+04:00",
+      "head_ago_min": 0.7,
+      "out_last_active": "2026-07-10T18:20:20Z",
+      "out_age_min": 1.0,
+      "log_bytes": 1807995,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true
@@ -76,10 +78,10 @@
       "short_id": "ad796e2c",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 659.9,
-      "out_last_active": "2026-07-10T18:17:33Z",
-      "out_age_min": 0.0,
-      "log_bytes": 1391493,
+      "head_ago_min": 663.7,
+      "out_last_active": "2026-07-10T18:21:10Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1441433,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true
@@ -94,9 +96,9 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T18:17:34Z",
+      "out_last_active": "2026-07-10T18:21:19Z",
       "out_age_min": 0.0,
-      "log_bytes": 17063,
+      "log_bytes": 198364,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true
@@ -111,9 +113,26 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T18:17:34Z",
+      "out_last_active": "2026-07-10T18:21:16Z",
       "out_age_min": 0.0,
-      "log_bytes": 26331,
+      "log_bytes": 150973,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true
+    },
+    {
+      "name": "What's-left audit worker",
+      "role": "worker",
+      "branch": null,
+      "focus": "Produce a CLEAR, CURRENT \"what's left\" inventory across the VAMS productization frontend + backend, for the commander to relay to Omar.",
+      "agent_id": "af4ea50dff94ae2b9",
+      "short_id": "af4ea50d",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-10T18:20:56Z",
+      "out_age_min": 0.4,
+      "log_bytes": 226812,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true
@@ -125,11 +144,11 @@
       "focus": "Work autonomously; report results/blockers to the commander (main session).",
       "agent_id": "aabd3c6766093f7da",
       "short_id": "aabd3c67",
-      "head_commit": "docs(parity): record durable Redis/Celery task backend + restart-persistence",
-      "head_commit_at": "2026-07-10T15:30:29+04:00",
-      "head_ago_min": 407.1,
+      "head_commit": "fix(hr,payroll): coerce AX deduction float to Decimal (post-HCAP months)",
+      "head_commit_at": "2026-07-10T22:20:36+04:00",
+      "head_ago_min": 0.7,
       "out_last_active": "2026-07-10T08:09:31Z",
-      "out_age_min": 608.1,
+      "out_age_min": 611.8,
       "log_bytes": 289556,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -142,11 +161,11 @@
       "focus": "Work autonomously; report to the commander (main session).",
       "agent_id": "a0d5ebc2f4f409ecc",
       "short_id": "a0d5ebc2",
-      "head_commit": "docs(parity): record durable Redis/Celery task backend + restart-persistence",
-      "head_commit_at": "2026-07-10T15:30:29+04:00",
-      "head_ago_min": 407.1,
+      "head_commit": "fix(hr,payroll): coerce AX deduction float to Decimal (post-HCAP months)",
+      "head_commit_at": "2026-07-10T22:20:36+04:00",
+      "head_ago_min": 0.7,
       "out_last_active": "2026-07-10T08:26:46Z",
-      "out_age_min": 590.8,
+      "out_age_min": 594.5,
       "log_bytes": 494233,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -159,11 +178,11 @@
       "focus": "Work autonomously; the commander (main session) only relays your blockers to Omar.",
       "agent_id": "a7aa95fb33d1db66d",
       "short_id": "a7aa95fb",
-      "head_commit": "docs(parity): record durable Redis/Celery task backend + restart-persistence",
-      "head_commit_at": "2026-07-10T15:30:29+04:00",
-      "head_ago_min": 407.1,
+      "head_commit": "fix(hr,payroll): coerce AX deduction float to Decimal (post-HCAP months)",
+      "head_commit_at": "2026-07-10T22:20:36+04:00",
+      "head_ago_min": 0.7,
       "out_last_active": "2026-07-10T09:00:36Z",
-      "out_age_min": 557.0,
+      "out_age_min": 560.7,
       "log_bytes": 2015579,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -178,9 +197,9 @@
       "short_id": "abd34ab9",
       "head_commit": "feat(tasks): surface canonical task detail phase in the Tasks tray",
       "head_commit_at": "2026-07-10T12:03:42+04:00",
-      "head_ago_min": 613.9,
+      "head_ago_min": 617.6,
       "out_last_active": "2026-07-10T08:00:44Z",
-      "out_age_min": 616.9,
+      "out_age_min": 620.6,
       "log_bytes": 560296,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -195,9 +214,9 @@
       "short_id": "a7fe2d38",
       "head_commit": "feat(tasks): surface canonical task detail phase in the Tasks tray",
       "head_commit_at": "2026-07-10T12:03:42+04:00",
-      "head_ago_min": 613.9,
+      "head_ago_min": 617.6,
       "out_last_active": "2026-07-10T08:04:35Z",
-      "out_age_min": 613.0,
+      "out_age_min": 616.7,
       "log_bytes": 744004,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -212,9 +231,9 @@
       "short_id": "a2d39918",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 659.9,
+      "head_ago_min": 663.7,
       "out_last_active": "2026-07-10T08:38:11Z",
-      "out_age_min": 579.4,
+      "out_age_min": 583.1,
       "log_bytes": 1185477,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -231,7 +250,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:59:04Z",
-      "out_age_min": 678.5,
+      "out_age_min": 682.2,
       "log_bytes": 386062,
       "signal": "stopped by user (harness-cancelled)",
       "status": "stopped",
@@ -248,7 +267,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 764.4,
+      "out_age_min": 768.1,
       "log_bytes": 218452,
       "signal": "mission complete",
       "status": "done",
@@ -265,7 +284,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:21:47Z",
-      "out_age_min": 715.8,
+      "out_age_min": 719.5,
       "log_bytes": 488835,
       "signal": "mission complete",
       "status": "done",
@@ -277,11 +296,11 @@
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 567639,
-      "cache_read_tokens": 47394227,
-      "cache_creation_tokens": 2799430,
-      "msgs": 295,
-      "last_active": "2026-07-10T18:17:35Z",
+      "output_tokens": 676082,
+      "cache_read_tokens": 52646879,
+      "cache_creation_tokens": 2948127,
+      "msgs": 311,
+      "last_active": "2026-07-10T18:21:20Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -297,7 +316,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 2073.1,
+      "age_min": 2076.8,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -311,7 +330,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10896.2,
+      "age_min": 10899.9,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -325,7 +344,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 5026.3,
+      "age_min": 5030.0,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -339,7 +358,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4799.3,
+      "age_min": 4803.0,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -353,7 +372,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 706.9,
+      "age_min": 710.6,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -367,7 +386,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 2182.5,
+      "age_min": 2186.2,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -381,7 +400,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 867.0,
+      "age_min": 870.7,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -395,7 +414,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4980.2,
+      "age_min": 4983.9,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -409,7 +428,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 5026.3,
+      "age_min": 5030.0,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -423,7 +442,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 11601.5,
+      "age_min": 11605.2,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -437,7 +456,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 11618.9,
+      "age_min": 11622.7,
       "live": false,
       "status": "idle",
       "subagent": false
@@ -451,12 +470,12 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T18:17:34Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-10T18:21:15Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 12844
+      "log_bytes": 243488
     },
     {
       "id": "aef92381",
@@ -467,12 +486,12 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T18:17:35Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-10T18:20:20Z",
+      "age_min": 1.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1738853
+      "log_bytes": 1807995
     },
     {
       "id": "ad796e2c",
@@ -483,12 +502,12 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T18:17:33Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-10T18:21:10Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1391493
+      "log_bytes": 1441433
     },
     {
       "id": "a672d831",
@@ -499,12 +518,12 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T18:17:34Z",
+      "last_active": "2026-07-10T18:21:19Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 17063
+      "log_bytes": 198364
     },
     {
       "id": "ade77461",
@@ -515,12 +534,28 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T18:17:34Z",
+      "last_active": "2026-07-10T18:21:16Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 26331
+      "log_bytes": 150973
+    },
+    {
+      "id": "af4ea50d",
+      "full_id": "af4ea50dff94ae2b9",
+      "group": "worker",
+      "group_label": "What's-left audit worker",
+      "output_tokens": null,
+      "cache_read_tokens": null,
+      "cache_creation_tokens": null,
+      "msgs": null,
+      "last_active": "2026-07-10T18:20:56Z",
+      "age_min": 0.4,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 226812
     },
     {
       "id": "aabd3c67",
@@ -532,7 +567,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:09:31Z",
-      "age_min": 608.1,
+      "age_min": 611.8,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -548,7 +583,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:26:46Z",
-      "age_min": 590.8,
+      "age_min": 594.5,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -564,7 +599,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T09:00:36Z",
-      "age_min": 557.0,
+      "age_min": 560.7,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -580,7 +615,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:00:44Z",
-      "age_min": 616.9,
+      "age_min": 620.6,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -596,7 +631,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:04:35Z",
-      "age_min": 613.0,
+      "age_min": 616.7,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -612,7 +647,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T08:38:11Z",
-      "age_min": 579.4,
+      "age_min": 583.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -628,7 +663,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:59:04Z",
-      "age_min": 678.5,
+      "age_min": 682.2,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -644,7 +679,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 764.4,
+      "age_min": 768.1,
       "live": false,
       "status": "done",
       "subagent": true,
@@ -660,14 +695,14 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:21:47Z",
-      "age_min": 715.8,
+      "age_min": 719.5,
       "live": false,
       "status": "done",
       "subagent": true,
       "log_bytes": 488835
     }
   ],
-  "total_tokens": 15043146,
+  "total_tokens": 15151589,
   "progress": {
     "overall_pct": 88,
     "remaining_hours": [
@@ -753,19 +788,37 @@
       {
         "name": "vams_crm",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8005",
+        "up": true
+      },
+      {
+        "name": "vams_crm_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8006",
+        "up": true
+      },
+      {
+        "name": "vams_engineering_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
         "up": true
       },
       {
@@ -775,15 +828,6 @@
         "health": "none",
         "uptime": "13 hours",
         "ports": "3000",
-        "up": true
-      },
-      {
-        "name": "vams_gateway",
-        "state": "running",
-        "status": "Up 7 hours",
-        "health": "none",
-        "uptime": "7 hours",
-        "ports": "8080",
         "up": true
       },
       {
@@ -825,10 +869,19 @@
       {
         "name": "vams_ops",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8009",
+        "up": true
+      },
+      {
+        "name": "vams_ops_worker",
+        "state": "running",
+        "status": "Up 13 seconds",
+        "health": "none",
+        "uptime": "13 seconds",
+        "ports": "",
         "up": true
       },
       {
@@ -843,9 +896,9 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8007",
         "up": true
       },
@@ -859,11 +912,20 @@
         "up": true
       },
       {
+        "name": "vams_production_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
+        "up": true
+      },
+      {
         "name": "vams_purchasing",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8003",
         "up": true
       },
@@ -877,21 +939,48 @@
         "up": true
       },
       {
+        "name": "vams_purchasing_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
+        "up": true
+      },
+      {
         "name": "vams_qc",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8002",
+        "up": true
+      },
+      {
+        "name": "vams_qc_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
         "up": true
       },
       {
         "name": "vams_reporting",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 13 seconds",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "13 seconds",
         "ports": "8011",
+        "up": true
+      },
+      {
+        "name": "vams_reporting_worker",
+        "state": "running",
+        "status": "Up 14 seconds",
+        "health": "none",
+        "uptime": "14 seconds",
+        "ports": "",
         "up": true
       },
       {
@@ -911,13 +1000,22 @@
         "uptime": "9 hours",
         "ports": "6379",
         "up": true
+      },
+      {
+        "name": "vams_gateway",
+        "state": "exited",
+        "status": "Exited (0) 2 seconds ago",
+        "health": "none",
+        "uptime": "",
+        "ports": "",
+        "up": false
       }
     ],
     "summary": {
-      "running": 22,
-      "total": 22,
+      "running": 28,
+      "total": 29,
       "healthy": 2,
-      "problem": 0
+      "problem": 1
     }
   },
   "health": [
@@ -925,27 +1023,27 @@
       "name": "gateway /health",
       "method": "GET",
       "url": "http://localhost:8080/api/v1/health/",
-      "status": 200,
+      "status": null,
       "expect": [
         200
       ],
-      "ok": true,
-      "reachable": true,
-      "error": null
+      "ok": false,
+      "reachable": false,
+      "error": "Remote end closed connection without response"
     },
     {
       "name": "auth token",
       "method": "POST",
       "url": "http://localhost:8080/api/v1/auth/token/",
-      "status": 400,
+      "status": null,
       "expect": [
         200,
         400,
         401
       ],
-      "ok": true,
-      "reachable": true,
-      "error": null
+      "ok": false,
+      "reachable": false,
+      "error": "Remote end closed connection without response"
     }
   ],
   "commits": {
@@ -954,8 +1052,8 @@
         "track": "backend",
         "branch": "microservices-backend",
         "available": true,
-        "commits_24h": 46,
-        "commits_7d": 272
+        "commits_24h": 47,
+        "commits_7d": 273
       },
       {
         "track": "frontend",
@@ -966,6 +1064,12 @@
       }
     ],
     "recent": [
+      {
+        "hash": "1d78273",
+        "at": "2026-07-10T22:20:36+04:00",
+        "subject": "fix(hr,payroll): coerce AX deduction float to Decimal (post-HCAP months)",
+        "track": "backend"
+      },
       {
         "hash": "d9f2b77",
         "at": "2026-07-10T15:30:29+04:00",
@@ -997,12 +1101,6 @@
         "track": "backend"
       },
       {
-        "hash": "aaac827",
-        "at": "2026-07-10T12:59:26+04:00",
-        "subject": "docs(payroll): salary GENERATION full-row logic-parity COMPLETE (37/37 + 31/31 + start-run)",
-        "track": "backend"
-      },
-      {
         "hash": "68c2a33",
         "at": "2026-07-10T12:03:42+04:00",
         "subject": "feat(tasks): surface canonical task detail phase in the Tasks tray",
@@ -1020,6 +1118,6 @@
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-10T18:17:35Z"
+    "checked_at": "2026-07-10T18:21:18Z"
   }
 }
