@@ -88,7 +88,7 @@
   },
   {
     "title": "Server-rendered XLSX/PDF documents",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend"
   },
   {
