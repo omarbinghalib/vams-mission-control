@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>VAMS Mission Control</title>
+<style>
+  /* ---- design tokens (validated dataviz reference palette) ---- */
+  :root{
+    --bg:#f9f9f7; --panel:#fcfcfb; --panel-2:#f3f4f1;
+    --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --line:#e1e0d9; --line-strong:#c3c2b7;
+    --accent:#2a78d6; --accent-soft:#2a78d61a;
+    /* categorical: project tracks */
+    --fe:#2a78d6; --be:#1baf7a; --cmd:#4a3aa7;
+    /* status (reserved) */
+    --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --bad:#d03b3b;
+    --ok-ink:#006300;
+    --track:#e6e8ee; --ring:rgba(11,11,11,.10);
+    --seq-100:#cde2fb; --seq-250:#86b6ef; --seq-400:#3987e5; --seq-550:#1c5cab;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d0d0d; --panel:#1a1a19; --panel-2:#222220;
+      --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+      --line:#2c2c2a; --line-strong:#383835;
+      --accent:#3987e5; --accent-soft:#3987e522;
+      --fe:#3987e5; --be:#199e70; --cmd:#9085e9;
+      --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --bad:#d03b3b;
+      --ok-ink:#0ca30c;
+      --track:#2a2e37; --ring:rgba(255,255,255,.10);
+      --seq-100:#184f95; --seq-250:#1c5cab; --seq-400:#3987e5; --seq-550:#6da7ec;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#f9f9f7; --panel:#fcfcfb; --panel-2:#f3f4f1; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --line:#e1e0d9; --line-strong:#c3c2b7; --accent:#2a78d6; --accent-soft:#2a78d61a;
+    --fe:#2a78d6; --be:#1baf7a; --cmd:#4a3aa7; --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --bad:#d03b3b;
+    --ok-ink:#006300; --track:#e6e8ee; --ring:rgba(11,11,11,.10);
+    --seq-100:#cde2fb; --seq-250:#86b6ef; --seq-400:#3987e5; --seq-550:#1c5cab;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d0d0d; --panel:#1a1a19; --panel-2:#222220; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --line:#2c2c2a; --line-strong:#383835; --accent:#3987e5; --accent-soft:#3987e522;
+    --fe:#3987e5; --be:#199e70; --cmd:#9085e9; --ok:#0ca30c; --warn:#fab219; --serious:#ec835a; --bad:#d03b3b;
+    --ok-ink:#0ca30c; --track:#2a2e37; --ring:rgba(255,255,255,.10);
+    --seq-100:#184f95; --seq-250:#1c5cab; --seq-400:#3987e5; --seq-550:#6da7ec;
+  }
+  *{box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);
+    font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding:24px 18px 72px}
+  .wrap{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+  .mono{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-variant-numeric:tabular-nums}
+  h1{font-size:22px;margin:0;letter-spacing:.2px}
+  h2{font-size:15px;margin:0;letter-spacing:.2px}
+  .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .split{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+  .foot{color:var(--muted);font-size:12px}
+  .sub{color:var(--ink-2);font-size:13px}
+
+  /* header + freshness */
+  header.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .fresh{display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px}
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+  .pulse.live{animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.3}}
+  @media (prefers-reduced-motion:reduce){.pulse.live{animation:none}}
+  .themebtn{background:var(--panel-2);border:1px solid var(--line);color:var(--ink-2);border-radius:999px;
+    padding:6px 12px;font-size:12px;cursor:pointer}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:20px;align-items:stretch}
+  @media(max-width:720px){.hero{grid-template-columns:1fr}}
+  .herofig{background:linear-gradient(160deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+    border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center}
+  .heronum{font-size:60px;font-weight:700;line-height:.95;letter-spacing:-1px}
+  .heronum.crit{color:var(--bad)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+  .kpi .v{font-size:25px;font-weight:650;line-height:1.05}
+  .kpi .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:3px}
+  .kpi .v small{font-size:14px;color:var(--muted);font-weight:400}
+
+  /* chips */
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-2)}
+  .chip.ok{border-color:var(--ok);color:var(--ok-ink)}
+  .chip.warn{border-color:var(--warn);color:var(--ink-2)}
+  .chip.bad{border-color:var(--bad);color:var(--bad)}
+  .chip .d{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .chip.solid{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+  /* ordinal phase bars */
+  .phase{display:grid;grid-template-columns:1fr 46px;gap:12px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
+  .phase:first-of-type{border-top:none}
+  .phase .name{font-size:13px}
+  .ptrack{height:8px;background:var(--track);border-radius:99px;overflow:hidden;margin-top:5px}
+  .ptrack>i{display:block;height:100%;border-radius:99px;background:var(--seq-400)}
+  .ptrack>i.done{background:var(--ok)}
+  .pct{text-align:right;color:var(--muted);font-size:12px}
+
+  /* horizontal magnitude bars */
+  .hbars{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+  .hbar{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:center;font-size:12.5px}
+  .hbar .lab{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hbar .barwrap{display:flex;align-items:center;gap:8px}
+  .hbar .bar{height:15px;border-radius:0 4px 4px 0;min-width:2px;background:var(--seq-400)}
+  .hbar .val{color:var(--ink-2);font-size:12px;white-space:nowrap}
+
+  /* checklist */
+  ul.list{list-style:none;margin:6px 0 0;padding:0}
+  ul.list li{display:flex;gap:9px;align-items:baseline;padding:5px 0;font-size:13px;border-top:1px solid var(--line)}
+  ul.list li:first-child{border-top:none}
+  .mk{flex:none;width:9px;height:9px;border-radius:50%;position:relative;top:2px}
+  .mk.done{background:var(--ok)} .mk.open{background:var(--bad)} .mk.wait{background:var(--line-strong)} .mk.part{background:var(--warn)}
+
+  /* blocker meter */
+  .meter{height:26px;background:var(--track);border-radius:6px;overflow:hidden;display:flex;margin:10px 0}
+  .meter>i{height:100%}
+  .meter .filled{background:var(--ok)} .meter .empty{background:transparent}
+  .blk{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+  .blk:first-of-type{border-top:none}
+  .blk .svc{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .blk .t{font-size:13px}
+
+  /* sessions */
+  .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:7px 10px 7px 0;border-top:1px solid var(--line);text-align:left;vertical-align:middle}
+  th{color:var(--muted);font-weight:500;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;border-top:none}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .sdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:middle}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:2px}
+  .legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-2)}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .banner{display:none;position:sticky;top:0;z-index:99;background:var(--bad);color:#fff;
+    font:600 13px/1.4 system-ui;padding:11px 16px;text-align:center;border-radius:0 0 8px 8px;margin:-24px -18px 4px}
+</style>
+</head>
+<body>
+<div id="attn" class="banner"></div>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <p class="eyebrow">VAMS · Value Added Manufacturing Solutions — productization</p>
+      <h1>Mission Control</h1>
+    </div>
+    <div class="row">
+      <button class="themebtn" id="themebtn" title="Toggle light/dark">◐ theme</button>
+      <div class="fresh"><span class="pulse live" id="pulse"></span>
+        <span id="freshTxt" class="mono" style="font-size:12.5px">data fresh</span></div>
+    </div>
+  </header>
+
+  <!-- ============ OVERVIEW / HERO ============ -->
+  <section class="hero">
+    <div class="herofig">
+      <p class="eyebrow">Go-live blockers</p>
+      <div class="heronum crit" id="heroBlk">5</div>
+      <p class="sub" style="margin:8px 0 0">contract items that gate productization — <b>0 resolved</b>. Build is done on both tracks; go-live waits on these.</p>
+    </div>
+    <div>
+      <div class="kpis">
+        <div class="kpi"><div class="v" style="color:var(--fe)">220<small>/220</small></div><div class="k">Frontend tests green</div></div>
+        <div class="kpi"><div class="v" style="color:var(--be)">1.9M<small>+</small></div><div class="k">Backend rows migrated · to the cent</div></div>
+        <div class="kpi"><div class="v">7 <small>/ 7</small></div><div class="k">Modules at depth parity</div></div>
+        <div class="kpi"><div class="v">16</div><div class="k">Backend containers live</div></div>
+        <div class="kpi"><div class="v mono" id="kpiSess">10</div><div class="k">Claude sessions tracked</div></div>
+        <div class="kpi"><div class="v mono" id="kpiTok">13.8M</div><div class="k">Output tokens · all sessions</div></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <span class="chip ok"><span class="d"></span>Frontend build · complete</span>
+        <span class="chip ok"><span class="d"></span>Backend local parity · verified</span>
+        <span class="chip bad"><span class="d"></span>Go-live · 5 blockers open</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FRONTEND + BACKEND ============ -->
+  <div class="grid2">
+
+    <!-- FRONTEND -->
+    <section class="panel">
+      <div class="split">
+        <div class="row"><span style="width:11px;height:11px;border-radius:3px;background:var(--fe)"></span><h2>Frontend</h2></div>
+        <span class="chip ok"><span class="d"></span>Depth parity complete</span>
+      </div>
+      <p class="foot" style="margin:4px 0 12px">React + TS PWA · branch <span class="mono">microservices-frontend</span> · runs on the MSW mock gateway</p>
+
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(96px,1fr))">
+        <div class="kpi"><div class="v mono">220</div><div class="k">Tests</div></div>
+        <div class="kpi"><div class="v mono">9</div><div class="k">Depth waves</div></div>
+        <div class="kpi"><div class="v mono">7</div><div class="k">Modules</div></div>
+        <div class="kpi"><div class="v mono">6<small>/7</small></div><div class="k">Phases done</div></div>
+      </div>
+
+      <p class="eyebrow" style="margin:18px 0 4px">Test suite growth across the 9 depth waves</p>
+      <div id="testChart"></div>
+
+      <p class="eyebrow" style="margin:18px 0 6px">Phase roadmap</p>
+      <div id="phases"></div>
+
+      <p class="eyebrow" style="margin:16px 0 4px">Remaining</p>
+      <ul class="list">
+        <li><span class="mk wait"></span><span>Phase 5 — Capacitor native wrap + device/PWA testing, performance, release.</span></li>
+        <li><span class="mk wait"></span><span>Backend contract reconciliation — the mock shapes vs. the carved services (see go-live gate).</span></li>
+      </ul>
+    </section>
+
+    <!-- BACKEND -->
+    <section class="panel">
+      <div class="split">
+        <div class="row"><span style="width:11px;height:11px;border-radius:3px;background:var(--be)"></span><h2>Backend</h2></div>
+        <span class="chip ok"><span class="d"></span>Local parity verified</span>
+      </div>
+      <p class="foot" style="margin:4px 0 12px">Carved microservices · 16 containers · LOCAL/dev only · clickable end-to-end through the gateway</p>
+
+      <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(96px,1fr))">
+        <div class="kpi"><div class="v mono">16</div><div class="k">Containers</div></div>
+        <div class="kpi"><div class="v mono">73</div><div class="k">Entities</div></div>
+        <div class="kpi"><div class="v mono">7</div><div class="k">Domains migrated</div></div>
+        <div class="kpi"><div class="v mono" style="color:var(--ok-ink)">0</div><div class="k">Payroll mismatches</div></div>
+      </div>
+
+      <p class="eyebrow" style="margin:18px 0 4px">Records migrated &amp; verified — top domains (rows)</p>
+      <div id="migChart" class="hbars"></div>
+      <p class="foot" style="margin:8px 0 0">~1.9M rows copied from the monolith into tenant schemas; GL (989,768 rows) ties to the source to the cent (1.4B debit).</p>
+
+      <p class="eyebrow" style="margin:18px 0 6px">Carve status</p>
+      <ul class="list">
+        <li><span class="mk done"></span><span>Generic engine on all 10 services + BFF re-exposing the SPA contract (73 entities).</span></li>
+        <li><span class="mk done"></span><span>Data migration DONE across all 7 domains; smoke test passes on real data.</span></li>
+        <li><span class="mk done"></span><span>HR payroll engine ported — parity <b>0 mismatches</b> across 3 months, to the cent.</span></li>
+        <li><span class="mk done"></span><span>Reports read-side proven: trial-balance on 989,768 GL rows.</span></li>
+        <li><span class="mk open"></span><span>NOT done: recursive per-BOM/per-SO actual-cost engine.</span></li>
+        <li><span class="mk open"></span><span>NOT done: bespoke SPA flows — shopfloor, valve-builder, quote-sizing, wizards.</span></li>
+        <li><span class="mk open"></span><span>NOT done: per-row salary generation (batch→GL half done).</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ============ GO-LIVE GATE / BLOCKER BURNDOWN ============ -->
+  <section class="panel" style="border-color:var(--bad)">
+    <div class="split">
+      <div>
+        <p class="eyebrow" style="color:var(--bad)">Go-live gate — the blockers that must be reconciled before productization</p>
+        <h2>Blocker burndown</h2>
+      </div>
+      <span class="chip bad"><span class="d"></span>0 of 5 resolved</span>
+    </div>
+    <div class="meter" title="0 of 5 blockers resolved">
+      <i class="filled" style="width:0%"></i><i class="empty" style="width:100%"></i>
+    </div>
+    <div class="grid2" style="gap:24px;margin-top:6px">
+      <div>
+        <div id="blockers"></div>
+        <p class="foot" style="margin:10px 0 0">These are the <b>[BLOCKER]</b> items from the frontend↔backend contract. The frontend runs on mocked shapes today; each must land on a real carved service before go-live. (Backend has a BFF-aggregated <span class="mono">/me/</span> for the parity SPA — partial coverage of bootstrap, not yet the productization contract.)</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin:0 0 8px">Depth / parity reconciliation backlog</p>
+        <div id="reconChart" class="hbars"></div>
+        <p class="foot" style="margin:10px 0 0">Beyond the 5 blockers, the contract lists <b>31 contract-limited</b> items (mock stands in for an uncarved shape) and <b>3 field-shape</b> confirmations — depth work, not go-live gates, but the reconciliation surface the backend carves against.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLAUDE SESSIONS & TOKENS ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Claude sessions &amp; tokens — live across all three project transcripts</p>
+        <h2>Session activity</h2>
+      </div>
+      <span class="foot mono" id="sessAge">—</span>
+    </div>
+
+    <div class="kpis" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+      <div class="kpi"><div class="v mono" id="rollOut">—</div><div class="k">Output tokens</div></div>
+      <div class="kpi"><div class="v mono" id="rollCache">—</div><div class="k">Cache-read tokens</div></div>
+      <div class="kpi"><div class="v mono" id="rollMsg">—</div><div class="k">Assistant turns</div></div>
+      <div class="kpi"><div class="v mono" id="rollSess">—</div><div class="k">Sessions</div></div>
+      <div class="kpi"><div class="v mono" id="rollLive" style="color:var(--ok-ink)">—</div><div class="k">Live now (&lt;10m)</div></div>
+    </div>
+
+    <p class="eyebrow" style="margin:18px 0 6px">Output tokens by session — colour is the project track</p>
+    <div class="legend" style="margin-bottom:8px">
+      <span><i style="background:var(--fe)"></i>Frontend</span>
+      <span><i style="background:var(--be)"></i>Backend</span>
+      <span><i style="background:var(--cmd)"></i>Commander</span>
+    </div>
+    <div id="tokChart" class="hbars"></div>
+
+    <p class="eyebrow" style="margin:18px 0 6px">All tracked sessions</p>
+    <div class="scroll">
+      <table id="sessTable">
+        <thead><tr><th>Session</th><th>Track</th><th>Status</th>
+          <th class="num">Output</th><th class="num">Cache read</th><th class="num">Turns</th></tr></thead>
+        <tbody id="sessBody"></tbody>
+      </table>
+    </div>
+    <p class="foot" style="margin:10px 0 0">Output tokens are what the model generated; cache-read is the (cheap) re-read context and dwarfs output by ~450×. Status is derived from each transcript's file mtime — <b>live</b> = touched in the last 10&nbsp;min. Most build sessions are now idle: the build phase is complete.</p>
+  </section>
+
+  <p class="foot" style="text-align:center">
+    Unified mission-control view · frontend + backend + Claude sessions. Session/token panel refreshes from
+    <span class="mono">stats.json</span>; the page auto-reloads on new deploys. Sources: frontend
+    <span class="mono">backend-requirements-from-frontend.md</span> · backend <span class="mono">local-parity-status.md</span> ·
+    <span class="mono">~/.claude/projects</span> transcripts (3 slugs).
+  </p>
+</div>
+
+<script>
+/* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
+const STATS = /*__STATS__*/{
+  "updated": "2026-07-10T04:10:35Z",
+  "generated_by": "mission-control worker (b0a25ec9)",
+  "schema": 2,
+  "totals": {
+    "output_tokens": 13857578,
+    "cache_read_tokens": 6194994551,
+    "cache_creation_tokens": 55488630,
+    "msgs": 14653,
+    "sessions": 10,
+    "live_sessions": 1
+  },
+  "sessions": [
+    {
+      "id": "aa30f33e",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 8202319,
+      "cache_read_tokens": 3544789470,
+      "cache_creation_tokens": 20330369,
+      "msgs": 8727,
+      "last_active": "2026-07-09T07:44:28Z",
+      "age_min": 1226.1,
+      "live": false
+    },
+    {
+      "id": "1f403dd5",
+      "group": "backend",
+      "group_label": "Backend",
+      "output_tokens": 3082893,
+      "cache_read_tokens": 1446695660,
+      "cache_creation_tokens": 20266145,
+      "msgs": 3101,
+      "last_active": "2026-07-03T04:41:24Z",
+      "age_min": 10049.2,
+      "live": false
+    },
+    {
+      "id": "479c5f63",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 1387040,
+      "cache_read_tokens": 1017397236,
+      "cache_creation_tokens": 7338420,
+      "msgs": 1829,
+      "last_active": "2026-07-07T06:31:20Z",
+      "age_min": 4179.2,
+      "live": false
+    },
+    {
+      "id": "2eb0ee20",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 862161,
+      "cache_read_tokens": 161687648,
+      "cache_creation_tokens": 6332775,
+      "msgs": 614,
+      "last_active": "2026-07-07T10:18:17Z",
+      "age_min": 3952.3,
+      "live": false
+    },
+    {
+      "id": "a3607e93",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 172195,
+      "cache_read_tokens": 18572383,
+      "cache_creation_tokens": 319452,
+      "msgs": 219,
+      "last_active": "2026-07-09T05:55:07Z",
+      "age_min": 1335.4,
+      "live": false
+    },
+    {
+      "id": "b0a25ec9",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 124166,
+      "cache_read_tokens": 4149659,
+      "cache_creation_tokens": 595241,
+      "msgs": 90,
+      "last_active": "2026-07-10T04:10:31Z",
+      "age_min": 0.0,
+      "live": true
+    },
+    {
+      "id": "bca1b96d",
+      "group": "frontend",
+      "group_label": "Frontend",
+      "output_tokens": 9908,
+      "cache_read_tokens": 810404,
+      "cache_creation_tokens": 209179,
+      "msgs": 22,
+      "last_active": "2026-07-10T03:50:38Z",
+      "age_min": 19.9,
+      "live": false
+    },
+    {
+      "id": "3f777a8b",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 7758,
+      "cache_read_tokens": 219554,
+      "cache_creation_tokens": 0,
+      "msgs": 24,
+      "last_active": "2026-07-07T07:17:26Z",
+      "age_min": 4133.1,
+      "live": false
+    },
+    {
+      "id": "649d5b29",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 7177,
+      "cache_read_tokens": 464892,
+      "cache_creation_tokens": 62450,
+      "msgs": 18,
+      "last_active": "2026-07-07T06:31:20Z",
+      "age_min": 4179.2,
+      "live": false
+    },
+    {
+      "id": "070e42cb",
+      "group": "backend",
+      "group_label": "Backend",
+      "output_tokens": 1961,
+      "cache_read_tokens": 207645,
+      "cache_creation_tokens": 34599,
+      "msgs": 9,
+      "last_active": "2026-07-02T16:56:07Z",
+      "age_min": 10754.4,
+      "live": false
+    }
+  ],
+  "total_tokens": 13857578
+}/*__/STATS__*/;
+
+const FRONTEND = {
+  phases:[
+    ["0 · Product plan",100],["1 · Shell + auth + onboarding",100],["2 · Design system + nav",100],
+    ["3 · Core modules (7)",100],["4 · Cross-cutting polish",100],["4.5 · Depth parity (9 waves)",100],
+    ["5 · Productization",0]
+  ],
+  tests:[["X1",144],["P1",150],["P2",156],["P3",166],["P4",186],["P5",196],["P6",200],["P7",215],["P8",219],["✓",220]]
+};
+const MIGRATION = [
+  ["General ledger",989768],["Inventory moves",240658],["BOMs",209064],["Overtime",201316],
+  ["Salary history",48050],["Purchase reqs",31771],["Purchase orders",29050],["GRNs",27674],
+  ["Purchase journals",27238],["Inventory items",27016],["Payment vouchers",26564],["Work orders",24695]
+];
+const BLOCKERS = [
+  ["Platform","GET /me/ — single session-bootstrap (user + org + modules + roles + flags)"],
+  ["Platform","Roles in /me/ or the JWT — all approval/admin gating depends on it"],
+  ["Platform","Signup + invitation APIs — self-serve org creation + invites"],
+  ["Cross-cutting","Uniform async-task contract — one /tasks/<id>/ shape for the Tasks tray"],
+  ["HR · payroll","Payroll-run trigger — no run endpoint carved (Celery deferred)"]
+];
+const RECON = [["Contract-limited [CL]",31],["Field-shape [FS]",3]];
+
+/* ================= helpers ================= */
+const $=id=>document.getElementById(id);
+const esc=s=>{const d=document.createElement("span");d.textContent=String(s==null?"":s);return d.innerHTML;};
+function fmt(n){n=Number(n)||0;const a=Math.abs(n);
+  if(a>=1e9)return (n/1e9).toFixed(2).replace(/\.?0+$/,"")+"B";
+  if(a>=1e6)return (n/1e6).toFixed(2).replace(/\.?0+$/,"")+"M";
+  if(a>=1e3)return (n/1e3).toFixed(1).replace(/\.0$/,"")+"k";
+  return String(Math.round(n));}
+function fmtInt(n){return (Number(n)||0).toLocaleString("en-US");}
+function ago(min){if(min<1)return "just now";if(min<60)return Math.floor(min)+"m ago";
+  const h=Math.floor(min/60);if(h<48)return h+"h ago";return Math.floor(h/24)+"d ago";}
+
+/* ================= frontend: phase bars ================= */
+$("phases").innerHTML = FRONTEND.phases.map(([n,p])=>
+  `<div class="phase"><div><div class="name">${esc(n)}</div>
+     <div class="ptrack"><i class="${p>=100?'done':''}" style="width:${p}%"></i></div></div>
+   <div class="pct mono">${p}%</div></div>`).join("");
+
+/* ================= frontend: test-growth area chart (SVG) ================= */
+(function(){
+  const d=FRONTEND.tests, W=100, H=46, pad=3, lo=130, hi=225;
+  const x=i=>pad+i*(W-2*pad)/(d.length-1);
+  const y=v=>H-pad-(v-lo)/(hi-lo)*(H-2*pad-6);
+  const pts=d.map((p,i)=>[x(i),y(p[1])]);
+  const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' ');
+  const area=line+` L${x(d.length-1).toFixed(2)} ${H-pad} L${pad} ${H-pad} Z`;
+  const last=pts[pts.length-1];
+  const labels=d.map((p,i)=>`<text x="${x(i).toFixed(1)}" y="${H-0.2}" font-size="3" fill="var(--muted)" text-anchor="middle">${esc(p[0])}</text>`).join("");
+  $("testChart").innerHTML=
+   `<svg viewBox="0 0 ${W} ${H+3}" width="100%" style="display:block" role="img" aria-label="Tests grew from 144 to 220 across the depth waves">
+      <path d="${area}" fill="var(--accent-soft)"/>
+      <path d="${line}" fill="none" stroke="var(--accent)" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${last[0].toFixed(2)}" cy="${last[1].toFixed(2)}" r="1.7" fill="var(--accent)" stroke="var(--panel)" stroke-width="0.9"/>
+      <text x="${(last[0]-1).toFixed(2)}" y="${(last[1]-2.4).toFixed(2)}" font-size="4.4" font-weight="700" fill="var(--ink)" text-anchor="end">220</text>
+      <text x="${pad}" y="${(y(144)-1.6).toFixed(2)}" font-size="3" fill="var(--muted)">144</text>
+      ${labels}
+    </svg>`;
+})();
+
+/* ================= backend: migration bars ================= */
+(function(){
+  const max=Math.max(...MIGRATION.map(m=>m[1]));
+  $("migChart").innerHTML=MIGRATION.map(([lab,v])=>
+    `<div class="hbar"><div class="lab" title="${esc(lab)}">${esc(lab)}</div>
+       <div class="barwrap"><div class="bar" style="width:${(v/max*100).toFixed(1)}%;background:var(--seq-400)"></div>
+       <span class="val mono">${fmtInt(v)}</span></div></div>`).join("");
+})();
+
+/* ================= go-live: blockers + reconciliation ================= */
+$("blockers").innerHTML=BLOCKERS.map(([svc,t])=>
+  `<div class="blk"><div><div class="svc">${esc(svc)}</div><div class="t">${esc(t)}</div></div>
+     <span class="chip bad" style="flex:none"><span class="d"></span>open</span></div>`).join("");
+(function(){
+  const max=Math.max(...RECON.map(r=>r[1]));
+  $("reconChart").innerHTML=RECON.map(([lab,v])=>
+    `<div class="hbar" style="grid-template-columns:150px 1fr"><div class="lab">${esc(lab)}</div>
+       <div class="barwrap"><div class="bar" style="width:${(v/max*100).toFixed(1)}%;background:var(--seq-250)"></div>
+       <span class="val mono">${v}</span></div></div>`).join("");
+})();
+
+/* ================= sessions & tokens ================= */
+const TRACK={frontend:"var(--fe)",backend:"var(--be)",commander:"var(--cmd)"};
+function renderSessions(j){
+  const t=j.totals||{};
+  $("rollOut").textContent=fmt(t.output_tokens);
+  $("rollCache").textContent=fmt(t.cache_read_tokens);
+  $("rollMsg").textContent=fmtInt(t.msgs);
+  $("rollSess").textContent=t.sessions??"—";
+  $("rollLive").textContent=t.live_sessions??"—";
+  $("kpiSess").textContent=t.sessions??"—";
+  $("kpiTok").textContent=fmt(t.output_tokens);
+  const upd=j.updated?new Date(j.updated):null;
+  $("sessAge").textContent = upd&&!isNaN(upd) ? "stats built "+ago((Date.now()-upd.getTime())/60000) : "stats: unknown";
+
+  const s=(j.sessions||[]).slice().sort((a,b)=>b.output_tokens-a.output_tokens);
+  const max=Math.max(1,...s.map(x=>x.output_tokens));
+  $("tokChart").innerHTML=s.map(x=>{
+    const col=TRACK[x.group]||"var(--muted)";
+    return `<div class="hbar"><div class="lab mono" title="${esc(x.group_label)} ${esc(x.id)}">${esc(x.id)}</div>
+      <div class="barwrap"><div class="bar" style="width:${(x.output_tokens/max*100).toFixed(1)}%;background:${col}"></div>
+      <span class="val mono">${fmt(x.output_tokens)}</span></div></div>`;}).join("");
+
+  $("sessBody").innerHTML=s.map(x=>{
+    const live=x.live, col=TRACK[x.group]||"var(--muted)";
+    const dot=live?"var(--ok)":"var(--muted)";
+    const status=live?'<b style="color:var(--ok-ink)">live</b>':"idle "+ago(x.age_min);
+    return `<tr>
+      <td><span class="sdot" style="background:${dot}"></span><span class="mono">${esc(x.id)}</span></td>
+      <td><span class="sdot" style="background:${col};border-radius:2px"></span>${esc(x.group_label)}</td>
+      <td>${status}</td>
+      <td class="num mono">${fmt(x.output_tokens)}</td>
+      <td class="num mono">${fmt(x.cache_read_tokens)}</td>
+      <td class="num mono">${fmtInt(x.msgs)}</td></tr>`;}).join("");
+}
+renderSessions(STATS);
+async function pollStats(){
+  try{const r=await fetch("stats.json?t="+Date.now(),{cache:"no-store"});
+    if(r.ok){const j=await r.json();if(j&&j.totals)renderSessions(j);}}catch(e){}
+}
+pollStats(); setInterval(pollStats,45000);
+
+/* ================= freshness pulse (based on stats.updated) ================= */
+function freshTick(){
+  const j=window.__lastStats||STATS;
+  const upd=j.updated?new Date(j.updated):null;
+  const mins= upd&&!isNaN(upd) ? (Date.now()-upd.getTime())/60000 : 1e9;
+  const p=$("pulse"),f=$("freshTxt");
+  if(mins<30){f.textContent="data fresh · "+ago(mins);p.style.background="var(--ok)";p.classList.add("live");}
+  else if(mins<180){f.textContent="aging · "+ago(mins);p.style.background="var(--warn)";p.classList.remove("live");}
+  else{f.textContent="stale · "+ago(mins);p.style.background="var(--bad)";p.classList.remove("live");}
+}
+const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);freshTick();};
+renderSessions(window.__lastStats||STATS);
+setInterval(freshTick,30000);
+
+/* ================= theme toggle ================= */
+$("themebtn").onclick=()=>{
+  const cur=document.documentElement.getAttribute("data-theme");
+  const next=cur==="dark"?"light":cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark");
+  document.documentElement.setAttribute("data-theme",next);
+};
+
+/* ================= auto-refresh + attention banner (matches Pages infra) ================= */
+(function(){
+  let VER=null;
+  setInterval(async()=>{
+    try{const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});const j=await r.json();
+      const b=$("attn");
+      if(j.attention){b.style.display="block";b.textContent="NEEDS ATTENTION: "+j.attention;}
+      else b.style.display="none";
+      if(VER===null){VER=j.v;}
+      else if(j.v&&j.v!==VER){try{await fetch(location.pathname,{cache:"reload"});}catch(e){}
+        location.replace(location.pathname+"?v="+j.v);}
+    }catch(e){}
+  },45000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+{
+  "updated": "2026-07-10T04:10:35Z",
+  "generated_by": "mission-control worker (b0a25ec9)",
+  "schema": 2,
+  "totals": {
+    "output_tokens": 13857578,
+    "cache_read_tokens": 6194994551,
+    "cache_creation_tokens": 55488630,
+    "msgs": 14653,
+    "sessions": 10,
+    "live_sessions": 1
+  },
+  "sessions": [
+    {
+      "id": "aa30f33e",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 8202319,
+      "cache_read_tokens": 3544789470,
+      "cache_creation_tokens": 20330369,
+      "msgs": 8727,
+      "last_active": "2026-07-09T07:44:28Z",
+      "age_min": 1226.1,
+      "live": false
+    },
+    {
+      "id": "1f403dd5",
+      "group": "backend",
+      "group_label": "Backend",
+      "output_tokens": 3082893,
+      "cache_read_tokens": 1446695660,
+      "cache_creation_tokens": 20266145,
+      "msgs": 3101,
+      "last_active": "2026-07-03T04:41:24Z",
+      "age_min": 10049.2,
+      "live": false
+    },
+    {
+      "id": "479c5f63",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 1387040,
+      "cache_read_tokens": 1017397236,
+      "cache_creation_tokens": 7338420,
+      "msgs": 1829,
+      "last_active": "2026-07-07T06:31:20Z",
+      "age_min": 4179.2,
+      "live": false
+    },
+    {
+      "id": "2eb0ee20",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 862161,
+      "cache_read_tokens": 161687648,
+      "cache_creation_tokens": 6332775,
+      "msgs": 614,
+      "last_active": "2026-07-07T10:18:17Z",
+      "age_min": 3952.3,
+      "live": false
+    },
+    {
+      "id": "a3607e93",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 172195,
+      "cache_read_tokens": 18572383,
+      "cache_creation_tokens": 319452,
+      "msgs": 219,
+      "last_active": "2026-07-09T05:55:07Z",
+      "age_min": 1335.4,
+      "live": false
+    },
+    {
+      "id": "b0a25ec9",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 124166,
+      "cache_read_tokens": 4149659,
+      "cache_creation_tokens": 595241,
+      "msgs": 90,
+      "last_active": "2026-07-10T04:10:31Z",
+      "age_min": 0.0,
+      "live": true
+    },
+    {
+      "id": "bca1b96d",
+      "group": "frontend",
+      "group_label": "Frontend",
+      "output_tokens": 9908,
+      "cache_read_tokens": 810404,
+      "cache_creation_tokens": 209179,
+      "msgs": 22,
+      "last_active": "2026-07-10T03:50:38Z",
+      "age_min": 19.9,
+      "live": false
+    },
+    {
+      "id": "3f777a8b",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 7758,
+      "cache_read_tokens": 219554,
+      "cache_creation_tokens": 0,
+      "msgs": 24,
+      "last_active": "2026-07-07T07:17:26Z",
+      "age_min": 4133.1,
+      "live": false
+    },
+    {
+      "id": "649d5b29",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 7177,
+      "cache_read_tokens": 464892,
+      "cache_creation_tokens": 62450,
+      "msgs": 18,
+      "last_active": "2026-07-07T06:31:20Z",
+      "age_min": 4179.2,
+      "live": false
+    },
+    {
+      "id": "070e42cb",
+      "group": "backend",
+      "group_label": "Backend",
+      "output_tokens": 1961,
+      "cache_read_tokens": 207645,
+      "cache_creation_tokens": 34599,
+      "msgs": 9,
+      "last_active": "2026-07-02T16:56:07Z",
+      "age_min": 10754.4,
+      "live": false
+    }
+  ],
+  "total_tokens": 13857578
+}
