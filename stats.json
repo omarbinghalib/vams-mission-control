@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-10T07:26:34Z",
+  "updated": "2026-07-10T07:29:33Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 14713829,
-    "cache_read_tokens": 6280476081,
-    "cache_creation_tokens": 57373472,
-    "msgs": 15126,
+    "output_tokens": 14726991,
+    "cache_read_tokens": 6281713377,
+    "cache_creation_tokens": 57387081,
+    "msgs": 15133,
     "sessions": 17,
-    "live_sessions": 3,
+    "live_sessions": 2,
     "transcript_sessions": 12,
     "subagent_sessions": 5,
     "workers": 6,
-    "live_workers": 3
+    "live_workers": 2
   },
   "workers": [
     {
@@ -25,7 +25,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-10T07:26:33Z",
+      "out_last_active": "2026-07-10T07:29:31Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "status": "live",
@@ -41,10 +41,10 @@
       "short_id": "a7aa95fb",
       "head_commit": "docs: reconcile CONTINUE-HERE with completed bespoke queue + live re-verify",
       "head_commit_at": "2026-07-10T10:51:18+04:00",
-      "head_ago_min": 35.3,
-      "out_last_active": "2026-07-10T07:26:33Z",
+      "head_ago_min": 38.3,
+      "out_last_active": "2026-07-10T07:29:31Z",
       "out_age_min": 0.0,
-      "log_bytes": 516370,
+      "log_bytes": 537646,
       "status": "live",
       "live": true,
       "signal": "task-output mtime + git commit"
@@ -58,9 +58,9 @@
       "short_id": "a84f4e23",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 8.9,
+      "head_ago_min": 11.9,
       "out_last_active": "2026-07-10T06:59:04Z",
-      "out_age_min": 27.5,
+      "out_age_min": 30.5,
       "log_bytes": 386062,
       "status": "idle",
       "live": false,
@@ -75,12 +75,12 @@
       "short_id": "ad796e2c",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 8.9,
+      "head_ago_min": 11.9,
       "out_last_active": "2026-07-10T07:18:25Z",
-      "out_age_min": 8.2,
+      "out_age_min": 11.1,
       "log_bytes": 654976,
-      "status": "live",
-      "live": true,
+      "status": "idle",
+      "live": false,
       "signal": "task-output mtime + git commit"
     },
     {
@@ -94,7 +94,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T06:21:47Z",
-      "out_age_min": 64.8,
+      "out_age_min": 67.8,
       "log_bytes": 488835,
       "status": "done",
       "live": false,
@@ -111,7 +111,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-10T05:33:12Z",
-      "out_age_min": 113.4,
+      "out_age_min": 116.4,
       "log_bytes": 218452,
       "status": "done",
       "live": false,
@@ -123,11 +123,11 @@
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 238322,
-      "cache_read_tokens": 16461362,
-      "cache_creation_tokens": 696188,
-      "msgs": 160,
-      "last_active": "2026-07-10T07:26:33Z",
+      "output_tokens": 251484,
+      "cache_read_tokens": 17698658,
+      "cache_creation_tokens": 709797,
+      "msgs": 167,
+      "last_active": "2026-07-10T07:29:31Z",
       "age_min": 0.0,
       "live": true,
       "subagent": false,
@@ -142,7 +142,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1422.1,
+      "age_min": 1425.1,
       "live": false,
       "subagent": false
     },
@@ -155,7 +155,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10245.2,
+      "age_min": 10248.2,
       "live": false,
       "subagent": false
     },
@@ -168,7 +168,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4375.2,
+      "age_min": 4378.2,
       "live": false,
       "subagent": false
     },
@@ -181,7 +181,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 4148.3,
+      "age_min": 4151.3,
       "live": false,
       "subagent": false
     },
@@ -194,7 +194,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 55.9,
+      "age_min": 58.9,
       "live": false,
       "subagent": false
     },
@@ -207,7 +207,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1531.5,
+      "age_min": 1534.4,
       "live": false,
       "subagent": false
     },
@@ -220,7 +220,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 215.9,
+      "age_min": 218.9,
       "live": false,
       "subagent": false
     },
@@ -233,7 +233,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4329.1,
+      "age_min": 4332.1,
       "live": false,
       "subagent": false
     },
@@ -246,7 +246,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4375.2,
+      "age_min": 4378.2,
       "live": false,
       "subagent": false
     },
@@ -259,7 +259,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10950.5,
+      "age_min": 10953.4,
       "live": false,
       "subagent": false
     },
@@ -272,7 +272,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10967.9,
+      "age_min": 10970.9,
       "live": false,
       "subagent": false
     },
@@ -285,11 +285,11 @@
       "cache_read_tokens": null,
       "cache_creation_tokens": null,
       "msgs": null,
-      "last_active": "2026-07-10T07:26:33Z",
+      "last_active": "2026-07-10T07:29:31Z",
       "age_min": 0.0,
       "live": true,
       "subagent": true,
-      "log_bytes": 516370
+      "log_bytes": 537646
     },
     {
       "id": "a84f4e23",
@@ -301,7 +301,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:59:04Z",
-      "age_min": 27.5,
+      "age_min": 30.5,
       "live": false,
       "subagent": true,
       "log_bytes": 386062
@@ -316,8 +316,8 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T07:18:25Z",
-      "age_min": 8.2,
-      "live": true,
+      "age_min": 11.1,
+      "live": false,
       "subagent": true,
       "log_bytes": 654976
     },
@@ -331,7 +331,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T06:21:47Z",
-      "age_min": 64.8,
+      "age_min": 67.8,
       "live": false,
       "subagent": true,
       "log_bytes": 488835
@@ -346,11 +346,11 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-10T05:33:12Z",
-      "age_min": 113.4,
+      "age_min": 116.4,
       "live": false,
       "subagent": true,
       "log_bytes": 218452
     }
   ],
-  "total_tokens": 14713829
+  "total_tokens": 14726991
 }
