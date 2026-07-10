@@ -129,6 +129,25 @@
   .blk .svc{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
   .blk .t{font-size:13px}
 
+  /* progress & ETA */
+  .prog{display:flex;flex-direction:column;gap:2px}
+  .prog .phead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .prog .ppct{font-size:34px;font-weight:700;line-height:1;letter-spacing:-.5px}
+  .prog .peta{font-size:11.5px;color:var(--muted);text-align:right;max-width:190px}
+  .prog .peta b{color:var(--ink-2);font-weight:600}
+  .projbar{height:12px;background:var(--track);border-radius:99px;overflow:hidden;margin:9px 0 2px}
+  .projbar>i{display:block;height:100%;border-radius:99px}
+  .tasks{margin-top:12px}
+  .task{display:grid;grid-template-columns:1fr auto;gap:5px 12px;padding:10px 0;border-top:1px solid var(--line)}
+  .task:first-of-type{border-top:none}
+  .task .tname{font-size:12.8px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .task .eta{font-size:11px;color:var(--muted);white-space:nowrap;text-align:right;align-self:center}
+  .task .eta b{color:var(--ink-2);font-weight:600}
+  .task .ttrack{grid-column:1/-1;height:6px;background:var(--track);border-radius:99px;overflow:hidden}
+  .task .ttrack>i{display:block;height:100%;border-radius:99px;min-width:0}
+  .chip.mute{border-color:var(--line-strong);color:var(--muted)}
+  .fill-done{background:var(--ok)} .fill-prog{background:var(--warn)} .fill-fe{background:var(--fe)} .fill-be{background:var(--be)}
+
   /* sessions */
   .scroll{overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -181,6 +200,103 @@
         <span class="chip bad"><span class="d"></span>Go-live · 5 blockers open</span>
       </div>
     </div>
+  </section>
+
+  <!-- ============ DELIVERY PROGRESS & ETA ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Delivery progress &amp; ETA — per project and subtask, from the resume docs</p>
+        <h2>Project progress &amp; ETA</h2>
+      </div>
+      <span class="chip mute"><span class="d"></span>ETAs are estimates</span>
+    </div>
+    <p class="foot" style="margin:6px 0 2px">Progress is <b>done-vs-total weighted by subtask effort</b> (foundation carries the platform bulk). ETAs are <b>rough estimates</b> from observed commit cadence — each carved subsystem has been landing in ~15–30&nbsp;min of active session — <b>not commitments</b>; calendar time depends on Omar's availability. Go-live blockers are tracked as a separate 0/5 gate below.</p>
+
+    <div class="grid2" style="margin-top:16px">
+
+      <!-- FRONTEND progress -->
+      <div class="prog">
+        <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--fe)"></span><h2>Frontend</h2></div>
+        <div class="phead">
+          <div class="ppct" style="color:var(--fe)">78<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
+          <div class="peta">build complete · <b>go-live-ready ~1–2 active sessions</b>, tracking backend carve + the 5 blockers</div>
+        </div>
+        <div class="projbar" title="Frontend ~78% complete (est.)"><i class="fill-fe" style="width:78%"></i></div>
+
+        <div class="tasks">
+          <div class="task">
+            <div class="tname">Depth-parity SPA <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">9 depth waves · 220/220 tests green · 7 modules</div>
+          </div>
+          <div class="task">
+            <div class="tname">Phase 5 — native shell (Capacitor) <span class="chip warn"><span class="d"></span>In progress</span></div>
+            <div class="eta">~65% · <b>gated</b>: JDK/SDK + Omar</div>
+            <div class="ttrack"><i class="fill-prog" style="width:65%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Config + Android scaffold + cap-sync clean; native APK build needs a JDK/Android SDK (not on this box) + Omar's bundle-ID / signing / iOS-scope calls</div>
+          </div>
+          <div class="task">
+            <div class="tname">Mock&rarr;real contract reconciliation <span class="chip mute"><span class="d"></span>To do</span></div>
+            <div class="eta"><b>follows backend</b> carve</div>
+            <div class="ttrack"><i class="fill-prog" style="width:6%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">31 [CL] + 3 [FS] contract items reconciling mock shapes against carved services — mostly gated on backend; a few field-shape items shipped</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACKEND progress -->
+      <div class="prog">
+        <div class="row" style="margin-bottom:6px"><span style="width:11px;height:11px;border-radius:3px;background:var(--be)"></span><h2>Backend</h2></div>
+        <div class="phead">
+          <div class="ppct" style="color:var(--be)">80<small style="font-size:16px;color:var(--muted)">% <span style="font-size:11px">est.</span></small></div>
+          <div class="peta">foundation done · <b>bespoke remainder ~1–2 active sessions</b> (valve-builder → quote-sizing → cross-flows)</div>
+        </div>
+        <div class="projbar" title="Backend ~80% complete (est.)"><i class="fill-be" style="width:80%"></i></div>
+
+        <div class="tasks">
+          <div class="task">
+            <div class="tname">Foundation platform <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Generic engine (10 svcs) + BFF · 7-domain migration (~1.9M rows, to the cent) · payroll parity (0 mismatch) · reports read-side · deep cost engine</div>
+          </div>
+          <div class="task">
+            <div class="tname">Cost-engine remaining terms <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Machine-cost + indirect-labour overhead terms + SalesOrder.actual_cost roll-up (live re-run pending Docker)</div>
+          </div>
+          <div class="task">
+            <div class="tname">Shopfloor / MES state machine <span class="chip ok"><span class="d"></span>Done</span></div>
+            <div class="eta"><b>shipped</b></div>
+            <div class="ttrack"><i class="fill-done" style="width:100%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Operator/supervisor/manager/QC WO state machine carved into production + WIP posting</div>
+          </div>
+          <div class="task">
+            <div class="tname">Valve-builder configurator <span class="chip warn"><span class="d"></span>In progress</span></div>
+            <div class="eta">~40% · est. <b>&lt;1 session</b></div>
+            <div class="ttrack"><i class="fill-prog" style="width:40%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Option-matrix carve started (config/options/find-matches into crm + engineering)</div>
+          </div>
+          <div class="task">
+            <div class="tname">Quote-sizing (BOQ) <span class="chip mute"><span class="d"></span>To do</span></div>
+            <div class="eta">est. <b>~½–1 session</b></div>
+            <div class="ttrack"><i class="fill-prog" style="width:0%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Sizing steps + items-sizing + BOQ into crm (quotes)</div>
+          </div>
+          <div class="task">
+            <div class="tname">Cross-service wizard flows <span class="chip mute"><span class="d"></span>To do</span></div>
+            <div class="eta">est. <b>~1 session</b></div>
+            <div class="ttrack"><i class="fill-prog" style="width:0%"></i></div>
+            <div class="foot" style="grid-column:1/-1;margin-top:1px">Quote&rarr;SO / SO&rarr;MR / request-leave — transactional, span crm + engineering + hr (most complex remaining)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="foot" style="margin:14px 0 0">Method: each subtask carries a status (<b>done</b> / <b>in&nbsp;progress</b> / <b>to&nbsp;do</b>) and a rough remaining-effort ETA; the project bar rolls these up weighted by relative effort. Sources: backend <span class="mono">CONTINUE-HERE.md</span> + <span class="mono">local-parity-status.md</span>, frontend <span class="mono">phase-5-native-capacitor.md</span> + <span class="mono">backend-requirements-from-frontend.md</span>. Cadence signal: <span class="mono">microservices-backend</span> / <span class="mono">-frontend</span> commit timestamps.</p>
   </section>
 
   <!-- ============ FRONTEND + BACKEND ============ -->
@@ -239,8 +355,9 @@
         <li><span class="mk done"></span><span>Data migration DONE across all 7 domains; smoke test passes on real data.</span></li>
         <li><span class="mk done"></span><span>HR payroll engine ported — parity <b>0 mismatches</b> across 3 months, to the cent.</span></li>
         <li><span class="mk done"></span><span>Reports read-side proven: trial-balance on 989,768 GL rows.</span></li>
-        <li><span class="mk open"></span><span>NOT done: recursive per-BOM/per-SO actual-cost engine.</span></li>
-        <li><span class="mk open"></span><span>NOT done: bespoke SPA flows — shopfloor, valve-builder, quote-sizing, wizards.</span></li>
+        <li><span class="mk done"></span><span>Deep cost engine complete — recursive per-BOM/per-SO actual-cost + overhead terms (live re-run pending Docker).</span></li>
+        <li><span class="mk done"></span><span>Shopfloor / MES WO state machine carved into production.</span></li>
+        <li><span class="mk part"></span><span>In progress: valve-builder configurator. To do: quote-sizing + cross-service wizard flows.</span></li>
         <li><span class="mk open"></span><span>NOT done: per-row salary generation (batch→GL half done).</span></li>
       </ul>
     </section>
@@ -319,15 +436,15 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T04:10:35Z",
+  "updated": "2026-07-10T04:53:36Z",
   "generated_by": "mission-control worker (b0a25ec9)",
   "schema": 2,
   "totals": {
-    "output_tokens": 13857578,
-    "cache_read_tokens": 6194994551,
-    "cache_creation_tokens": 55488630,
-    "msgs": 14653,
-    "sessions": 10,
+    "output_tokens": 14131185,
+    "cache_read_tokens": 6214681869,
+    "cache_creation_tokens": 56267866,
+    "msgs": 14793,
+    "sessions": 11,
     "live_sessions": 1
   },
   "sessions": [
@@ -340,7 +457,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1226.1,
+      "age_min": 1269.1,
       "live": false
     },
     {
@@ -352,7 +469,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10049.2,
+      "age_min": 10092.2,
       "live": false
     },
     {
@@ -364,7 +481,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4179.2,
+      "age_min": 4222.2,
       "live": false
     },
     {
@@ -376,8 +493,20 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 3952.3,
+      "age_min": 3995.3,
       "live": false
+    },
+    {
+      "id": "b0a25ec9",
+      "group": "commander",
+      "group_label": "Commander",
+      "output_tokens": 397773,
+      "cache_read_tokens": 23836977,
+      "cache_creation_tokens": 1374477,
+      "msgs": 229,
+      "last_active": "2026-07-10T04:52:42Z",
+      "age_min": 0.9,
+      "live": true
     },
     {
       "id": "a3607e93",
@@ -388,20 +517,8 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1335.4,
+      "age_min": 1378.4,
       "live": false
-    },
-    {
-      "id": "b0a25ec9",
-      "group": "commander",
-      "group_label": "Commander",
-      "output_tokens": 124166,
-      "cache_read_tokens": 4149659,
-      "cache_creation_tokens": 595241,
-      "msgs": 90,
-      "last_active": "2026-07-10T04:10:31Z",
-      "age_min": 0.0,
-      "live": true
     },
     {
       "id": "bca1b96d",
@@ -412,7 +529,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 19.9,
+      "age_min": 62.9,
       "live": false
     },
     {
@@ -424,7 +541,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4133.1,
+      "age_min": 4176.1,
       "live": false
     },
     {
@@ -436,7 +553,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4179.2,
+      "age_min": 4222.2,
       "live": false
     },
     {
@@ -448,11 +565,23 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10754.4,
+      "age_min": 10797.5,
+      "live": false
+    },
+    {
+      "id": "a7ec81c1",
+      "group": "backend",
+      "group_label": "Backend",
+      "output_tokens": 0,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "msgs": 1,
+      "last_active": "2026-07-02T16:38:39Z",
+      "age_min": 10814.9,
       "live": false
     }
   ],
-  "total_tokens": 13857578
+  "total_tokens": 14131185
 }/*__/STATS__*/;
 
 const FRONTEND = {
