@@ -58,8 +58,9 @@ DOCKER_FILTER = DOCKER_CFG.get("name_filter", "")   # e.g. vams_   (empty = all 
 HEALTH_CHECKS = _CFG.get("health_checks", []) or [] # [{name,method,url,expect:[...],body?}]
 REPOS         = _CFG.get("repos", []) or []         # [{track,path,branch}] for velocity + commit feed
 
-LIVE_MIN  = 10   # task-output/transcript mtime younger than this (min) = live
-STALE_MIN = 6    # heartbeat: republish if published stats older than this
+LIVE_MIN       = 10   # task-output/transcript mtime younger than this (min) = live
+STALE_MIN      = 6    # heartbeat (active fleet): republish if published stats older than this
+IDLE_PULSE_MIN = 15   # heartbeat (idle fleet): low-frequency pulse so freshness never freezes
 
 now = datetime.datetime.now(datetime.timezone.utc)
 
@@ -429,7 +430,10 @@ def build_stats():
                   transcript_sessions=len(tx), subagent_sessions=len(subs),
                   workers=len(workers), live_workers=sum(1 for w in workers if w["status"] == "live"),
                   stopped_workers=sum(1 for w in workers if w["status"] == "stopped"))
-    return dict(updated=iso(now), generated_by="mission-control (ad796e2c)", schema=5,
+    acts = [w["out_last_active"] for w in workers if w.get("out_last_active")]
+    last_activity = max(acts) if acts else None   # iso Z strings sort chronologically
+    return dict(updated=iso(now), heartbeat_at=iso(now), last_activity=last_activity,
+                generated_by="mission-control (ad796e2c)", schema=5,
                 totals=totals, workers=workers, sessions=sessions, total_tokens=out_t,
                 progress=progress_block(), docker=docker_status(),
                 health=stack_health(), commits=commit_activity(),
@@ -443,8 +447,10 @@ def sync_html(stats):
     if not os.path.exists(HTML_PATH): return
     html = open(HTML_PATH, encoding="utf-8").read()
     baked = json.dumps(stats, indent=2)
+    # function replacement: baked JSON may contain \uXXXX escapes which re would otherwise
+    # try to interpret as regex escapes in a string replacement.
     html = re.sub(r"/\*__STATS__\*/.*?/\*__/STATS__\*/",
-                  "/*__STATS__*/" + baked + "/*__/STATS__*/", html, flags=re.S)
+                  lambda _m: "/*__STATS__*/" + baked + "/*__/STATS__*/", html, flags=re.S)
     open(HTML_PATH, "w", encoding="utf-8").write(html)
 
 def live_key(stats):
@@ -455,23 +461,28 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
     stats = build_stats()
     if mode == "--heartbeat":
+        # NEVER-GO-STALE: push whenever there is live activity OR the live-set changed; and even
+        # when the fleet is fully idle, emit a low-frequency IDLE PULSE (<= once / IDLE_PULSE_MIN)
+        # so `updated`/`heartbeat_at` never freeze and the page never falsely reads as dead.
+        # Idle pulses are throttled to at most ~4/hour, so no return of the junk-commit spam.
         try:
             old = json.load(open(STATS_PATH, encoding="utf-8"))
         except Exception:
             old = None
         any_live = stats["totals"]["live_workers"] > 0
-        stale = True
-        changed = True
-        if old:
-            stale = (age_of(old.get("updated")) or 1e9) >= STALE_MIN
-            changed = live_key(old) != live_key(stats)
-        if any_live and (stale or changed):
+        age      = (age_of(old.get("updated")) if old else None)
+        age      = 1e9 if age is None else age
+        changed  = (live_key(old) != live_key(stats)) if old else True
+        threshold = STALE_MIN if any_live else IDLE_PULSE_MIN
+        do_push  = changed or age >= threshold
+        if do_push:
             write_stats(stats)
-            print("PUSH updated=%s live_workers=%d live_sessions=%d%s"
-                  % (stats["updated"], stats["totals"]["live_workers"],
-                     stats["totals"]["live_sessions"], " (live-set-changed)" if changed else ""))
+            print("PUSH %s updated=%s live_workers=%d age=%.1f/%d%s"
+                  % ("active" if any_live else "idle-pulse", stats["updated"],
+                     stats["totals"]["live_workers"], age, threshold,
+                     " (live-set-changed)" if changed else ""))
             sys.exit(0)
-        print("SKIP any_live=%s stale=%s changed=%s" % (any_live, stale, changed))
+        print("SKIP any_live=%s age=%.1f/%d changed=%s" % (any_live, age, threshold, changed))
         sys.exit(3)
 
     write_stats(stats)
