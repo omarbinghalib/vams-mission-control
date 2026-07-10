@@ -5,7 +5,7 @@
     "track": "backend"
   },
   {
-    "title": "Durable Celery/Redis + 9 per-service workers",
+    "title": "Celery/Redis durable queue + 9 per-service workers",
     "status": "done",
     "track": "backend"
   },
@@ -30,52 +30,21 @@
     "track": "backend"
   },
   {
-    "title": "Integration & finalize (5 cross-service seams + rebuild-all)",
+    "title": "Integration & finalize (5 seams + rebuild-all)",
     "status": "done",
     "track": "backend",
     "note": "29/29 containers"
   },
   {
-    "title": "QC depth",
+    "title": "Backend depth \u2014 all 7 modules (QC, Purchasing, CRM, Engineering, Prod+Inventory, Accounting, HR)",
     "status": "done",
     "track": "backend",
     "note": "full-parity, cent-verified"
   },
   {
-    "title": "Purchasing depth",
+    "title": "Backend gap-close + seed data",
     "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "CRM depth",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "Engineering depth",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "Production + Inventory depth",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "Accounting depth",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "HR depth",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
+    "track": "backend"
   },
   {
     "title": "Polished default theme",
@@ -88,6 +57,18 @@
     "track": "frontend"
   },
   {
+    "title": "Reporting suite + documents screens",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "gap-build"
+  },
+  {
+    "title": "Ops / integrations / projects screens",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "gap-build"
+  },
+  {
     "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + reusable kit",
     "status": "done",
     "track": "mission-control"
@@ -98,29 +79,13 @@
     "track": "mission-control"
   },
   {
-    "title": "Flip-to-gateway + verify all 8 modules",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Coverage sweep (nothing-missing audit: original VAMS 2.0 vs new)",
-    "status": "done",
-    "track": "audit"
-  },
-  {
-    "title": "Carve any genuine gaps the sweep finds",
-    "status": "pending",
-    "track": "audit"
-  },
-  {
     "title": "Capstone: full parity audit (capability/logic/depth/complexity) + comparison artifact",
     "status": "pending",
     "track": "audit"
   },
   {
-    "title": "Phase-5 production cutover",
+    "title": "Capstone: knowledge capture",
     "status": "pending",
-    "track": "audit",
-    "note": "reserved for Omar's sign-off"
+    "track": "audit"
   }
 ]
