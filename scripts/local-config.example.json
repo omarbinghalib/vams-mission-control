@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy to local-config.json (gitignored) and fill in YOUR machine paths. This keeps local filesystem paths + OS username out of the public repo. commander_session/project identify the live commander whose subagent task-output files signal worker liveness.",
+  "projects_base": "C:\\Users\\<you>\\.claude\\projects",
+  "commander_project": "<commander-project-slug>",
+  "commander_session": "<commander-root-session-uuid>",
+  "search_projects": [
+    "<commander-project-slug>",
+    "<other-project-slugs-to-scan-for-transcripts>"
+  ],
+  "vams_frontend": "C:\\path\\to\\VAMS-frontend",
+  "vams_backend": "C:\\path\\to\\VAMS-backend"
+}
