@@ -148,6 +148,27 @@
   .chip.mute{border-color:var(--line-strong);color:var(--muted)}
   .fill-done{background:var(--ok)} .fill-prog{background:var(--warn)} .fill-fe{background:var(--fe)} .fill-be{background:var(--be)}
 
+  /* workers roster */
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:14px;margin-top:14px}
+  .wcard{background:var(--panel-2);border:1px solid var(--line);border-left:3px solid var(--muted);
+    border-radius:10px;padding:14px 15px;display:flex;flex-direction:column;gap:7px}
+  .wcard.r-commander{border-left-color:var(--cmd)}
+  .wcard.r-backend{border-left-color:var(--be)}
+  .wcard.r-frontend{border-left-color:var(--fe)}
+  .wcard.r-mission-control{border-left-color:var(--ink-2)}
+  .wcard .whead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .wname{font-weight:650;font-size:14px}
+  .wbranch{font-size:11px;color:var(--muted)}
+  .wfocus{font-size:12px;color:var(--ink-2);line-height:1.45}
+  .wact{font-size:11.5px;color:var(--ink);display:flex;gap:6px;align-items:baseline;
+    background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
+  .wact .arrow{color:var(--muted);flex:none}
+  .wact .sub{color:var(--muted)}
+  .wmeta{display:flex;gap:14px;flex-wrap:wrap;margin-top:1px;font-size:11px;color:var(--muted)}
+  .wmeta b{color:var(--ink-2);font-weight:600}
+  .chip .dp{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+  .chip .dp.beat{animation:pulse 1.6s ease-in-out infinite}
+
   /* sessions */
   .scroll{overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -388,12 +409,25 @@
     </div>
   </section>
 
+  <!-- ============ WORKERS — COMMAND ROSTER ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Command roster — who is on the job right now</p>
+        <h2>Workers</h2>
+      </div>
+      <span class="chip ok"><span class="dp beat"></span><span id="wLive">4</span> live</span>
+    </div>
+    <p class="foot" style="margin:6px 0 0">Each worker's <b>current activity</b> is the latest commit on its branch (self-updates as they commit); <b>live/idle</b> is the freshest of transcript recency (&lt;10&nbsp;min) or that commit; the Commander is the orchestrator (no branch). Token/msg totals are cumulative per track — some are <b>last known</b> where a worker's live transcript sits outside the three parsed slugs.</p>
+    <div id="workers" class="wgrid"></div>
+  </section>
+
   <!-- ============ CLAUDE SESSIONS & TOKENS ============ -->
   <section class="panel">
     <div class="split">
       <div>
-        <p class="eyebrow">Claude sessions &amp; tokens — live across all three project transcripts</p>
-        <h2>Session activity</h2>
+        <p class="eyebrow">Raw transcripts behind the roster — every session across all three project slugs</p>
+        <h2>Session activity &amp; tokens</h2>
       </div>
       <span class="foot mono" id="sessAge">—</span>
     </div>
@@ -436,17 +470,85 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-10T04:53:36Z",
+  "updated": "2026-07-10T05:10:58Z",
   "generated_by": "mission-control worker (b0a25ec9)",
-  "schema": 2,
+  "schema": 3,
   "totals": {
-    "output_tokens": 14131185,
-    "cache_read_tokens": 6214681869,
-    "cache_creation_tokens": 56267866,
-    "msgs": 14793,
+    "output_tokens": 14172762,
+    "cache_read_tokens": 6219891836,
+    "cache_creation_tokens": 56333299,
+    "msgs": 14817,
     "sessions": 11,
-    "live_sessions": 1
+    "live_sessions": 1,
+    "workers": 4,
+    "live_workers": 4
   },
+  "workers": [
+    {
+      "name": "Commander",
+      "role": "commander",
+      "branch": null,
+      "focus": "Orchestrating all workers, integration, and dashboard publishing.",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "signal": "coordinating",
+      "status": "live",
+      "live": true,
+      "output_tokens": 10638650,
+      "msgs": 11431,
+      "last_active": "2026-07-09T07:44:28Z",
+      "metrics_note": "cumulative track · last known"
+    },
+    {
+      "name": "Backend worker",
+      "role": "backend",
+      "branch": "microservices-backend",
+      "focus": "Valve-builder configurator → quote-sizing → cross-service flows; Docker-gated parity re-run (BOM 9/9, SO, shopfloor GL).",
+      "head_commit": "feat(valve-builder): carve configurator brain into engineering",
+      "head_commit_at": "2026-07-10T09:02:58+04:00",
+      "head_ago_min": 8.0,
+      "signal": "git commit",
+      "status": "live",
+      "live": true,
+      "output_tokens": 3084854,
+      "msgs": 3111,
+      "last_active": "2026-07-10T09:02:58+04:00",
+      "metrics_note": "cumulative track · last known"
+    },
+    {
+      "name": "Frontend worker",
+      "role": "frontend",
+      "branch": "microservices-frontend",
+      "focus": "Phase 5 Capacitor native build (config + Android scaffold done; native APK gated on JDK/SDK + Omar).",
+      "head_commit": "test(mocks): collapse mock gateway latency to zero under Vitest",
+      "head_commit_at": "2026-07-10T09:04:05+04:00",
+      "head_ago_min": 6.9,
+      "signal": "git commit",
+      "status": "live",
+      "live": true,
+      "output_tokens": 9908,
+      "msgs": 22,
+      "last_active": "2026-07-10T09:04:05+04:00",
+      "metrics_note": "cumulative track"
+    },
+    {
+      "name": "Mission-control",
+      "role": "mission-control",
+      "branch": "microservices-frontend",
+      "focus": "Dashboard maintenance · progress/ETA + workers roster · stats freshness.",
+      "head_commit": "feat(mission-control): per-project + per-subtask progress bars & ETA",
+      "head_commit_at": "2026-07-10T08:59:58+04:00",
+      "head_ago_min": 11.0,
+      "signal": "git commit + transcript",
+      "status": "live",
+      "live": true,
+      "output_tokens": 439350,
+      "msgs": 253,
+      "last_active": "2026-07-10T05:10:49Z",
+      "metrics_note": "this session"
+    }
+  ],
   "sessions": [
     {
       "id": "aa30f33e",
@@ -457,7 +559,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 1269.1,
+      "age_min": 1286.5,
       "live": false
     },
     {
@@ -469,7 +571,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 10092.2,
+      "age_min": 10109.6,
       "live": false
     },
     {
@@ -481,7 +583,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4222.2,
+      "age_min": 4239.6,
       "live": false
     },
     {
@@ -493,19 +595,19 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 3995.3,
+      "age_min": 4012.7,
       "live": false
     },
     {
       "id": "b0a25ec9",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 397773,
-      "cache_read_tokens": 23836977,
-      "cache_creation_tokens": 1374477,
-      "msgs": 229,
-      "last_active": "2026-07-10T04:52:42Z",
-      "age_min": 0.9,
+      "output_tokens": 439350,
+      "cache_read_tokens": 29046944,
+      "cache_creation_tokens": 1439910,
+      "msgs": 253,
+      "last_active": "2026-07-10T05:10:49Z",
+      "age_min": 0.2,
       "live": true
     },
     {
@@ -517,7 +619,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 1378.4,
+      "age_min": 1395.8,
       "live": false
     },
     {
@@ -529,7 +631,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 62.9,
+      "age_min": 80.3,
       "live": false
     },
     {
@@ -541,7 +643,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 4176.1,
+      "age_min": 4193.5,
       "live": false
     },
     {
@@ -553,7 +655,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 4222.2,
+      "age_min": 4239.6,
       "live": false
     },
     {
@@ -565,7 +667,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 10797.5,
+      "age_min": 10814.9,
       "live": false
     },
     {
@@ -577,11 +679,11 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 10814.9,
+      "age_min": 10832.3,
       "live": false
     }
   ],
-  "total_tokens": 14131185
+  "total_tokens": 14172762
 }/*__/STATS__*/;
 
 const FRONTEND = {
@@ -666,6 +768,42 @@ $("blockers").innerHTML=BLOCKERS.map(([svc,t])=>
        <span class="val mono">${v}</span></div></div>`).join("");
 })();
 
+/* ================= workers — command roster ================= */
+function renderWorkers(j){
+  const ws=j.workers||[];
+  if(!ws.length) return;
+  const t=j.totals||{};
+  $("wLive").textContent=(t.live_workers!=null?t.live_workers:ws.filter(w=>w.live).length);
+  $("workers").innerHTML=ws.map(w=>{
+    const live=w.status==="live", done=w.status==="done";
+    const chipCls=live?"ok":(done?"":"mute");
+    const dotCls=live?"dp beat":"dp";
+    const stTxt=live?"live":(done?"done":"idle");
+    const branch=w.branch?`on <span class="mono">${esc(w.branch)}</span>`:"orchestrator · no branch";
+    // current activity = latest branch commit (or "coordinating" for the orchestrator)
+    let act;
+    if(w.head_commit){
+      const rel=w.head_ago_min==null?"":(w.head_ago_min<1?"just now":ago(w.head_ago_min));
+      act=`<span class="arrow">▸</span><span><span class="mono">${esc(w.head_commit)}</span>`+
+          `<span class="sub"> · ${esc(rel)}${w.signal?" · "+esc(w.signal):""}</span></span>`;
+    } else {
+      act=`<span class="arrow">▸</span><span>coordinating live${w.signal?` <span class="sub">· ${esc(w.signal)}</span>`:""}</span>`;
+    }
+    // last-active label
+    let la="";
+    if(w.last_active){const m=(Date.now()-new Date(w.last_active).getTime())/60000;
+      if(!isNaN(m)) la=`<span>active ${live?"now":ago(m)}</span>`;}
+    const note=w.metrics_note?` <span title="${esc(w.metrics_note)}" style="cursor:help">·</span>`:"";
+    return `<div class="wcard r-${esc(w.role)}">
+      <div class="whead"><span class="wname">${esc(w.name)}</span>
+        <span class="chip ${chipCls}"><span class="${dotCls}"></span>${stTxt}</span></div>
+      <div class="wbranch">${branch}</div>
+      <div class="wfocus">${esc(w.focus)}</div>
+      <div class="wact">${act}</div>
+      <div class="wmeta"><span><b>${fmt(w.output_tokens)}</b> out tok</span><span><b>${fmtInt(w.msgs)}</b> msgs</span>${la}${note}</div>
+    </div>`;}).join("");
+}
+
 /* ================= sessions & tokens ================= */
 const TRACK={frontend:"var(--fe)",backend:"var(--be)",commander:"var(--cmd)"};
 function renderSessions(j){
@@ -700,10 +838,10 @@ function renderSessions(j){
       <td class="num mono">${fmt(x.cache_read_tokens)}</td>
       <td class="num mono">${fmtInt(x.msgs)}</td></tr>`;}).join("");
 }
-renderSessions(STATS);
+renderSessions(STATS); renderWorkers(STATS);
 async function pollStats(){
   try{const r=await fetch("stats.json?t="+Date.now(),{cache:"no-store"});
-    if(r.ok){const j=await r.json();if(j&&j.totals)renderSessions(j);}}catch(e){}
+    if(r.ok){const j=await r.json();if(j&&j.totals){renderSessions(j);renderWorkers(j);}}}catch(e){}
 }
 pollStats(); setInterval(pollStats,45000);
 
@@ -717,7 +855,7 @@ function freshTick(){
   else if(mins<180){f.textContent="aging · "+ago(mins);p.style.background="var(--warn)";p.classList.remove("live");}
   else{f.textContent="stale · "+ago(mins);p.style.background="var(--bad)";p.classList.remove("live");}
 }
-const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);freshTick();};
+const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);renderWorkers(j);freshTick();};
 renderSessions(window.__lastStats||STATS);
 setInterval(freshTick,30000);
 
