@@ -93,7 +93,7 @@
   },
   {
     "title": "Flip-to-gateway + verify per module",
-    "status": "pending",
+    "status": "in_progress",
     "track": "frontend",
     "note": "after each service's depth lands"
   }
