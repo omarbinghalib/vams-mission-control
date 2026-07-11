@@ -70,7 +70,7 @@
   },
   {
     "title": "Reporting-analytics endpoint + screen",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "note": "in flight"
   },
@@ -85,17 +85,17 @@
     "track": "mission-control"
   },
   {
-    "title": "VAMS tenant + login — rename acme→vams, VAMS branding, real VAMS admin login, real data verified",
+    "title": "VAMS tenant + login \u2014 rename acme\u2192vams, VAMS branding, real VAMS admin login, real data verified",
     "status": "pending",
     "track": "deploy"
   },
   {
-    "title": "Full local deployment — frontend built+served as a container in docker-compose (gateway mode); whole stack; VAMS login → real data E2E",
+    "title": "Full local deployment \u2014 frontend built+served as a container in docker-compose (gateway mode); whole stack; VAMS login \u2192 real data E2E",
     "status": "pending",
     "track": "deploy"
   },
   {
-    "title": "Separate frontend configs — local-deployment build vs cloud/online build, documented",
+    "title": "Separate frontend configs \u2014 local-deployment build vs cloud/online build, documented",
     "status": "pending",
     "track": "deploy"
   },
@@ -105,7 +105,7 @@
     "track": "audit"
   },
   {
-    "title": "Capstone: knowledge capture — lessons + playbook + skills + agent definitions",
+    "title": "Capstone: knowledge capture \u2014 lessons + playbook + skills + agent definitions",
     "status": "pending",
     "track": "audit"
   }
