@@ -91,7 +91,7 @@
   },
   {
     "title": "Full local deployment \u2014 frontend built+served as a container in docker-compose (gateway mode); whole stack; VAMS login \u2192 real data E2E",
-    "status": "pending",
+    "status": "done",
     "track": "deploy"
   },
   {
