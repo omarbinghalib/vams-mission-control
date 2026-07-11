@@ -1,6 +1,10 @@
 {
-  "active": false,
-  "message": "",
-  "options": [],
-  "raised_at": null
+  "active": true,
+  "message": "Parity comparison published (~80% weighted; cent-accurate logic, net-ahead architecture, real depth gaps). Decide how far to push to TRUE full parity.",
+  "options": [
+    "A: Close ALL avoidable gaps (full depth-for-depth push)",
+    "B: Close cheap/high-value only (sagas, PDFs, quick wins); accept re-scoping",
+    "C: Accept ~80% + just finish the deployment"
+  ],
+  "raised_at": "2026-07-11T05:17:25Z"
 }
