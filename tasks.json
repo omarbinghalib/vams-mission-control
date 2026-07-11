@@ -101,7 +101,7 @@
   },
   {
     "title": "Capstone: full parity audit (vs running VAMS) + comparison artifact",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit"
   },
   {
