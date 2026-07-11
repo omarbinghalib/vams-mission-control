@@ -96,7 +96,7 @@
   },
   {
     "title": "Separate frontend configs \u2014 local-deployment build vs cloud/online build, documented",
-    "status": "pending",
+    "status": "done",
     "track": "deploy"
   },
   {
