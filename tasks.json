@@ -86,7 +86,7 @@
   },
   {
     "title": "VAMS tenant + login \u2014 rename acme\u2192vams, VAMS branding, real VAMS admin login, real data verified",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy"
   },
   {
