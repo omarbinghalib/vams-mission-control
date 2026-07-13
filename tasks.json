@@ -133,5 +133,10 @@
     "title": "FE redesign: keyboard/command-driven speed layer",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign W0: design tokens + fonts foundation",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
