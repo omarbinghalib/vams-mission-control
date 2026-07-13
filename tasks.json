@@ -108,5 +108,10 @@
     "title": "Capstone: knowledge capture \u2014 lessons + playbook + skills + agent definitions",
     "status": "done",
     "track": "audit"
+  },
+  {
+    "title": "FE redesign: workflow smoothness diagnosis (orig VAMS vs SPA)",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
