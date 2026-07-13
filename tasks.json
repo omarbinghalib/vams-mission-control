@@ -1,12 +1,52 @@
 [
-  {"title":"Productization + full local deployment + parity & knowledge (shipped)","status":"done","track":"archive"},
-  {"title":"FE redesign: diagnosis — workflow + visual design direction","status":"done","track":"frontend"},
-  {"title":"FE redesign: design tokens + fonts foundation (W0)","status":"done","track":"frontend"},
-  {"title":"FE redesign: nav/shell + command palette that acts (W1)","status":"in_progress","track":"frontend"},
-  {"title":"FE redesign: DataTable — selection/bulk/row-actions/filters/density (W2)","status":"in_progress","track":"frontend"},
-  {"title":"FE redesign: form primitives — type-ahead Combobox + keyboard InlineGrid (W3)","status":"in_progress","track":"frontend"},
-  {"title":"FE redesign: surfaces & primitives visual upgrade (W4)","status":"in_progress","track":"frontend"},
-  {"title":"Mission-control: live-only board + live-stream auto-refresh","status":"in_progress","track":"mission-control"},
-  {"title":"FE redesign Wave 3: PO/JV combined create flow + detail perf + keyboard layer","status":"pending","track":"frontend"},
-  {"title":"FE redesign: integrate + verify (278 tests, build local/cloud)","status":"pending","track":"frontend"}
+  {
+    "title": "Productization + full local deployment + parity & knowledge (shipped)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: diagnosis \u2014 workflow + visual design direction",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: design tokens + fonts foundation (W0)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: nav/shell + command palette that acts (W1)",
+    "status": "in_progress",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: DataTable \u2014 selection/bulk/row-actions/filters/density (W2)",
+    "status": "in_progress",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: form primitives \u2014 type-ahead Combobox + keyboard InlineGrid (W3)",
+    "status": "in_progress",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: surfaces & primitives visual upgrade (W4)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "Mission-control: live-only board + live-stream auto-refresh",
+    "status": "in_progress",
+    "track": "mission-control"
+  },
+  {
+    "title": "FE redesign Wave 3: PO/JV combined create flow + detail perf + keyboard layer",
+    "status": "pending",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: integrate + verify (278 tests, build local/cloud)",
+    "status": "pending",
+    "track": "frontend"
+  }
 ]
