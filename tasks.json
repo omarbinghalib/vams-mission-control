@@ -123,5 +123,10 @@
     "title": "FE redesign: shell + navigation smoothness",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign: per-module workflow + density upgrade",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
