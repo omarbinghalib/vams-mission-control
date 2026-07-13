@@ -56,7 +56,7 @@
   },
   {
     "title": "Toolkit: port 7 MC fixes + PLAYBOOK lessons into mission-control-kit",
-    "status": "pending",
+    "status": "done",
     "track": "mission-control"
   }
 ]
