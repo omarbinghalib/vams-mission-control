@@ -46,7 +46,7 @@
   },
   {
     "title": "FE redesign: integrate + verify (278 tests, build local/cloud)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend"
   },
   {
