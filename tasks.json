@@ -48,5 +48,10 @@
     "title": "FE redesign: integrate + verify (278 tests, build local/cloud)",
     "status": "in_progress",
     "track": "frontend"
+  },
+  {
+    "title": "Org rename vams -> vbg (tenant/login, data preserved, E2E verified)",
+    "status": "pending",
+    "track": "backend"
   }
 ]
