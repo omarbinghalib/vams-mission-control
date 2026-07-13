@@ -118,5 +118,10 @@
     "title": "FE redesign: visual design upgrade direction",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign: shell + navigation smoothness",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
