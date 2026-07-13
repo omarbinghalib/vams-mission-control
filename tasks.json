@@ -58,5 +58,10 @@
     "title": "Toolkit: port 7 MC fixes + PLAYBOOK lessons into mission-control-kit",
     "status": "done",
     "track": "mission-control"
+  },
+  {
+    "title": "FE redesign W3a: shared page infra (DocumentForm, detailCache, dirtyGuard, hotkeys, ShortcutSheet)",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
