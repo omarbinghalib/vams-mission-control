@@ -59,8 +59,11 @@ HEALTH_CHECKS = _CFG.get("health_checks", []) or [] # [{name,method,url,expect:[
 REPOS         = _CFG.get("repos", []) or []         # [{track,path,branch}] for velocity + commit feed
 
 LIVE_MIN       = 10   # task-output/transcript mtime younger than this (min) = live
-STALE_MIN      = 6    # heartbeat (active fleet): republish if published stats older than this
+STALE_MIN      = 2    # heartbeat (active fleet): republish if published stats older than this
+                      # (short so an active fleet refreshes ~every 1-2 min and the page feels live;
+                      #  a live worker whose details changed still pushes on the very next cycle)
 IDLE_PULSE_MIN = 15   # heartbeat (idle fleet): low-frequency pulse so freshness never freezes
+                      # (anti-spam: a fully idle fleet still pushes at most ~4x/hour)
 RECENT_MIN     = 120  # roster/sessions: "current" = live or active within this window (2h)
 
 now = datetime.datetime.now(datetime.timezone.utc)
