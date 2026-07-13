@@ -63,5 +63,10 @@
     "title": "FE redesign W3a: shared page infra (DocumentForm, detailCache, dirtyGuard, hotkeys, ShortcutSheet)",
     "status": "done",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign W3b: module page adoption (lists->bulk/quick-edit, details->cache, PO/JV/SO->DocumentForm)",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
