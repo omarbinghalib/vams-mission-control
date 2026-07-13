@@ -113,5 +113,10 @@
     "title": "FE redesign: workflow smoothness diagnosis (orig VAMS vs SPA)",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign: visual design upgrade direction",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
