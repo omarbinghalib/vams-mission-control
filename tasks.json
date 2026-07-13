@@ -1,113 +1,9 @@
 [
   {
-    "title": "Payroll engine (valtek + AX, logic-parity)",
+    "title": "Productization + full local deployment + parity & knowledge capstones (shipped)",
     "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Celery/Redis durable queue + 9 per-service workers",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Uniform async-task contract (9 services)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Gateway/reporting module codes + catalogue",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Signup / invitations / members",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Platform hardening (country/currency + invite-token)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Integration & finalize (5 seams + rebuild-all)",
-    "status": "done",
-    "track": "backend",
-    "note": "29/29 containers"
-  },
-  {
-    "title": "Backend depth \u2014 all 7 modules (QC, Purchasing, CRM, Engineering, Prod+Inventory, Accounting, HR)",
-    "status": "done",
-    "track": "backend",
-    "note": "full-parity, cent-verified"
-  },
-  {
-    "title": "Backend gap-close + seed data",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Polished default theme",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Server-rendered documents (PDF / XLSX)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Reporting suite + documents screens",
-    "status": "done",
-    "track": "frontend",
-    "note": "landed"
-  },
-  {
-    "title": "Ops / integrations / projects screens",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "in flight"
-  },
-  {
-    "title": "Reporting-analytics endpoint + screen",
-    "status": "done",
-    "track": "frontend",
-    "note": "in flight"
-  },
-  {
-    "title": "Mission-control dashboard (panels + attention + tasks + never-stale) + reusable kit",
-    "status": "done",
-    "track": "mission-control"
-  },
-  {
-    "title": "Product decisions (full-parity / 11 modules / theme / local-FS)",
-    "status": "done",
-    "track": "mission-control"
-  },
-  {
-    "title": "VAMS tenant + login \u2014 rename acme\u2192vams, VAMS branding, real VAMS admin login, real data verified",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Full local deployment \u2014 frontend built+served as a container in docker-compose (gateway mode); whole stack; VAMS login \u2192 real data E2E",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Separate frontend configs \u2014 local-deployment build vs cloud/online build, documented",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Capstone: full parity audit (vs running VAMS) + comparison artifact",
-    "status": "done",
-    "track": "audit"
-  },
-  {
-    "title": "Capstone: knowledge capture \u2014 lessons + playbook + skills + agent definitions",
-    "status": "done",
-    "track": "audit"
+    "track": "archive",
+    "note": "Prior session: backend full-parity depth (7 modules), frontend screens, VAMS tenant + real login, containerized local deploy (gateway mode) with E2E real data, local-vs-cloud frontend split, parity audit + knowledge-capture capstones — 21 tasks, all delivered."
   },
   {
     "title": "FE redesign: workflow smoothness diagnosis (orig VAMS vs SPA)",
@@ -118,6 +14,12 @@
     "title": "FE redesign: visual design upgrade direction",
     "status": "done",
     "track": "frontend"
+  },
+  {
+    "title": "FE redesign W0: design tokens + fonts foundation",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "running now"
   },
   {
     "title": "FE redesign: shell + navigation smoothness",
@@ -135,8 +37,9 @@
     "track": "frontend"
   },
   {
-    "title": "FE redesign W0: design tokens + fonts foundation",
+    "title": "Mission-control: current-only live roster + redesign-focused board",
     "status": "in_progress",
-    "track": "frontend"
+    "track": "mission-control",
+    "note": "clear stale roster; all sections live"
   }
 ]
