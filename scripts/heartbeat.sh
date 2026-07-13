@@ -12,9 +12,16 @@ here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 cd "$repo" || exit 0
 
+# NON-INTERACTIVE + BOUNDED git: a scheduled (non-interactive) run must NEVER block on a prompt.
+# The freeze root-cause was a heartbeat instance hung on an interactive git/SSH prompt while the
+# task's 72h execution limit + IgnoreNew policy silently rejected every later trigger. Force git to
+# fail fast instead of prompting, and bound each git call so a stuck network op can't wedge the run.
+export GIT_TERMINAL_PROMPT=0
+export GIT_SSH_COMMAND="ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=10"
 # git-safe: strip any leaked GIT_* pointer env so every git call operates on THIS repo only
 # (hard-won: a leaked GIT_DIR once fired commits into the code repo — the 99-commit incident).
-git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; command git "$@" ); }
+_tmo=""; command -v timeout >/dev/null 2>&1 && _tmo="timeout 30"
+git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; $_tmo command git "$@" ); }
 
 if python "$here/gen_stats.py" --heartbeat; then   # exit 0 = push warranted, stats.json rewritten
   git add stats.json
