@@ -61,7 +61,7 @@
   },
   {
     "title": "FE redesign W3a: shared page infra (DocumentForm, detailCache, dirtyGuard, hotkeys, ShortcutSheet)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend"
   }
 ]
