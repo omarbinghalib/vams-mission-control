@@ -12,6 +12,10 @@ here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 cd "$repo" || exit 0
 
+# git-safe: strip any leaked GIT_* pointer env so every git call operates on THIS repo only
+# (hard-won: a leaked GIT_DIR once fired commits into the code repo — the 99-commit incident).
+git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; command git "$@" ); }
+
 if python "$here/gen_stats.py" --heartbeat; then   # exit 0 = push warranted, stats.json rewritten
   git add stats.json
   if ! git diff --cached --quiet stats.json; then

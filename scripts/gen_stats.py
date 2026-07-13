@@ -235,11 +235,16 @@ SESS_PER_UNIT  = (0.4, 0.8)   # remaining sessions per remaining task-unit
 TRACK_LABELS   = {"backend": "Backend", "frontend": "Frontend", "mission-control": "Mission-control",
                   "audit": "Capstones", "deploy": "Deployment"}
 TRACK_ORDER    = ["backend", "frontend", "deploy", "audit", "mission-control"]
+ARCHIVE_TRACKS = {"archive"}   # shipped prior-session work — shown as a compact note, NOT counted
+                               # in the live delivery % / ETA (which must reflect CURRENT work only)
 
 def _load_tasks():
+    """CURRENT, active task set only — archived (shipped prior-session) rows are excluded so the
+    delivery-progress and ETA derive from the work actually in flight, never re-counting old 100%s."""
     try:
         t = json.load(open(TASKS_PATH, encoding="utf-8"))
-        return t if isinstance(t, list) else []
+        t = t if isinstance(t, list) else []
+        return [x for x in t if x.get("track") not in ARCHIVE_TRACKS]
     except Exception:
         return []
 
@@ -306,7 +311,10 @@ BASELINE = [
 #   live    — task-output .jsonl mtime < LIVE_MIN
 #   idle    — alive subagent, but quiet (mtime >= LIVE_MIN, no stop flag)
 #   stopped — harness cancelled it: meta.json has "stoppedByUser": true
-#   done    — completed & retired mission (fixed historical list below)
+# The ACTIVE roster (build_stats) is then reduced to the CURRENT fleet only — the commander plus
+# any worker live or active within RECENT_MIN. Everything older is collapsed into a single
+# `history` summary count (see build_stats) instead of being carried as dozens of dead rows.
+# There is NO hardcoded worker list: what shows is exactly what is (or was just) running now.
 ROLE_MAP = {
   "backend":         {"branch": "microservices-backend",  "repo": VAMS_BACKEND},
   "frontend":        {"branch": "microservices-frontend", "repo": VAMS_FRONTEND},
@@ -349,16 +357,6 @@ def objective_of(jsonl, fallback):
         if s and not s.lower().startswith("you are") and len(s) > 20:
             return s[:180]
     return fallback
-
-# completed & retired workers — historical, not in the live subagents dir
-DONE_WORKERS = [
-  dict(name="Provisioning worker", role="provisioning", agent_id="a90719d7d38e41e26", short_id="a90719d7",
-       last_active="2026-07-10T06:21:47Z", log_bytes=488835,
-       focus="COMPLETE - django-tenants acme org + JWT user + module/role grants shipped; real GET /me/ + roles now live (platform blockers unblocked)."),
-  dict(name="Environment worker", role="environment", agent_id="a9bea1c0e2cc2bc25", short_id="a9bea1c0",
-       last_active="2026-07-10T05:33:12Z", log_bytes=218452,
-       focus="COMPLETE - JDK 17 + Android SDK toolchain installed; Android + iOS native builds done."),
-]
 
 def _status_for(age, stopped):
     if stopped: return "stopped"
@@ -418,14 +416,6 @@ def discover_workers():
                 rec["head_ago_min"]   = age_of(iso(parse(ci)))
         workers.append(rec)
 
-    # fixed done workers
-    for w in DONE_WORKERS:
-        workers.append(dict(name=w["name"], role=w["role"], branch=None, focus=w["focus"],
-            agent_id=w["agent_id"], short_id=w["short_id"],
-            head_commit=None, head_commit_at=None, head_ago_min=None,
-            out_last_active=w["last_active"], out_age_min=age_of(w["last_active"]),
-            log_bytes=w["log_bytes"], signal="mission complete", status="done", live=False))
-
     rank = {"live": 0, "idle": 1, "stopped": 2, "done": 3}
     workers.sort(key=lambda w: (0 if w["role"] == "commander" else 1, rank.get(w["status"], 9), w["name"]))
     return workers
@@ -471,21 +461,43 @@ def publisher_status():
             "paused": (state.lower() == "disabled"), "checked_at": iso(now)}
 
 def build_stats():
-    workers = discover_workers()
-    tx, subs = build_sessions(workers)
+    all_workers = discover_workers()
+    # RECENCY: the ACTIVE roster is the CURRENT fleet ONLY — the commander plus any worker that is
+    # live or was active within RECENT_MIN. Everything older (a prior session's finished workers)
+    # is DROPPED from the roster and collapsed into a single `history` count, so the page never
+    # shows 3-day-old retired workers as the current fleet. Liveness stays the honest 4-state model
+    # for the workers that remain (live / idle / stopped).
+    def _recent(w):
+        if w["role"] == "commander":
+            return True
+        if w["status"] == "live":
+            return True
+        age = w.get("out_age_min")
+        return age is not None and age < RECENT_MIN
+    current = [w for w in all_workers if _recent(w)]
+    history = [w for w in all_workers if not _recent(w)]
+    for w in current:
+        w["recent"] = True
+
+    workers = current
+    tx, subs = build_sessions(workers)   # sessions table carries ONLY the current subagents
     sessions = tx + subs
-    # RECENCY: keep the main view to the CURRENT fleet — live workers + IDLE workers still active
-    # within RECENT_MIN. Terminal states (stopped = harness-cancelled, done = retired mission) are
-    # never "current" regardless of how recently they last ticked — they belong in the collapsed
-    # tail. Everything flagged not-recent is summarised by the UI WITHOUT losing the data.
-    def _recent(status, age):
-        if status in ("stopped", "done"):
-            return False
-        return status == "live" or (age is not None and age < RECENT_MIN)
-    for w in workers:
-        w["recent"] = _recent(w["status"], w.get("out_age_min"))
     for s in sessions:
-        s["recent"] = _recent(s.get("status"), s.get("age_min"))
+        s["recent"] = True
+
+    # collapsed history summary (count + freshest timestamp + status breakdown) — the retired
+    # prior-session fleet, kept as one honest number instead of dozens of dead rows.
+    hist_by = {}
+    for w in history:
+        k = w.get("status", "idle")
+        hist_by[k] = hist_by.get(k, 0) + 1
+    hist_acts = [w["out_last_active"] for w in history if w.get("out_last_active")]
+    history_summary = dict(
+        workers=len(history), by_status=hist_by,
+        last_active=(max(hist_acts) if hist_acts else None),
+        note=("Prior-session fleet — productization, full local deployment, and the parity + "
+              "knowledge capstones (all shipped). Retired; not part of the current redesign work."))
+
     out_t = sum(s["output_tokens"] or 0 for s in tx)
     cr_t  = sum(s["cache_read_tokens"] or 0 for s in tx)
     cc_t  = sum(s["cache_creation_tokens"] or 0 for s in tx)
@@ -496,13 +508,14 @@ def build_stats():
                   transcript_sessions=len(tx), subagent_sessions=len(subs),
                   workers=len(workers), live_workers=sum(1 for w in workers if w["status"] == "live"),
                   stopped_workers=sum(1 for w in workers if w["status"] == "stopped"),
-                  current_workers=sum(1 for w in workers if w["recent"]),
+                  current_workers=len(workers), history_workers=len(history),
                   recent_window_min=RECENT_MIN)
     acts = [w["out_last_active"] for w in workers if w.get("out_last_active")]
     last_activity = max(acts) if acts else None   # iso Z strings sort chronologically
     return dict(updated=iso(now), heartbeat_at=iso(now), last_activity=last_activity,
                 generated_by="mission-control (ad796e2c)", schema=5,
                 totals=totals, workers=workers, sessions=sessions, total_tokens=out_t,
+                history=history_summary,
                 progress=progress_block(), docker=docker_status(),
                 health=stack_health(), commits=commit_activity(),
                 publisher=publisher_status())
