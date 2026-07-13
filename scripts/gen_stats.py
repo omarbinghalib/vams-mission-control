@@ -70,8 +70,17 @@ now = datetime.datetime.now(datetime.timezone.utc)
 
 # ---------- helpers ----------
 def parse(ts):
+    """Parse an ISO-8601 timestamp defensively — NEVER raises. Python 3.9's
+    datetime.fromisoformat rejects a trailing 'Z' (and any malformed value), which would crash the
+    whole heartbeat and leave stats.json frozen; so we normalise 'Z'->'+00:00', coerce naive
+    datetimes to UTC, and swallow anything unparseable (e.g. a truncated value from a run that was
+    killed mid-write) by returning None. Callers already treat None as 'unknown'."""
     if not ts: return None
-    return datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    try:
+        d = datetime.datetime.fromisoformat(str(ts).strip().replace("Z", "+00:00"))
+        return d if d.tzinfo is not None else d.replace(tzinfo=datetime.timezone.utc)
+    except Exception:
+        return None
 
 def age_of(ts):
     d = parse(ts)
@@ -531,8 +540,16 @@ def build_stats():
                 publisher=publisher_status())
 
 def write_stats(stats):
-    with open(STATS_PATH, "w", encoding="utf-8") as fh:
+    """ATOMIC write: serialise to a temp file in the same dir, fsync, then os.replace() onto the
+    final path. os.replace is atomic on Windows + POSIX, so a reader (or the next heartbeat) can
+    only ever see the OLD or the fully-NEW file — never a half-written/corrupt one. This matters
+    because the scheduled task's 2-min ExecutionTimeLimit can kill a slow run mid-write; without
+    the atomic swap that would leave a truncated stats.json that then crashes the next parse."""
+    tmp = STATS_PATH + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(stats, fh, indent=2); fh.write("\n")
+        fh.flush(); os.fsync(fh.fileno())
+    os.replace(tmp, STATS_PATH)
 
 def sync_html(stats):
     if not os.path.exists(HTML_PATH): return

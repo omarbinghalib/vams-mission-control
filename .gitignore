@@ -3,3 +3,7 @@ scripts/local-config.json
 attention.txt
 scripts/__pycache__/
 *.pyc
+# transient atomic-write temp (os.replace target); never commit a half-written stats file
+stats.json.tmp
+*.tmp
+scripts/heartbeat_hidden.vbs
