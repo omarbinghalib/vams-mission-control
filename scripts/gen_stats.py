@@ -152,7 +152,14 @@ def docker_status():
     args = ["docker", "ps", "-a", "--format", "{{json .}}"]
     if DOCKER_FILTER:
         args += ["--filter", "name=" + DOCKER_FILTER]
-    ok, out = run_safe(args, timeout=20, extra_path=DOCKER_BIN)
+    # This machine's docker CLI is SLUGGISH (`docker info` alone ~12s), so `docker ps -a` regularly
+    # needs >20s and a tight timeout produced a FALSE "unavailable" even though the stack was up.
+    # Give a generous-but-bounded 40s, and on a TIMEOUT (not a hard error) retry once briefly — a
+    # truly-dead daemon still fails both attempts and degrades gracefully. Worst case ~52s, kept
+    # under the 1-min heartbeat cadence. Still `-a` so stopped containers show red.
+    ok, out = run_safe(args, timeout=40, extra_path=DOCKER_BIN)
+    if not ok and "timed out" in (out or "").lower():
+        ok, out = run_safe(args, timeout=12, extra_path=DOCKER_BIN)
     if not ok:
         return {"available": False, "error": (out or "docker unavailable")[:200],
                 "containers": [], "summary": {}}
