@@ -51,7 +51,7 @@
   },
   {
     "title": "Org rename vams -> vbg (tenant/login, data preserved, E2E verified)",
-    "status": "pending",
+    "status": "done",
     "track": "backend"
   }
 ]
