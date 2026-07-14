@@ -93,5 +93,10 @@
     "title": "Parity: feature-parity audit (orig VAMS vs SPA) + close",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "Parity: logic-parity audit (monolith vs services) + close",
+    "status": "pending",
+    "track": "backend"
   }
 ]
