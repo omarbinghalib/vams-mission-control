@@ -512,7 +512,7 @@ def publisher_status(prev=None):
         return pp
     ok, out = run_safe(["powershell", "-NoProfile", "-Command",
         "(Get-ScheduledTask -TaskName 'VAMS-MissionControl-Heartbeat' -ErrorAction SilentlyContinue).State"],
-        timeout=8)
+        timeout=15)                       # ~9s under load; 15s margin. Cached (PUB_TTL), so paid rarely.
     if not ok and pp:                     # probe failed under load — keep the last known state
         pp = dict(pp); pp["carried"] = True
         return pp
