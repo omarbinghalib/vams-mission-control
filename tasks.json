@@ -96,7 +96,7 @@
   },
   {
     "title": "Parity: logic-parity audit (monolith vs services) + close",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend"
   }
 ]
