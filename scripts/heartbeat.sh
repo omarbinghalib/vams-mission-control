@@ -12,6 +12,22 @@ here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 cd "$repo" || exit 0
 
+# SINGLE-WRITER LOCK — the scheduled task launches us FIRE-AND-FORGET (wscript -> sh.Run …,0,False),
+# so a new heartbeat starts every minute even if the previous is still going. Under heavy fleet load
+# a run can take 20-100s, so without this guard they PILE UP and collide on the git index / stats.json
+# / push (the '25 lingering sh.exe' + never-lands-a-push symptom). mkdir is atomic: only one runner
+# wins the lock; the rest exit immediately. A stale lock (crashed run, >5 min old) is reclaimed.
+LOCK="$repo/.heartbeat.lock"
+if ! mkdir "$LOCK" 2>/dev/null; then
+  if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +5 2>/dev/null)" ]; then
+    rmdir "$LOCK" 2>/dev/null
+    mkdir "$LOCK" 2>/dev/null || { echo "heartbeat: lock race, skip $(date -u +%H:%MZ)"; exit 0; }
+  else
+    echo "heartbeat: another run holds the lock, skip $(date -u +%H:%MZ)"; exit 0
+  fi
+fi
+trap 'rmdir "$LOCK" 2>/dev/null' EXIT INT TERM
+
 # NON-INTERACTIVE git: a scheduled (non-interactive) run must NEVER block on a prompt.
 # The freeze root-cause was a heartbeat instance hung on an interactive git/SSH prompt while the
 # task's 72h execution limit + IgnoreNew policy silently rejected every later trigger. Force git to

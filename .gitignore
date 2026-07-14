@@ -7,3 +7,4 @@ scripts/__pycache__/
 stats.json.tmp
 *.tmp
 scripts/heartbeat_hidden.vbs
+.heartbeat.lock
