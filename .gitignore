@@ -8,3 +8,4 @@ stats.json.tmp
 *.tmp
 scripts/heartbeat_hidden.vbs
 .heartbeat.lock
+.heartbeat.log*

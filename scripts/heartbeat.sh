@@ -41,15 +41,30 @@ export GIT_SSH_COMMAND="ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new
 _gitbin="$(command -v git)"
 git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; timeout 25 "$_gitbin" "$@" ); }
 
-if python "$here/gen_stats.py" --heartbeat; then   # exit 0 = push warranted, stats.json rewritten
-  git add stats.json
+# STEP-TIMING LOG (gitignored) — so a detached/scheduled run leaves a trace of exactly which step is
+# slow/stuck (invisible otherwise, since wscript runs it hidden with no console).
+LOG="$repo/.heartbeat.log"
+[ -f "$LOG" ] && { tail -n 200 "$LOG" > "$LOG.t" 2>/dev/null && mv "$LOG.t" "$LOG" 2>/dev/null; }
+log(){ printf '%s pid=%s %s\n' "$(date -u +%H:%M:%S)" "$$" "$1" >> "$LOG"; }
+
+log "START"
+# hard-bound gen_stats too (belt & suspenders under the PT3M task limit): its probes are individually
+# bounded, but cap the whole thing so it can never hold the lock indefinitely.
+if timeout 150 python "$here/gen_stats.py" --heartbeat >> "$LOG" 2>&1; then
+  log "gen_stats OK (push warranted)"
+  git add stats.json; log "git add rc=$?"
   if ! git diff --cached --quiet stats.json; then
     git commit -q -m "Heartbeat: refresh worker liveness
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
-    git push -q && echo "heartbeat pushed $(date -u +%H:%MZ)"
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"; log "git commit rc=$?"
+    git push -q; prc=$?; log "git push rc=$prc"
+    [ "$prc" -eq 0 ] && echo "heartbeat pushed $(date -u +%H:%MZ)"
+  else
+    log "no stats diff (nothing to commit)"
   fi
 else
+  log "gen_stats skip/killed rc=$?"
   echo "heartbeat skip $(date -u +%H:%MZ)"
 fi
+log "END"
 exit 0
