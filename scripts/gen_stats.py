@@ -65,8 +65,24 @@ STALE_MIN      = 2    # heartbeat (active fleet): republish if published stats o
 IDLE_PULSE_MIN = 15   # heartbeat (idle fleet): low-frequency pulse so freshness never freezes
                       # (anti-spam: a fully idle fleet still pushes at most ~4x/hour)
 RECENT_MIN     = 120  # roster/sessions: "current" = live or active within this window (2h)
+# Under heavy fleet load (100% CPU / near-zero free RAM, dozens of concurrent workers) the EXPENSIVE
+# external probes (docker CLI ~9s, the PowerShell scheduled-task check ~14s, HTTP health) can starve
+# the heartbeat and blow the task's 2-min ExecutionTimeLimit — the run gets killed before it writes,
+# so stats.json freezes. These TTLs let those slow probes be RE-USED (carried forward) from the last
+# stats.json instead of paid every single cycle, so the cheap live core (roster/tokens/progress from
+# local file reads) always republishes within seconds.
+DOCKER_TTL_MIN = 5    # re-probe docker at most this often; else carry forward the last good result
+PUB_TTL_MIN    = 10   # re-check the scheduled-task publisher state at most this often
 
 now = datetime.datetime.now(datetime.timezone.utc)
+
+def _load_prev():
+    """Best-effort load of the previously-published stats.json — the source for carry-forward of the
+    slow probes. Never raises (atomic writes guarantee it's whole, but be defensive anyway)."""
+    try:
+        return json.load(open(STATS_PATH, encoding="utf-8"))
+    except Exception:
+        return None
 
 # ---------- helpers ----------
 def parse(ts):
@@ -157,21 +173,27 @@ def _ports(portstr):
     hosts = sorted(set(re.findall(r":(\d+)->", portstr or "")))
     return ", ".join(hosts)
 
-def docker_status():
+def docker_status(prev=None):
+    pd = (prev or {}).get("docker") if isinstance(prev, dict) else None
+    # CARRY-FORWARD CACHE: the docker CLI is sluggish (~9s, worse under load). Re-probe at most once
+    # per DOCKER_TTL_MIN; otherwise reuse the last good block (with its own checked_at so staleness
+    # stays honest). This is what keeps the heartbeat fast enough to finish inside the 2-min limit.
+    if pd and pd.get("available") and (age_of(pd.get("checked_at")) or 1e9) < DOCKER_TTL_MIN:
+        pd = dict(pd); pd["carried"] = True
+        return pd
     args = ["docker", "ps", "-a", "--format", "{{json .}}"]
     if DOCKER_FILTER:
         args += ["--filter", "name=" + DOCKER_FILTER]
-    # This machine's docker CLI is SLUGGISH (`docker info` alone ~12s), so `docker ps -a` regularly
-    # needs >20s and a tight timeout produced a FALSE "unavailable" even though the stack was up.
-    # Give a generous-but-bounded 40s, and on a TIMEOUT (not a hard error) retry once briefly — a
-    # truly-dead daemon still fails both attempts and degrades gracefully. Worst case ~52s, kept
-    # under the 1-min heartbeat cadence. Still `-a` so stopped containers show red.
-    ok, out = run_safe(args, timeout=40, extra_path=DOCKER_BIN)
-    if not ok and "timed out" in (out or "").lower():
-        ok, out = run_safe(args, timeout=12, extra_path=DOCKER_BIN)
+    # Bounded single probe (no doubling retry — under load a retry only compounds the starvation).
+    # Still `-a` so stopped containers show red. On failure, reuse the last good block if we have one
+    # rather than flapping to a false "unavailable" on a transient timeout.
+    ok, out = run_safe(args, timeout=25, extra_path=DOCKER_BIN)
     if not ok:
+        if pd and pd.get("available"):
+            pd = dict(pd); pd["carried"] = True
+            return pd
         return {"available": False, "error": (out or "docker unavailable")[:200],
-                "containers": [], "summary": {}}
+                "containers": [], "summary": {}, "checked_at": iso(now)}
     conts = []
     for line in out.splitlines():
         line = line.strip()
@@ -191,7 +213,7 @@ def docker_status():
     problem  = sum(1 for c in conts if (not c["up"]) or c["health"] == "unhealthy")
     return {"available": True, "containers": conts,
             "summary": {"running": up_n, "total": len(conts),
-                        "healthy": healthy, "problem": problem}}
+                        "healthy": healthy, "problem": problem}, "checked_at": iso(now)}
 
 # ---------- stack health (config-driven HTTP smoke; degrades gracefully) ----------
 def _http_probe(method, url, body, timeout):
@@ -208,13 +230,22 @@ def _http_probe(method, url, body, timeout):
     except Exception as e:
         return None, str(e)[:120]                # unreachable / timeout
 
-def stack_health():
+def stack_health(prev=None):
+    prev_by = {}
+    if isinstance(prev, dict):
+        for h in (prev.get("health") or []):
+            prev_by[h.get("url")] = h
     out = []
     for c in HEALTH_CHECKS:
         url = c.get("url")
         if not url: continue
         expect = c.get("expect", [200])
-        code, err = _http_probe(c.get("method", "GET"), url, c.get("body"), c.get("timeout", 6))
+        # Tight 3s timeout so two checks cost <=6s even under load. If a probe is unreachable but we
+        # had a reachable reading last cycle, carry that forward (marked stale) instead of flapping.
+        code, err = _http_probe(c.get("method", "GET"), url, c.get("body"), c.get("timeout", 3))
+        if code is None and prev_by.get(url, {}).get("reachable"):
+            h = dict(prev_by[url]); h["carried"] = True
+            out.append(h); continue
         out.append({"name": c.get("name", "check"), "method": c.get("method", "GET").upper(),
                     "url": url, "status": code, "expect": expect,
                     "ok": (code in expect), "reachable": (code is not None), "error": err})
@@ -471,15 +502,27 @@ def build_sessions(workers):
     return tx, subs
 
 # ---------- publisher freshness (is the heartbeat scheduled task actually running?) ----------
-def publisher_status():
+def publisher_status(prev=None):
+    pp = (prev or {}).get("publisher") if isinstance(prev, dict) else None
+    # Spawning PowerShell is the single most expensive probe (~14s under memory pressure), and the
+    # scheduled-task state changes rarely — so re-check at most once per PUB_TTL_MIN and otherwise
+    # carry the last reading forward. This alone removes the biggest chunk of the per-cycle cost.
+    if pp and (age_of(pp.get("checked_at")) or 1e9) < PUB_TTL_MIN:
+        pp = dict(pp); pp["carried"] = True
+        return pp
     ok, out = run_safe(["powershell", "-NoProfile", "-Command",
         "(Get-ScheduledTask -TaskName 'VAMS-MissionControl-Heartbeat' -ErrorAction SilentlyContinue).State"],
-        timeout=20)
+        timeout=8)
+    if not ok and pp:                     # probe failed under load — keep the last known state
+        pp = dict(pp); pp["carried"] = True
+        return pp
     state = (out or "").strip() if ok else ""
     return {"task": "VAMS-MissionControl-Heartbeat", "state": (state or "unknown"),
             "paused": (state.lower() == "disabled"), "checked_at": iso(now)}
 
-def build_stats():
+def build_stats(prev=None):
+    if prev is None:
+        prev = _load_prev()   # source for carry-forward of the slow probes
     all_workers = discover_workers()
     # RECENCY: the ACTIVE roster is the CURRENT fleet ONLY — the commander plus any worker that is
     # live or was active within RECENT_MIN. Everything older (a prior session's finished workers)
@@ -535,9 +578,9 @@ def build_stats():
                 generated_by="mission-control (ad796e2c)", schema=5,
                 totals=totals, workers=workers, sessions=sessions, total_tokens=out_t,
                 history=history_summary,
-                progress=progress_block(), docker=docker_status(),
-                health=stack_health(), commits=commit_activity(),
-                publisher=publisher_status())
+                progress=progress_block(), docker=docker_status(prev),
+                health=stack_health(prev), commits=commit_activity(),
+                publisher=publisher_status(prev))
 
 def write_stats(stats):
     """ATOMIC write: serialise to a temp file in the same dir, fsync, then os.replace() onto the
@@ -545,11 +588,25 @@ def write_stats(stats):
     only ever see the OLD or the fully-NEW file — never a half-written/corrupt one. This matters
     because the scheduled task's 2-min ExecutionTimeLimit can kill a slow run mid-write; without
     the atomic swap that would leave a truncated stats.json that then crashes the next parse."""
-    tmp = STATS_PATH + ".tmp"
+    tmp = STATS_PATH + "." + str(os.getpid()) + ".tmp"   # pid-unique so concurrent runs never clash
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(stats, fh, indent=2); fh.write("\n")
         fh.flush(); os.fsync(fh.fileno())
-    os.replace(tmp, STATS_PATH)
+    # os.replace is atomic, but on WINDOWS it raises PermissionError if another process momentarily
+    # holds the target open (a reader, git, or an overlapping heartbeat run). Retry briefly to ride
+    # out the transient lock; as a last resort under sustained contention, overwrite in place so the
+    # dashboard still refreshes rather than freezing.
+    for _ in range(10):
+        try:
+            os.replace(tmp, STATS_PATH); return
+        except PermissionError:
+            time.sleep(0.2)
+    try:
+        with open(STATS_PATH, "w", encoding="utf-8") as fh:
+            json.dump(stats, fh, indent=2); fh.write("\n")
+    finally:
+        try: os.remove(tmp)
+        except OSError: pass
 
 def sync_html(stats):
     if not os.path.exists(HTML_PATH): return
