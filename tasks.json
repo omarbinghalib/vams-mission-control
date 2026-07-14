@@ -98,5 +98,10 @@
     "title": "Parity: logic-parity audit (monolith vs services) + close",
     "status": "in_progress",
     "track": "backend"
+  },
+  {
+    "title": "Exhaustive coverage sweep: all 117 orig apps -> BE+FE+logic (nothing missing)",
+    "status": "pending",
+    "track": "backend"
   }
 ]
