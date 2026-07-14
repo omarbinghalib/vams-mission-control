@@ -73,5 +73,10 @@
     "title": "User tutorials: role-contextual module guides (grounded in redesigned app)",
     "status": "done",
     "track": "frontend"
+  },
+  {
+    "title": "User tutorials: assemble shareable HTML hub",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
