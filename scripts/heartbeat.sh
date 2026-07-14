@@ -8,6 +8,12 @@
 #
 # Invoke (from Task Scheduler / manually), using the POSIX form of this repo's checkout path:
 #   "C:\Program Files\Git\bin\sh.exe" -lc "/c/path/to/pages/scripts/heartbeat.sh"
+# Explicit PATH so this can run under a NON-login shell (`sh -c`, not `sh -lc`): the login shell's
+# profile-sourcing costs ~5s and, under heavy CPU load, starves for far longer before it even reaches
+# this script. A non-login shell starts fast; we just need the MSYS/Git tools on PATH (python comes
+# from the inherited Windows PATH).
+export PATH="/mingw64/bin:/usr/bin:/bin:$PATH"
+
 here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 cd "$repo" || exit 0
