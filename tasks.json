@@ -88,5 +88,10 @@
     "title": "Parity: message-stream (activity feed) build \u2014 missing everywhere in SPA",
     "status": "pending",
     "track": "frontend"
+  },
+  {
+    "title": "Parity: feature-parity audit (orig VAMS vs SPA) + close",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
