@@ -19,8 +19,8 @@ cd "$repo" || exit 0
 # wins the lock; the rest exit immediately. A stale lock (crashed run, >5 min old) is reclaimed.
 LOCK="$repo/.heartbeat.lock"
 if ! mkdir "$LOCK" 2>/dev/null; then
-  if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +5 2>/dev/null)" ]; then
-    rmdir "$LOCK" 2>/dev/null
+  if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +3 2>/dev/null)" ]; then
+    rmdir "$LOCK" 2>/dev/null                       # stale (>3min): a crashed/killed run — reclaim
     mkdir "$LOCK" 2>/dev/null || { echo "heartbeat: lock race, skip $(date -u +%H:%MZ)"; exit 0; }
   else
     echo "heartbeat: another run holds the lock, skip $(date -u +%H:%MZ)"; exit 0
@@ -34,9 +34,12 @@ trap 'rmdir "$LOCK" 2>/dev/null' EXIT INT TERM
 # fail fast instead of prompting; the hard time backstop is the task's ExecutionTimeLimit (PT2M).
 export GIT_TERMINAL_PROMPT=0
 export GIT_SSH_COMMAND="ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=10"
-# git-safe: strip any leaked GIT_* pointer env so every git call operates on THIS repo only
-# (hard-won: a leaked GIT_DIR once fired commits into the code repo — the 99-commit incident).
-git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; command git "$@" ); }
+# git-safe + BOUNDED: strip any leaked GIT_* pointer env (a leaked GIT_DIR once fired commits into the
+# code repo — the 99-commit incident) AND cap every git call with `timeout` on the REAL git binary so
+# a `git push` that stalls under load/network can't hang forever holding the lock. (NB: `timeout
+# command git` does NOT work — `command` is a shell builtin timeout can't exec — hence $_gitbin.)
+_gitbin="$(command -v git)"
+git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; timeout 25 "$_gitbin" "$@" ); }
 
 if python "$here/gen_stats.py" --heartbeat; then   # exit 0 = push warranted, stats.json rewritten
   git add stats.json
