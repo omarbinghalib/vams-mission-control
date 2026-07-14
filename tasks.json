@@ -83,5 +83,10 @@
     "title": "Backend documentation package: architecture + per-service + API + ops + dev guide",
     "status": "in_progress",
     "track": "backend"
+  },
+  {
+    "title": "Parity: message-stream (activity feed) build \u2014 missing everywhere in SPA",
+    "status": "pending",
+    "track": "frontend"
   }
 ]
