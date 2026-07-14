@@ -101,7 +101,7 @@
   },
   {
     "title": "Exhaustive coverage sweep: all 117 orig apps -> BE+FE+logic (nothing missing)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend"
   }
 ]
