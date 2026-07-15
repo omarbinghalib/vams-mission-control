@@ -365,10 +365,18 @@ BASELINE = [
 # any worker live or active within RECENT_MIN. Everything older is collapsed into a single
 # `history` summary count (see build_stats) instead of being carried as dozens of dead rows.
 # There is NO hardcoded worker list: what shows is exactly what is (or was just) running now.
+# Branches come from local-config.json's `repos[]` (the SAME source the commits/velocity panel
+# uses) — never hardcoded here, so a branch switch only ever needs one edit (golden rule: no
+# hardcoded branches). A previous hardcoded "microservices-frontend" here silently drifted from
+# the real frontend branch ("frontend-redesign") and made worker "current activity" show stale
+# commits; deriving from REPOS keeps this in permanent sync.
+_REPO_BY_TRACK = {r.get("track"): r for r in REPOS if r.get("track")}
+_BACKEND_BR  = _REPO_BY_TRACK.get("backend", {}).get("branch")
+_FRONTEND_BR = _REPO_BY_TRACK.get("frontend", {}).get("branch")
 ROLE_MAP = {
-  "backend":         {"branch": "microservices-backend",  "repo": VAMS_BACKEND},
-  "frontend":        {"branch": "microservices-frontend", "repo": VAMS_FRONTEND},
-  "mission-control": {"branch": "microservices-frontend", "repo": VAMS_FRONTEND, "grep": "mission-control"},
+  "backend":         {"branch": _BACKEND_BR,  "repo": VAMS_BACKEND},
+  "frontend":        {"branch": _FRONTEND_BR, "repo": VAMS_FRONTEND},
+  "mission-control": {"branch": _FRONTEND_BR, "repo": VAMS_FRONTEND, "grep": "mission-control"},
 }
 def role_from_desc(desc):
     d = (desc or "").lower()
