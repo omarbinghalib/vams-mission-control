@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-15T04:28:33Z",
-  "heartbeat_at": "2026-07-15T04:28:33Z",
-  "last_activity": "2026-07-15T04:28:32Z",
+  "updated": "2026-07-15T04:29:20Z",
+  "heartbeat_at": "2026-07-15T04:29:20Z",
+  "last_activity": "2026-07-15T04:29:19Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-15T04:28:32Z",
+      "out_last_active": "2026-07-15T04:29:19Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-15T04:28:32Z",
+      "out_last_active": "2026-07-15T04:29:19Z",
       "out_age_min": 0.0,
-      "log_bytes": 452403,
-      "output_tokens": 5556,
-      "cache_read_tokens": 1339933,
-      "cache_creation_tokens": 154849,
-      "msgs": 47,
+      "log_bytes": 1519299,
+      "output_tokens": 7500,
+      "cache_read_tokens": 2341959,
+      "cache_creation_tokens": 237727,
+      "msgs": 66,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -70,14 +70,14 @@
       "short_id": "a59e6513",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 7030.9,
-      "out_last_active": "2026-07-15T04:28:29Z",
+      "head_ago_min": 7031.7,
+      "out_last_active": "2026-07-15T04:29:16Z",
       "out_age_min": 0.1,
-      "log_bytes": 207545,
-      "output_tokens": 15583,
-      "cache_read_tokens": 1096455,
-      "cache_creation_tokens": 181485,
-      "msgs": 34,
+      "log_bytes": 233508,
+      "output_tokens": 17790,
+      "cache_read_tokens": 1840675,
+      "cache_creation_tokens": 191784,
+      "msgs": 45,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -94,7 +94,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-15T04:26:58Z",
-      "out_age_min": 1.6,
+      "out_age_min": 2.4,
       "log_bytes": 215836,
       "output_tokens": 13462,
       "cache_read_tokens": 2285416,
@@ -115,7 +115,7 @@
       "cache_read_tokens": 564214237,
       "cache_creation_tokens": 16649693,
       "msgs": 1459,
-      "last_active": "2026-07-15T04:28:32Z",
+      "last_active": "2026-07-15T04:29:22Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -132,7 +132,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 8444.1,
+      "age_min": 8444.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -147,7 +147,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 17267.2,
+      "age_min": 17267.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -162,7 +162,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 11397.2,
+      "age_min": 11398.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -177,7 +177,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 11170.3,
+      "age_min": 11171.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -192,7 +192,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 7077.9,
+      "age_min": 7078.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -207,7 +207,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 8553.4,
+      "age_min": 8554.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -222,7 +222,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 7237.9,
+      "age_min": 7238.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -237,7 +237,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 11351.1,
+      "age_min": 11351.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -252,7 +252,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 11397.2,
+      "age_min": 11398.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -267,7 +267,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 17972.4,
+      "age_min": 17973.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -282,7 +282,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 17989.9,
+      "age_min": 17990.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -293,16 +293,16 @@
       "full_id": "a1c9be86ee4159534",
       "group": "worker",
       "group_label": "Recapture screenshots on mock data",
-      "output_tokens": 5556,
-      "cache_read_tokens": 1339933,
-      "cache_creation_tokens": 154849,
-      "msgs": 47,
-      "last_active": "2026-07-15T04:28:32Z",
+      "output_tokens": 7500,
+      "cache_read_tokens": 2341959,
+      "cache_creation_tokens": 237727,
+      "msgs": 66,
+      "last_active": "2026-07-15T04:29:19Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 452403,
+      "log_bytes": 1519299,
       "recent": true
     },
     {
@@ -310,16 +310,16 @@
       "full_id": "a59e65133a37af8ff",
       "group": "mission-control",
       "group_label": "Reconcile mission-control board + all data",
-      "output_tokens": 15583,
-      "cache_read_tokens": 1096455,
-      "cache_creation_tokens": 181485,
-      "msgs": 34,
-      "last_active": "2026-07-15T04:28:29Z",
+      "output_tokens": 17790,
+      "cache_read_tokens": 1840675,
+      "cache_creation_tokens": 191784,
+      "msgs": 45,
+      "last_active": "2026-07-15T04:29:16Z",
       "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 207545,
+      "log_bytes": 233508,
       "recent": true
     },
     {
@@ -332,7 +332,7 @@
       "cache_creation_tokens": 132955,
       "msgs": 78,
       "last_active": "2026-07-15T04:26:58Z",
-      "age_min": 1.6,
+      "age_min": 2.4,
       "live": true,
       "status": "live",
       "subagent": true,
@@ -351,40 +351,54 @@
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
-    "overall_pct": 88,
+    "overall_pct": 89,
     "remaining_hours": [
-      4,
-      8
+      6,
+      12
     ],
     "remaining_sessions": [
-      1,
-      2
+      2,
+      3
     ],
     "tracks": [
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 62,
+        "pct": 100,
         "remaining_hours": [
-          2,
-          4
+          0,
+          0
         ],
         "remaining_sessions": [
-          1,
-          1
+          0,
+          0
         ],
         "weight": 1
       },
       {
         "track": "frontend",
         "label": "Frontend",
-        "pct": 93,
+        "pct": 100,
         "remaining_hours": [
-          2,
-          3
+          0,
+          0
         ],
         "remaining_sessions": [
           0,
+          0
+        ],
+        "weight": 1
+      },
+      {
+        "track": "deploy",
+        "label": "Deployment",
+        "pct": 70,
+        "remaining_hours": [
+          2,
+          4
+        ],
+        "remaining_sessions": [
+          1,
           1
         ],
         "weight": 1
@@ -400,6 +414,20 @@
         "remaining_sessions": [
           0,
           0
+        ],
+        "weight": 1
+      },
+      {
+        "track": "docs",
+        "label": "Docs",
+        "pct": 69,
+        "remaining_hours": [
+          4,
+          8
+        ],
+        "remaining_sessions": [
+          1,
+          2
         ],
         "weight": 1
       }
@@ -705,7 +733,8 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-15T04:28:33Z"
+    "checked_at": "2026-07-15T04:28:33Z",
+    "carried": true
   },
   "health": [
     {
