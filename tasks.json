@@ -1,6 +1,6 @@
 [
   {
-    "title": "Productization + full local deployment + parity & knowledge (shipped)",
+    "title": "Productization + full local deployment + parity & knowledge capstones (shipped)",
     "status": "done",
     "track": "archive"
   },
@@ -15,39 +15,49 @@
     "track": "frontend"
   },
   {
-    "title": "FE redesign: nav/shell + command palette that acts (W1)",
+    "title": "FE redesign: component wave \u2014 nav/shell + command palette (W1)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "FE redesign: DataTable \u2014 selection/bulk/row-actions/filters/density (W2)",
+    "title": "FE redesign: component wave \u2014 DataTable selection/bulk/filters/density (W2)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "FE redesign: form primitives \u2014 type-ahead Combobox + keyboard InlineGrid (W3)",
+    "title": "FE redesign: component wave \u2014 form primitives Combobox/InlineGrid (W3)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "FE redesign: surfaces & primitives visual upgrade (W4)",
+    "title": "FE redesign: component wave \u2014 surfaces & primitives visual upgrade (W4)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "Mission-control: live-only board + live-stream auto-refresh",
+    "title": "FE redesign: page adoption \u2014 shared infra (DocumentForm/detailCache/hotkeys)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: page adoption \u2014 module pages (lists/details/PO-JV-SO)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "FE redesign: integrate + verify (373 tests green, build local/cloud)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "Mission-control: fixes + live-stream + heartbeat hardening",
     "status": "done",
     "track": "mission-control"
   },
   {
-    "title": "FE redesign Wave 3: PO/JV combined create flow + detail perf + keyboard layer",
+    "title": "Toolkit: mission-control-kit rounds 1/2 + commander operating-model + install-fleet loader",
     "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: integrate + verify (278 tests, build local/cloud)",
-    "status": "done",
-    "track": "frontend"
+    "track": "mission-control"
   },
   {
     "title": "Org rename vams -> vbg (tenant/login, data preserved, E2E verified)",
@@ -55,53 +65,137 @@
     "track": "backend"
   },
   {
-    "title": "Toolkit: port 7 MC fixes + PLAYBOOK lessons into mission-control-kit",
+    "title": "SSH cutover (all repos)",
     "status": "done",
-    "track": "mission-control"
+    "track": "deploy"
   },
   {
-    "title": "FE redesign W3a: shared page infra (DocumentForm, detailCache, dirtyGuard, hotkeys, ShortcutSheet)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign W3b: module page adoption (lists->bulk/quick-edit, details->cache, PO/JV/SO->DocumentForm)",
+    "title": "Parity: message-stream \u2014 BE ops Message API + FE component wired app-wide",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "User tutorials: role-contextual module guides (grounded in redesigned app)",
+    "title": "Parity: dark FE screens \u2014 QC (CCR/FE-tests/lessons/feedback/calibration)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "User tutorials: assemble shareable HTML hub",
+    "title": "Parity: dark FE screens \u2014 Accounting (count-journals/bulk-PV/currency/P&L-BS/post-GL)",
     "status": "done",
     "track": "frontend"
   },
   {
-    "title": "Backend documentation package: architecture + per-service + API + ops + dev guide",
-    "status": "in_progress",
+    "title": "Parity: dark FE screens \u2014 Eng-Prod (machines/MES/PDM/planner/BOM-WIP/toolings/job-abnormality)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 HR (recruitment-ATS/contract-renewals/leave-replacement/HOD)",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 Projects depth",
+    "status": "done",
+    "track": "frontend"
+  },
+  {
+    "title": "Parity: attachments-upload + audit-history (real)",
+    "status": "done",
     "track": "backend"
   },
   {
-    "title": "Parity: message-stream (activity feed) build \u2014 missing everywhere in SPA",
-    "status": "in_progress",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: feature-parity audit (orig VAMS vs SPA) + close",
-    "status": "in_progress",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: logic-parity audit (monolith vs services) + close",
-    "status": "in_progress",
+    "title": "Parity: 2FA/TOTP + password-reset (BE+FE)",
+    "status": "done",
     "track": "backend"
   },
   {
-    "title": "Exhaustive coverage sweep: all 117 orig apps -> BE+FE+logic (nothing missing)",
-    "status": "in_progress",
+    "title": "Backend logic parity: SJ->COGS GL leg (cent-verified)",
+    "status": "done",
     "track": "backend"
+  },
+  {
+    "title": "Backend logic parity: service/freight PJ postings",
+    "status": "done",
+    "track": "backend"
+  },
+  {
+    "title": "Backend logic parity: P&L + Balance-Sheet reports",
+    "status": "done",
+    "track": "backend"
+  },
+  {
+    "title": "Backend logic parity: hr/eng relay sidecars + relays->vams schema",
+    "status": "done",
+    "track": "backend"
+  },
+  {
+    "title": "Backend logic parity: real notification ingestion",
+    "status": "done",
+    "track": "backend"
+  },
+  {
+    "title": "Integrated verify GREEN (FE 373 tests/tsc0/build local+cloud; BE 18 tests; 32 containers)",
+    "status": "done",
+    "track": "deploy"
+  },
+  {
+    "title": "Deploy/finalize (:8090 serves everything, E2E verified)",
+    "status": "done",
+    "track": "deploy"
+  },
+  {
+    "title": "Docs: 10 role tutorials + hub",
+    "status": "done",
+    "track": "docs"
+  },
+  {
+    "title": "Docs: backend documentation package (README + hub, 21+ docs)",
+    "status": "done",
+    "track": "docs"
+  },
+  {
+    "title": "Docs: Deploy & Operate runbook",
+    "status": "done",
+    "track": "docs"
+  },
+  {
+    "title": "Docs: in-app contextual Help drawer",
+    "status": "done",
+    "track": "docs"
+  },
+  {
+    "title": "Docs: content refresh for parity campaign",
+    "status": "done",
+    "track": "docs"
+  },
+  {
+    "title": "Post-restart environment recovery (docker stack + git integrity)",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "~32 containers recovering; gateway health re-verifying"
+  },
+  {
+    "title": "Screenshot recapture on mock data (PII fix)",
+    "status": "in_progress",
+    "track": "docs",
+    "note": "replacing earlier real-data screenshots with mock-data captures"
+  },
+  {
+    "title": "Purge real-data screenshots from git history (frontend-redesign)",
+    "status": "pending",
+    "track": "docs"
+  },
+  {
+    "title": "Assemble visual doc hubs (clean screenshots) + walkthrough videos + publish",
+    "status": "pending",
+    "track": "docs",
+    "note": "gated on owner"
+  },
+  {
+    "title": "Phase-5 production/cloud cutover",
+    "status": "pending",
+    "track": "deploy",
+    "note": "reserved for Omar's sign-off"
   }
 ]
