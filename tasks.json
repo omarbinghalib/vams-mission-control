@@ -15,37 +15,37 @@
     "title": "Coverage sweep: original VAMS UI -> implementable spec (v1)",
     "status": "done",
     "track": "frontend",
-    "note": "SUPERSEDED -- built against the wrong commit (the broken/partial omarbinghalib/VAMS `main` upload). A v2 reconciliation against the confirmed true original (6a68f9c on VAMS2.0) is in flight -- see Foundation lane 5 below."
+    "note": "SUPERSEDED -- built against the wrong commit (the broken/partial omarbinghalib/VAMS `main` upload). Reconciled to v2 against the confirmed true original -- see Foundation lane 5."
   },
   {
     "title": "Source-of-truth arbitration: which VAMS codebase is the true VBG-deployed original",
     "status": "done",
     "track": "audit",
-    "note": "MAJOR FINDING. omarbinghalib/VAMS `main` is a BROKEN PARTIAL UPLOAD: 12 apps in strict alphabetical order (accounts->cmtr), cut off mid-alphabet, only 9.8% production-table coverage -- unusable as a reference. The TRUE VBG-deployed original is commit 6a68f9c on branch VAMS2.0: 112 apps, 98.5% (effectively 100%) production-table coverage, pinned Django 1.6.10 + South 0.8.4 -- proven by 1,527 rows in production's south_migrationhistory (South only existed pre-Django-1.7). The VAMS2.0 tip is a dependency-upgraded version that was NEVER deployed (phase1-django1.8 ... phase5-django32 + code-rewrite all merged in; py312/django42 requirements ladder) -- its base requirements.txt still misleadingly says Django 1.6.10. Omar's pristine production dump (Jun_30_Tue_23_00.sql.gz) and vams_monolith have identical 564-table sets -- zero drift -- independently validating our whole migration source. Employee-facing stack to match: Bootstrap 2.3.1/2.3.2 + 3.2.0/3.3.1 mixed, jQuery 1.x, Angular 1.3.15."
+    "note": "MAJOR FINDING. True original = commit 6a68f9c on VAMS2.0 (112 apps, 98.5% table coverage, pinned Django 1.6.10 + South). omarbinghalib/VAMS `main` is a broken 12-app partial upload (9.8% coverage). The VAMS2.0 tip is a never-deployed dependency upgrade."
   },
   {
     "title": "Restore pristine Jun-30 prod dump -> new DB vams_original_pristine; validate ETL counts",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Restoring Jun_30_Tue_23_00.sql.gz (Omar's pristine production dump) into its own DB and cross-checking ETL counts, independently confirming migration-source integrity."
+    "note": "VALIDATED against vams_monolith: 564 tables, 112 app_labels, 12/12 counts identical. Zero drift. GL +58 proven benign (post-migration app rows, ids above source max)."
   },
   {
     "title": "Stand up VAMS2.0-tip reference instance on :8100 (network-isolated)",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "Live browsable reference of the confirmed true original (6a68f9c) for adversarial parity checks. SAFETY: the original VAMS code reaches the LOCAL NETWORK (ax_link/ax_sync Dynamics AX integration, likely UNC/SMB). Per Omar: no worker may change any file there. This instance runs NETWORK-ISOLATED with integrations disabled; every other lane reads this source read-only."
+    "note": "LIVE on :8100, network-isolated (refadmin/RefAdmin!2026), integrations disabled. UI delta 6a68f9c->tip = 39 of 40 files visually identical. Every other lane reads this source read-only."
   },
   {
     "title": "Completeness audit: every original page + feature vs new FE/BE, anchored to 6a68f9c",
     "status": "in_progress",
     "track": "audit",
-    "note": "Re-anchored to the confirmed true original (6a68f9c) after the source-of-truth arbitration; produces the honest gap list the legacy-UI and backend lanes close against. Read-only against the source -- no file changes."
+    "note": "Re-anchored to the confirmed true original (6a68f9c). Produces the honest gap list the legacy-UI and backend lanes close against. Read-only against the source -- no file changes."
   },
   {
     "title": "Foundation lane 1: legacy design tokens + CSS base",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Legacy-UI foundation wave, lane 1 of 5. Read-only source reading against 6a68f9c."
+    "note": "Commit 4b51f75. Key finding: main.css was hand-edited after compile, so main.scss is STALE -- deployed page bg is #E5EEF3 (not #262626), links are black, the 190px gutter is commented out in the deployed CSS."
   },
   {
     "title": "Foundation lane 2: legacy app shell + 38-item nav tree",
@@ -57,25 +57,133 @@
     "title": "Foundation lane 3: legacy page archetypes -- list/detail/form/stepper/modal",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Legacy-UI foundation wave, lane 3 of 5. Read-only source reading against 6a68f9c."
+    "note": "Legacy-UI foundation wave, lane 3 of 5. Spec v2: Bootstrap 2.3.2 single-framework, two list pagers (126 digg / 113 default). Read-only source reading against 6a68f9c."
   },
   {
     "title": "Foundation lane 4: legacy Message Stream + Activity Stream widgets",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Legacy-UI foundation wave, lane 4 of 5. Read-only source reading against 6a68f9c."
+    "note": "Legacy-UI foundation wave, lane 4 of 5. Spec v2: Message Stream is a rich-text composer, DataTables in 5 modules. Read-only source reading against 6a68f9c."
   },
   {
     "title": "Foundation lane 5: reconcile UI spec v1 -> v2 against 6a68f9c",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Legacy-UI foundation wave, lane 5 of 5. Supersedes the v1 coverage sweep, which was built against the wrong (broken, partial) commit."
+    "note": "RECONCILED. Bootstrap 2.3.2 single-framework (the \"BS2/BS3 mixed\" claim was false), two list pagers (126 digg / 113 default), DataTables in 5 modules, Message Stream is a rich-text composer. Supersedes the v1 coverage sweep."
+  },
+  {
+    "title": "ETL triage: classify every 0-row/1-row gap (spec-never-ran vs parent-only spec)",
+    "status": "done",
+    "track": "audit",
+    "note": "COMPLETE. Bucket A (spec never ran) is EMPTY -- zero defects there. Real failure mode is Bucket B: ETL scripts only ever spec'd parent/header tables. ~2.2M rows never migrated: HR 484,850 / engineering 1,176,858 / purchasing 362,567 / accounting 106,059 / QC+ops 45,218 / CRM 44,707 / production 505,708 (excluding 13.5M GPS-breadcrumb exhaust)."
+  },
+  {
+    "title": "Data integrity: GRN line items backfill",
+    "status": "done",
+    "track": "backend",
+    "note": "1 -> 54,520 rows. Commit af2a077."
   },
   {
     "title": "Gap-closing: build Andon board capability (backend)",
     "status": "in_progress",
     "track": "backend",
     "note": "First concrete gap surfaced by the completeness audit; a worker is actively building it in the new backend now."
+  },
+  {
+    "title": "Bucket B backfill: purchasing (29 unmigrated child tables, 362,567 rows)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Landed-cost-relevant: missing pocharge rows are why landed cost is silently wrong on every GRN (no freight/customs)."
+  },
+  {
+    "title": "Bucket B backfill: engineering (1,176,858 unmigrated rows)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "BOM RECOMPUTE HAZARD: 137,046 cost estimates at risk once the missing engineering child rows land -- verification lane tracks cent-level drift."
+  },
+  {
+    "title": "Bucket B backfill: HR (484,850 unmigrated rows)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "BLOCKER: payroll numerically understates pay against the unmigrated rows -- active fix."
+  },
+  {
+    "title": "Bucket B backfill: CRM (44,707 unmigrated rows)",
+    "status": "in_progress",
+    "track": "backend"
+  },
+  {
+    "title": "Bucket B backfill: accounting supplier ledger (106,059 unmigrated rows)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Ownership of the supplier-account records (accounting vs purchasing) is an open decision -- see pending items."
+  },
+  {
+    "title": "Bucket B backfill: production (505,708 rows) + QC/ops (45,218 rows)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Not yet staffed -- queued behind the purchasing/engineering/HR/CRM/accounting lanes above."
+  },
+  {
+    "title": "BLOCKER: period locking DISABLED -- 0 YearLock rows vs 1,055 locked months in monolith",
+    "status": "pending",
+    "track": "backend",
+    "note": "Control failure: backdated posting into closed accounting years is currently permitted. No owning fix lane yet."
+  },
+  {
+    "title": "BLOCKER: post_petty_cash hard-crashes on a None dereference",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "BLOCKER: 154 sales orders show understated totals (unmigrated socharge)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Same class of defect as the GRN landed-cost gap -- charge child rows never migrated."
+  },
+  {
+    "title": "BLOCKER: cost engine silently zeroes 2 of 5 cost terms (17 unmigrated M2M link rows)",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "BLOCKER: documents render as empty shells -- 29 parents w/ fully-empty child tables (442,484 rows) + 21 empty jsonb *_ids columns",
+    "status": "pending",
+    "track": "backend",
+    "note": "NCR cluster worst-hit: 69.6% lost their report-against subject via the empty jsonb *_ids link."
+  },
+  {
+    "title": "Verification: BOM cost drift reconciliation to the cent",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Guards the engineering backfill's BOM recompute hazard (137,046 cost estimates at risk)."
+  },
+  {
+    "title": "Safety: stop vams_monolith_app (:8012) writing to the source of truth",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source."
+  },
+  {
+    "title": "Health check: assess Postgres recovery event during a 13.9M-row aggregate",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Postgres entered recovery mid-aggregate; a health-check worker is assessing whether the backfill fleet must pause. Fleet has NOT been paused pending that assessment."
+  },
+  {
+    "title": "Gap lane: real XLSX/PDF export",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "Gap lane: durable field-level history log",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "Gap lane: payment-term workflow + nav orphans",
+    "status": "pending",
+    "track": "backend"
   },
   {
     "title": "Legacy-UI module re-skin lanes (split after foundation lands)",
@@ -94,6 +202,30 @@
     "status": "pending",
     "track": "audit",
     "note": "Confirms the legacy-ui branch matches the confirmed true original (6a68f9c) look + workflows exactly (VBG on-site deployment -- existing staff need zero retraining), running on the new microservices backend, verified against the network-isolated :8100 reference instance."
+  },
+  {
+    "title": "DECISION (awaiting Omar): supplier-account ownership -- accounting vs purchasing",
+    "status": "pending",
+    "track": "backend",
+    "note": "Blocks final shape of the accounting supplier-ledger backfill lane. Awaiting Omar."
+  },
+  {
+    "title": "DECISION (awaiting Omar): migrate the tasks_* family? (10,959 rows -- vendor's own bug backlog)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Awaiting Omar."
+  },
+  {
+    "title": "DECISION (awaiting Omar): rotate leaked credentials found in original settings.py (AX/SMS/Mattermost/SMTP)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Security -- awaiting Omar's go-ahead before rotating (may affect live integrations)."
+  },
+  {
+    "title": "Unexamined: file/blob storage (affects every *document table)",
+    "status": "pending",
+    "track": "audit",
+    "note": "Not yet scoped -- flagged so it isn't silently dropped from the gap list."
   },
   {
     "title": "Screenshot recapture on mock data (PII fix)",
