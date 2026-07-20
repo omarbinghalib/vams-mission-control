@@ -71,10 +71,30 @@ RECENT_MIN     = 120  # roster/sessions: "current" = live or active within this 
 # so stats.json freezes. These TTLs let those slow probes be RE-USED (carried forward) from the last
 # stats.json instead of paid every single cycle, so the cheap live core (roster/tokens/progress from
 # local file reads) always republishes within seconds.
-DOCKER_TTL_MIN = 5    # re-probe docker at most this often; else carry forward the last good result
-PUB_TTL_MIN    = 10   # re-check the scheduled-task publisher state at most this often
+DOCKER_TTL_MIN = 20   # re-probe docker at most this often; else carry forward the last good result
+PUB_TTL_MIN    = 20   # re-check the scheduled-task publisher state at most this often
+# 2026-07-20 STALENESS INCIDENT: under sustained extreme load (~22 concurrent workers + ~15 node
+# build processes + Postgres ETL backfills) the docker probe and the powershell scheduled-task probe
+# were EACH observed to consume their FULL nominal timeout (25s / 15s) on every call — they never
+# succeeded fast, they just burned the whole budget before being killed. That alone is 40s/tick spent
+# on two probes that were pure dead weight, and it repeated every cycle because a run that gets killed
+# by heartbeat.sh's outer `timeout 150` dies BEFORE write_stats() ever runs, so the TTL/carry-forward
+# state (checked_at) never gets persisted — the next tick retries the same doomed probe from scratch.
+# Net effect: gen_stats.py --heartbeat blew its 150s budget on ~every tick for over an hour, freezing
+# stats.json. Fix: (1) shrink the raw subprocess timeouts below (docker 25->8s, publisher 15->6s) so a
+# guaranteed-timeout costs far less; (2) add a hard wall-clock BUDGET across the whole expensive-probe
+# phase (docker/health/commits/publisher/branch_head) so build_stats() can NEVER stall past it — once
+# spent, remaining probes are skipped (carried-forward / empty-safe) and the cheap core (roster/tokens/
+# progress, all local file reads, no subprocess) always finishes and gets written. Raising the TTLs
+# (5->20, 10->20) also means that once a probe succeeds (or even fails-but-completes) again, we don't
+# keep re-paying for it every single tick.
+HEARTBEAT_BUDGET_SEC = 45   # hard cap on total time spent in the expensive external-probe phase
 
 now = datetime.datetime.now(datetime.timezone.utc)
+_budget_start = time.monotonic()
+def _budget_left():
+    """Seconds remaining in this run's expensive-probe budget (never negative)."""
+    return max(0.0, HEARTBEAT_BUDGET_SEC - (time.monotonic() - _budget_start))
 
 def _load_prev():
     """Best-effort load of the previously-published stats.json — the source for carry-forward of the
@@ -181,13 +201,22 @@ def docker_status(prev=None):
     if pd and pd.get("available") and (age_of(pd.get("checked_at")) or 1e9) < DOCKER_TTL_MIN:
         pd = dict(pd); pd["carried"] = True
         return pd
+    # BUDGET GUARD: under the load that caused the 2026-07-20 outage this probe was observed to
+    # consume its full timeout on EVERY call (never a fast success). If the run is already tight on
+    # budget, skip the spawn entirely rather than gamble another guaranteed-timeout on it.
+    if _budget_left() < 10:
+        if pd: pd = dict(pd); pd["carried"] = True; return pd
+        return {"available": False, "error": "skipped: heartbeat budget exhausted",
+                "containers": [], "summary": {}, "checked_at": iso(now)}
     args = ["docker", "ps", "-a", "--format", "{{json .}}"]
     if DOCKER_FILTER:
         args += ["--filter", "name=" + DOCKER_FILTER]
     # Bounded single probe (no doubling retry — under load a retry only compounds the starvation).
     # Still `-a` so stopped containers show red. On failure, reuse the last good block if we have one
     # rather than flapping to a false "unavailable" on a transient timeout.
-    ok, out = run_safe(args, timeout=25, extra_path=DOCKER_BIN)
+    # Timeout shrunk 25->8s (2026-07-20): under load this call was measured burning the FULL 25s on
+    # every attempt without ever succeeding — a guaranteed-timeout should cost as little as possible.
+    ok, out = run_safe(args, timeout=min(8, _budget_left()), extra_path=DOCKER_BIN)
     if not ok:
         if pd and pd.get("available"):
             pd = dict(pd); pd["carried"] = True
@@ -240,6 +269,14 @@ def stack_health(prev=None):
         url = c.get("url")
         if not url: continue
         expect = c.get("expect", [200])
+        if _budget_left() < 4:                          # BUDGET GUARD (2026-07-20)
+            prev_h = prev_by.get(url)
+            if prev_h:
+                h = dict(prev_h); h["carried"] = True; out.append(h); continue
+            out.append({"name": c.get("name", "check"), "method": c.get("method", "GET").upper(),
+                        "url": url, "status": None, "expect": expect, "ok": False,
+                        "reachable": False, "error": "skipped: heartbeat budget exhausted"})
+            continue
         # Tight 3s timeout so two checks cost <=6s even under load. If a probe is unreachable but we
         # had a reachable reading last cycle, carry that forward (marked stale) instead of flapping.
         code, err = _http_probe(c.get("method", "GET"), url, c.get("body"), c.get("timeout", 3))
@@ -258,11 +295,16 @@ def commit_activity():
         path, br, track = r.get("path"), r.get("branch"), r.get("track", "")
         if not path or not os.path.isdir(path):
             tracks.append({"track": track, "branch": br, "available": False}); continue
+        if _budget_left() < 6:                          # BUDGET GUARD (2026-07-20): skip remaining
+            tracks.append({"track": track, "branch": br, "available": False,
+                           "error": "skipped: heartbeat budget exhausted"}); continue
         def count(since):
-            ok, o = run_safe(["git", "-C", path, "rev-list", "--count", "--since", since, br])
+            ok, o = run_safe(["git", "-C", path, "rev-list", "--count", "--since", since, br],
+                              timeout=min(8, _budget_left()))
             o = (o or "").strip()
             return int(o) if ok and o.isdigit() else None
-        ok, o = run_safe(["git", "-C", path, "log", "-6", "--format=%h%x1f%cI%x1f%s", br])
+        ok, o = run_safe(["git", "-C", path, "log", "-6", "--format=%h%x1f%cI%x1f%s", br],
+                          timeout=min(8, _budget_left()))
         if ok:
             for line in o.splitlines():
                 p = line.split("\x1f")
@@ -466,7 +508,7 @@ def discover_workers():
                    cache_creation_tokens=cc_tok, msgs=msgs,
                    signal=("stopped by user (harness-cancelled)" if stopped else "task-output mtime + git commit"),
                    status=status, live=(status == "live"))
-        if branch and rm.get("repo") and status in ("live", "idle"):
+        if branch and rm.get("repo") and status in ("live", "idle") and _budget_left() > 4:
             h = branch_head(rm["repo"], branch, rm.get("grep"))
             if h:
                 rec["head_commit"], ci = h[0], h[1]
@@ -518,9 +560,17 @@ def publisher_status(prev=None):
     if pp and (age_of(pp.get("checked_at")) or 1e9) < PUB_TTL_MIN:
         pp = dict(pp); pp["carried"] = True
         return pp
+    # BUDGET GUARD (2026-07-20 incident): under the load that froze the dashboard for ~75 minutes,
+    # this exact powershell spawn was measured burning its FULL nominal timeout on every call (never
+    # a fast success) — skip the spawn entirely once the run is tight on budget rather than pay for
+    # another guaranteed-timeout. Nominal timeout also shrunk 15->6s for the same reason.
+    if _budget_left() < 8:
+        if pp: pp = dict(pp); pp["carried"] = True; return pp
+        return {"task": "VAMS-MissionControl-Heartbeat", "state": "unknown", "paused": False,
+                "checked_at": iso(now), "error": "skipped: heartbeat budget exhausted"}
     ok, out = run_safe(["powershell", "-NoProfile", "-Command",
         "(Get-ScheduledTask -TaskName 'VAMS-MissionControl-Heartbeat' -ErrorAction SilentlyContinue).State"],
-        timeout=15)                       # ~9s under load; 15s margin. Cached (PUB_TTL), so paid rarely.
+        timeout=min(6, _budget_left()))    # shrunk 15->6s: observed to always burn the full timeout
     if not ok and pp:                     # probe failed under load — keep the last known state
         pp = dict(pp); pp["carried"] = True
         return pp
