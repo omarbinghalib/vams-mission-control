@@ -1,6 +1,11 @@
 {
-  "active": false,
-  "message": "",
-  "options": [],
-  "raised_at": null
+  "active": true,
+  "message": "Two decisions owed before backend backfill lanes can fully close: (1) supplier-account ownership -- accounting vs purchasing? (2) migrate the tasks_* family (10,959 rows -- the vendor's own bug backlog) or leave it out?",
+  "options": [
+    "1A: supplier accounts owned by Accounting",
+    "1B: supplier accounts owned by Purchasing",
+    "2A: migrate tasks_* family",
+    "2B: leave tasks_* out of migration"
+  ],
+  "raised_at": "2026-07-20T05:45:26Z"
 }
