@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-20T02:53:33Z",
-  "heartbeat_at": "2026-07-20T02:53:33Z",
-  "last_activity": "2026-07-20T02:53:34Z",
+  "updated": "2026-07-20T02:54:07Z",
+  "heartbeat_at": "2026-07-20T02:54:07Z",
+  "last_activity": "2026-07-20T02:54:07Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-20T02:53:31Z",
+      "out_last_active": "2026-07-20T02:54:07Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-20T02:53:31Z",
+      "out_last_active": "2026-07-20T02:54:06Z",
       "out_age_min": 0.0,
-      "log_bytes": 163483,
-      "output_tokens": 9641,
-      "cache_read_tokens": 1628306,
-      "cache_creation_tokens": 103253,
-      "msgs": 60,
+      "log_bytes": 180425,
+      "output_tokens": 10478,
+      "cache_read_tokens": 1965709,
+      "cache_creation_tokens": 108383,
+      "msgs": 68,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -71,13 +71,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-20T02:53:34Z",
+      "out_last_active": "2026-07-20T02:54:07Z",
       "out_age_min": 0.0,
-      "log_bytes": 329201,
-      "output_tokens": 10048,
-      "cache_read_tokens": 2100772,
-      "cache_creation_tokens": 244504,
-      "msgs": 53,
+      "log_bytes": 394789,
+      "output_tokens": 12469,
+      "cache_read_tokens": 3286411,
+      "cache_creation_tokens": 303685,
+      "msgs": 64,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -93,13 +93,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-20T02:53:15Z",
-      "out_age_min": 0.3,
-      "log_bytes": 214302,
-      "output_tokens": 14736,
-      "cache_read_tokens": 1073364,
-      "cache_creation_tokens": 155144,
-      "msgs": 40,
+      "out_last_active": "2026-07-20T02:54:04Z",
+      "out_age_min": 0.1,
+      "log_bytes": 234290,
+      "output_tokens": 19542,
+      "cache_read_tokens": 1398744,
+      "cache_creation_tokens": 169100,
+      "msgs": 45,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -115,7 +115,7 @@
       "cache_read_tokens": 630711496,
       "cache_creation_tokens": 17347334,
       "msgs": 1600,
-      "last_active": "2026-07-20T02:53:34Z",
+      "last_active": "2026-07-20T02:54:09Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -132,7 +132,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 15549.1,
+      "age_min": 15549.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -147,7 +147,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 24372.2,
+      "age_min": 24372.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -162,7 +162,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 18502.2,
+      "age_min": 18502.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -177,7 +177,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 18275.3,
+      "age_min": 18275.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -192,7 +192,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 14182.9,
+      "age_min": 14183.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -207,7 +207,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 15658.4,
+      "age_min": 15659.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -222,7 +222,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 14342.9,
+      "age_min": 14343.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -237,7 +237,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 18456.1,
+      "age_min": 18456.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -252,7 +252,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 18502.2,
+      "age_min": 18502.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -267,7 +267,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 25077.4,
+      "age_min": 25078.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -282,7 +282,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 25094.9,
+      "age_min": 25095.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -293,16 +293,16 @@
       "full_id": "af4c4357d01ef047c",
       "group": "worker",
       "group_label": "Post-restart stack recovery + branch",
-      "output_tokens": 9641,
-      "cache_read_tokens": 1628306,
-      "cache_creation_tokens": 103253,
-      "msgs": 60,
-      "last_active": "2026-07-20T02:53:31Z",
+      "output_tokens": 10478,
+      "cache_read_tokens": 1965709,
+      "cache_creation_tokens": 108383,
+      "msgs": 68,
+      "last_active": "2026-07-20T02:54:06Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 163483,
+      "log_bytes": 180425,
       "recent": true
     },
     {
@@ -310,16 +310,16 @@
       "full_id": "ab66c0fc3ec8e45c1",
       "group": "worker",
       "group_label": "Recon original VAMS UI",
-      "output_tokens": 10048,
-      "cache_read_tokens": 2100772,
-      "cache_creation_tokens": 244504,
-      "msgs": 53,
-      "last_active": "2026-07-20T02:53:34Z",
+      "output_tokens": 12469,
+      "cache_read_tokens": 3286411,
+      "cache_creation_tokens": 303685,
+      "msgs": 64,
+      "last_active": "2026-07-20T02:54:07Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 329201,
+      "log_bytes": 394789,
       "recent": true
     },
     {
@@ -327,16 +327,16 @@
       "full_id": "ae97c68a1aa90beb9",
       "group": "worker",
       "group_label": "Seed board for legacy-UI effort",
-      "output_tokens": 14736,
-      "cache_read_tokens": 1073364,
-      "cache_creation_tokens": 155144,
-      "msgs": 40,
-      "last_active": "2026-07-20T02:53:15Z",
-      "age_min": 0.3,
+      "output_tokens": 19542,
+      "cache_read_tokens": 1398744,
+      "cache_creation_tokens": 169100,
+      "msgs": 45,
+      "last_active": "2026-07-20T02:54:04Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 214302,
+      "log_bytes": 234290,
       "recent": true
     }
   ],
@@ -351,20 +351,20 @@
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
-    "overall_pct": 88,
+    "overall_pct": 14,
     "remaining_hours": [
-      9,
-      18
+      14,
+      28
     ],
     "remaining_sessions": [
-      2,
-      5
+      4,
+      8
     ],
     "tracks": [
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 88,
+        "pct": 0,
         "remaining_hours": [
           3,
           6
@@ -378,21 +378,35 @@
       {
         "track": "frontend",
         "label": "Frontend",
-        "pct": 100,
+        "pct": 25,
         "remaining_hours": [
-          0,
-          0
+          2,
+          4
         ],
         "remaining_sessions": [
-          0,
-          0
+          1,
+          1
         ],
         "weight": 1
       },
       {
         "track": "deploy",
         "label": "Deployment",
-        "pct": 80,
+        "pct": 33,
+        "remaining_hours": [
+          3,
+          6
+        ],
+        "remaining_sessions": [
+          1,
+          2
+        ],
+        "weight": 1
+      },
+      {
+        "track": "audit",
+        "label": "Capstones",
+        "pct": 0,
         "remaining_hours": [
           2,
           3
@@ -404,37 +418,9 @@
         "weight": 1
       },
       {
-        "track": "audit",
-        "label": "Capstones",
-        "pct": 100,
-        "remaining_hours": [
-          0,
-          0
-        ],
-        "remaining_sessions": [
-          0,
-          0
-        ],
-        "weight": 1
-      },
-      {
-        "track": "mission-control",
-        "label": "Mission-control",
-        "pct": 100,
-        "remaining_hours": [
-          0,
-          0
-        ],
-        "remaining_sessions": [
-          0,
-          0
-        ],
-        "weight": 1
-      },
-      {
         "track": "docs",
         "label": "Docs",
-        "pct": 62,
+        "pct": 0,
         "remaining_hours": [
           4,
           9
