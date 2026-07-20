@@ -1,227 +1,32 @@
 [
   {
-    "title": "Productization + full local deployment + parity & knowledge capstones (shipped)",
-    "status": "done",
-    "track": "archive"
-  },
-  {
-    "title": "FE redesign: diagnosis \u2014 workflow + visual design direction",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: design tokens + fonts foundation (W0)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: component wave \u2014 nav/shell + command palette (W1)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: component wave \u2014 DataTable selection/bulk/filters/density (W2)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: component wave \u2014 form primitives Combobox/InlineGrid (W3)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: component wave \u2014 surfaces & primitives visual upgrade (W4)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: page adoption \u2014 shared infra (DocumentForm/detailCache/hotkeys)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: page adoption \u2014 module pages (lists/details/PO-JV-SO)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "FE redesign: integrate + verify (373 tests green, build local/cloud)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Mission-control: fixes + live-stream + heartbeat hardening",
-    "status": "done",
-    "track": "mission-control"
-  },
-  {
-    "title": "Toolkit: mission-control-kit rounds 1/2 + commander operating-model + install-fleet loader",
-    "status": "done",
-    "track": "mission-control"
-  },
-  {
-    "title": "Org rename vams -> vbg (tenant/login, data preserved, E2E verified)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "SSH cutover (all repos)",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Parity: message-stream \u2014 BE ops Message API + FE component wired app-wide",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: dark FE screens \u2014 QC (CCR/FE-tests/lessons/feedback/calibration)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: dark FE screens \u2014 Accounting (count-journals/bulk-PV/currency/P&L-BS/post-GL)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: dark FE screens \u2014 Eng-Prod (machines/MES/PDM/planner/BOM-WIP/toolings/job-abnormality)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: dark FE screens \u2014 HR (recruitment-ATS/contract-renewals/leave-replacement/HOD)",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: dark FE screens \u2014 Projects depth",
-    "status": "done",
-    "track": "frontend"
-  },
-  {
-    "title": "Parity: attachments-upload + audit-history (real)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Parity: 2FA/TOTP + password-reset (BE+FE)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Backend logic parity: SJ->COGS GL leg (cent-verified)",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Backend logic parity: service/freight PJ postings",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Backend logic parity: P&L + Balance-Sheet reports",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Backend logic parity: hr/eng relay sidecars + relays->vams schema",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Backend logic parity: real notification ingestion",
-    "status": "done",
-    "track": "backend"
-  },
-  {
-    "title": "Integrated verify GREEN (FE 373 tests/tsc0/build local+cloud; BE 18 tests; 32 containers)",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Deploy/finalize (:8090 serves everything, E2E verified)",
-    "status": "done",
-    "track": "deploy"
-  },
-  {
-    "title": "Docs: 10 role tutorials + hub",
-    "status": "done",
-    "track": "docs"
-  },
-  {
-    "title": "Docs: backend documentation package (README + hub, 21+ docs)",
-    "status": "done",
-    "track": "docs"
-  },
-  {
-    "title": "Docs: Deploy & Operate runbook",
-    "status": "done",
-    "track": "docs"
-  },
-  {
-    "title": "Docs: in-app contextual Help drawer",
-    "status": "done",
-    "track": "docs"
-  },
-  {
-    "title": "Docs: content refresh for parity campaign",
-    "status": "done",
-    "track": "docs"
-  },
-  {
-    "title": "Post-restart environment recovery (docker stack + git integrity)",
-    "status": "done",
+    "title": "Post-restart recovery: containers up, backfilled data verified, :8090 + gateway checked",
+    "status": "in_progress",
     "track": "deploy",
-    "note": "confirmed healthy \u2014 the live stack served this whole data-integrity wave's DB backfills/rebuilds without issue"
+    "note": "restart recovery for today's PC restart; coordinating with the live recovery worker, which also handles the legacy-ui branch creation below"
   },
   {
-    "title": "Data integrity: migrate monolith users -> platform vams tenant",
-    "status": "done",
-    "track": "backend",
-    "note": "1,491 users migrated; activity actor names now resolve (no more \"User #id\"). Commit 63d3481."
-  },
-  {
-    "title": "Data integrity: extend BFF CONTENT_TYPE_MAP",
-    "status": "done",
-    "track": "backend",
-    "note": "41 -> 90 entries; bff rebuilt & live. Commit a010fe2."
-  },
-  {
-    "title": "Data integrity: purchasing backfill (PR + GRN, orphaned POs)",
-    "status": "done",
-    "track": "backend",
-    "note": "purchaserequisition 0 -> 31,771; grn 1 -> 27,674; orphaned POs 29,050 -> 0."
-  },
-  {
-    "title": "Data integrity: receipt vouchers + HR peripherals backfill",
-    "status": "done",
-    "track": "backend",
-    "note": "receipt vouchers 1 -> 998; timesheet 0->89,116, reward 0->1,118, training 0->765, leavetracker 0->225 + child tables."
-  },
-  {
-    "title": "Data integrity: CRM backfill (address/contact, orphaned SO/opportunities)",
-    "status": "done",
-    "track": "backend",
-    "note": "address 0 -> 3,256; contact 1 -> 3,510; orphaned sales orders 703 -> 0; orphaned opportunities 4,432 -> 0."
-  },
-  {
-    "title": "Data integrity: message stream top-up",
-    "status": "done",
-    "track": "backend",
-    "note": "ops_app_message 201,027 -> 214,042 (+13,015 previously-dropped rows). Commit 02724ff."
-  },
-  {
-    "title": "Data integrity: content-type cleanup (stale slugs + FE key + bff/frontend-web rebuild)",
-    "status": "done",
+    "title": "Coverage sweep: original VAMS UI -> implementable spec",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "valvetesting->valve-tests, datasheet->valve-datasheet-specs; FE contractrenewal key -> crm_app.contractrenewal; added ops_app.task->todos; bff+frontend-web rebuilt. Commits 98584fa (backend), 34b305e (frontend)."
+    "note": "inventory the ORIGINAL VAMS (github.com/omarbinghalib/VAMS, main) Django server-rendered UI into an objective spec: global shell + nav tree, design tokens, page archetypes, per-module workflows, and a must-match checklist"
   },
   {
-    "title": "Root-cause audit: acme->vams schema-rename load-completeness gaps",
-    "status": "done",
+    "title": "Create legacy-ui branch off frontend-redesign",
+    "status": "in_progress",
+    "track": "deploy"
+  },
+  {
+    "title": "Legacy-UI implementation lanes (per-module)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "placeholder \u2014 will be split into one lane per module once the coverage-sweep spec lands"
+  },
+  {
+    "title": "Legacy-UI parity gate: adversarial verification vs the original VAMS UI",
+    "status": "pending",
     "track": "audit",
-    "note": "All 0-row/1-row table gaps traced to one mechanism: service DBs originally loaded ETL into an 'acme' schema, later renamed wholesale to 'vams' by deploy_vams_tenant.py. Any table/spec not executed during that original 'acme' run sat empty in 'vams'. Fix everywhere = re-running the existing (already-correct) loaders with ETL_TARGET_SCHEMA=vams \u2014 these were load-completeness gaps, not missing functionality."
+    "note": "confirms the legacy-ui branch matches the original VAMS look + workflows exactly (VBG on-site deployment \u2014 existing staff need zero retraining) while running on the new microservices backend"
   },
   {
     "title": "Screenshot recapture on mock data (PII fix)",
@@ -258,5 +63,229 @@
     "status": "pending",
     "track": "backend",
     "note": "no detail page exists for this type; intentional, not blocking"
+  },
+  {
+    "title": "Productization + full local deployment + parity & knowledge capstones (shipped)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: diagnosis \u2014 workflow + visual design direction",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: design tokens + fonts foundation (W0)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: component wave \u2014 nav/shell + command palette (W1)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: component wave \u2014 DataTable selection/bulk/filters/density (W2)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: component wave \u2014 form primitives Combobox/InlineGrid (W3)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: component wave \u2014 surfaces & primitives visual upgrade (W4)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: page adoption \u2014 shared infra (DocumentForm/detailCache/hotkeys)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: page adoption \u2014 module pages (lists/details/PO-JV-SO)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "FE redesign: integrate + verify (373 tests green, build local/cloud)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Mission-control: fixes + live-stream + heartbeat hardening",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Toolkit: mission-control-kit rounds 1/2 + commander operating-model + install-fleet loader",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Org rename vams -> vbg (tenant/login, data preserved, E2E verified)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "SSH cutover (all repos)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: message-stream \u2014 BE ops Message API + FE component wired app-wide",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 QC (CCR/FE-tests/lessons/feedback/calibration)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 Accounting (count-journals/bulk-PV/currency/P&L-BS/post-GL)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 Eng-Prod (machines/MES/PDM/planner/BOM-WIP/toolings/job-abnormality)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 HR (recruitment-ATS/contract-renewals/leave-replacement/HOD)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: dark FE screens \u2014 Projects depth",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: attachments-upload + audit-history (real)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Parity: 2FA/TOTP + password-reset (BE+FE)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Backend logic parity: SJ->COGS GL leg (cent-verified)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Backend logic parity: service/freight PJ postings",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Backend logic parity: P&L + Balance-Sheet reports",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Backend logic parity: hr/eng relay sidecars + relays->vams schema",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Backend logic parity: real notification ingestion",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Integrated verify GREEN (FE 373 tests/tsc0/build local+cloud; BE 18 tests; 32 containers)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Deploy/finalize (:8090 serves everything, E2E verified)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Docs: 10 role tutorials + hub",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Docs: backend documentation package (README + hub, 21+ docs)",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Docs: Deploy & Operate runbook",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Docs: in-app contextual Help drawer",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Docs: content refresh for parity campaign",
+    "status": "done",
+    "track": "archive"
+  },
+  {
+    "title": "Post-restart environment recovery (docker stack + git integrity)",
+    "status": "done",
+    "track": "archive",
+    "note": "confirmed healthy \u2014 the live stack served this whole data-integrity wave's DB backfills/rebuilds without issue"
+  },
+  {
+    "title": "Data integrity: migrate monolith users -> platform vams tenant",
+    "status": "done",
+    "track": "archive",
+    "note": "1,491 users migrated; activity actor names now resolve (no more \"User #id\"). Commit 63d3481."
+  },
+  {
+    "title": "Data integrity: extend BFF CONTENT_TYPE_MAP",
+    "status": "done",
+    "track": "archive",
+    "note": "41 -> 90 entries; bff rebuilt & live. Commit a010fe2."
+  },
+  {
+    "title": "Data integrity: purchasing backfill (PR + GRN, orphaned POs)",
+    "status": "done",
+    "track": "archive",
+    "note": "purchaserequisition 0 -> 31,771; grn 1 -> 27,674; orphaned POs 29,050 -> 0."
+  },
+  {
+    "title": "Data integrity: receipt vouchers + HR peripherals backfill",
+    "status": "done",
+    "track": "archive",
+    "note": "receipt vouchers 1 -> 998; timesheet 0->89,116, reward 0->1,118, training 0->765, leavetracker 0->225 + child tables."
+  },
+  {
+    "title": "Data integrity: CRM backfill (address/contact, orphaned SO/opportunities)",
+    "status": "done",
+    "track": "archive",
+    "note": "address 0 -> 3,256; contact 1 -> 3,510; orphaned sales orders 703 -> 0; orphaned opportunities 4,432 -> 0."
+  },
+  {
+    "title": "Data integrity: message stream top-up",
+    "status": "done",
+    "track": "archive",
+    "note": "ops_app_message 201,027 -> 214,042 (+13,015 previously-dropped rows). Commit 02724ff."
+  },
+  {
+    "title": "Data integrity: content-type cleanup (stale slugs + FE key + bff/frontend-web rebuild)",
+    "status": "done",
+    "track": "archive",
+    "note": "valvetesting->valve-tests, datasheet->valve-datasheet-specs; FE contractrenewal key -> crm_app.contractrenewal; added ops_app.task->todos; bff+frontend-web rebuilt. Commits 98584fa (backend), 34b305e (frontend)."
+  },
+  {
+    "title": "Root-cause audit: acme->vams schema-rename load-completeness gaps",
+    "status": "done",
+    "track": "archive",
+    "note": "All 0-row/1-row table gaps traced to one mechanism: service DBs originally loaded ETL into an 'acme' schema, later renamed wholesale to 'vams' by deploy_vams_tenant.py. Any table/spec not executed during that original 'acme' run sat empty in 'vams'. Fix everywhere = re-running the existing (already-correct) loaders with ETL_TARGET_SCHEMA=vams \u2014 these were load-completeness gaps, not missing functionality."
   }
 ]
