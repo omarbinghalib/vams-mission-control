@@ -1,50 +1,117 @@
 [
   {
     "title": "Post-restart recovery: containers up, backfilled data verified, :8090 + gateway checked",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "restart recovery for today's PC restart; coordinating with the live recovery worker, which also handles the legacy-ui branch creation below"
-  },
-  {
-    "title": "Coverage sweep: original VAMS UI -> implementable spec",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "inventory the ORIGINAL VAMS (github.com/omarbinghalib/VAMS, main) Django server-rendered UI into an objective spec: global shell + nav tree, design tokens, page archetypes, per-module workflows, and a must-match checklist"
+    "note": "Docker Desktop hadn't restarted after today's PC reboot; all 32 containers confirmed back up, :8090 + gateway green. All backfilled data verified intact: PR 31,771 / GRN 27,674 / GL 989,826 / messages 214,042 / users 1,491. All 3 orphan checks at 0. Heartbeat survived the restart."
   },
   {
     "title": "Create legacy-ui branch off frontend-redesign",
-    "status": "in_progress",
-    "track": "deploy"
+    "status": "done",
+    "track": "deploy",
+    "note": "legacy-ui branch created + pushed off frontend-redesign at 113ddb2. Also pushed a stray unpushed commit so origin/frontend-redesign is caught up."
   },
   {
-    "title": "Legacy-UI implementation lanes (per-module)",
+    "title": "Coverage sweep: original VAMS UI -> implementable spec (v1)",
+    "status": "done",
+    "track": "frontend",
+    "note": "SUPERSEDED -- built against the wrong commit (the broken/partial omarbinghalib/VAMS `main` upload). A v2 reconciliation against the confirmed true original (6a68f9c on VAMS2.0) is in flight -- see Foundation lane 5 below."
+  },
+  {
+    "title": "Source-of-truth arbitration: which VAMS codebase is the true VBG-deployed original",
+    "status": "done",
+    "track": "audit",
+    "note": "MAJOR FINDING. omarbinghalib/VAMS `main` is a BROKEN PARTIAL UPLOAD: 12 apps in strict alphabetical order (accounts->cmtr), cut off mid-alphabet, only 9.8% production-table coverage -- unusable as a reference. The TRUE VBG-deployed original is commit 6a68f9c on branch VAMS2.0: 112 apps, 98.5% (effectively 100%) production-table coverage, pinned Django 1.6.10 + South 0.8.4 -- proven by 1,527 rows in production's south_migrationhistory (South only existed pre-Django-1.7). The VAMS2.0 tip is a dependency-upgraded version that was NEVER deployed (phase1-django1.8 ... phase5-django32 + code-rewrite all merged in; py312/django42 requirements ladder) -- its base requirements.txt still misleadingly says Django 1.6.10. Omar's pristine production dump (Jun_30_Tue_23_00.sql.gz) and vams_monolith have identical 564-table sets -- zero drift -- independently validating our whole migration source. Employee-facing stack to match: Bootstrap 2.3.1/2.3.2 + 3.2.0/3.3.1 mixed, jQuery 1.x, Angular 1.3.15."
+  },
+  {
+    "title": "Restore pristine Jun-30 prod dump -> new DB vams_original_pristine; validate ETL counts",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Restoring Jun_30_Tue_23_00.sql.gz (Omar's pristine production dump) into its own DB and cross-checking ETL counts, independently confirming migration-source integrity."
+  },
+  {
+    "title": "Stand up VAMS2.0-tip reference instance on :8100 (network-isolated)",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "Live browsable reference of the confirmed true original (6a68f9c) for adversarial parity checks. SAFETY: the original VAMS code reaches the LOCAL NETWORK (ax_link/ax_sync Dynamics AX integration, likely UNC/SMB). Per Omar: no worker may change any file there. This instance runs NETWORK-ISOLATED with integrations disabled; every other lane reads this source read-only."
+  },
+  {
+    "title": "Completeness audit: every original page + feature vs new FE/BE, anchored to 6a68f9c",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Re-anchored to the confirmed true original (6a68f9c) after the source-of-truth arbitration; produces the honest gap list the legacy-UI and backend lanes close against. Read-only against the source -- no file changes."
+  },
+  {
+    "title": "Foundation lane 1: legacy design tokens + CSS base",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Legacy-UI foundation wave, lane 1 of 5. Read-only source reading against 6a68f9c."
+  },
+  {
+    "title": "Foundation lane 2: legacy app shell + 38-item nav tree",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Legacy-UI foundation wave, lane 2 of 5. Read-only source reading against 6a68f9c."
+  },
+  {
+    "title": "Foundation lane 3: legacy page archetypes -- list/detail/form/stepper/modal",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Legacy-UI foundation wave, lane 3 of 5. Read-only source reading against 6a68f9c."
+  },
+  {
+    "title": "Foundation lane 4: legacy Message Stream + Activity Stream widgets",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Legacy-UI foundation wave, lane 4 of 5. Read-only source reading against 6a68f9c."
+  },
+  {
+    "title": "Foundation lane 5: reconcile UI spec v1 -> v2 against 6a68f9c",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Legacy-UI foundation wave, lane 5 of 5. Supersedes the v1 coverage sweep, which was built against the wrong (broken, partial) commit."
+  },
+  {
+    "title": "Gap-closing: build Andon board capability (backend)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "First concrete gap surfaced by the completeness audit; a worker is actively building it in the new backend now."
+  },
+  {
+    "title": "Legacy-UI module re-skin lanes (split after foundation lands)",
     "status": "pending",
     "track": "frontend",
-    "note": "placeholder \u2014 will be split into one lane per module once the coverage-sweep spec lands"
+    "note": "Placeholder -- will split into one lane per module once the 5 foundation lanes above land."
   },
   {
-    "title": "Legacy-UI parity gate: adversarial verification vs the original VAMS UI",
+    "title": "Close completeness gaps the audit surfaces",
     "status": "pending",
     "track": "audit",
-    "note": "confirms the legacy-ui branch matches the original VAMS look + workflows exactly (VBG on-site deployment \u2014 existing staff need zero retraining) while running on the new microservices backend"
+    "note": "Placeholder for further gaps beyond the Andon board lane, once the completeness audit (anchored to 6a68f9c) reports its full list."
+  },
+  {
+    "title": "Legacy-UI parity gate: adversarial verification vs the live original",
+    "status": "pending",
+    "track": "audit",
+    "note": "Confirms the legacy-ui branch matches the confirmed true original (6a68f9c) look + workflows exactly (VBG on-site deployment -- existing staff need zero retraining), running on the new microservices backend, verified against the network-isolated :8100 reference instance."
   },
   {
     "title": "Screenshot recapture on mock data (PII fix)",
     "status": "pending",
     "track": "docs",
-    "note": "part of external docs publish \u2014 gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Purge real-data screenshots from git history (frontend-redesign)",
     "status": "pending",
     "track": "docs",
-    "note": "part of external docs publish \u2014 gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Assemble visual doc hubs (clean screenshots) + walkthrough videos + publish",
     "status": "pending",
     "track": "docs",
-    "note": "external docs publish \u2014 gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "note": "external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Phase-5 production/cloud cutover",
@@ -70,7 +137,7 @@
     "track": "archive"
   },
   {
-    "title": "FE redesign: diagnosis \u2014 workflow + visual design direction",
+    "title": "FE redesign: diagnosis -- workflow + visual design direction",
     "status": "done",
     "track": "archive"
   },
@@ -80,32 +147,32 @@
     "track": "archive"
   },
   {
-    "title": "FE redesign: component wave \u2014 nav/shell + command palette (W1)",
+    "title": "FE redesign: component wave -- nav/shell + command palette (W1)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "FE redesign: component wave \u2014 DataTable selection/bulk/filters/density (W2)",
+    "title": "FE redesign: component wave -- DataTable selection/bulk/filters/density (W2)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "FE redesign: component wave \u2014 form primitives Combobox/InlineGrid (W3)",
+    "title": "FE redesign: component wave -- form primitives Combobox/InlineGrid (W3)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "FE redesign: component wave \u2014 surfaces & primitives visual upgrade (W4)",
+    "title": "FE redesign: component wave -- surfaces & primitives visual upgrade (W4)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "FE redesign: page adoption \u2014 shared infra (DocumentForm/detailCache/hotkeys)",
+    "title": "FE redesign: page adoption -- shared infra (DocumentForm/detailCache/hotkeys)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "FE redesign: page adoption \u2014 module pages (lists/details/PO-JV-SO)",
+    "title": "FE redesign: page adoption -- module pages (lists/details/PO-JV-SO)",
     "status": "done",
     "track": "archive"
   },
@@ -135,32 +202,32 @@
     "track": "archive"
   },
   {
-    "title": "Parity: message-stream \u2014 BE ops Message API + FE component wired app-wide",
+    "title": "Parity: message-stream -- BE ops Message API + FE component wired app-wide",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "Parity: dark FE screens \u2014 QC (CCR/FE-tests/lessons/feedback/calibration)",
+    "title": "Parity: dark FE screens -- QC (CCR/FE-tests/lessons/feedback/calibration)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "Parity: dark FE screens \u2014 Accounting (count-journals/bulk-PV/currency/P&L-BS/post-GL)",
+    "title": "Parity: dark FE screens -- Accounting (count-journals/bulk-PV/currency/P&L-BS/post-GL)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "Parity: dark FE screens \u2014 Eng-Prod (machines/MES/PDM/planner/BOM-WIP/toolings/job-abnormality)",
+    "title": "Parity: dark FE screens -- Eng-Prod (machines/MES/PDM/planner/BOM-WIP/toolings/job-abnormality)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "Parity: dark FE screens \u2014 HR (recruitment-ATS/contract-renewals/leave-replacement/HOD)",
+    "title": "Parity: dark FE screens -- HR (recruitment-ATS/contract-renewals/leave-replacement/HOD)",
     "status": "done",
     "track": "archive"
   },
   {
-    "title": "Parity: dark FE screens \u2014 Projects depth",
+    "title": "Parity: dark FE screens -- Projects depth",
     "status": "done",
     "track": "archive"
   },
@@ -238,7 +305,7 @@
     "title": "Post-restart environment recovery (docker stack + git integrity)",
     "status": "done",
     "track": "archive",
-    "note": "confirmed healthy \u2014 the live stack served this whole data-integrity wave's DB backfills/rebuilds without issue"
+    "note": "confirmed healthy -- the live stack served this whole data-integrity wave's DB backfills/rebuilds without issue"
   },
   {
     "title": "Data integrity: migrate monolith users -> platform vams tenant",
@@ -286,6 +353,6 @@
     "title": "Root-cause audit: acme->vams schema-rename load-completeness gaps",
     "status": "done",
     "track": "archive",
-    "note": "All 0-row/1-row table gaps traced to one mechanism: service DBs originally loaded ETL into an 'acme' schema, later renamed wholesale to 'vams' by deploy_vams_tenant.py. Any table/spec not executed during that original 'acme' run sat empty in 'vams'. Fix everywhere = re-running the existing (already-correct) loaders with ETL_TARGET_SCHEMA=vams \u2014 these were load-completeness gaps, not missing functionality."
+    "note": "All 0-row/1-row table gaps traced to one mechanism: service DBs originally loaded ETL into an 'acme' schema, later renamed wholesale to 'vams' by deploy_vams_tenant.py. Any table/spec not executed during that original 'acme' run sat empty in 'vams'. Fix everywhere = re-running the existing (already-correct) loaders with ETL_TARGET_SCHEMA=vams -- these were load-completeness gaps, not missing functionality."
   }
 ]
