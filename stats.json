@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-21T07:14:32Z",
-  "heartbeat_at": "2026-07-21T07:14:32Z",
+  "updated": "2026-07-21T07:29:31Z",
+  "heartbeat_at": "2026-07-21T07:29:31Z",
   "last_activity": "2026-07-20T10:19:20Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
@@ -32,7 +32,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-20T10:19:20Z",
-      "out_age_min": 1255.2,
+      "out_age_min": 1270.2,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "idle",
@@ -50,7 +50,7 @@
       "cache_creation_tokens": 18242664,
       "msgs": 1875,
       "last_active": "2026-07-20T10:19:20Z",
-      "age_min": 1255.2,
+      "age_min": 1270.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -66,7 +66,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 17250.1,
+      "age_min": 17265.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -81,7 +81,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 26073.1,
+      "age_min": 26088.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -96,7 +96,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 20203.2,
+      "age_min": 20218.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -111,7 +111,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 19976.3,
+      "age_min": 19991.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -126,7 +126,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 15883.9,
+      "age_min": 15898.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -141,7 +141,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 17359.4,
+      "age_min": 17374.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -156,7 +156,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 16043.9,
+      "age_min": 16058.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -171,7 +171,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 20157.1,
+      "age_min": 20172.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -186,7 +186,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 20203.2,
+      "age_min": 20218.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -201,7 +201,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 26778.4,
+      "age_min": 26793.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -216,7 +216,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 26795.9,
+      "age_min": 26810.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -643,7 +643,8 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-21T07:14:32Z"
+    "checked_at": "2026-07-21T07:14:32Z",
+    "carried": true
   },
   "health": [
     {
@@ -679,15 +680,15 @@
         "track": "backend",
         "branch": "microservices-backend",
         "available": true,
-        "commits_24h": 29,
-        "commits_7d": 80
+        "commits_24h": 25,
+        "commits_7d": 77
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
         "available": true,
         "commits_24h": 0,
-        "commits_7d": 36
+        "commits_7d": 35
       }
     ],
     "recent": [
@@ -745,6 +746,7 @@
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-21T07:14:32Z"
+    "checked_at": "2026-07-21T07:14:32Z",
+    "carried": true
   }
 }
