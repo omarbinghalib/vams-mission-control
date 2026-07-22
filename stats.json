@@ -1,23 +1,23 @@
 {
-  "updated": "2026-07-22T01:44:32Z",
-  "heartbeat_at": "2026-07-22T01:44:32Z",
-  "last_activity": "2026-07-20T10:19:20Z",
+  "updated": "2026-07-22T01:53:49Z",
+  "heartbeat_at": "2026-07-22T01:53:49Z",
+  "last_activity": "2026-07-22T01:54:13Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 18856288,
-    "cache_read_tokens": 6976829761,
-    "cache_creation_tokens": 74919948,
-    "msgs": 16841,
-    "sessions": 12,
-    "live_sessions": 0,
+    "output_tokens": 18860996,
+    "cache_read_tokens": 6977381565,
+    "cache_creation_tokens": 76268405,
+    "msgs": 16845,
+    "sessions": 13,
+    "live_sessions": 2,
     "transcript_sessions": 12,
-    "subagent_sessions": 0,
-    "workers": 1,
-    "live_workers": 0,
+    "subagent_sessions": 1,
+    "workers": 2,
+    "live_workers": 2,
     "stopped_workers": 0,
-    "current_workers": 1,
-    "history_workers": 207,
+    "current_workers": 2,
+    "history_workers": 206,
     "recent_window_min": 120
   },
   "workers": [
@@ -31,12 +31,34 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-20T10:19:20Z",
-      "out_age_min": 2365.2,
+      "out_last_active": "2026-07-22T01:53:48Z",
+      "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
-      "status": "idle",
-      "live": false,
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Resolve HR punch load contention",
+      "role": "worker",
+      "branch": null,
+      "focus": "OPERATIONAL FIX \u2014 three concurrent transactions are deadlock-chained inserting into the same table, stalling for 17+ minutes.",
+      "agent_id": "a78d16e74b3bc6c55",
+      "short_id": "a78d16e7",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-22T01:54:13Z",
+      "out_age_min": 0.0,
+      "log_bytes": 144874,
+      "output_tokens": 20158,
+      "cache_read_tokens": 1157868,
+      "cache_creation_tokens": 266553,
+      "msgs": 43,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
       "recent": true
     }
   ],
@@ -45,14 +67,14 @@
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 4380781,
-      "cache_read_tokens": 712815042,
-      "cache_creation_tokens": 18242664,
-      "msgs": 1875,
-      "last_active": "2026-07-20T10:19:20Z",
-      "age_min": 2365.2,
-      "live": false,
-      "status": "idle",
+      "output_tokens": 4385489,
+      "cache_read_tokens": 713366846,
+      "cache_creation_tokens": 19591121,
+      "msgs": 1879,
+      "last_active": "2026-07-22T01:54:26Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
       "subagent": false,
       "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d",
       "recent": true
@@ -66,7 +88,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 18360.1,
+      "age_min": 18369.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -81,7 +103,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 27183.1,
+      "age_min": 27192.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -96,7 +118,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 21313.2,
+      "age_min": 21322.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -111,7 +133,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 21086.3,
+      "age_min": 21095.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -126,7 +148,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 16993.9,
+      "age_min": 17003.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -141,7 +163,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 18469.4,
+      "age_min": 18478.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -156,7 +178,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 17153.9,
+      "age_min": 17163.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -171,7 +193,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 21267.1,
+      "age_min": 21276.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -186,7 +208,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 21313.2,
+      "age_min": 21322.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -201,7 +223,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 27888.4,
+      "age_min": 27897.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -216,18 +238,35 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 27905.9,
+      "age_min": 27915.2,
       "live": false,
       "status": "idle",
       "subagent": false,
       "recent": true
+    },
+    {
+      "id": "a78d16e7",
+      "full_id": "a78d16e74b3bc6c55",
+      "group": "worker",
+      "group_label": "Resolve HR punch load contention",
+      "output_tokens": 20158,
+      "cache_read_tokens": 1157868,
+      "cache_creation_tokens": 266553,
+      "msgs": 43,
+      "last_active": "2026-07-22T01:54:13Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 144874,
+      "recent": true
     }
   ],
-  "total_tokens": 18856288,
+  "total_tokens": 18860996,
   "history": {
-    "workers": 207,
+    "workers": 206,
     "by_status": {
-      "idle": 203,
+      "idle": 202,
       "stopped": 4
     },
     "last_active": "2026-07-20T10:18:44Z",
@@ -643,7 +682,8 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-22T01:44:32Z"
+    "checked_at": "2026-07-22T01:44:32Z",
+    "carried": true
   },
   "health": [
     {
@@ -656,7 +696,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     },
     {
       "name": "auth token",
@@ -670,7 +711,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     }
   ],
   "commits": {
@@ -678,73 +720,23 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 68
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 8
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "beebc241",
-        "at": "2026-07-20T14:16:51+04:00",
-        "subject": "Repoint compute_costs off the dead schema, and correct my verify_payroll claim",
-        "track": "backend"
-      },
-      {
-        "hash": "623d9639",
-        "at": "2026-07-20T14:05:25+04:00",
-        "subject": "Pin qc's search_path so nothing silently lands on the dead schema",
-        "track": "backend"
-      },
-      {
-        "hash": "ab671082",
-        "at": "2026-07-20T14:04:16+04:00",
-        "subject": "Pin hr's search_path, and stop three HR commands aiming at the dead schema",
-        "track": "backend"
-      },
-      {
-        "hash": "6227c68e",
-        "at": "2026-07-20T14:01:34+04:00",
-        "subject": "Pin crm's search_path so nothing silently lands on the dead schema",
-        "track": "backend"
-      },
-      {
-        "hash": "386e9545",
-        "at": "2026-07-20T14:00:33+04:00",
-        "subject": "Pin accounting's search_path so nothing silently lands on the dead schema",
-        "track": "backend"
-      },
-      {
-        "hash": "9297415c",
-        "at": "2026-07-20T13:59:05+04:00",
-        "subject": "Pin production's search_path, including both cross-service read connections",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-22T01:44:32Z"
+    "checked_at": "2026-07-22T01:44:32Z",
+    "carried": true
   }
 }
