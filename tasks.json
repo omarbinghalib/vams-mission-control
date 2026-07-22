@@ -37,9 +37,9 @@
   },
   {
     "title": "Completeness audit: every original page + feature vs new FE/BE, anchored to 6a68f9c",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Re-anchored to the confirmed true original (6a68f9c). Produces the honest gap list the legacy-UI and backend lanes close against. Read-only against the source -- no file changes."
+    "note": "COMPLETE -- 8/8 module inventories + color spec done; full GAP-SYNTHESIS delivered (~515-545 findings). Legacy shell LIVE at :8090. This is the gap list Wave 2 module lanes are closing against."
   },
   {
     "title": "Foundation lane 1: legacy design tokens + CSS base",
@@ -120,15 +120,15 @@
   },
   {
     "title": "Bucket B backfill: engineering (1,176,858 unmigrated rows)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "54/57 specs recovered, cent-verified. 3 tables (369,414 rows) remain -- about to be dispatched. BOM RECOMPUTE HAZARD guarded: 3-way reconciliation delta 0.00 across 9,185 BOMs (see verification lane)."
+    "note": "COMPLETE -- all 57 specs recovered, cent-verified (was 54/57). Data layer for engineering fully backfilled as part of the now-complete data layer sweep."
   },
   {
     "title": "Bucket B backfill: HR (484,850 unmigrated rows)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Payroll subset landed and cent-verified (deductions 157,540 rows + encashments un-stubbed). Remaining ~57 tables in the family are queued -- about to be dispatched."
+    "note": "COMPLETE -- full HR family (payroll + remaining ~57 tables) backfilled and cent-verified as part of the now-complete data layer sweep."
   },
   {
     "title": "Bucket B backfill: CRM (44,707 unmigrated rows)",
@@ -156,9 +156,9 @@
   },
   {
     "title": "Bucket B backfill: production (505,708 rows) + QC/ops (45,218 rows)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Not yet staffed -- queued behind the engineering/HR lanes above."
+    "note": "COMPLETE -- production (370,638 positions) + QC/ops backfilled and cent-verified. Data layer is now 100% complete across all services: purchasing, CRM, HR, QC/ops, engineering, production, supplier ledger -- every service backfilled + cent-verified."
   },
   {
     "title": "BLOCKER: period locking DISABLED -- 0 YearLock rows vs 1,055 locked months in monolith",
@@ -173,9 +173,9 @@
   },
   {
     "title": "BLOCKER: 154 sales orders show understated totals (unmigrated socharge)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Same class of defect as the GRN landed-cost gap -- charge child rows never migrated."
+    "note": "FIXED -- part of Wave 1 financial-recompute fixes (cent-verified): accounting 6 screens, CRM SO totals, GRN landed cost all corrected."
   },
   {
     "title": "BLOCKER: cost engine silently zeroes 2 of 5 cost terms (17 unmigrated M2M link rows)",
@@ -184,9 +184,9 @@
   },
   {
     "title": "BLOCKER: documents render as empty shells -- 29 parents w/ fully-empty child tables (442,484 rows) + 21 empty jsonb *_ids columns",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "ACTIVE REPAIR under way: NCR + accounting money-path M2M link repair (4,225 + 1,822 + 389 lost links). NCR cluster worst-hit: 69.6% lost their report-against subject via the empty jsonb *_ids link."
+    "note": "REPAIRED -- 32 M2M through-tables fixed (incl. bom.sales_order_id 184,461), plus the earlier NCR + accounting money-path M2M link repair (4,225 + 1,822 + 389 lost links). Rolled into the completed integrity sweep (13 nullable-FK gaps + 32 M2M tables)."
   },
   {
     "title": "Data-integrity guard: auto_spec fabricated-0 FK defect -- found, repaired, and guarded",
@@ -196,21 +196,21 @@
   },
   {
     "title": "Nullable-FK cluster sweep",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "The auto_spec fabricated-0 guard only catches NOT-NULL columns -- nullable FKs can still silently land wrong. About to dispatch."
+    "note": "COMPLETE -- integrity sweep repaired 13 nullable-FK gaps + 32 M2M through-tables (incl. bom.sales_order_id 184,461). auto_spec guard + population detector shipped to prevent recurrence."
   },
   {
     "title": "etl_core: make ETL_TARGET_SCHEMA required (code-only safety fix)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Stops the ETL from silently defaulting to a schema that writes into stale shells (root cause of the acme->vams schema-rename load-completeness gaps)."
+    "note": "Shipped -- ETL_TARGET_SCHEMA is now required (code-only safety fix), part of INFRA hardening wave."
   },
   {
     "title": "Operational fix: resolve HR punch load contention",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Three concurrent transactions deadlock-chained inserting into the same table, stalling for 17+ minutes. Live worker resolving."
+    "note": "Resolved -- HR punch loader hardened against the deadlock-chain contention."
   },
   {
     "title": "Verification: BOM cost drift reconciliation to the cent",
@@ -250,9 +250,9 @@
   },
   {
     "title": "Legacy-UI module re-skin lanes (split after foundation lands)",
-    "status": "pending",
+    "status": "done",
     "track": "frontend",
-    "note": "Foundation (4/4) has landed -- ready to split into one lane per module. HELD deliberately until the data-integrity recovery work is sound, per commander gate."
+    "note": "Split into one lane per module (see WAVE 2 tasks below): engineering DONE, purchasing DONE, qc/accounting/crm in progress, hr/production/global-shell pending."
   },
   {
     "title": "Close completeness gaps the audit surfaces",
@@ -264,7 +264,7 @@
     "title": "Legacy-UI parity gate: adversarial verification vs the live original",
     "status": "pending",
     "track": "audit",
-    "note": "Confirms the legacy-ui branch matches the confirmed true original (6a68f9c) look + workflows exactly, running on the new microservices backend, verified against the network-isolated :8100 reference instance. HELD until data is sound -- deliberately."
+    "note": "Confirms the legacy-ui branch matches the confirmed true original (6a68f9c) look + workflows exactly vs the live original at :8012, running on the new microservices backend, verified against the network-isolated :8100 reference instance. HELD until WAVE 2 module lanes (qc/accounting/crm/hr/production/global-shell) complete."
   },
   {
     "title": "Clean full build verification (FE + BE, local + cloud)",
@@ -579,5 +579,107 @@
     "status": "done",
     "track": "archive",
     "note": "All 0-row/1-row table gaps traced to one mechanism: service DBs originally loaded ETL into an 'acme' schema, later renamed wholesale to 'vams' by deploy_vams_tenant.py. Any table/spec not executed during that original 'acme' run sat empty in 'vams'. Fix everywhere = re-running the existing (already-correct) loaders with ETL_TARGET_SCHEMA=vams -- these were load-completeness gaps, not missing functionality."
+  },
+  {
+    "title": "WAVE 1: RBAC claims-based gating across workflow actions",
+    "status": "done",
+    "track": "backend",
+    "note": "125 workflow actions gated across 7 services, claims-based (hod=COO). Commit e907ff8a."
+  },
+  {
+    "title": "WAVE 1: financial-recompute fixes, cent-verified",
+    "status": "done",
+    "track": "backend",
+    "note": "Accounting 6 screens + CRM SO totals + GRN landed cost all recomputed and cent-verified."
+  },
+  {
+    "title": "WAVE 1: LegacyStatusBadge component + color tokens",
+    "status": "done",
+    "track": "frontend",
+    "note": "Commit d59662b9."
+  },
+  {
+    "title": "WAVE 1: per-user notifications + live bell",
+    "status": "done",
+    "track": "frontend",
+    "note": "Commit 9702c872. External delivery stubbed (not yet wired to a real channel)."
+  },
+  {
+    "title": "Trial-balance fix: ~62.97M 'imbalance' root-caused as a computation bug",
+    "status": "done",
+    "track": "backend",
+    "note": "Was all-time vs YTD computation bug, NOT a data gap. Fixed -- books now tie to -1.92 matching the monolith, badge green. Commits 42e9fa4c/036b57af, pushed."
+  },
+  {
+    "title": "WAVE 2 module lane: engineering re-skin + gap-close",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- both zero-UI blockers built (valve-pricing-admin + costings); datasheet all 72 fields; BOM release wired."
+  },
+  {
+    "title": "WAVE 2 module lane: purchasing re-skin + gap-close",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- PR->PO auto-generation restored + proven, PO approval chain, supplier ledger cross-service, business-rule gates. Commit bfec2036 + backend commits."
+  },
+  {
+    "title": "WAVE 2 module lane: qc re-skin + gap-close",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Live worker running."
+  },
+  {
+    "title": "WAVE 2 module lane: accounting re-skin + gap-close",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Live worker running."
+  },
+  {
+    "title": "WAVE 2 module lane: crm re-skin + gap-close",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Live worker running."
+  },
+  {
+    "title": "WAVE 2 module lane: hr re-skin + gap-close",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+  },
+  {
+    "title": "WAVE 2 module lane: production re-skin + gap-close",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+  },
+  {
+    "title": "WAVE 2 module lane: global-shell re-skin + gap-close",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+  },
+  {
+    "title": "Engineering net-new BE follow-up + integration-finalize (single frontend-web rebuild)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Follow-up work after engineering module lane closed; queued."
+  },
+  {
+    "title": "MEDIA: NFS read-only mount of the original's media store (~244k attachment files)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Blocked on a NAS export ACL / non-privileged-ports setting on 192.168.58.153:/volume1/VAMS-MEDIA. Omar is actively working the NAS-side fix; retry in flight. Not raised as a red alert -- Omar already engaged."
+  },
+  {
+    "title": "WAVE 3: external integrations -- AI datasheet extraction",
+    "status": "pending",
+    "track": "backend",
+    "note": "Gated -- connection to be confirmed with Omar before building."
+  },
+  {
+    "title": "WAVE 3: external integrations -- biometric",
+    "status": "pending",
+    "track": "backend",
+    "note": "Gated -- connection to be confirmed with Omar before building."
   }
 ]
