@@ -642,27 +642,33 @@
   },
   {
     "title": "WAVE 2 module lane: hr re-skin + gap-close",
-    "status": "pending",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+    "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more)."
   },
   {
     "title": "WAVE 2 module lane: production re-skin + gap-close",
-    "status": "pending",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+    "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages)."
   },
   {
     "title": "WAVE 2 module lane: global-shell re-skin + gap-close",
-    "status": "pending",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "Not yet staffed -- queued behind the currently-running qc/accounting/crm lanes."
+    "note": "Live worker running."
   },
   {
-    "title": "Engineering net-new BE follow-up + integration-finalize (single frontend-web rebuild)",
+    "title": "Engineering net-new BE follow-up: Component QA workflow, pricing revise/dup/bulk-approve, valve-builder saga, sub-MR gen, BOM reservation",
     "status": "pending",
     "track": "backend",
-    "note": "Follow-up work after engineering module lane closed; queued."
+    "note": "Queued follow-up after the engineering module lane closed."
+  },
+  {
+    "title": "INTEGRATION-FINALIZE: single frontend-web rebuild + full-build reconcile + live :8090 verify + screenshots",
+    "status": "pending",
+    "track": "deploy",
+    "note": "HELD until all WAVE 2 FE lanes (hr/production/global-shell) land."
   },
   {
     "title": "MEDIA: NFS read-only mount of the original's media store (~244k attachment files)",
@@ -681,5 +687,11 @@
     "status": "pending",
     "track": "backend",
     "note": "Gated -- connection to be confirmed with Omar before building."
+  },
+  {
+    "title": "Standing verification-safety note: Django shell autocommits -- always verify read-only / use a test DB",
+    "status": "pending",
+    "track": "audit",
+    "note": "Process guardrail for all verification/parity work going forward -- Django management shell commits by default, so any ad-hoc verification query must run against a test DB or be wrapped read-only to avoid mutating production data."
   }
 ]
