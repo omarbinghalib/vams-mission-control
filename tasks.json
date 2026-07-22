@@ -273,46 +273,46 @@
     "note": "HELD until data-integrity recovery completes -- deliberate gate before re-verifying the full build."
   },
   {
-    "title": "DECISION (awaiting Omar): supplier-account ownership -- accounting vs purchasing",
-    "status": "pending",
+    "title": "Supplier-account ownership: accounting owns, purchasing reads cross-service",
+    "status": "in_progress",
     "track": "backend",
-    "note": "purchasing_app_supplieraccount is empty (0 rows) vs accounting's 978, blocking 247 debit notes. Recommendation: accounting owns, purchasing reads cross-service. Awaiting Omar."
+    "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now."
   },
   {
-    "title": "DECISION (awaiting Omar): migrate the tasks_* family? (10,959 rows -- vendor's own bug backlog)",
+    "title": "Backfill: migrate the tasks_* family (10,959 rows, 7 specs)",
     "status": "pending",
     "track": "backend",
-    "note": "Awaiting Omar."
+    "note": "DECIDED by Omar: migrate (vendor's own bug backlog). Queued as a backfill lane -- 7 specs."
   },
   {
     "title": "DECISION (awaiting Omar): rotate leaked credentials found in original settings.py (AX/SMS/Mattermost/SMTP)",
     "status": "pending",
     "track": "backend",
-    "note": "Security -- awaiting Omar's go-ahead before rotating (may affect live integrations)."
+    "note": "Security -- awaiting Omar's go-ahead before rotating (may affect live integrations). Separate from the resolved data-integrity decisions."
   },
   {
-    "title": "DECISION (awaiting Omar): Docker VM memory allocation",
-    "status": "pending",
+    "title": "Docker VM memory: keep fleet small",
+    "status": "done",
     "track": "deploy",
-    "note": "7.6 GiB across 35 containers is the current throughput constraint; Postgres has OOM-crashed 3x (now cheap to recover via syncfs, but recurring). Awaiting Omar's call on raising the VM memory allocation."
+    "note": "DECIDED by Omar: not raising VM RAM (7.6 GiB / 35 containers) -- commander runs 3-5 lanes at a time instead. syncfs keeps the (recurring) OOM-crash recovery cheap (5.7s). No longer a blocker."
   },
   {
-    "title": "ACTION (awaiting Omar): run ALTER DATABASE ... SET search_path='vams,public' on 7 DBs",
+    "title": "Run ALTER DATABASE ... SET search_path='vams,public' on 7 DBs",
     "status": "pending",
     "track": "backend",
-    "note": "Ready to run; currently blocked by the permission classifier. Awaiting Omar to authorize/run."
+    "note": "DECIDED by Omar: proceed. Currently blocked only by the permission classifier -- Omar is granting a permission rule so a worker can run it, then execute. No longer a blocker/decision."
   },
   {
-    "title": "DECISION (awaiting Omar): drop 3 stale public-schema shells (provably dead)?",
+    "title": "Backlog (low-priority): drop 3 stale public-schema shells (provably dead)?",
     "status": "pending",
     "track": "backend",
-    "note": "Awaiting Omar."
+    "note": "Low-priority housekeeping, no owner assigned yet -- not a red-alert item."
   },
   {
-    "title": "DECISION (awaiting Omar): how to handle 22 demo rows shadowing real records?",
+    "title": "Backlog (low-priority): 22 demo rows shadowing real records",
     "status": "pending",
     "track": "backend",
-    "note": "Awaiting Omar."
+    "note": "Low-priority housekeeping, no owner assigned yet -- not a red-alert item."
   },
   {
     "title": "Unexamined: file/blob storage (affects every *document table)",
