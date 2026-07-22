@@ -2,162 +2,162 @@
   {
     "title": "Post-restart recovery: containers up, backfilled data verified, :8090 + gateway checked",
     "status": "done",
-    "track": "deploy",
+    "track": "archive",
     "note": "Docker Desktop hadn't restarted after today's PC reboot; all 32 containers confirmed back up, :8090 + gateway green. All backfilled data verified intact: PR 31,771 / GRN 27,674 / GL 989,826 / messages 214,042 / users 1,491. All 3 orphan checks at 0. Heartbeat survived the restart."
   },
   {
     "title": "Create legacy-ui branch off frontend-redesign",
     "status": "done",
-    "track": "deploy",
+    "track": "archive",
     "note": "legacy-ui branch created + pushed off frontend-redesign at 113ddb2. Also pushed a stray unpushed commit so origin/frontend-redesign is caught up."
   },
   {
     "title": "Coverage sweep: original VAMS UI -> implementable spec (v1)",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "SUPERSEDED -- built against the wrong commit (the broken/partial omarbinghalib/VAMS `main` upload). Reconciled to v2 against the confirmed true original -- see Foundation lane 5."
   },
   {
     "title": "Source-of-truth arbitration: which VAMS codebase is the true VBG-deployed original",
     "status": "done",
-    "track": "audit",
+    "track": "archive",
     "note": "MAJOR FINDING. True original = commit 6a68f9c on VAMS2.0 (112 apps, 98.5% table coverage, pinned Django 1.6.10 + South). omarbinghalib/VAMS `main` is a broken 12-app partial upload (9.8% coverage). The VAMS2.0 tip is a never-deployed dependency upgrade. Pristine prod dump validated vams_monolith with zero drift."
   },
   {
     "title": "Restore pristine Jun-30 prod dump -> new DB vams_original_pristine; validate ETL counts",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "VALIDATED against vams_monolith: 564 tables, 112 app_labels, 12/12 counts identical. Zero drift. GL +58 proven benign (post-migration app rows, ids above source max)."
   },
   {
     "title": "Stand up VAMS2.0-tip reference instance on :8100 (network-isolated)",
     "status": "done",
-    "track": "deploy",
+    "track": "archive",
     "note": "LIVE on :8100, network-isolated (refadmin/RefAdmin!2026), integrations disabled. UI delta 6a68f9c->tip = 39 of 40 files visually identical. Every other lane reads this source read-only."
   },
   {
     "title": "Completeness audit: every original page + feature vs new FE/BE, anchored to 6a68f9c",
     "status": "done",
-    "track": "audit",
+    "track": "archive",
     "note": "COMPLETE -- 8/8 module inventories + color spec done; full GAP-SYNTHESIS delivered (~515-545 findings). Legacy shell LIVE at :8090. This is the gap list Wave 2 module lanes are closing against."
   },
   {
     "title": "Foundation lane 1: legacy design tokens + CSS base",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "Commit 4b51f75. Key finding: main.css was hand-edited after compile, so main.scss is STALE -- deployed page bg is #E5EEF3 (not #262626), links are black, the 190px gutter is commented out in the deployed CSS."
   },
   {
     "title": "Foundation lane 2: legacy app shell + 38-item nav tree",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "DONE -- FOUNDATION 4/4. App shell + 38-group nav tree + sprites shipped: commits 05b9b2b4, 70a2fa71."
   },
   {
     "title": "Foundation lane 3: legacy page archetypes -- list/detail/form/stepper/modal",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "DONE -- FOUNDATION 4/4. Commit a916907a. Spec v2: Bootstrap 2.3.2 single-framework, two list pagers (126 digg / 113 default)."
   },
   {
     "title": "Foundation lane 4: legacy Message Stream + Activity Stream widgets",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "DONE -- FOUNDATION 4/4. Commit f7310629. Message Stream is a rich-text composer, DataTables in 5 modules."
   },
   {
     "title": "Foundation lane 5: reconcile UI spec v1 -> v2 against 6a68f9c",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "RECONCILED. Bootstrap 2.3.2 single-framework (the \"BS2/BS3 mixed\" claim was false), two list pagers (126 digg / 113 default), DataTables in 5 modules, Message Stream is a rich-text composer. Supersedes the v1 coverage sweep. All 4 foundation build lanes now shipped on legacy-ui."
   },
   {
     "title": "ETL triage: classify every 0-row/1-row gap (spec-never-ran vs parent-only spec)",
     "status": "done",
-    "track": "audit",
+    "track": "archive",
     "note": "COMPLETE. Bucket A (spec never ran) is EMPTY -- zero defects there. Real failure mode is Bucket B: ETL scripts only ever spec'd parent/header tables. ~2.2M rows never migrated: HR 484,850 / engineering 1,176,858 / purchasing 362,567 / accounting 106,059 / QC+ops 45,218 / CRM 44,707 / production 505,708 (excluding 13.5M GPS-breadcrumb exhaust)."
   },
   {
     "title": "Data integrity: GRN line items backfill",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "1 -> 54,520 rows. Commit af2a077."
   },
   {
     "title": "Gap-closing: build Andon board capability (backend)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Shipped. Commit 094fe17. First concrete gap surfaced by the completeness audit."
   },
   {
     "title": "Gap lane: durable field-level history log",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Shipped across 466 models."
   },
   {
     "title": "Gap lane: payment-term workflow + nav orphans",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Payment-term workflow shipped; nav orphans fixed."
   },
   {
     "title": "Gap lane: real XLSX/PDF export",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Real XLSX/PDF export shipped across services (was placeholder/stub before)."
   },
   {
     "title": "Gap lane: @-autocomplete user-codes endpoint",
     "status": "done",
-    "track": "backend"
+    "track": "archive"
   },
   {
     "title": "Bucket B backfill: purchasing (29 unmigrated child tables, 362,567 rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Recovered ~340k rows, cent-verified. Landed-cost-relevant: missing pocharge rows are why landed cost was silently wrong on every GRN (no freight/customs) -- now fixed."
   },
   {
     "title": "Bucket B backfill: engineering (1,176,858 unmigrated rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "COMPLETE -- all 57 specs recovered, cent-verified (was 54/57). Data layer for engineering fully backfilled as part of the now-complete data layer sweep."
   },
   {
     "title": "Bucket B backfill: HR (484,850 unmigrated rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "COMPLETE -- full HR family (payroll + remaining ~57 tables) backfilled and cent-verified as part of the now-complete data layer sweep."
   },
   {
     "title": "Bucket B backfill: CRM (44,707 unmigrated rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "31 tables recovered."
   },
   {
     "title": "Bucket B backfill: accounting supplier ledger (106,059 unmigrated rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "54,942 rows recovered; grand total reconciles to 2,970,270.57 exact. Ownership of the supplier-account records (accounting vs purchasing) remains an open Omar decision -- see attention/pending."
   },
   {
     "title": "Data integrity: payroll backfill -- deductions + encashments",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Deductions 0 -> 157,540 rows; encashments un-stubbed. Cent-verified, part of the ETL data-recovery wave."
   },
   {
     "title": "Data integrity: LegacyActivity backfill (3-source merge)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "592,338 rows recovered by merging 3 source tables."
   },
   {
     "title": "Bucket B backfill: production (505,708 rows) + QC/ops (45,218 rows)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "COMPLETE -- production (370,638 positions) + QC/ops backfilled and cent-verified. Data layer is now 100% complete across all services: purchasing, CRM, HR, QC/ops, engineering, production, supplier ledger -- every service backfilled + cent-verified."
   },
   {
@@ -174,7 +174,7 @@
   {
     "title": "BLOCKER: 154 sales orders show understated totals (unmigrated socharge)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "FIXED -- part of Wave 1 financial-recompute fixes (cent-verified): accounting 6 screens, CRM SO totals, GRN landed cost all corrected."
   },
   {
@@ -185,37 +185,37 @@
   {
     "title": "BLOCKER: documents render as empty shells -- 29 parents w/ fully-empty child tables (442,484 rows) + 21 empty jsonb *_ids columns",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "REPAIRED -- 32 M2M through-tables fixed (incl. bom.sales_order_id 184,461), plus the earlier NCR + accounting money-path M2M link repair (4,225 + 1,822 + 389 lost links). Rolled into the completed integrity sweep (13 nullable-FK gaps + 32 M2M tables)."
   },
   {
     "title": "Data-integrity guard: auto_spec fabricated-0 FK defect -- found, repaired, and guarded",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "auto_spec was fabricating 0 into NOT-NULL FKs: 29,050 POs had no supplier, 32,744 toolings had no manufacturer, plus 29,012 PO addresses & 406 calendar rows. ALL REPAIRED & verified against the original (bffe0da3). Shipped a guard so it can't recur + a population-gap detector."
   },
   {
     "title": "Nullable-FK cluster sweep",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "COMPLETE -- integrity sweep repaired 13 nullable-FK gaps + 32 M2M through-tables (incl. bom.sales_order_id 184,461). auto_spec guard + population detector shipped to prevent recurrence."
   },
   {
     "title": "etl_core: make ETL_TARGET_SCHEMA required (code-only safety fix)",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Shipped -- ETL_TARGET_SCHEMA is now required (code-only safety fix), part of INFRA hardening wave."
   },
   {
     "title": "Operational fix: resolve HR punch load contention",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Resolved -- HR punch loader hardened against the deadlock-chain contention."
   },
   {
     "title": "Verification: BOM cost drift reconciliation to the cent",
     "status": "done",
-    "track": "audit",
+    "track": "archive",
     "note": "Found + fixed an AED 456,697 GL hourly-labour misposting bug, plus a truthiness fix. 3-way reconciliation delta = 0.00 exact across 9,185 BOMs. Guarded the engineering backfill's BOM recompute hazard (137,046 cost estimates)."
   },
   {
@@ -227,31 +227,31 @@
   {
     "title": "Health check: assess Postgres recovery event during a 13.9M-row aggregate",
     "status": "done",
-    "track": "audit",
+    "track": "archive",
     "note": "Root-caused and fixed: Postgres syncfs -- crash-recovery time cut from 35min to 5.7s. Postgres has still OOM-crashed 3x total under the 7.6 GiB / 35-container memory ceiling (now cheap to recover from, but recurring -- see attention/Omar decision)."
   },
   {
     "title": "Infra: rebuild all 27 containers to match git HEAD",
     "status": "done",
-    "track": "deploy",
+    "track": "archive",
     "note": "9 workers were found silently stale (running old images behind git HEAD) and rebuilt."
   },
   {
     "title": "Infra: pin search_path on 7 services",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Commit beebc241 (+ 623d9639, ab671082, 6227c68e, 386e9545, 9297415c). Root-caused the \"unapplied migrations\" reports as a schema-trap artifact -- actually 0 unapplied. Also fixed relay log noise."
   },
   {
     "title": "Security: verify working credentials + remove plaintext from docs",
     "status": "done",
-    "track": "docs",
+    "track": "archive",
     "note": "Credentials verified working; plaintext copies removed from docs. (Separate from the still-pending decision to rotate the leaked original-settings.py credentials -- see attention/pending.)"
   },
   {
     "title": "Legacy-UI module re-skin lanes (split after foundation lands)",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "Split into one lane per module (see WAVE 2 tasks below): engineering DONE, purchasing DONE, qc/accounting/crm in progress, hr/production/global-shell pending."
   },
   {
@@ -293,7 +293,7 @@
   {
     "title": "Docker VM memory: keep fleet small",
     "status": "done",
-    "track": "deploy",
+    "track": "archive",
     "note": "DECIDED by Omar: not raising VM RAM (7.6 GiB / 35 containers) -- commander runs 3-5 lanes at a time instead. syncfs keeps the (recurring) OOM-crash recovery cheap (5.7s). No longer a blocker."
   },
   {
@@ -583,62 +583,62 @@
   {
     "title": "WAVE 1: RBAC claims-based gating across workflow actions",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "125 workflow actions gated across 7 services, claims-based (hod=COO). Commit e907ff8a."
   },
   {
     "title": "WAVE 1: financial-recompute fixes, cent-verified",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Accounting 6 screens + CRM SO totals + GRN landed cost all recomputed and cent-verified."
   },
   {
     "title": "WAVE 1: LegacyStatusBadge component + color tokens",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "Commit d59662b9."
   },
   {
     "title": "WAVE 1: per-user notifications + live bell",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "Commit 9702c872. External delivery stubbed (not yet wired to a real channel)."
   },
   {
     "title": "Trial-balance fix: ~62.97M 'imbalance' root-caused as a computation bug",
     "status": "done",
-    "track": "backend",
+    "track": "archive",
     "note": "Was all-time vs YTD computation bug, NOT a data gap. Fixed -- books now tie to -1.92 matching the monolith, badge green. Commits 42e9fa4c/036b57af, pushed."
   },
   {
     "title": "WAVE 2 module lane: engineering re-skin + gap-close",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "DONE -- both zero-UI blockers built (valve-pricing-admin + costings); datasheet all 72 fields; BOM release wired."
   },
   {
     "title": "WAVE 2 module lane: purchasing re-skin + gap-close",
     "status": "done",
-    "track": "frontend",
+    "track": "archive",
     "note": "DONE -- PR->PO auto-generation restored + proven, PO approval chain, supplier ledger cross-service, business-rule gates. Commit bfec2036 + backend commits."
   },
   {
     "title": "WAVE 2 module lane: qc re-skin + gap-close",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "Live worker running."
+    "status": "done",
+    "track": "archive",
+    "note": "DONE -- all 12 QC pages re-skinned to legacy Bootstrap-2 archetypes; 5 gaps closed (NCR cost/account KPI, NCR attachments, 4 report renderers registered, etc.), verified against real data, rebuilt + deployed + pushed. 0 type-check errors, build green."
   },
   {
     "title": "WAVE 2 module lane: accounting re-skin + gap-close",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "Live worker running."
+    "status": "done",
+    "track": "archive",
+    "note": "DONE -- all 16 accounting pages re-skinned to legacy look (presentation-only, wiring/RBAC preserved); gaps closed incl. Period Management year-lock month grid + supplier accounts; fixed financial screens re-verified to tie. Pushed (BE 1c2fb7eb, FE c17db4fc)."
   },
   {
     "title": "WAVE 2 module lane: crm re-skin + gap-close",
-    "status": "in_progress",
-    "track": "frontend",
-    "note": "Live worker running."
+    "status": "done",
+    "track": "archive",
+    "note": "DONE -- all 7 CRM pages re-skinned to legacy archetypes; gaps closed (company sub-grids wired, opportunity valve-requirements Cv sizing, quote Run Sizing wired to real IEC 60534 engine). tsc 0 errors, CRM vitest 29/29. Pushed (BE 863f0e44, FE b60dc385)."
   },
   {
     "title": "WAVE 2 module lane: hr re-skin + gap-close",
@@ -666,9 +666,9 @@
   },
   {
     "title": "MEDIA: NFS read-only mount of the original's media store (~244k attachment files)",
-    "status": "pending",
-    "track": "backend",
-    "note": "Blocked on a NAS export ACL / non-privileged-ports setting on 192.168.58.153:/volume1/VAMS-MEDIA. Omar is actively working the NAS-side fix; retry in flight. Not raised as a red alert -- Omar already engaged."
+    "status": "done",
+    "track": "archive",
+    "note": "DONE -- NFS mounted READ-ONLY over TCP (Docker nfs volume, addr=192.168.58.153, ro/proto=tcp) at /srv/media in every wired service; read-only proven (touch -> Read-only file system). 9 services wired. 284,036 file-bearing document rows now resolve 404->200 (hr 167,165 / purchasing 63,606 / engineering 42,394 / qc 5,272 / accounting 3,991 / crm 1,599 / production 9). Click-through helper shipped: openMediaFile()/apiBlob() authed blob-fetch + object-URL open, wired into Attachments/AttachmentsLive/MessageStream + cam.tsx/valveTest.tsx raw hrefs. Full sweep confirms no raw media hrefs remain."
   },
   {
     "title": "WAVE 3: external integrations -- AI datasheet extraction",
