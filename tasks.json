@@ -951,13 +951,16 @@
   },
   {
     "title": "CRM company-detail map rebuild (same as original)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "DECIDED by Omar: rebuild the company-detail map to match the original now (on placeholder/mock until Omar supplies the live Google Maps API key).",
-    "worker": "Rebuild company-detail map like original",
+    "note": "DONE -- rebuilt to match the original exactly; map is KEYLESS (no Google Maps API key needed, unlike the earlier placeholder plan). Frontend complete. Commit 41d7684e.",
+    "worker": "Recover stalled CRM map lane",
     "worker_stats": {
-      "status": "live"
+      "tokens": 59809,
+      "tool_uses": 51,
+      "runtime": "~21m",
+      "status": "done"
     },
     "started_at": "2026-07-23T09:23:55Z"
   },
@@ -1057,7 +1060,7 @@
     "status": "in_progress",
     "track": "backend",
     "note": "Histories 1.8M-row backfill + 175 HCAP registers + expiring-docs window.",
-    "worker": "HR data: histories backfill + HCAP + doc window",
+    "worker": "HR data: histories backfill + HCAP registers + doc window",
     "worker_stats": {
       "status": "live"
     },
@@ -1082,5 +1085,18 @@
     "status": "pending",
     "track": "backend",
     "note": "DECIDED by Omar: preserve. Queued behind the HR-data-closers lane; no owning lane yet."
+  },
+  {
+    "title": "CRM OperationLocation API + data (serializer/viewset/route so map binds real data)",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- endpoint + data already existed (registry-driven API auto-generates it); 83 rows already migrated, cent-verified, live-verified through the gateway. No code changes needed (correctly no commit). CRM company map is fully done end-to-end (frontend + backend + data, keyless).",
+    "worker": "Wire OperationLocation API + data for map",
+    "worker_stats": {
+      "tokens": 83614,
+      "tool_uses": 38,
+      "runtime": "~20m",
+      "status": "done"
+    }
   }
 ]
