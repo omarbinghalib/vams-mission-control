@@ -683,9 +683,11 @@
   },
   {
     "title": "WAVE 3: external integrations -- AI datasheet extraction",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Gated -- connection to be confirmed with Omar before building."
+    "note": "Scaffold underway -- connection confirmed with Omar; extraction pipeline scaffold in progress.",
+    "progress": 15,
+    "started_at": "2026-07-23T03:37:56Z"
   },
   {
     "title": "WAVE 3: external integrations -- biometric",
