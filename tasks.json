@@ -1019,5 +1019,12 @@
     "status": "pending",
     "track": "backend",
     "note": "Small residual cleanup left over after the currencies (140-row) backfill."
+  },
+  {
+    "title": "INCIDENT: vams_accounting GL/salesjournal emptied \u2014 forensics + restore",
+    "status": "in_progress",
+    "track": "accounting",
+    "note": "generalledger/salesjournal/creditnote/receiptvoucher/sjlineitem/sjcharge showing 0 rows; suspected concurrent TRUNCATE CASCADE; restoring from vams_monolith_ref; DB-write classifier blocking financial-table writes",
+    "started_at": "2026-07-23T07:33:20Z"
   }
 ]
