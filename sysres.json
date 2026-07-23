@@ -1,28 +1,28 @@
 {
  "available": true,
- "checked_at": "2026-07-23T19:08:41Z",
+ "checked_at": "2026-07-23T19:13:29Z",
  "host": {
   "cpu_pct": 100,
   "cores": [
    100
   ],
-  "mem_pct": 98.4,
-  "mem_used_mb": 15827,
+  "mem_pct": 98.1,
+  "mem_used_mb": 15779,
   "mem_total_mb": 16091,
-  "uptime_sec": 344113,
-  "process_count": 455
+  "uptime_sec": 344391,
+  "process_count": 464
  },
  "disks": [
   {
    "drive": "C:",
-   "used_gb": 816.2,
+   "used_gb": 816.3,
    "total_gb": 934.7,
    "pct": 87.3
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 46047,
-  "tx_bytes_per_sec": 1200
+  "rx_bytes_per_sec": 8157,
+  "tx_bytes_per_sec": 1757
  },
  "temp_c": null,
  "temp_available": false,
@@ -297,9 +297,9 @@
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": true,
- "host_as_of": "2026-07-23T19:08:41Z",
- "disks_as_of": "2026-07-23T19:08:41Z",
- "network_as_of": "2026-07-23T19:08:41Z",
+ "host_as_of": "2026-07-23T19:13:29Z",
+ "disks_as_of": "2026-07-23T19:13:29Z",
+ "network_as_of": "2026-07-23T19:13:29Z",
  "temp_as_of": null,
  "docker_as_of": "2026-07-23T19:03:35Z",
  "temp_error": "Not supported ",
