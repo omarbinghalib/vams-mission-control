@@ -1,20 +1,19 @@
 {
  "available": true,
- "checked_at": "2026-07-23T15:38:31Z",
+ "checked_at": "2026-07-23T15:43:34Z",
  "host": {
   "cpu_pct": 100,
-  "mem_pct": 96.5,
-  "mem_used_mb": 15533,
+  "mem_pct": 94.5,
+  "mem_used_mb": 15200,
   "mem_total_mb": 16091
  },
  "docker": {
   "containers": 37,
-  "total_cpu_pct": 667.8,
-  "total_mem_mb": 3984.7
+  "total_cpu_pct": 555.2,
+  "total_mem_mb": 4040.5
  },
- "host_carried": true,
+ "host_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-23T15:33:28Z",
- "docker_as_of": "2026-07-23T15:38:31Z",
- "host_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', \"$ErrorActionPreference='Stop';$os=Get-CimInstance Win32_OperatingSystem;$cpu=(Get-CimInstance Win32_Processor | Measure-Object -Pr"
+ "host_as_of": "2026-07-23T15:43:34Z",
+ "docker_as_of": "2026-07-23T15:43:34Z"
 }
