@@ -1226,10 +1226,16 @@
   },
   {
     "title": "Doc caveat refresh + hub re-render (post-RBAC-fix)",
-    "status": "in_progress",
+    "status": "done",
     "track": "docs",
     "worker": "Refresh doc caveats + re-render hub",
-    "note": "Refresh the RBAC caveat annotations in the docs/hub now that the fix has landed, re-render the hub.",
-    "started_at": "2026-07-23T14:42:44Z"
+    "note": "DONE -- commit ecfd6f95. 3 guides now describe the fixed role-aware gating (cite 5913515e), corrected a stale hod-guide sales-order claim; hub HTML spliced to match + structurally verified standalone (zero external requests). Docs now fully current with shipped system.",
+    "started_at": "2026-07-23T14:42:44Z",
+    "worker_stats": {
+      "tokens": 121542,
+      "tool_uses": 86,
+      "runtime": "~16m",
+      "status": "done"
+    }
   }
 ]
