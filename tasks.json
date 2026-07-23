@@ -1125,5 +1125,18 @@
       "runtime": "~17m",
       "status": "done"
     }
+  },
+  {
+    "title": "Final frontend rebuild + live verify",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- tsc 0 errors; single frontend-web rebuild (36 others untouched); :8090 200; every follow-up screen + full regression PASS with real data (verified via authenticated HTTP, no Playwright available). No commit needed (branch was tsc-clean).",
+    "worker": "Final frontend rebuild + live verify",
+    "worker_stats": {
+      "tokens": 130804,
+      "tool_uses": 89,
+      "runtime": "~35m",
+      "status": "done"
+    }
   }
 ]
