@@ -1144,7 +1144,7 @@
     "status": "in_progress",
     "track": "docs",
     "progress": 95,
-    "note": "18/18 docs WRITTEN -- all 11 API references + all 7 role guides committed (hr-manager 1d40c805, mes c79d5537 landed last). Hub assembly pending RBAC-UI fix (so assembled guides reflect fixed button gating + reconcile the admin-guide period-lock note); final step once that lands.",
+    "note": "18/18 docs WRITTEN -- all 11 API references + all 7 role guides committed. Hub now actively assembling (see Hub-assembler task); final reconciliations in progress alongside the RBAC-UI fix so the hub reflects fixed button gating.",
     "started_at": "2026-07-23T12:36:02Z"
   },
   {
@@ -1154,5 +1154,35 @@
     "note": "Real bug found by the accounts-admin guide lane -- UI gated workflow buttons on literal admin while the backend authorizes accounts-admin too.",
     "worker": "Fix role-aware UI gating (useIsAdmin)",
     "started_at": "2026-07-23T13:18:09Z"
+  },
+  {
+    "title": "Hub-assembler: 18 docs -> one offline HTML hub (+ reconciliations)",
+    "status": "in_progress",
+    "track": "docs",
+    "worker": "Assemble offline documentation hub",
+    "note": "Assembling all 18 written docs into one self-contained offline HTML hub, with reconciliations.",
+    "started_at": "2026-07-23T14:06:11Z"
+  },
+  {
+    "title": "Dashboard hardening: heartbeat pathspec-commit + sysres collector off-critical-path + kit push",
+    "status": "in_progress",
+    "track": "mission-control",
+    "worker": "Dashboard hardening + kit push",
+    "note": "Heartbeat pathspec-commit fix (avoid shared-index races) + move sysres collector off the critical path + push learnings back to the kit.",
+    "started_at": "2026-07-23T14:06:11Z"
+  },
+  {
+    "title": "Minor cleanup: NCR approve stamping + HCAPReportData write-lock",
+    "status": "in_progress",
+    "track": "backend",
+    "worker": "Minor QC/production consistency cleanup",
+    "note": "Small consistency fixes: NCR approve stamping + HCAPReportData write-lock.",
+    "started_at": "2026-07-23T14:06:11Z"
+  },
+  {
+    "title": "Browser-based final pixel/console verification (after RBAC-UI fix)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Queued: full pixel/console pass once the RBAC-UI role-gating fix lands."
   }
 ]
