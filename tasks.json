@@ -1189,7 +1189,7 @@
     }
   },
   {
-    "title": "Dashboard hardening + resource-monitor (make it work + move to top)",
+    "title": "Dashboard gamified HUD: resource-monitor + hardening",
     "status": "in_progress",
     "track": "mission-control",
     "worker": "Dashboard hardening + kit push",
@@ -1254,11 +1254,17 @@
   },
   {
     "title": "Final data loose-ends closer: production test-artifact delete + reserveditem + hr datereset + integrations MM/AX mapping + Cluster-C re-verify",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "worker": "Close final data loose-ends",
-    "note": "Closing the small tail found by the session gap-closure audit: production test-artifact delete + reserveditem, hr datereset, integrations MM/AX mapping, Cluster-C re-verify.",
-    "started_at": "2026-07-23T15:33:13Z"
+    "note": "DONE -- commits 9ec8658a (prod artifact delete) + dc8497d7 (additive migrations). prod fakes 22->20 / 461->420 (== monolith), reserveditem 4, hr datereset 10,679, integrations MM/AX tables migrated, Cluster-C restore re-verified holding. DELETE was verified-synthetic + parity-correct but lacked pre-auth; process rule tightened.",
+    "started_at": "2026-07-23T15:33:13Z",
+    "worker_stats": {
+      "tokens": 120081,
+      "tool_uses": 88,
+      "runtime": "~36m",
+      "status": "done"
+    }
   },
   {
     "title": "Fix CRM SO intelligence/GP panel (Zod schema flat-vs-nested) + wire MES consolidated-queue screen",
