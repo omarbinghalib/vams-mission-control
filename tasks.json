@@ -1274,11 +1274,17 @@
   },
   {
     "title": "Fix CRM SO intelligence/GP panel (Zod schema flat-vs-nested) + wire MES consolidated-queue screen",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "worker": "Fix SO intelligence panel + MES screen",
-    "note": "Real defect from the final browser verification pass.",
-    "started_at": "2026-07-23T15:41:21Z"
+    "note": "DONE -- SO Cost&GP panel fixed (nested schema, GP% 3-tier colors verified live SO 650 green+red), MES screen wired to real consolidated queue (771 overdue/27 draft PRs/etc.), gateway route added. Commits 8a3a3199 (frontend) + 8c098004 (gateway); 21/21 crm tests, tsc clean.",
+    "started_at": "2026-07-23T15:41:21Z",
+    "worker_stats": {
+      "tokens": 183387,
+      "tool_uses": 102,
+      "runtime": "~53m",
+      "status": "done"
+    }
   },
   {
     "title": "Entitle ops module for vbg org (tasks/OCN/SMS/visitor were Module-not-enabled)",
