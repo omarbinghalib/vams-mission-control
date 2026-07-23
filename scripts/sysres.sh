@@ -38,9 +38,14 @@ log(){ printf '%s pid=%s %s\n' "$(date -u +%H:%M:%S)" "$$" "$1" >> "$LOG"; }
 
 log "START"
 # Hard-bound the whole probe (belt & suspenders): sysres_gen.py's own two subprocess calls are each
-# individually timeout-bounded (20s host + 25s docker = worst case ~45s), this outer cap just makes
-# sure the WHOLE script (interpreter start, imports, etc.) can never hold the lock indefinitely.
-if timeout 60 python "$here/sysres_gen.py" >> "$LOG" 2>&1; then
+# individually timeout-bounded (40s combined host/disk/net/temp CIM call + 30s docker = worst case
+# ~70s run SEQUENTIALLY, not in parallel), this outer cap just makes sure the WHOLE script
+# (interpreter start, imports, etc.) can never hold the lock indefinitely. BUG FOUND+FIXED here: this
+# was left at 60s when the richer combined CIM probe's own timeout was bumped 20->40s, so a run that
+# legitimately needed ~65-70s was getting killed by THIS wrapper at the 60s mark instead of
+# completing -- observed as "sysres_gen OK" (the script's own success print) immediately followed by
+# "skip/killed rc=124" in the same cycle. 150s gives real headroom under the measured worst case.
+if timeout 150 python "$here/sysres_gen.py" >> "$LOG" 2>&1; then
   log "sysres_gen OK"
   # PATHSPEC-LIMITED add+commit -- this script owns ONLY sysres.json. Same golden-rule reasoning as
   # heartbeat.sh: a plain `git commit` with no pathspec would commit everything staged in the shared
