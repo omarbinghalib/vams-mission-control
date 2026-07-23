@@ -1143,8 +1143,16 @@
     "title": "Documentation fleet: API docs x11 services + user guides x7 roles + hub",
     "status": "in_progress",
     "track": "docs",
-    "progress": 50,
-    "note": "9/18 done -- API docs (8/11): HR (79f5b23b), QC (6777105c), Production (c3bfdfbe), Engineering (1c84bf6e), Accounting (a1334655), CRM (3993a8c6), Reporting (a796c5bc), Purchasing (606319a0). Role guides (1/7): Quality (6e844b45). In flight: platform/ops/integrations API docs + admin/hod/accounts-admin/sales/hr-manager/mes guides. Hub-assembler queued after all 18.",
+    "progress": 89,
+    "note": "16/18 done -- ALL 11 API docs done: HR (79f5b23b), QC (6777105c), Production (c3bfdfbe), Engineering (1c84bf6e), Accounting (a1334655), CRM (3993a8c6), Reporting (a796c5bc), Purchasing (606319a0), Platform (8c159c8f), Integrations (60171491), Ops (2659cf29). Role guides (5/7): Quality (6e844b45), Accounts-admin (192ea56e), HOD (e0f4adfa), Sales (9376a5d1), Admin (ddde2b9e). In flight: hr-manager + mes guides. Then hub-assembler.",
     "started_at": "2026-07-23T12:36:02Z"
+  },
+  {
+    "title": "RBAC-UI fix: role-aware button gating (useIsAdmin hid workflow buttons from accounts-admin)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Real bug found by the accounts-admin guide lane -- UI gated workflow buttons on literal admin while the backend authorizes accounts-admin too.",
+    "worker": "Fix role-aware UI gating (useIsAdmin)",
+    "started_at": "2026-07-23T13:18:09Z"
   }
 ]
