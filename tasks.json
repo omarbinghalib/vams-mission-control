@@ -1189,12 +1189,18 @@
     }
   },
   {
-    "title": "Dashboard gamified HUD: resource-monitor + hardening",
-    "status": "in_progress",
+    "title": "Dashboard: gamified resource HUD + heartbeat hardening + kit push",
+    "status": "done",
     "track": "mission-control",
     "worker": "Dashboard hardening + kit push",
-    "note": "Heartbeat pathspec-commit fix + sysres off-critical-path collector landed (shipping as separate Sysres commits); folded in: make the resource-monitor panel actually work + move it to the top of the dashboard.",
-    "started_at": "2026-07-23T14:06:11Z"
+    "note": "DONE -- gamified HUD resource panel at TOP (gauges, green->amber->red, per-container docker stats x37, disk/net/uptime/per-core; temp honest n/a -- no host sensor); heartbeat.sh pathspec-commit fix; off-critical-path sysres collector as its own scheduled task; FOUND+FIXED the Priority-4 starvation bug that caused the earlier heartbeat staleness wobble; kit pushed + back-ported. Commits a00586b/0c1123b/1677380/8f64e87 + kit 339d305.",
+    "started_at": "2026-07-23T14:06:11Z",
+    "worker_stats": {
+      "tokens": 315714,
+      "tool_uses": 298,
+      "runtime": "~2.4h",
+      "status": "done"
+    }
   },
   {
     "title": "Minor cleanup: NCR approve stamping + HCAPReportData write-lock",
