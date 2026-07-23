@@ -693,5 +693,53 @@
     "status": "pending",
     "track": "audit",
     "note": "Process guardrail for all verification/parity work going forward -- Django management shell commits by default, so any ad-hoc verification query must run against a test DB or be wrapped read-only to avoid mutating production data."
+  },
+  {
+    "title": "Parity gate: adversarial verification vs the live original (:8012)",
+    "status": "done",
+    "track": "audit",
+    "note": "Ran the honest adversarial parity gate against the live original at :8012; found and closed 2 gaps."
+  },
+  {
+    "title": "HR: ACL/ADL leave-credit accrual engine",
+    "status": "done",
+    "track": "backend",
+    "note": "P1 gap closed (models.py:1287) -- built the leave-credit accrual engine. Commit eef20f11."
+  },
+  {
+    "title": "QC: delete dead orphan Moc/RCN viewsets + prove live RBAC 403",
+    "status": "done",
+    "track": "backend",
+    "note": "Orphan Moc/RCN viewsets + routes deleted (D-1/D-2, commit 3aaf20bb); low-privilege sales-only vbg tenant user seeded and a live 403 proven against them (commit 4d9eae7f)."
+  },
+  {
+    "title": "All 4 cross-service seams closed: WIP summary / assembly-SO / supplier-qual gate / MGB read",
+    "status": "done",
+    "track": "backend",
+    "note": "accounting WIP summary reads production+engineering cross-service (762ccf4f); engineering assembly-dept SO queue + mark-BOM-assembled (dafef4a5); purchasing supplier-qualification gate on PR-submit (244cc68b); HR MGB HCAPReportData read path confirmed once data exists (2368c87f)."
+  },
+  {
+    "title": "Post-hibernate recovery + HR histories day-classification engine",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Host resumed from hibernate -- recovery worker bringing the container stack back up in parallel; HR histories day-classification engine build underway alongside it."
+  },
+  {
+    "title": "Performance optimization of slow aggregates",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Tuning the slow-aggregate query paths surfaced during the data-integrity/parity work."
+  },
+  {
+    "title": "Deep live parity sweep: accounting + purchasing",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on accounting and purchasing."
+  },
+  {
+    "title": "MGB HCAPReportData populator (queued)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the active lanes above. Read path already confirmed resolvable once data exists (2368c87f); this lane populates the data itself."
   }
 ]
