@@ -222,8 +222,7 @@
     "title": "Safety: stop vams_monolith_app (:8012) writing to the source of truth",
     "status": "in_progress",
     "track": "deploy",
-    "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source. Container still up (read path retained); write-block not yet confirmed complete.",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source. Container still up (read path retained); write-block not yet confirmed complete."
   },
   {
     "title": "Health check: assess Postgres recovery event during a 13.9M-row aggregate",
@@ -277,8 +276,7 @@
     "title": "Supplier-account ownership: accounting owns, purchasing reads cross-service",
     "status": "in_progress",
     "track": "backend",
-    "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now.",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now."
   },
   {
     "title": "Backfill: migrate the tasks_* family (10,959 rows, 7 specs)",
@@ -646,22 +644,19 @@
     "title": "WAVE 2 module lane: hr re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more).",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more)."
   },
   {
     "title": "WAVE 2 module lane: production re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages).",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages)."
   },
   {
     "title": "WAVE 2 module lane: global-shell re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live worker running.",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Live worker running."
   },
   {
     "title": "Engineering net-new BE follow-up: Component QA workflow, pricing revise/dup/bulk-approve, valve-builder saga, sub-MR gen, BOM reservation",
@@ -743,8 +738,7 @@
     "title": "Deep live parity sweep: accounting + purchasing",
     "status": "in_progress",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on accounting and purchasing.",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Adversarial live-data parity sweep against the original, focused on accounting and purchasing."
   },
   {
     "title": "MGB HCAPReportData populator (queued)",
