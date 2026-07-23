@@ -1316,10 +1316,32 @@
   },
   {
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
-    "status": "in_progress",
+    "status": "done",
     "track": "docs",
-    "note": "4/4 cross-cutting docs done -- architecture (8b19aceb), deployment-ops (e3809e2d), data-model (15723b25), rbac-matrix (8eedc5c). Hub re-assembling now (worker 'Re-assemble complete doc hub + landing') to bundle all 22 docs (4 overview + 11 services + 7 guides) + a landing page into docs/hub/vams-docs-hub.html.",
+    "note": "DONE -- hub rebuilt: 32 docs (4 overview + 21 service + 7 guides) + landing page, self-contained offline, commit 2fee052f. Full doc set (18 originals + 4 cross-cutting + hub) complete.",
     "started_at": "2026-07-23T16:55:32Z",
-    "progress": 80
+    "progress": 100,
+    "worker": "Re-assemble complete doc hub + landing",
+    "worker_stats": {
+      "tokens": 144038,
+      "tool_uses": 73,
+      "runtime": "~29m",
+      "status": "done"
+    }
+  },
+  {
+    "title": "URGENT: verify legacy UI is served on :8090 (Omar says UI looks non-legacy)",
+    "status": "in_progress",
+    "track": "frontend",
+    "worker": "Urgent: verify :8090 is the legacy look",
+    "note": "Investigating whether Omar was looking at :3000 (modern) vs :8090 (legacy), or whether frontend-web regressed to serve the modern UI on :8090.",
+    "started_at": "2026-07-23T17:37:51Z"
+  },
+  {
+    "title": "Credential/login fix",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Lane in progress; details pending.",
+    "started_at": "2026-07-23T17:37:51Z"
   }
 ]
