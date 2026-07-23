@@ -276,6 +276,16 @@
   .tk .tkmini .tkminitrack{flex:1;height:5px;background:var(--track);border-radius:99px;overflow:hidden}
   .tk .tkmini .tkminitrack>i{display:block;height:100%;background:var(--warn);border-radius:99px;transition:width .6s ease}
   .tk .tkmini .tkminipct{font-size:9.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  /* task <-> worker cross-link line (who's on it + their tokens/tools/runtime) */
+  .tk .tkworker{grid-column:2/-1;display:flex;align-items:center;gap:6px;margin-top:3px;font-size:11px;color:var(--ink-2)}
+  .tk .tkworker .wtag{color:var(--accent);font-weight:600}
+  .tk .tkworker .wtag::before{content:"▶ ";color:var(--muted)}
+  .tk .tkworker .wstats{color:var(--muted);font-variant-numeric:tabular-nums}
+  .tk .tkworker .wlive{color:var(--warn);font-weight:600}
+  .tk .tkworker .wdone{color:var(--ok-ink);font-weight:600}
+  /* system-resources placeholder panel — system-wide, not per-worker */
+  .sysres-placeholder{border:1px dashed var(--line-strong);border-radius:10px;padding:14px 16px;
+    color:var(--muted);font-size:12.5px;background:var(--panel-2)}
 
   /* collapsed "earlier this session" tail (declutter the long roster) */
   details.earlier{grid-column:1/-1;margin-top:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
@@ -470,6 +480,22 @@
     <p class="eyebrow" style="margin:16px 0 2px">Containers <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(green = up, amber = starting/unhealthy-checkable, red = down/unhealthy)</span></p>
     <div id="dockerGrid" class="dgrid"></div>
     <p class="foot" style="margin:10px 0 0">Live from <span class="mono">docker ps</span> + HTTP smoke on the generator's host (LOCAL/dev). If Docker or the gateway is unreachable the generator degrades to <b>"unavailable"</b> rather than guessing.</p>
+  </section>
+
+  <!-- ============ SYSTEM RESOURCES (SYSTEM-WIDE, PLACEHOLDER) ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Host-level, system-wide only — NOT attributable per-worker (AI subagents don't have their own CPU/mem)</p>
+        <h2>System resources</h2>
+      </div>
+    </div>
+    <div class="sysres-placeholder">
+      Awaiting heartbeat wiring: host CPU/mem + <span class="mono">docker stats</span> across the
+      ~31 containers. Flagged as a <span class="mono">gen_stats.py</span> follow-up (after the
+      capstone lane's current commit lands) — not faked here. This panel is a static slot the
+      heartbeat can fill in later without any other layout change.
+    </div>
   </section>
 
   <!-- ============ RECENT COMMITS ============ -->
@@ -2815,6 +2841,36 @@ function taskPct(x){
   // isn't a freshly-invented number either.
   return {pct:50,auto:false};
 }
+function fmtElapsed(startedAt){
+  const start=new Date(startedAt).getTime();
+  if(isNaN(start)) return null;
+  const mins=Math.max(0,Math.round((Date.now()-start)/60000));
+  if(mins<60) return mins+"m";
+  const h=Math.floor(mins/60), m=mins%60;
+  return h+"h"+(m?" "+m+"m":"");
+}
+// Task <-> worker cross-link: shown on in-progress AND done task cards that carry a `worker`
+// label (assigned by the commander when the task goes in-progress). Per-worker tokens/tool_uses/
+// runtime are a completion snapshot (worker_stats.status==="done") — populated by the commander
+// from that worker's own completion report, never fabricated here. While a worker is still LIVE
+// (worker_stats.status==="live"/absent), we show elapsed-since-started instead of guessing final
+// tokens — honest-over-fake-fresh, same rule as the rest of the board.
+function renderTaskWorker(x,st){
+  if(!x.worker) return "";
+  const ws=x.worker_stats||{};
+  let stats="";
+  if(ws.status==="done" && (ws.tokens!=null || ws.tool_uses!=null || ws.runtime)){
+    const parts=[];
+    if(ws.tokens!=null) parts.push(fmt(ws.tokens)+" tok");
+    if(ws.tool_uses!=null) parts.push(ws.tool_uses+" tools");
+    if(ws.runtime) parts.push(ws.runtime);
+    stats=`<span class="wstats wdone">${esc(parts.join(" · "))}</span>`;
+  } else if(st==="in_progress"){
+    const el=x.started_at?fmtElapsed(x.started_at):null;
+    stats=`<span class="wstats wlive">live${el?" · "+el+" elapsed":""}</span>`;
+  }
+  return `<span class="tkworker"><span class="wtag">${esc(x.worker)}</span>${stats?" · "+stats:""}</span>`;
+}
 function renderTasks(t){
   const host=$("tkGroups"); if(!host) return;
   const all=Array.isArray(t)?t:(t&&Array.isArray(t.tasks)?t.tasks:[]);
@@ -2848,10 +2904,12 @@ function renderTasks(t){
           <span class="tkminitrack"><i style="width:${pct}%"></i></span>
           <span class="tkminipct">${pct}%</span></span>`;
       }
+      const worker=renderTaskWorker(x,st);
       return `<li class="tk ${esc(st)}"><span class="tkmk"></span>
         <span class="tktitle">${esc(x.title||"(untitled)")}</span>
         <span class="tkstatus">${esc(TK_STATUS[st]||st)}</span>
         ${x.note?`<span class="tknote">${esc(x.note)}</span>`:""}
+        ${worker}
         ${mini}</li>`;}).join("");
     return `<div class="tk-group"><p class="tk-track"><i style="background:${col}"></i>${esc(track)}</p>
       <ul class="tklist">${rows}</ul></div>`;}).join("");
