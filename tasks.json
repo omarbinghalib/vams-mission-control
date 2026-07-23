@@ -756,5 +756,13 @@
     "note": "Backfilling grand_total_price on purchase orders; early stage.",
     "progress": 25,
     "started_at": "2026-07-23T03:37:06Z"
+  },
+  {
+    "title": "Accounting: subledger data-recovery (customer AR ledger + 6 subledgers)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Large recovery lane -- customer AR ledger + 6 subledgers; early stage, cent-verification pending.",
+    "progress": 15,
+    "started_at": "2026-07-23T03:37:28Z"
   }
 ]
