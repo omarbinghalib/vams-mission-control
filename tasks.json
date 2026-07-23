@@ -1313,5 +1313,12 @@
     "status": "pending",
     "track": "backend",
     "note": "Fires after VS-Report refresh-generator lands."
+  },
+  {
+    "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
+    "status": "in_progress",
+    "track": "docs",
+    "note": "4 parallel workers: architecture (a63f74db), deployment-ops (ad6d2bd5), data-model (a66607be), rbac-matrix (a24d4309). Hub re-assembler + landing page fires after all 4 land.",
+    "started_at": "2026-07-23T16:55:32Z"
   }
 ]
