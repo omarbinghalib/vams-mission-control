@@ -222,7 +222,8 @@
     "title": "Safety: stop vams_monolith_app (:8012) writing to the source of truth",
     "status": "in_progress",
     "track": "deploy",
-    "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source. Container still up (read path retained); write-block not yet confirmed complete."
+    "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source. Container still up (read path retained); write-block not yet confirmed complete.",
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "Health check: assess Postgres recovery event during a 13.9M-row aggregate",
@@ -276,7 +277,8 @@
     "title": "Supplier-account ownership: accounting owns, purchasing reads cross-service",
     "status": "in_progress",
     "track": "backend",
-    "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now."
+    "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now.",
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "Backfill: migrate the tasks_* family (10,959 rows, 7 specs)",
@@ -644,19 +646,22 @@
     "title": "WAVE 2 module lane: hr re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more)."
+    "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more).",
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "WAVE 2 module lane: production re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages)."
+    "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages).",
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "WAVE 2 module lane: global-shell re-skin + gap-close",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Live worker running."
+    "note": "Live worker running.",
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "Engineering net-new BE follow-up: Component QA workflow, pricing revise/dup/bulk-approve, valve-builder saga, sub-MR gen, BOM reservation",
@@ -678,17 +683,15 @@
   },
   {
     "title": "WAVE 3: external integrations -- AI datasheet extraction",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Scaffold underway -- connection confirmed with Omar; extraction pipeline scaffold in progress.",
-    "progress": 15,
-    "started_at": "2026-07-23T03:37:56Z"
+    "note": "Scaffold complete: extraction pipeline built end-to-end. Live-wire with real Omar-provided credentials is separate and still pending (see Wave-3 live-wire)."
   },
   {
     "title": "WAVE 3: external integrations -- biometric",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Gated -- connection to be confirmed with Omar before building."
+    "note": "Scaffold complete. Live-wire pending Omar creds (see Wave-3 live-wire)."
   },
   {
     "title": "Standing verification-safety note: Django shell autocommits -- always verify read-only / use a test DB",
@@ -721,12 +724,10 @@
     "note": "accounting WIP summary reads production+engineering cross-service (762ccf4f); engineering assembly-dept SO queue + mark-BOM-assembled (dafef4a5); purchasing supplier-qualification gate on PR-submit (244cc68b); HR MGB HCAPReportData read path confirmed once data exists (2368c87f)."
   },
   {
-    "title": "Post-hibernate recovery + HR histories day-classification engine",
-    "status": "in_progress",
+    "title": "HR histories day-classification engine",
+    "status": "done",
     "track": "backend",
-    "note": "Host resumed from hibernate -- recovery worker brought the container stack back up in parallel. HR histories day-classification engine: models + engine committed; wiring + tests remaining (nearly done).",
-    "started_at": "2026-07-23T03:35:06Z",
-    "progress": 85
+    "note": "Engine complete: day-classification models + logic committed and verified. Post-hibernate container-stack recovery (the other half of this lane) also completed. Punch-timing wiring continues under the MGB HCAP populator lane."
   },
   {
     "title": "Performance optimization of slow aggregates",
@@ -736,62 +737,178 @@
   },
   {
     "title": "Deep live parity sweep: accounting + purchasing",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on accounting and purchasing."
+    "note": "Adversarial live-data parity sweep against the original, focused on accounting and purchasing -- COMPLETE, no unresolved gaps outstanding."
   },
   {
-    "title": "MGB HCAPReportData populator (queued)",
-    "status": "pending",
+    "title": "MGB HCAPReportData populator + HR histories punch-timing wiring",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Queued behind the active lanes above. Read path already confirmed resolvable once data exists (2368c87f); this lane populates the data itself."
+    "note": "Populates MGB HCAP report data now that the read path is confirmed; also wiring punch-timing into the HR histories day-classification engine. No longer blocked -- active lane.",
+    "progress": 30,
+    "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "Purchasing: PO grand_total_price backfill",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Backfilling grand_total_price on purchase orders; early stage.",
-    "progress": 25,
-    "started_at": "2026-07-23T03:37:06Z"
+    "note": "Backfill complete, cent-verified across all purchase orders."
   },
   {
     "title": "Accounting: subledger data-recovery (customer AR ledger + 6 subledgers)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Large recovery lane -- customer AR ledger + 6 subledgers; early stage, cent-verification pending.",
-    "progress": 15,
-    "started_at": "2026-07-23T03:37:28Z"
+    "note": "Customer AR ledger + 6 subledgers recovered and cent-verified; a $0.02 rounding discrepancy found and fixed."
   },
   {
     "title": "Deep live parity sweep: engineering",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on engineering.",
-    "progress": 20,
-    "started_at": "2026-07-23T03:38:16Z"
+    "note": "Adversarial live-data parity sweep against the original, focused on engineering -- COMPLETE, no unresolved gaps outstanding."
   },
   {
     "title": "Deep live parity sweep: QC",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on QC.",
-    "progress": 20,
-    "started_at": "2026-07-23T03:38:34Z"
+    "note": "Adversarial live-data parity sweep against the original, focused on QC -- COMPLETE, no unresolved gaps outstanding."
   },
   {
     "title": "Deep live parity sweep: production",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on production.",
-    "progress": 20,
-    "started_at": "2026-07-23T03:38:43Z"
+    "note": "Adversarial live-data parity sweep against the original, focused on production -- COMPLETE, no unresolved gaps outstanding."
   },
   {
     "title": "Deep live parity sweep: CRM",
+    "status": "done",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on CRM -- COMPLETE, no unresolved gaps outstanding."
+  },
+  {
+    "title": "Wave-3 live-wire: AI-datasheet + biometric + SMS gateway (needs Omar creds)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Blocked on Omar providing live credentials/connections for all three integrations before wiring to production."
+  },
+  {
+    "title": "Deep live parity sweep: reporting",
+    "status": "done",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on reporting -- COMPLETE."
+  },
+  {
+    "title": "Deep live parity sweep: ops",
+    "status": "done",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on ops -- COMPLETE."
+  },
+  {
+    "title": "Production data-recovery: Andon (674 rows) + breaks + difference_value",
+    "status": "done",
+    "track": "backend",
+    "note": "Recovered production data: Andon board (674 rows), breaks table, difference_value field; verified against the original."
+  },
+  {
+    "title": "QC data-recovery: 7 entities incl. SupplierEvaluation (3,833 rows)",
+    "status": "done",
+    "track": "backend",
+    "note": "Recovered 7 QC entities incl. SupplierEvaluation (3,833 rows); verified against the original."
+  },
+  {
+    "title": "CRM data-recovery: Quotes + ImportantContact + SO total_price (6,202 rows)",
+    "status": "done",
+    "track": "backend",
+    "note": "Recovered CRM Quotes + ImportantContact entities; SO total_price backfilled across 6,202 rows."
+  },
+  {
+    "title": "Financial-artifact audit (dry-run)",
+    "status": "done",
+    "track": "audit",
+    "note": "Dry-run audit of financial artifacts complete. Removal is Omar-approved and queued (see financial-artifact removal)."
+  },
+  {
+    "title": "Mission-control: per-task progress bars + dual-unit ETA",
+    "status": "done",
+    "track": "archive",
+    "note": "Per-task mini progress bars (elapsed-time auto-derived) + dual-unit ETA shipped on the dashboard."
+  },
+  {
+    "title": "CRITICAL: engineering Component-signal fix",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Critical fix for an engineering Component-signal defect found during the deep parity sweep; live lane in progress.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Ops backend closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Closing out remaining ops-service backend gaps.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Reporting backend closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Closing out remaining reporting-service backend gaps.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Cross-service provenance audit",
     "status": "in_progress",
     "track": "audit",
-    "note": "Adversarial live-data parity sweep against the original, focused on CRM.",
-    "progress": 20,
-    "started_at": "2026-07-23T03:38:55Z"
+    "note": "Auditing cross-service data provenance/lineage for the migrated data layer.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Platform sweep",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Platform-wide coverage sweep for remaining gaps outside the per-module parity sweeps.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Integrations sweep",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Sweep of external/internal integration points for parity + completeness.",
+    "started_at": "2026-07-23T04:42:54Z"
+  },
+  {
+    "title": "Financial-artifact removal (Omar-approved, queued)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Omar approved removal of the legacy financial artifacts found by the dry-run audit; queued behind active lanes."
+  },
+  {
+    "title": "CountJournal migration (queued behind MGB)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the MGB HCAP populator + histories punch-timing lane."
+  },
+  {
+    "title": "HR deep sweep",
+    "status": "pending",
+    "track": "audit",
+    "note": "Deep live parity sweep for HR, to follow once the WAVE 2 HR module lane and MGB/histories work land."
+  },
+  {
+    "title": "Closers for platform / integrations / provenance findings",
+    "status": "pending",
+    "track": "backend",
+    "note": "Fix-up lanes to close whatever the platform sweep, integrations sweep, and cross-service provenance audit surface."
+  },
+  {
+    "title": "Capstone: back-port learnings to mission-control-kit",
+    "status": "pending",
+    "track": "docs",
+    "note": "Back-port this run's freshness/liveness/reconciliation lessons into mission-control-kit (PLAYBOOK.md + skills)."
+  },
+  {
+    "title": "Gated post-parity: docs publish + :8012 avatar cutover",
+    "status": "pending",
+    "track": "deploy",
+    "note": "Reserved for Omar's explicit sign-off, alongside the Phase-5 production/cloud cutover."
   }
 ]
