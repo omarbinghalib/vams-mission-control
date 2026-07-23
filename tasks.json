@@ -1192,11 +1192,17 @@
   },
   {
     "title": "Minor cleanup: NCR approve stamping + HCAPReportData write-lock",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "worker": "Minor QC/production consistency cleanup",
-    "note": "Small consistency fixes: NCR approve stamping + HCAPReportData write-lock.",
-    "started_at": "2026-07-23T14:06:11Z"
+    "note": "DONE -- NCR approve stamping + HCAPReportData write-lock. Commits 9774d9d1 + c463bdee; 12/12 qc + 55/55 production tests; live-verified with no real data touched.",
+    "started_at": "2026-07-23T14:06:11Z",
+    "worker_stats": {
+      "tokens": 151175,
+      "tool_uses": 133,
+      "runtime": "~50m",
+      "status": "done"
+    }
   },
   {
     "title": "Browser-based final pixel/console verification (after RBAC-UI fix)",
