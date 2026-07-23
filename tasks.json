@@ -1107,11 +1107,17 @@
   },
   {
     "title": "Histories row-copy (exact parity from monolith ~1.8M) + ACL snapshot-preserve (53 employees)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Faster row-copy approach for exact parity from monolith (~1.8M rows) + ACL snapshot-preserve for 53 employees.",
+    "note": "DONE -- LAST data lane, full data parity achieved. hr_app_history 65,347->1,839,662 (== source exactly, 1,430 employees, M2M exact, archived frozen-tails byte-verified, 0 orphans) + ACL 53/53 restored per Omar's ruling. Commits 67e205de + 6b46fe66.",
     "worker": "Histories row-copy + ACL snapshot preserve",
-    "started_at": "2026-07-23T11:26:58Z"
+    "started_at": "2026-07-23T11:26:58Z",
+    "worker_stats": {
+      "tokens": 187019,
+      "tool_uses": 83,
+      "runtime": "~65m",
+      "status": "done"
+    }
   },
   {
     "title": "QC ncractiontask integrity check + recover",
