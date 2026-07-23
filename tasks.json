@@ -1240,10 +1240,24 @@
   },
   {
     "title": "Session gap-closure reconciliation audit",
-    "status": "in_progress",
+    "status": "done",
     "track": "mission-control",
     "worker": "Session gap-closure reconciliation audit",
-    "note": "recovery-worker just launched -- reconciling any gaps from the earlier host-process interruption.",
-    "started_at": "2026-07-23T15:12:32Z"
+    "note": "DONE -- all named recoveries verified exact-parity in live DB, trees clean, nothing significant missed; small tail only (see Final data loose-ends closer).",
+    "started_at": "2026-07-23T15:12:32Z",
+    "worker_stats": {
+      "tokens": 157677,
+      "tool_uses": 59,
+      "runtime": "~20m",
+      "status": "done"
+    }
+  },
+  {
+    "title": "Final data loose-ends closer: production test-artifact delete + reserveditem + hr datereset + integrations MM/AX mapping + Cluster-C re-verify",
+    "status": "in_progress",
+    "track": "backend",
+    "worker": "Close final data loose-ends",
+    "note": "Closing the small tail found by the session gap-closure audit: production test-artifact delete + reserveditem, hr datereset, integrations MM/AX mapping, Cluster-C re-verify.",
+    "started_at": "2026-07-23T15:33:13Z"
   }
 ]
