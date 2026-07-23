@@ -10,5 +10,6 @@ scripts/heartbeat_hidden.vbs
 .heartbeat.lock
 .heartbeat.log*
 scripts/sysres_hidden.vbs
+scripts/register-sysres-task.ps1
 .sysres.lock
 .sysres.log*

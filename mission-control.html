@@ -343,6 +343,18 @@
     </div>
   </header>
 
+  <!-- ============ SYSTEM RESOURCES (SYSTEM-WIDE) — PINNED TO TOP per Omar ============ -->
+  <section class="panel">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Host-level, system-wide only — NOT attributable per-worker (AI subagents don't have their own CPU/mem)</p>
+        <h2>System resources</h2>
+      </div>
+      <span class="foot mono" id="sysSummary">—</span>
+    </div>
+    <div id="sysRes"></div>
+  </section>
+
   <!-- ============ OVERVIEW / HERO ============ -->
   <section class="hero">
     <div class="herofig">
@@ -488,18 +500,6 @@
     <p class="eyebrow" style="margin:16px 0 2px">Containers <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(green = up, amber = starting/unhealthy-checkable, red = down/unhealthy)</span></p>
     <div id="dockerGrid" class="dgrid"></div>
     <p class="foot" style="margin:10px 0 0">Live from <span class="mono">docker ps</span> + HTTP smoke on the generator's host (LOCAL/dev). If Docker or the gateway is unreachable the generator degrades to <b>"unavailable"</b> rather than guessing.</p>
-  </section>
-
-  <!-- ============ SYSTEM RESOURCES (SYSTEM-WIDE) ============ -->
-  <section class="panel">
-    <div class="split">
-      <div>
-        <p class="eyebrow">Host-level, system-wide only — NOT attributable per-worker (AI subagents don't have their own CPU/mem)</p>
-        <h2>System resources</h2>
-      </div>
-      <span class="foot mono" id="sysSummary">—</span>
-    </div>
-    <div id="sysRes"></div>
   </section>
 
   <!-- ============ RECENT COMMITS ============ -->

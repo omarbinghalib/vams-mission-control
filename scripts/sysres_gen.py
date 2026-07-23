@@ -32,10 +32,24 @@ OUT = os.path.join(REPO, "sysres.json")
 
 HOST_TIMEOUT_SEC = 20
 DOCKER_TIMEOUT_SEC = 25
+CARRY_MAX_MIN = 20     # don't carry-forward a reading older than this (same TTL pattern gen_stats.py
+                       # uses for its own docker/publisher probes) -- an honest "unavailable" beats an
+                       # indefinitely-recycled stale number that would otherwise never look stale
+                       # (the top-level checked_at refreshes every cycle regardless of carry-forward).
 
 
 def iso(dt):
     return dt.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def parse_iso(ts):
+    if not ts:
+        return None
+    try:
+        d = datetime.datetime.fromisoformat(str(ts).strip().replace("Z", "+00:00"))
+        return d if d.tzinfo is not None else d.replace(tzinfo=datetime.timezone.utc)
+    except Exception:
+        return None
 
 
 def run_safe(args, timeout):
@@ -108,18 +122,51 @@ def docker_stats():
             "total_mem_mb": round(total_mem_mb, 1)}, None
 
 
+def _load_prev():
+    """Best-effort load of the previously-written sysres.json -- the source for carry-forward when
+    a probe fails/times out this cycle (same resilience pattern gen_stats.py already uses for its
+    own docker/publisher/health probes: reuse the last GOOD reading, marked carried, rather than
+    showing a blank card every time this one probe has a rough cycle under load)."""
+    try:
+        return json.load(open(OUT, encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _carry(key, fresh, prev, now):
+    """Return (value, carried, as_of) for one sub-block: use the fresh reading if the probe
+    succeeded this cycle; otherwise fall back to the previous GOOD reading IF it's not older than
+    CARRY_MAX_MIN (else drop it -- honest 'unavailable' beats a stale number recycled forever)."""
+    if fresh is not None:
+        return fresh, False, iso(now)
+    if isinstance(prev, dict) and prev.get(key):
+        prev_as_of = parse_iso(prev.get(key + "_as_of") or prev.get("checked_at"))
+        if prev_as_of is not None:
+            age_min = (now - prev_as_of).total_seconds() / 60
+            if age_min <= CARRY_MAX_MIN:
+                return prev[key], True, iso(prev_as_of)
+    return None, False, None
+
+
 def main():
     now = datetime.datetime.now(datetime.timezone.utc)
-    host, herr = host_stats()
-    docker, derr = docker_stats()
-    available = (host is not None) or (docker is not None)
+    prev = _load_prev()
+    fresh_host, herr = host_stats()
+    fresh_docker, derr = docker_stats()
+
+    host, host_carried, host_as_of = _carry("host", fresh_host, prev, now)
+    docker, docker_carried, docker_as_of = _carry("docker", fresh_docker, prev, now)
+
+    available = bool(host) or bool(docker)
     out = {
         "available": available,
         "checked_at": iso(now),
         "host": host or {},
         "docker": docker or {},
-        "host_carried": False,
-        "docker_carried": False,
+        "host_carried": host_carried,
+        "docker_carried": docker_carried,
+        "host_as_of": host_as_of,
+        "docker_as_of": docker_as_of,
     }
     if herr:
         out["host_error"] = herr
@@ -132,7 +179,8 @@ def main():
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(out, fh, indent=1)
     os.replace(tmp, OUT)          # atomic swap -- a concurrent reader never sees a half-written file
-    print("sysres_gen OK available={} host_err={} docker_err={}".format(available, herr, derr))
+    print("sysres_gen OK available={} host_err={} docker_err={} host_carried={} docker_carried={}"
+          .format(available, herr, derr, host_carried, docker_carried))
 
 
 if __name__ == "__main__":
