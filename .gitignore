@@ -9,3 +9,6 @@ stats.json.tmp
 scripts/heartbeat_hidden.vbs
 .heartbeat.lock
 .heartbeat.log*
+scripts/sysres_hidden.vbs
+.sysres.lock
+.sysres.log*

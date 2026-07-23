@@ -2066,14 +2066,14 @@ function renderPublisher(j){
   }
 }
 
-/* ================= system resources (host-wide; DEFERRED probe — see gen_stats.py note) =========
-   gen_stats.py's system_resources() (host CPU/mem + aggregate `docker stats`) was deliberately NOT
-   re-enabled during the 2026-07-23 freshness incident reconciliation: under the sustained heavy
-   load that caused the incident, `docker stats` alone was measured taking 2+ minutes — re-probing
-   it every heartbeat risked reproducing the exact stall that just took the dashboard offline. This
-   renderer is wired and ready (matches gen_stats.py's future `system_resources` shape exactly) so
-   turning the probe back on later (once load allows, or bounded harder) needs no further JS work;
-   until then it degrades honestly to "unavailable" rather than showing stale/fake numbers. */
+/* ================= system resources (host-wide; SEPARATE off-critical-path collector) ===========
+   gen_stats.py stays UNTOUCHED and never gets a `system_resources` key (the 2026-07-23 incident
+   showed `docker stats` alone can take 2+ minutes under heavy fleet load, more than heartbeat.sh's
+   whole 150s budget). Instead, a fully independent script (scripts/sysres_gen.py, wrapped by
+   scripts/sysres.sh) runs on its OWN ~5-min OS scheduled task (VAMS-MissionControl-Sysres) and
+   writes sysres.json, polled here via its own fetch (pollSysres below) — completely decoupled from
+   pollStats()/renderExtras(). Degrades honestly to "unavailable" if the file is missing or its
+   checked_at is stale, rather than showing frozen/fake numbers. */
 function _sysBarCls(pct){ if(pct==null) return "ok"; return pct>=90?"bad":(pct>=75?"warn":"ok"); }
 function renderSysres(j){
   const sr=j.system_resources, host=$("sysRes"), sum=$("sysSummary");
@@ -2096,7 +2096,29 @@ function renderSysres(j){
     : `<div class="sysres-placeholder">No readings yet.</div>`;
   if(sum) sum.textContent=(h.cpu_pct!=null?"cpu "+h.cpu_pct+"%":"")+(h.mem_pct!=null?" · mem "+h.mem_pct+"%":"");
 }
-function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);renderSysres(j);}
+function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);}
+
+// sysres.json is on its OWN poll/cadence (independent scheduled task, ~5 min) — NOT part of
+// renderExtras/pollStats, so a normal 15s stats.json poll can never stomp a fresher sysres reading
+// with a stale/absent one. STALE_MIN here is generous (15 min: 3x the collector's own ~5-min cadence)
+// so a couple of missed/slow ticks still read as real data, not a false "unavailable".
+const SYSRES_STALE_MIN = 15;
+async function pollSysres(){
+  let sr;
+  try{
+    const r = await fetch("sysres.json?t="+Date.now(), {cache:"no-store"});
+    if(!r.ok) throw new Error("http "+r.status);
+    sr = await r.json();
+    const ageMin = sr.checked_at ? (Date.now()-new Date(sr.checked_at).getTime())/60000 : Infinity;
+    if(ageMin > SYSRES_STALE_MIN){
+      sr = {available:false, error:"sysres.json stale ("+ageMin.toFixed(0)+"m old — collector task may be paused)"};
+    }
+  }catch(e){
+    sr = {available:false, error:"sysres.json unavailable"};
+  }
+  renderSysres({system_resources:sr});
+}
+pollSysres(); setInterval(pollSysres, 20000);
 
 /* ================= tasks & progress (commander-maintained tracker) ================= */
 const TK_TRACK_ORDER=["backend","frontend","mission-control","audit"];
