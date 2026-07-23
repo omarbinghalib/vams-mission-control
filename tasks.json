@@ -1147,11 +1147,18 @@
   },
   {
     "title": "Documentation fleet: API docs x11 services + user guides x7 roles + hub",
-    "status": "in_progress",
+    "status": "done",
     "track": "docs",
-    "progress": 95,
-    "note": "18/18 docs WRITTEN -- all 11 API references + all 7 role guides committed. Hub now actively assembling (see Hub-assembler task); final reconciliations in progress alongside the RBAC-UI fix so the hub reflects fixed button gating.",
-    "started_at": "2026-07-23T12:36:02Z"
+    "progress": 100,
+    "note": "DONE -- hub assembled: docs/hub/vams-docs-hub.html, all 18 docs bundled, self-contained offline, Chromium-verified (zero external requests, zero console errors). Commits f3869552 (guide reconciliations) + 6a420548 (hub). Hub local-only; external publish gated on Omar; RBAC caveats annotated fix-in-progress, will refresh post-fix.",
+    "started_at": "2026-07-23T12:36:02Z",
+    "worker": "Assemble offline documentation hub",
+    "worker_stats": {
+      "tokens": 67208,
+      "tool_uses": 70,
+      "runtime": "~29m",
+      "status": "done"
+    }
   },
   {
     "title": "RBAC-UI fix: role-aware button gating (useIsAdmin hid workflow buttons from accounts-admin)",
@@ -1163,11 +1170,17 @@
   },
   {
     "title": "Hub-assembler: 18 docs -> one offline HTML hub (+ reconciliations)",
-    "status": "in_progress",
+    "status": "done",
     "track": "docs",
     "worker": "Assemble offline documentation hub",
-    "note": "Assembling all 18 written docs into one self-contained offline HTML hub, with reconciliations.",
-    "started_at": "2026-07-23T14:06:11Z"
+    "note": "DONE -- docs/hub/vams-docs-hub.html, all 18 docs bundled, self-contained offline, Chromium-verified (zero external requests, zero console errors). Commits f3869552 (guide reconciliations) + 6a420548 (hub).",
+    "started_at": "2026-07-23T14:06:11Z",
+    "worker_stats": {
+      "tokens": 67208,
+      "tool_uses": 70,
+      "runtime": "~29m",
+      "status": "done"
+    }
   },
   {
     "title": "Dashboard hardening: heartbeat pathspec-commit + sysres collector off-critical-path + kit push",
