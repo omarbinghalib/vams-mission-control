@@ -58,11 +58,21 @@ log "START"
 # bounded, but cap the whole thing so it can never hold the lock indefinitely.
 if timeout 150 python "$here/gen_stats.py" --heartbeat >> "$LOG" 2>&1; then
   log "gen_stats OK (push warranted)"
+  # PATHSPEC-LIMITED add+commit — this script owns ONLY stats.json (it never bumps
+  # version.json; that belongs to attention.sh/tasks.sh/build-pages.sh). The shared repo
+  # index can have OTHER files staged by a concurrent updater (tasks.sh stages
+  # tasks.json+version.json together) at the moment we run; `git add stats.json` only
+  # stages our own file, but a plain `git commit` with no pathspec commits EVERYTHING
+  # currently staged, so it can sweep the updater's staged tasks.json/version.json into a
+  # mislabeled "Heartbeat: refresh worker liveness" commit (confirmed: commit c3b8201 did
+  # exactly this). `git commit -- stats.json` limits the commit to just that path's diff
+  # against HEAD and leaves any other staged changes untouched in the index for the
+  # updater's own commit.
   git add stats.json; log "git add rc=$?"
-  if ! git diff --cached --quiet stats.json; then
+  if ! git diff --cached --quiet -- stats.json; then
     git commit -q -m "Heartbeat: refresh worker liveness
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"; log "git commit rc=$?"
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" -- stats.json; log "git commit rc=$?"
     git push -q; prc=$?; log "git push rc=$prc"
     [ "$prc" -eq 0 ] && echo "heartbeat pushed $(date -u +%H:%MZ)"
   else
