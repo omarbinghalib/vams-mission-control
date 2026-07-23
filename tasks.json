@@ -766,5 +766,13 @@
     "note": "Large recovery lane -- customer AR ledger + 6 subledgers; early stage, cent-verification pending.",
     "progress": 15,
     "started_at": "2026-07-23T03:37:28Z"
+  },
+  {
+    "title": "Deep live parity sweep: engineering",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on engineering.",
+    "progress": 20,
+    "started_at": "2026-07-23T03:38:16Z"
   }
 ]
