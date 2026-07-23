@@ -220,7 +220,7 @@
   },
   {
     "title": "Safety: stop vams_monolith_app (:8012) writing to the source of truth",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
     "note": "Prevents the live legacy app from mutating vams_monolith while it's being used as the migration source. Container still up (read path retained); write-block not yet confirmed complete.",
     "started_at": "2026-07-23T04:42:54Z"
@@ -275,7 +275,7 @@
   },
   {
     "title": "Supplier-account ownership: accounting owns, purchasing reads cross-service",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "note": "DECIDED by Omar: accounting owns (purchasing_app_supplieraccount was empty -- 0 rows -- vs accounting's 978, blocking 247 debit notes; purchasing now reads cross-service instead of holding its own copy). A lane is implementing it now.",
     "started_at": "2026-07-23T04:42:54Z"
@@ -650,21 +650,21 @@
   },
   {
     "title": "WAVE 2 module lane: hr re-skin + gap-close",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "note": "Live workers running (3 batches: employee/housing/paytool/hodDashboard + more).",
     "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "WAVE 2 module lane: production re-skin + gap-close",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "note": "Live worker running (machines/toolings/superscreen, planning/inventory, work-order pages).",
     "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "WAVE 2 module lane: global-shell re-skin + gap-close",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "note": "Live worker running.",
     "started_at": "2026-07-23T04:42:54Z"
@@ -1019,14 +1019,14 @@
   },
   {
     "title": "Production batch (HCAP completeness + CountJournal + prod test fixes)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "note": "HCAP/VS-Report analytics completeness (~8,700 rows) + CountJournal migration + production test-suite fixes.",
     "started_at": "2026-07-23T07:16:55Z"
   },
   {
     "title": "HR batch (AX Salary Report CSV + leavetracker cleanup)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "note": "AX Salary Report CSV generator + leavetracker synthetic-row cleanup (349 blanks).",
     "started_at": "2026-07-23T07:16:55Z"
@@ -1189,11 +1189,11 @@
     }
   },
   {
-    "title": "Dashboard hardening: heartbeat pathspec-commit + sysres collector off-critical-path + kit push",
+    "title": "Dashboard hardening + resource-monitor (make it work + move to top)",
     "status": "in_progress",
     "track": "mission-control",
     "worker": "Dashboard hardening + kit push",
-    "note": "Heartbeat pathspec-commit fix (avoid shared-index races) + move sysres collector off the critical path + push learnings back to the kit.",
+    "note": "Heartbeat pathspec-commit fix + sysres off-critical-path collector landed (shipping as separate Sysres commits); folded in: make the resource-monitor panel actually work + move it to the top of the dashboard.",
     "started_at": "2026-07-23T14:06:11Z"
   },
   {
@@ -1237,5 +1237,13 @@
       "runtime": "~16m",
       "status": "done"
     }
+  },
+  {
+    "title": "Session gap-closure reconciliation audit",
+    "status": "in_progress",
+    "track": "mission-control",
+    "worker": "Session gap-closure reconciliation audit",
+    "note": "recovery-worker just launched -- reconciling any gaps from the earlier host-process interruption.",
+    "started_at": "2026-07-23T15:12:32Z"
   }
 ]
