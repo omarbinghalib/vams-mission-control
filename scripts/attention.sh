@@ -13,6 +13,14 @@ here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 cd "$repo" || exit 1
 
+# NON-INTERACTIVE + BOUNDED git: never block on a prompt; fail fast + cap each call.
+export GIT_TERMINAL_PROMPT=0
+export GIT_SSH_COMMAND="ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=10"
+# git-safe + BOUNDED: strip leaked GIT_* pointer env AND cap each git call via `timeout` on the
+# REAL git binary so a stalled push can't hang (see tasks.sh / mission-control-kit bin/lib.sh).
+_gitbin="$(command -v git)"
+git() { ( unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX; timeout 40 "$_gitbin" "$@" ); }
+
 clear=0; msg=""
 : > "$here/.attn_opts.tmp"
 while [ $# -gt 0 ]; do
