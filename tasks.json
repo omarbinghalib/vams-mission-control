@@ -1112,5 +1112,18 @@
     "note": "Faster row-copy approach for exact parity from monolith (~1.8M rows) + ACL snapshot-preserve for 53 employees.",
     "worker": "Histories row-copy + ACL snapshot preserve",
     "started_at": "2026-07-23T11:26:58Z"
+  },
+  {
+    "title": "QC ncractiontask integrity check + recover",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- REAL gap found: recovered 2,009 rows (1,816 corrective + 193 preventive), 0 orphans, count/content-verified; Ncr.get_time_consumed() now populated for 287 NCRs. Commit 621e1c92.",
+    "worker": "Check/recover qc ncractiontask",
+    "worker_stats": {
+      "tokens": 114159,
+      "tool_uses": 29,
+      "runtime": "~17m",
+      "status": "done"
+    }
   }
 ]
