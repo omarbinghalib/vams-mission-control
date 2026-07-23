@@ -1138,5 +1138,13 @@
       "runtime": "~35m",
       "status": "done"
     }
+  },
+  {
+    "title": "Documentation fleet: API docs x11 services + user guides x7 roles + hub",
+    "status": "in_progress",
+    "track": "docs",
+    "progress": 17,
+    "note": "3/18 done -- API docs: HR (79f5b23b), QC (6777105c), Production (c3bfdfbe). 5 more wave-1 API-doc lanes in progress (accounting, purchasing, engineering, crm, reporting); wave 2 (3 remaining service docs + 7 role guides) + hub-assembler queued.",
+    "started_at": "2026-07-23T12:36:02Z"
   }
 ]
