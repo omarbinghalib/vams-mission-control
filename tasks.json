@@ -729,8 +729,9 @@
     "title": "Post-hibernate recovery + HR histories day-classification engine",
     "status": "in_progress",
     "track": "backend",
-    "note": "Host resumed from hibernate -- recovery worker bringing the container stack back up in parallel; HR histories day-classification engine build underway alongside it.",
-    "started_at": "2026-07-23T03:35:06Z"
+    "note": "Host resumed from hibernate -- recovery worker brought the container stack back up in parallel. HR histories day-classification engine: models + engine committed; wiring + tests remaining (nearly done).",
+    "started_at": "2026-07-23T03:35:06Z",
+    "progress": 85
   },
   {
     "title": "Performance optimization of slow aggregates",
