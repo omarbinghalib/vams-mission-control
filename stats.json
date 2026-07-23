@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-23T22:08:41Z",
-  "heartbeat_at": "2026-07-23T22:08:41Z",
-  "last_activity": "2026-07-23T22:08:26Z",
+  "updated": "2026-07-23T22:10:44Z",
+  "heartbeat_at": "2026-07-23T22:10:44Z",
+  "last_activity": "2026-07-23T22:10:24Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -9,15 +9,15 @@
     "cache_read_tokens": 7683114472,
     "cache_creation_tokens": 94084588,
     "msgs": 18070,
-    "sessions": 16,
+    "sessions": 15,
     "live_sessions": 2,
     "transcript_sessions": 12,
-    "subagent_sessions": 4,
-    "workers": 5,
+    "subagent_sessions": 3,
+    "workers": 4,
     "live_workers": 2,
     "stopped_workers": 0,
-    "current_workers": 5,
-    "history_workers": 433,
+    "current_workers": 4,
+    "history_workers": 434,
     "recent_window_min": 120
   },
   "workers": [
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T22:08:26Z",
+      "out_last_active": "2026-07-23T22:10:24Z",
       "out_age_min": 0.3,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T22:08:26Z",
+      "out_last_active": "2026-07-23T22:10:24Z",
       "out_age_min": 0.3,
-      "log_bytes": 2394360,
-      "output_tokens": 68622,
-      "cache_read_tokens": 31461104,
-      "cache_creation_tokens": 630307,
-      "msgs": 251,
+      "log_bytes": 3469996,
+      "output_tokens": 69611,
+      "cache_read_tokens": 33622197,
+      "cache_creation_tokens": 650714,
+      "msgs": 261,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
@@ -72,7 +72,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-23T21:14:45Z",
-      "out_age_min": 53.9,
+      "out_age_min": 56.0,
       "log_bytes": 7539534,
       "output_tokens": 90168,
       "cache_read_tokens": 42451299,
@@ -94,34 +94,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-23T21:48:15Z",
-      "out_age_min": 20.4,
+      "out_age_min": 22.5,
       "log_bytes": 2095954,
       "output_tokens": 204501,
       "cache_read_tokens": 171101024,
       "cache_creation_tokens": 931757,
       "msgs": 512,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Migrate pages to legacy (modules M\u2013Z)",
-      "role": "worker",
-      "branch": null,
-      "focus": "Frontend `legacy-ui` branch (frontend/src/.",
-      "agent_id": "a502f612e58c9a190",
-      "short_id": "a502f612",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T20:10:19Z",
-      "out_age_min": 118.4,
-      "log_bytes": 1454994,
-      "output_tokens": 138946,
-      "cache_read_tokens": 87745457,
-      "cache_creation_tokens": 675773,
-      "msgs": 366,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -137,8 +115,8 @@
       "cache_read_tokens": 1419099753,
       "cache_creation_tokens": 37407304,
       "msgs": 3104,
-      "last_active": "2026-07-23T22:08:26Z",
-      "age_min": 0.3,
+      "last_active": "2026-07-23T22:10:57Z",
+      "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -154,7 +132,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 21024.2,
+      "age_min": 21026.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -169,7 +147,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 29847.3,
+      "age_min": 29849.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -184,7 +162,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 23977.4,
+      "age_min": 23979.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -199,7 +177,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 23750.4,
+      "age_min": 23752.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -214,7 +192,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 19658.0,
+      "age_min": 19660.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -229,7 +207,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 21133.6,
+      "age_min": 21135.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -244,7 +222,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 19818.1,
+      "age_min": 19820.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -259,7 +237,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 23931.3,
+      "age_min": 23933.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -274,7 +252,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 23977.4,
+      "age_min": 23979.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -289,7 +267,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 30552.6,
+      "age_min": 30554.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -304,7 +282,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 30570.0,
+      "age_min": 30572.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -315,16 +293,16 @@
       "full_id": "a6709f82e09eec6b5",
       "group": "worker",
       "group_label": "Legacy-skin home landing + residual widgets",
-      "output_tokens": 68622,
-      "cache_read_tokens": 31461104,
-      "cache_creation_tokens": 630307,
-      "msgs": 251,
-      "last_active": "2026-07-23T22:08:26Z",
+      "output_tokens": 69611,
+      "cache_read_tokens": 33622197,
+      "cache_creation_tokens": 650714,
+      "msgs": 261,
+      "last_active": "2026-07-23T22:10:24Z",
       "age_min": 0.3,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 2394360,
+      "log_bytes": 3469996,
       "recent": true
     },
     {
@@ -337,7 +315,7 @@
       "cache_creation_tokens": 555428,
       "msgs": 328,
       "last_active": "2026-07-23T21:14:45Z",
-      "age_min": 53.9,
+      "age_min": 56.0,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -354,39 +332,22 @@
       "cache_creation_tokens": 931757,
       "msgs": 512,
       "last_active": "2026-07-23T21:48:15Z",
-      "age_min": 20.4,
+      "age_min": 22.5,
       "live": false,
       "status": "idle",
       "subagent": true,
       "log_bytes": 2095954,
       "recent": true
-    },
-    {
-      "id": "a502f612",
-      "full_id": "a502f612e58c9a190",
-      "group": "worker",
-      "group_label": "Migrate pages to legacy (modules M\u2013Z)",
-      "output_tokens": 138946,
-      "cache_read_tokens": 87745457,
-      "cache_creation_tokens": 675773,
-      "msgs": 366,
-      "last_active": "2026-07-23T20:10:19Z",
-      "age_min": 118.4,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1454994,
-      "recent": true
     }
   ],
   "total_tokens": 22180811,
   "history": {
-    "workers": 433,
+    "workers": 434,
     "by_status": {
-      "idle": 429,
+      "idle": 430,
       "stopped": 4
     },
-    "last_active": "2026-07-23T19:47:54Z",
+    "last_active": "2026-07-23T20:10:19Z",
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
@@ -657,9 +618,9 @@
       {
         "name": "vams_hr_relay",
         "state": "running",
-        "status": "Up 13 hours",
+        "status": "Up 14 hours",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "14 hours",
         "ports": "",
         "up": true
       },
@@ -738,9 +699,9 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 10 minutes",
+        "status": "Up 29 minutes",
         "health": "none",
-        "uptime": "10 minutes",
+        "uptime": "29 minutes",
         "ports": "8007",
         "up": true
       },
@@ -756,9 +717,9 @@
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 37 hours",
+        "status": "Up 38 hours",
         "health": "none",
-        "uptime": "37 hours",
+        "uptime": "38 hours",
         "ports": "",
         "up": true
       },
@@ -864,9 +825,9 @@
       {
         "name": "vams_web",
         "state": "running",
-        "status": "Up 42 seconds",
+        "status": "Up 20 minutes",
         "health": "none",
-        "uptime": "42 seconds",
+        "uptime": "20 minutes",
         "ports": "8090",
         "up": true
       }
@@ -877,8 +838,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-23T21:50:36Z",
-    "carried": true
+    "checked_at": "2026-07-23T22:10:44Z"
   },
   "health": [
     {
@@ -891,8 +851,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     },
     {
       "name": "auth token",
@@ -906,8 +865,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     }
   ],
   "commits": {
@@ -915,17 +873,68 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 95,
+        "commits_7d": 199
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 1
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "c4e68256",
+        "at": "2026-07-24T01:47:40+04:00",
+        "subject": "production: test cleanup -- use the file's own datetime import instead of __import__()",
+        "track": "backend"
+      },
+      {
+        "hash": "41bb552b",
+        "at": "2026-07-24T01:36:42+04:00",
+        "subject": "production: document inventory_by_year's measured runtime at live data scale",
+        "track": "backend"
+      },
+      {
+        "hash": "72a9d5ec",
+        "at": "2026-07-24T01:35:04+04:00",
+        "subject": "production: fix sales_by_acc_manager KeyError found during live end-to-end verification",
+        "track": "backend"
+      },
+      {
+        "hash": "c466e565",
+        "at": "2026-07-24T01:09:45+04:00",
+        "subject": "production: close remaining VS-Report gaps (platform_ro identity seam, FX conversion, FIFO inventory, P&L, production billing, billing planner)",
+        "track": "backend"
+      },
+      {
+        "hash": "cecd9fe1",
+        "at": "2026-07-23T23:37:17+04:00",
+        "subject": "production: add department=sales VS-Report generator (annual-only) + --department flag",
+        "track": "backend"
+      },
+      {
+        "hash": "95f1bb95",
+        "at": "2026-07-23T23:35:59+04:00",
+        "subject": "production: port 21 more accounts-department VS-Report keys via crm/purchasing seams",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
