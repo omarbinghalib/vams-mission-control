@@ -1318,7 +1318,8 @@
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
     "status": "in_progress",
     "track": "docs",
-    "note": "4 parallel workers: architecture (a63f74db), deployment-ops (ad6d2bd5), data-model (a66607be), rbac-matrix (a24d4309). Hub re-assembler + landing page fires after all 4 land.",
-    "started_at": "2026-07-23T16:55:32Z"
+    "note": "4/4 cross-cutting docs done -- architecture (8b19aceb), deployment-ops (e3809e2d), data-model (15723b25), rbac-matrix (8eedc5c). Hub re-assembling now (worker 'Re-assemble complete doc hub + landing') to bundle all 22 docs (4 overview + 11 services + 7 guides) + a landing page into docs/hub/vams-docs-hub.html.",
+    "started_at": "2026-07-23T16:55:32Z",
+    "progress": 80
   }
 ]
