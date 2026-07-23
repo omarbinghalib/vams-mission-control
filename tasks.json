@@ -1033,12 +1033,15 @@
   },
   {
     "title": "Purchasing completeness (supplier-qual serializer + MES endpoint + PR grid/doc-upload/badge + 7 tests)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "supplier-qual serializer field, MES aggregate endpoint, PR payment-term grid, PR doc-upload form, PR badge, + 7 test fixes.",
+    "note": "DONE -- supplier-qual serializer + MES endpoint + PR grid/doc-upload/badge; commits 50ca4c96 (backend) + a2cebe8f (frontend); 81/81 + 18/18 tests passing.",
     "worker": "Purchasing completeness: backend + PR UI + tests",
     "worker_stats": {
-      "status": "live"
+      "tokens": 475446,
+      "tool_uses": 314,
+      "runtime": "~2.5h",
+      "status": "done"
     },
     "started_at": "2026-07-23T09:23:55Z"
   },
