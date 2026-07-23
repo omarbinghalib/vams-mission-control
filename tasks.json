@@ -1060,12 +1060,15 @@
   },
   {
     "title": "HR data closers (histories 1.8M backfill + HCAP registers + expiring-docs window)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Histories 1.8M-row backfill + 175 HCAP registers + expiring-docs window.",
+    "note": "DONE -- HCAP 175 registers + expiring-docs window; histories being completed via faster row-copy approach (see new task). Commits c2083d54 (HCAP 175) + 2643eb66 (doc window) + 0ba58d6f (histories partial 65,347 rows).",
     "worker": "HR data: histories backfill + HCAP registers + doc window",
     "worker_stats": {
-      "status": "live"
+      "tokens": 304847,
+      "tool_uses": 305,
+      "runtime": "~3.1h",
+      "status": "done"
     },
     "started_at": "2026-07-23T09:23:55Z"
   },
@@ -1101,5 +1104,13 @@
       "runtime": "~20m",
       "status": "done"
     }
+  },
+  {
+    "title": "Histories row-copy (exact parity from monolith ~1.8M) + ACL snapshot-preserve (53 employees)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Faster row-copy approach for exact parity from monolith (~1.8M rows) + ACL snapshot-preserve for 53 employees.",
+    "worker": "Histories row-copy + ACL snapshot preserve",
+    "started_at": "2026-07-23T11:26:58Z"
   }
 ]
