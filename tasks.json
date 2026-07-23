@@ -1143,8 +1143,8 @@
     "title": "Documentation fleet: API docs x11 services + user guides x7 roles + hub",
     "status": "in_progress",
     "track": "docs",
-    "progress": 89,
-    "note": "16/18 done -- ALL 11 API docs done: HR (79f5b23b), QC (6777105c), Production (c3bfdfbe), Engineering (1c84bf6e), Accounting (a1334655), CRM (3993a8c6), Reporting (a796c5bc), Purchasing (606319a0), Platform (8c159c8f), Integrations (60171491), Ops (2659cf29). Role guides (5/7): Quality (6e844b45), Accounts-admin (192ea56e), HOD (e0f4adfa), Sales (9376a5d1), Admin (ddde2b9e). In flight: hr-manager + mes guides. Then hub-assembler.",
+    "progress": 95,
+    "note": "18/18 docs WRITTEN -- all 11 API references + all 7 role guides committed (hr-manager 1d40c805, mes c79d5537 landed last). Hub assembly pending RBAC-UI fix (so assembled guides reflect fixed button gating + reconcile the admin-guide period-lock note); final step once that lands.",
     "started_at": "2026-07-23T12:36:02Z"
   },
   {
