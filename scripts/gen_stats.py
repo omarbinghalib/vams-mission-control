@@ -375,6 +375,18 @@ def progress_block():
     # remaining hours/sessions + per-track breakdown — ACTIVE work only (archived items are 100%
     # done either way, so they'd contribute exactly 0 remaining — this scoping is just clarity).
     cw, total, rem = _task_weights(tasks)
+    # HONESTY SPLIT (2026-07-23): a task can be marked "gated": true — blocked on an Omar decision/
+    # credential/sign-off (rotate leaked creds, ALTER DATABASE permission grant, external-docs-publish
+    # PII gate, Phase-5 cutover, Wave-3 live-wire creds, post-parity docs+avatar cutover) rather than
+    # being fleet-executable. Mixing those into one "remaining work" number implies the fleet can just
+    # grind them down on its own, which is false — no amount of worker-hours closes a task that is
+    # waiting on Omar. Split the remaining-effort estimate into AUTONOMOUS (fleet can execute solo) vs
+    # GATED (needs an Omar action first) so the ETA never overstates what's actually unblocked.
+    gated_tasks      = [t for t in tasks if t.get("gated")]
+    autonomous_tasks = [t for t in tasks if not t.get("gated")]
+    _, _, rem_gated      = _task_weights(gated_tasks)
+    _, _, rem_autonomous = _task_weights(autonomous_tasks)
+    gated_open = sum(1 for t in gated_tasks if t.get("status") != "done")
     groups = {}
     for t in tasks:
         groups.setdefault(t.get("track", "other"), []).append(t)
@@ -389,14 +401,22 @@ def progress_block():
                            "remaining_hours": _hrs(remt), "remaining_sessions": _sess(remt),
                            "weight": 1})
     return {"overall_pct": overall, "remaining_hours": _hrs(rem), "remaining_sessions": _sess(rem),
+            "remaining_hours_autonomous": _hrs(rem_autonomous),
+            "remaining_sessions_autonomous": _sess(rem_autonomous),
+            "remaining_hours_gated": _hrs(rem_gated),
+            "remaining_sessions_gated": _sess(rem_gated),
+            "gated_open": gated_open,
+            "gated_titles": [t["title"][:90] for t in gated_tasks if t.get("status") != "done"],
             "tracks": tracks_out, "shipped": shipped, "estimate": True,
             "basis": (f"Overall % is shipped-plus-in-flight work over the WHOLE project "
                       f"({shipped_done}/{total_all} tasks done={shipped['pct']}%, plus half-credit "
                       f"for in-flight tasks) — archiving old 100%-done tasks off the active list "
                       f"never shrinks this number. Per-track %, remaining hours/sessions below are "
                       f"scoped to the ACTIVE (decluttered) task list only — done=100%, in-progress=50%, "
-                      f"pending=0% — so they reflect what's actually still in flight. All ESTIMATES; "
-                      f"the measured signal is commit velocity (below).")}
+                      f"pending=0% — so they reflect what's actually still in flight. Of that remaining "
+                      f"total, {gated_open} task(s) are GATED on an Omar decision/credential/sign-off "
+                      f"(not fleet-executable) — see remaining_hours_gated vs remaining_hours_autonomous. "
+                      f"All ESTIMATES; the measured signal is commit velocity (below).")}
 
 # ---------- transcript-session baseline (numbers preserved for sessions whose .jsonl is gone) ----------
 # Files that still exist on this machine are recomputed live; the rest fall back to these.
