@@ -1212,14 +1212,14 @@
   },
   {
     "title": "Final browser pixel/console verification (acceptance evidence)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Acceptance-evidence pass across roles now that the RBAC-UI fix is in.",
+    "note": "DONE -- PASS on color flags (PWO grey, period-lock, BOM, NCR), role gating, trial balance/PO/NCR/MGB real data, ZERO console errors, 31 screenshots. Found 2 real defects, now being closed (see new lanes).",
     "worker": "Final browser pixel/console verification",
     "worker_stats": {
-      "tokens": 269810,
-      "tool_uses": 275,
-      "runtime": "~86m",
+      "tokens": 201087,
+      "tool_uses": 116,
+      "runtime": "~56m",
       "status": "done"
     },
     "started_at": "2026-07-23T14:42:44Z"
@@ -1259,5 +1259,21 @@
     "worker": "Close final data loose-ends",
     "note": "Closing the small tail found by the session gap-closure audit: production test-artifact delete + reserveditem, hr datereset, integrations MM/AX mapping, Cluster-C re-verify.",
     "started_at": "2026-07-23T15:33:13Z"
+  },
+  {
+    "title": "Fix CRM SO intelligence/GP panel (Zod schema flat-vs-nested) + wire MES consolidated-queue screen",
+    "status": "in_progress",
+    "track": "frontend",
+    "worker": "Fix SO intelligence panel + MES screen",
+    "note": "Real defect from the final browser verification pass.",
+    "started_at": "2026-07-23T15:41:21Z"
+  },
+  {
+    "title": "Entitle ops module for vbg org (tasks/OCN/SMS/visitor were Module-not-enabled)",
+    "status": "in_progress",
+    "track": "backend",
+    "worker": "Entitle ops module for vbg org",
+    "note": "Real defect from the final browser verification pass.",
+    "started_at": "2026-07-23T15:41:21Z"
   }
 ]
