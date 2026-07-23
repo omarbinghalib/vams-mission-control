@@ -295,6 +295,46 @@
   .sysbar>i{display:block;height:100%;border-radius:99px;transition:width .5s ease}
   .sysbar>i.ok{background:var(--ok)} .sysbar>i.warn{background:var(--warn)} .sysbar>i.bad{background:var(--bad)}
 
+  /* ---- HUD / game-meter styling for the system-resources panel ---- */
+  .hud-wrap{font-family:'SF Mono',ui-monospace,'Cascadia Code',Consolas,monospace}
+  .hud-rings{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px}
+  .hud-ring{position:relative;width:104px;height:104px;border-radius:50%;flex-shrink:0;
+    background:conic-gradient(var(--hc,var(--muted)) calc(var(--hp,0)*1%),var(--track) 0);
+    display:flex;align-items:center;justify-content:center;transition:background 1.2s ease}
+  .hud-ring::after{content:"";position:absolute;inset:0;border-radius:50%;
+    box-shadow:0 0 0 1px var(--ring) inset}
+  .hud-ring .hud-ring-inner{width:78px;height:78px;border-radius:50%;background:var(--panel);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .hud-ring .hv{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.1}
+  .hud-ring .hl{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-top:2px}
+  .hud-ring .hs{font-size:8.5px;color:var(--muted);margin-top:1px}
+  .hud-ring.na{opacity:.42}
+  .hud-ring.crit{animation:hudpulse 1.1s ease-in-out infinite}
+  @media (prefers-reduced-motion:reduce){.hud-ring.crit{animation:none}}
+  @keyframes hudpulse{
+    0%,100%{filter:drop-shadow(0 0 0 transparent)}
+    50%{filter:drop-shadow(0 0 9px var(--hc,var(--bad)))}
+  }
+  .hud-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+  .hud-tile{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--panel);
+    border-left:3px solid var(--hc,var(--line-strong))}
+  .hud-tile .hk{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .hud-tile .hv{font-size:15.5px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .hud-tile .hv.na{color:var(--muted);font-weight:500;font-size:13px}
+  .hud-units-hd{display:flex;align-items:center;justify-content:space-between;margin:2px 0 8px}
+  .hud-units-hd h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:700}
+  .hud-units{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px;
+    max-height:280px;overflow-y:auto;padding-right:2px}
+  .hud-unit{border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--panel-2);
+    border-left:3px solid var(--uc,var(--ok))}
+  .hud-unit .un{font-size:11px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;
+    text-overflow:ellipsis}
+  .hud-unit .um{font-size:10px;color:var(--muted);margin-top:2px;display:flex;justify-content:space-between;
+    font-variant-numeric:tabular-nums}
+  .hud-unit .ubar{height:4px;background:var(--track);border-radius:99px;overflow:hidden;margin-top:5px}
+  .hud-unit .ubar>i{display:block;height:100%;border-radius:99px;background:var(--uc,var(--ok))}
+  .hud-carry{color:var(--warn);font-weight:600}
+
   /* collapsed "earlier this session" tail (declutter the long roster) */
   details.earlier{grid-column:1/-1;margin-top:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
   details.earlier>summary{cursor:pointer;font-size:12.5px;color:var(--ink-2);list-style:none}
@@ -2066,35 +2106,86 @@ function renderPublisher(j){
   }
 }
 
-/* ================= system resources (host-wide; SEPARATE off-critical-path collector) ===========
+/* ================= system resources HUD (host-wide; SEPARATE off-critical-path collector) =======
    gen_stats.py stays UNTOUCHED and never gets a `system_resources` key (the 2026-07-23 incident
    showed `docker stats` alone can take 2+ minutes under heavy fleet load, more than heartbeat.sh's
    whole 150s budget). Instead, a fully independent script (scripts/sysres_gen.py, wrapped by
    scripts/sysres.sh) runs on its OWN ~5-min OS scheduled task (VAMS-MissionControl-Sysres) and
-   writes sysres.json, polled here via its own fetch (pollSysres below) — completely decoupled from
-   pollStats()/renderExtras(). Degrades honestly to "unavailable" if the file is missing or its
-   checked_at is stale, rather than showing frozen/fake numbers. */
-function _sysBarCls(pct){ if(pct==null) return "ok"; return pct>=90?"bad":(pct>=75?"warn":"ok"); }
+   writes sysres.json (host cpu/mem/disk/network/uptime/process-count/temp + per-container docker
+   stats), polled here via its own fetch (pollSysres below) — completely decoupled from
+   pollStats()/renderExtras(). Every metric degrades honestly to "n/a" if its probe/sensor failed or
+   the file is missing/stale — nothing here is ever fabricated (e.g. this host has no exposed ACPI
+   thermal zone, so temp always reads "n/a", not a fake number). Gamified HUD look (rings/meters,
+   green→amber→red threshold ramp, glow on critical) — purely inline CSS/JS, no external requests. */
+function _hudCls(pct){ if(pct==null) return "ok"; return pct>=90?"bad":(pct>=70?"warn":"ok"); }
+function _hudColor(cls){ return cls==="bad"?"var(--bad)":cls==="warn"?"var(--warn)":"var(--ok)"; }
+function fmtRate(bps){ bps=Number(bps)||0;
+  if(bps>=1048576) return (bps/1048576).toFixed(1)+" MB/s";
+  if(bps>=1024) return (bps/1024).toFixed(1)+" KB/s";
+  return Math.round(bps)+" B/s"; }
+function fmtUptime(sec){ sec=Number(sec)||0; const d=Math.floor(sec/86400), h=Math.floor((sec%86400)/3600),
+  m=Math.floor((sec%3600)/60); return d>0?`${d}d ${h}h`:h>0?`${h}h ${m}m`:`${m}m`; }
+function _hudRing(label, val, pct, unit, sub, carried){
+  const has = pct!=null;
+  const cls = has ? _hudCls(pct) : "na";
+  const col = _hudColor(cls);
+  const crit = has && cls==="bad";
+  return `<div class="hud-ring${crit?" crit":""}${has?"":" na"}" style="--hp:${has?Math.min(100,Math.max(0,pct)):0};--hc:${col}">`+
+    `<div class="hud-ring-inner"><div class="hv">${has?esc(String(val)):"n/a"}${has&&unit?esc(unit):""}</div>`+
+    `<div class="hl">${esc(label)}</div>`+(sub?`<div class="hs">${esc(sub)}${carried?' <span class="hud-carry">·stale</span>':""}</div>`:"")+
+    `</div></div>`;
+}
+function _hudTile(label, val, sub, carried, colVar){
+  const has = val!=null && val!=="";
+  return `<div class="hud-tile" style="${colVar?`--hc:${colVar}`:""}"><div class="hk">${esc(label)}${carried?' <span class="hud-carry">·stale</span>':""}</div>`+
+    `<div class="hv${has?"":" na"}">${has?esc(String(val)):"n/a"}</div>`+
+    (sub?`<div class="ss" style="font-size:10px;color:var(--muted);margin-top:1px">${esc(sub)}</div>`:"")+`</div>`;
+}
 function renderSysres(j){
   const sr=j.system_resources, host=$("sysRes"), sum=$("sysSummary");
   if(!sr||!sr.available){
-    if(host) host.innerHTML=`<div class="sysres-placeholder">Unavailable${sr&&sr.error?" — "+esc(sr.error):""} — host CPU/mem + `+
-      `<span class="mono">docker stats</span> probe is deferred (measured 2+ min under heavy fleet `+
-      `load during the 2026-07-23 incident); degrades honestly rather than faking a reading.</div>`;
+    if(host) host.innerHTML=`<div class="sysres-placeholder">Unavailable${sr&&sr.error?" — "+esc(sr.error):""} — host CPU/mem/disk/network + `+
+      `<span class="mono">docker stats</span> collector runs on its OWN separate scheduled task (off the `+
+      `heartbeat's critical path); degrades honestly rather than faking a reading.</div>`;
     if(sum) sum.textContent="unavailable"; return;
   }
-  const h=sr.host||{}, d=sr.docker||{};
-  const cards=[];
-  if(h.cpu_pct!=null) cards.push(["Host CPU", h.cpu_pct+"%", h.cpu_pct, sr.host_carried]);
-  if(h.mem_pct!=null) cards.push(["Host memory", h.mem_pct+"% · "+fmt(h.mem_used_mb)+"/"+fmt(h.mem_total_mb)+" MB", h.mem_pct, sr.host_carried]);
-  if(d.total_cpu_pct!=null) cards.push(["Docker CPU (agg)", d.total_cpu_pct+"% · "+(d.containers||0)+" containers", Math.min(100,d.total_cpu_pct), sr.docker_carried]);
-  if(d.total_mem_mb!=null) cards.push(["Docker memory (agg)", fmt(Math.round(d.total_mem_mb))+" MB", null, sr.docker_carried]);
-  if(host) host.innerHTML=cards.length?`<div class="sysgrid">${cards.map(([k,v,pct,carried])=>
-    `<div class="syscard"><div class="sk">${esc(k)}${carried?" · carried":""}</div><div class="sv">${esc(v)}</div>`+
-    (pct!=null?`<div class="sysbar"><i class="${_sysBarCls(pct)}" style="width:${Math.min(100,Math.max(0,pct))}%"></i></div>`:"")+
-    `</div>`).join("")}</div>`
-    : `<div class="sysres-placeholder">No readings yet.</div>`;
-  if(sum) sum.textContent=(h.cpu_pct!=null?"cpu "+h.cpu_pct+"%":"")+(h.mem_pct!=null?" · mem "+h.mem_pct+"%":"");
+  const h=sr.host||{}, d=sr.docker||{}, disks=sr.disks||[], net=sr.network||{};
+  const rings=[];
+  if(h.cpu_pct!=null) rings.push(_hudRing("CPU", h.cpu_pct, h.cpu_pct, "%", null, sr.host_carried));
+  if(h.mem_pct!=null) rings.push(_hudRing("MEM", h.mem_pct, h.mem_pct, "%", fmt(h.mem_used_mb)+"/"+fmt(h.mem_total_mb)+"MB", sr.host_carried));
+  (disks.length?disks:[null]).forEach(disk=>{
+    if(disk) rings.push(_hudRing("DISK "+disk.drive, disk.pct, disk.pct, "%", disk.used_gb+"/"+disk.total_gb+"GB", sr.disks_carried));
+  });
+  if(d.total_cpu_pct!=null) rings.push(_hudRing("DOCKER", d.total_cpu_pct, Math.min(100,d.total_cpu_pct), "%", (d.containers||0)+" units · "+fmt(Math.round(d.total_mem_mb||0))+"MB", sr.docker_carried));
+  if(sr.temp_available && sr.temp_c && sr.temp_c.length) {
+    const maxT=Math.max(...sr.temp_c);
+    rings.push(_hudRing("TEMP", maxT, Math.min(100,(maxT/90)*100), "°C", sr.temp_c.length>1?sr.temp_c.join("/")+"°C":null, sr.temp_carried));
+  } else {
+    rings.push(_hudRing("TEMP", null, null, null, "sensor n/a on this host", false));
+  }
+
+  const tiles=[];
+  if(h.uptime_sec!=null) tiles.push(_hudTile("Uptime", fmtUptime(h.uptime_sec), null, sr.host_carried));
+  if(h.process_count!=null) tiles.push(_hudTile("OS processes", fmtInt(h.process_count), null, sr.host_carried));
+  if(net.rx_bytes_per_sec!=null||net.tx_bytes_per_sec!=null)
+    tiles.push(_hudTile("Network I/O", fmtRate(net.rx_bytes_per_sec)+" ↓ / "+fmtRate(net.tx_bytes_per_sec)+" ↑", null, sr.network_carried));
+  if(h.cores && h.cores.length>1)
+    tiles.push(_hudTile("Per-core load", h.cores.map(c=>c+"%").join(" · "), null, sr.host_carried));
+
+  const units=(d.list||[]).slice(0,60).map(c=>{
+    const cls=_hudCls(Math.min(100,c.cpu_pct));
+    return `<div class="hud-unit" style="--uc:${_hudColor(cls)}"><div class="un" title="${esc(c.name)}">${esc(c.name)}</div>`+
+      `<div class="um"><span>${c.cpu_pct}% cpu</span><span>${fmt(c.mem_used_mb)}MB</span></div>`+
+      `<div class="ubar"><i style="width:${Math.min(100,c.cpu_pct)}%"></i></div></div>`;
+  }).join("");
+
+  if(host) host.innerHTML = `<div class="hud-wrap">`+
+    `<div class="hud-rings">${rings.join("")}</div>`+
+    (tiles.length?`<div class="hud-tiles">${tiles.join("")}</div>`:"")+
+    (units?`<div class="hud-units-hd"><h3>Containers (${d.containers||0}, sorted by CPU)</h3></div><div class="hud-units">${units}</div>`:"")+
+    `</div>`;
+  if(sum) sum.textContent=(h.cpu_pct!=null?"cpu "+h.cpu_pct+"%":"")+(h.mem_pct!=null?" · mem "+h.mem_pct+"%":"")+
+    (net.rx_bytes_per_sec!=null?" · net "+fmtRate((net.rx_bytes_per_sec||0)+(net.tx_bytes_per_sec||0)):"");
 }
 function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);}
 
