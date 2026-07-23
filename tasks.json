@@ -876,16 +876,16 @@
   },
   {
     "title": "Financial GL surgery (artifact removal + JV line items 14,432)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Omar-approved artifact removal in progress + JV line items backfill (14,432 rows). Budget detail/banking/payment-terms/currencies portion is done -- see Financial master-data recovery.",
+    "note": "DONE -- Omar-approved financial-artifact removal complete; JV line items 0\u219214,432 backfilled, cent-verified. Rolled together with the GL incident restore (generalledger/salesjournal etc.).",
     "started_at": "2026-07-23T07:16:55Z"
   },
   {
     "title": "HR deep sweep",
-    "status": "pending",
+    "status": "done",
     "track": "audit",
-    "note": "Deep live parity sweep for HR, to follow once the WAVE 2 HR module lane and MGB/histories work land."
+    "note": "COMPLETE -- last module sweep; full audit coverage across all modules now complete."
   },
   {
     "title": "Closers for platform / integrations / provenance findings",
@@ -894,10 +894,17 @@
     "note": "Fix-up lanes to close whatever the platform sweep, integrations sweep, and cross-service provenance audit surface."
   },
   {
-    "title": "Capstone: back-port learnings to mission-control-kit",
-    "status": "pending",
+    "title": "Capstone (kit/agent/skill back-port + memories + gen_stats commit)",
+    "status": "done",
     "track": "docs",
-    "note": "Back-port this run's freshness/liveness/reconciliation lessons into mission-control-kit (PLAYBOOK.md + skills)."
+    "note": "DONE -- kit/agent/skill back-port + memories captured; gen_stats.py (gated-ETA-split feature) committed as f0a8c09.",
+    "worker": "Capstone: back-port learnings to kit + memories",
+    "worker_stats": {
+      "tokens": 103693,
+      "tool_uses": 59,
+      "runtime": "~20m",
+      "status": "done"
+    }
   },
   {
     "title": "Gated post-parity: docs publish + :8012 avatar cutover",
@@ -943,25 +950,37 @@
     "note": "DONE -- over-granted RBAC groups narrowed to correct scope. Commit e3f93458."
   },
   {
-    "title": "CRM company-map Maps key (gated on Omar)",
-    "status": "pending",
+    "title": "CRM company-detail map rebuild (same as original)",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "Blocked on Omar providing a Google Maps API key for the CRM company-map feature."
+    "gated": false,
+    "note": "DECIDED by Omar: rebuild the company-detail map to match the original now (on placeholder/mock until Omar supplies the live Google Maps API key).",
+    "worker": "Rebuild company-detail map like original",
+    "worker_stats": {
+      "status": "live"
+    },
+    "started_at": "2026-07-23T09:23:55Z"
   },
   {
-    "title": "Petty-Cash-Apply-Claim role decision (gated on Omar)",
-    "status": "pending",
+    "title": "RBAC narrow Petty Cash - Apply Claim group",
+    "status": "done",
     "track": "backend",
-    "gated": true,
-    "note": "Blocked on Omar's decision on which role(s) may apply/claim petty cash."
+    "gated": false,
+    "note": "DONE -- DECIDED by Omar: narrow the Apply/Claim petty-cash role. accounts-admin group narrowed to 43 users (down from 71).",
+    "worker": "Narrow Petty Cash RBAC group",
+    "worker_stats": {
+      "tokens": 51177,
+      "tool_uses": 30,
+      "runtime": "~16m",
+      "status": "done"
+    }
   },
   {
     "title": "Punch/GPS history-cutover decision (gated on Omar)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "gated": true,
-    "note": "Blocked on Omar's decision on cutting over punch/GPS history to the new system."
+    "gated": false,
+    "note": "DECIDED by Omar: leave punch/GPS history as-is (no cutover). No further action needed."
   },
   {
     "title": "Engineering test-env fix (50/50 green)",
@@ -977,16 +996,16 @@
   },
   {
     "title": "Frontend Lane 2 (qc/crm/reporting)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Live lane running -- consolidated FE closer wave 2 across qc/crm/reporting.",
+    "note": "DONE -- qc/crm/reporting re-skinned + wired; vat-return export path verified; tsc clean; part of the single frontend-web rebuild + per-module live verify pass.",
     "started_at": "2026-07-23T07:16:55Z"
   },
   {
     "title": "Frontend Lane 3 (ops/platform/integrations)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Live lane running -- consolidated FE closer wave 3 across ops/platform/integrations.",
+    "note": "DONE -- ops/platform/integrations closed; nav/todo seams fixed; AX report page wired; tsc clean; single frontend-web rebuild + per-module live verify complete.",
     "started_at": "2026-07-23T07:16:55Z"
   },
   {
@@ -1010,9 +1029,15 @@
     "started_at": "2026-07-23T07:16:55Z"
   },
   {
-    "title": "Purchasing PR follow-ups (supplier-qual serializer field + PR payment-term grid + PR doc-upload form + MES aggregate endpoint)",
-    "status": "pending",
-    "track": "backend"
+    "title": "Purchasing completeness (supplier-qual serializer + MES endpoint + PR grid/doc-upload/badge + 7 tests)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "supplier-qual serializer field, MES aggregate endpoint, PR payment-term grid, PR doc-upload form, PR badge, + 7 test fixes.",
+    "worker": "Purchasing completeness: backend + PR UI + tests",
+    "worker_stats": {
+      "status": "live"
+    },
+    "started_at": "2026-07-23T09:23:55Z"
   },
   {
     "title": "3 residual dangling currency refs cleanup (small)",
@@ -1022,9 +1047,40 @@
   },
   {
     "title": "INCIDENT: vams_accounting GL/salesjournal emptied \u2014 forensics + restore",
-    "status": "in_progress",
+    "status": "done",
     "track": "accounting",
-    "note": "generalledger/salesjournal/creditnote/receiptvoucher/sjlineitem/sjcharge showing 0 rows; suspected concurrent TRUNCATE CASCADE; restoring from vams_monolith_ref; DB-write classifier blocking financial-table writes",
+    "note": "RESOLVED -- GL restored 990K rows cent-verified, etl_core CASCADE guard shipped, culprit script fixed, 8 corrupted records restored, 9 test rows deleted, JV line items 0\u219214,432.",
     "started_at": "2026-07-23T07:33:20Z"
+  },
+  {
+    "title": "HR data closers (histories 1.8M backfill + HCAP registers + expiring-docs window)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Histories 1.8M-row backfill + 175 HCAP registers + expiring-docs window.",
+    "worker": "HR data: histories backfill + HCAP + doc window",
+    "worker_stats": {
+      "status": "live"
+    },
+    "started_at": "2026-07-23T09:23:55Z"
+  },
+  {
+    "title": "HR/production frontend recovery (attendance calendar + biometric UI + count-journal repoint)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- HR attendance + biometric screens shipped (commit 1c1e881e); count-journal deprecation (commit 24f86329); tsc clean.",
+    "worker": "Recover stalled HR/prod frontend lane",
+    "worker_stats": {
+      "tokens": 59776,
+      "tool_uses": 31,
+      "runtime": "~18m",
+      "status": "done"
+    },
+    "started_at": "2026-07-23T09:23:55Z"
+  },
+  {
+    "title": "ACL preserve-monolith-snapshot for 53 employees (queued behind HR-data lane)",
+    "status": "pending",
+    "track": "backend",
+    "note": "DECIDED by Omar: preserve. Queued behind the HR-data-closers lane; no owning lane yet."
   }
 ]
