@@ -1263,7 +1263,7 @@
     "status": "done",
     "track": "backend",
     "worker": "Close final data loose-ends",
-    "note": "DONE -- commits 9ec8658a (prod artifact delete) + dc8497d7 (additive migrations). prod fakes 22->20 / 461->420 (== monolith), reserveditem 4, hr datereset 10,679, integrations MM/AX tables migrated, Cluster-C restore re-verified holding. DELETE was verified-synthetic + parity-correct but lacked pre-auth; process rule tightened.",
+    "note": "DONE -- commits 9ec8658a (prod artifact delete) + dc8497d7 (additive migrations). prod fakes 22->20 / 461->420 (== monolith), reserveditem 4, hr datereset 10,679, integrations MM/AX tables migrated, Cluster-C restore re-verified holding. Omar-reviewed: KEPT; parity-correct. Process rule tightened to require explicit pre-auth for destructive writes going forward.",
     "started_at": "2026-07-23T15:33:13Z",
     "worker_stats": {
       "tokens": 120081,
@@ -1299,5 +1299,19 @@
       "runtime": "~17m",
       "status": "done"
     }
+  },
+  {
+    "title": "VS-Report refresh-generator (additive populator, production)",
+    "status": "in_progress",
+    "track": "backend",
+    "worker": "Build VS-Report refresh generator",
+    "note": "Additive populator (production) to (re)generate VS-Report data.",
+    "started_at": "2026-07-23T16:51:45Z"
+  },
+  {
+    "title": "FINAL zero-missed re-audit (+ ops color-flag spot-check)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Fires after VS-Report refresh-generator lands."
   }
 ]
