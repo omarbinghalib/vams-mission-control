@@ -1143,8 +1143,8 @@
     "title": "Documentation fleet: API docs x11 services + user guides x7 roles + hub",
     "status": "in_progress",
     "track": "docs",
-    "progress": 39,
-    "note": "7/18 done -- API docs (7/11): HR (79f5b23b), QC (6777105c), Production (c3bfdfbe), Engineering (1c84bf6e), Accounting (a1334655), CRM (3993a8c6), Reporting (a796c5bc). Remaining API docs: purchasing, platform, ops, integrations. Role guides in progress (4/7): admin, hod, accounts-admin, quality; hub-assembler queued.",
+    "progress": 50,
+    "note": "9/18 done -- API docs (8/11): HR (79f5b23b), QC (6777105c), Production (c3bfdfbe), Engineering (1c84bf6e), Accounting (a1334655), CRM (3993a8c6), Reporting (a796c5bc), Purchasing (606319a0). Role guides (1/7): Quality (6e844b45). In flight: platform/ops/integrations API docs + admin/hod/accounts-admin/sales/hr-manager/mes guides. Hub-assembler queued after all 18.",
     "started_at": "2026-07-23T12:36:02Z"
   }
 ]
