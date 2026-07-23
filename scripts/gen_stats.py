@@ -327,18 +327,26 @@ SESS_PER_UNIT  = (0.4, 0.8)   # remaining sessions per remaining task-unit
 TRACK_LABELS   = {"backend": "Backend", "frontend": "Frontend", "mission-control": "Mission-control",
                   "audit": "Capstones", "deploy": "Deployment"}
 TRACK_ORDER    = ["backend", "frontend", "deploy", "audit", "mission-control"]
-ARCHIVE_TRACKS = {"archive"}   # shipped prior-session work — shown as a compact note, NOT counted
-                               # in the live delivery % / ETA (which must reflect CURRENT work only)
+ARCHIVE_TRACKS = {"archive"}   # shipped work — collapsed out of the ACTIVE LIST + per-track/remaining-
+                               # effort math (which must reflect only what's still in flight), but IT
+                               # STILL COUNTS toward the true overall %  (see 2026-07-22 correction below).
 
-def _load_tasks():
-    """CURRENT, active task set only — archived (shipped prior-session) rows are excluded so the
-    delivery-progress and ETA derive from the work actually in flight, never re-counting old 100%s."""
+def _load_all_tasks():
+    """EVERY task, archived + active — this is the true denominator for the headline overall %.
+    Excluding shipped work from the % (as a prior version of this file did) makes a mostly-done
+    project read as a near-failure the moment old tasks are archived for declutter; the archive
+    is a DISPLAY/list concern only, never a progress-accounting one."""
     try:
         t = json.load(open(TASKS_PATH, encoding="utf-8"))
-        t = t if isinstance(t, list) else []
-        return [x for x in t if x.get("track") not in ARCHIVE_TRACKS]
+        return t if isinstance(t, list) else t.get("tasks", [])
     except Exception:
         return []
+
+def _load_tasks():
+    """ACTIVE task set only (archive excluded) — used for the per-track breakdown and the
+    remaining-hours/sessions estimate, which must reflect work actually still in flight, not
+    re-litigate old 100%s. NOT used for the headline overall % (see _load_all_tasks)."""
+    return [x for x in _load_all_tasks() if x.get("track") not in ARCHIVE_TRACKS]
 
 def _task_weights(tasks):
     """(completed_weight, total, remaining_units) with done=1, in_progress=0.5, pending=0."""
@@ -351,14 +359,22 @@ def _hrs(u):  return [round(u * HOURS_PER_UNIT[0]), round(u * HOURS_PER_UNIT[1])
 def _sess(u): return [round(u * SESS_PER_UNIT[0]),  round(u * SESS_PER_UNIT[1])]
 
 def progress_block():
-    tasks = _load_tasks()
-    if not tasks:
+    all_tasks = _load_all_tasks()          # archive + active — the TRUE headline denominator
+    tasks     = _load_tasks()              # active only — per-track + remaining-effort denominator
+    if not all_tasks:
         return {"overall_pct": 0, "remaining_hours": [0, 0], "remaining_sessions": [0, 0],
-                "tracks": [], "estimate": True,
+                "tracks": [], "shipped": {"done": 0, "total": 0}, "estimate": True,
                 "basis": "tasks.json unavailable — progress cannot be derived."}
+    # HEADLINE overall % — over EVERY task (archived-shipped + active), so decluttering the active
+    # list can never make a mostly-done project read as a near-failure. done=100%, in_progress=50%.
+    cw_all, total_all, _ = _task_weights(all_tasks)
+    overall = round(cw_all / total_all * 100) if total_all else 0
+    shipped_done = sum(1 for t in all_tasks if t.get("status") == "done")
+    shipped = {"done": shipped_done, "total": total_all,
+               "pct": round(shipped_done / total_all * 100) if total_all else 0}
+    # remaining hours/sessions + per-track breakdown — ACTIVE work only (archived items are 100%
+    # done either way, so they'd contribute exactly 0 remaining — this scoping is just clarity).
     cw, total, rem = _task_weights(tasks)
-    overall = round(cw / total * 100) if total else 0
-    # per-track, grouped straight from the tracker
     groups = {}
     for t in tasks:
         groups.setdefault(t.get("track", "other"), []).append(t)
@@ -373,12 +389,14 @@ def progress_block():
                            "remaining_hours": _hrs(remt), "remaining_sessions": _sess(remt),
                            "weight": 1})
     return {"overall_pct": overall, "remaining_hours": _hrs(rem), "remaining_sessions": _sess(rem),
-            "tracks": tracks_out, "estimate": True,
-            "basis": ("Overall % and per-track % are DERIVED from the task tracker "
-                      "(done=100%, in-progress=50%, pending=0%) — they auto-resync whenever tasks "
-                      "are updated, so the number can't lag scope. Remaining hours/sessions scale "
-                      "off the same remaining-work ratio. All ESTIMATES; the measured signal is "
-                      "commit velocity (below).")}
+            "tracks": tracks_out, "shipped": shipped, "estimate": True,
+            "basis": (f"Overall % is shipped-plus-in-flight work over the WHOLE project "
+                      f"({shipped_done}/{total_all} tasks done={shipped['pct']}%, plus half-credit "
+                      f"for in-flight tasks) — archiving old 100%-done tasks off the active list "
+                      f"never shrinks this number. Per-track %, remaining hours/sessions below are "
+                      f"scoped to the ACTIVE (decluttered) task list only — done=100%, in-progress=50%, "
+                      f"pending=0% — so they reflect what's actually still in flight. All ESTIMATES; "
+                      f"the measured signal is commit velocity (below).")}
 
 # ---------- transcript-session baseline (numbers preserved for sessions whose .jsonl is gone) ----------
 # Files that still exist on this machine are recomputed live; the rest fall back to these.
