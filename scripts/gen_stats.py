@@ -616,6 +616,37 @@ def publisher_status(prev=None):
     return {"task": "VAMS-MissionControl-Heartbeat", "state": (state or "unknown"),
             "paused": (state.lower() == "disabled"), "checked_at": iso(now)}
 
+# ---------- LIVE per-task worker tokens (task <-> worker cross-link) ----------
+# tasks.json stays EXCLUSIVELY commander/tasks.sh-owned — this function only READS it, never
+# writes it, so there is no second writer racing tasks.sh's commits. The link between a task and
+# its worker is the commander's own convention: when a worker is spawned for a task, the task gets
+# a `worker` label (tasks.json) that matches EXACTLY the spawn description the commander typed (the
+# same string that becomes that worker's roster `name`). So the match here is a plain exact
+# (case-insensitive) name lookup against the CURRENT LIVE roster — no fuzzy/partial matching, to
+# avoid ever attributing one worker's tokens to the wrong task. A task whose worker isn't currently
+# live simply gets no entry; the client falls back to its own started_at-derived elapsed estimate.
+# Deliberately CHEAP: pure in-memory cross-reference of data already computed by discover_workers(),
+# no extra file/subprocess IO, so it carries no heartbeat-budget risk.
+def attach_task_worker_live(workers):
+    tasks = _load_all_tasks()
+    by_name = {}
+    for w in workers:
+        if w.get("status") == "live" and w.get("name"):
+            by_name.setdefault(w["name"].strip().lower(), w)
+    out = {}
+    for t in tasks:
+        if t.get("status") != "in_progress":
+            continue
+        label = (t.get("worker") or "").strip()
+        if not label:
+            continue
+        w = by_name.get(label.lower())
+        if not w:
+            continue
+        out[t["title"]] = {"tokens": w.get("output_tokens"), "tool_uses": w.get("tool_uses"),
+                           "short_id": w.get("short_id"), "matched_worker": w.get("name")}
+    return out
+
 def build_stats(prev=None):
     if prev is None:
         prev = _load_prev()   # source for carry-forward of the slow probes
@@ -676,7 +707,8 @@ def build_stats(prev=None):
                 history=history_summary,
                 progress=progress_block(), docker=docker_status(prev),
                 health=stack_health(prev), commits=commit_activity(),
-                publisher=publisher_status(prev))
+                publisher=publisher_status(prev),
+                task_worker_live=attach_task_worker_live(workers))
 
 def write_stats(stats):
     """ATOMIC write: serialise to a temp file in the same dir, fsync, then os.replace() onto the
