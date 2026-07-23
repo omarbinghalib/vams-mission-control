@@ -782,5 +782,13 @@
     "note": "Adversarial live-data parity sweep against the original, focused on QC.",
     "progress": 20,
     "started_at": "2026-07-23T03:38:34Z"
+  },
+  {
+    "title": "Deep live parity sweep: production",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Adversarial live-data parity sweep against the original, focused on production.",
+    "progress": 20,
+    "started_at": "2026-07-23T03:38:43Z"
   }
 ]
