@@ -290,6 +290,7 @@
     "title": "DECISION (awaiting Omar): rotate leaked credentials found in original settings.py (AX/SMS/Mattermost/SMTP)",
     "status": "pending",
     "track": "backend",
+    "gated": true,
     "note": "Security -- awaiting Omar's go-ahead before rotating (may affect live integrations). Separate from the resolved data-integrity decisions."
   },
   {
@@ -302,6 +303,7 @@
     "title": "Run ALTER DATABASE ... SET search_path='vams,public' on 7 DBs",
     "status": "pending",
     "track": "backend",
+    "gated": true,
     "note": "DECIDED by Omar: proceed. Currently blocked only by the permission classifier -- Omar is granting a permission rule so a worker can run it, then execute. No longer a blocker/decision."
   },
   {
@@ -326,24 +328,28 @@
     "title": "Screenshot recapture on mock data (PII fix)",
     "status": "pending",
     "track": "docs",
+    "gated": true,
     "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Purge real-data screenshots from git history (frontend-redesign)",
     "status": "pending",
     "track": "docs",
+    "gated": true,
     "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Assemble visual doc hubs (clean screenshots) + walkthrough videos + publish",
     "status": "pending",
     "track": "docs",
+    "gated": true,
     "note": "external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
   },
   {
     "title": "Phase-5 production/cloud cutover",
     "status": "pending",
     "track": "deploy",
+    "gated": true,
     "note": "reserved for Omar's explicit sign-off"
   },
   {
@@ -664,10 +670,10 @@
     "started_at": "2026-07-23T04:42:54Z"
   },
   {
-    "title": "Engineering net-new BE follow-up: Component QA workflow, pricing revise/dup/bulk-approve, valve-builder saga, sub-MR gen, BOM reservation",
+    "title": "Engineering net-new BE follow-up: Component QA workflow, pricing revise/dup/bulk-approve, sub-MR gen, BOM reservation",
     "status": "pending",
     "track": "backend",
-    "note": "Queued follow-up after the engineering module lane closed."
+    "note": "Queued follow-up after the engineering module lane closed (valve-builder saga now recovered separately)."
   },
   {
     "title": "INTEGRATION-FINALIZE: single frontend-web rebuild + full-build reconcile + live :8090 verify + screenshots",
@@ -789,6 +795,7 @@
     "title": "Wave-3 live-wire: AI-datasheet + biometric + SMS gateway (needs Omar creds)",
     "status": "pending",
     "track": "backend",
+    "gated": true,
     "note": "Blocked on Omar providing live credentials/connections for all three integrations before wiring to production."
   },
   {
@@ -835,57 +842,52 @@
   },
   {
     "title": "CRITICAL: engineering Component-signal fix",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Critical fix for an engineering Component-signal defect found during the deep parity sweep; live lane in progress.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "Critical fix for an engineering Component-signal defect found during the deep parity sweep; live lane in progress."
   },
   {
     "title": "Ops backend closer",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Closing out remaining ops-service backend gaps.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "DONE -- OCN workflow + visitor cost + SMS-send mock + todo migration shipped (commits ee537e37..8aa90b6c)."
   },
   {
     "title": "Reporting backend closer",
     "status": "in_progress",
     "track": "backend",
-    "note": "Closing out remaining reporting-service backend gaps.",
+    "note": "Closing out remaining reporting-service backend gaps: VAT XLS export, P&L/BS detail, aging exports.",
     "started_at": "2026-07-23T04:42:54Z"
   },
   {
     "title": "Cross-service provenance audit",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Auditing cross-service data provenance/lineage for the migrated data layer.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "Auditing cross-service data provenance/lineage for the migrated data layer."
   },
   {
-    "title": "Platform sweep",
-    "status": "in_progress",
+    "title": "Platform parity sweep",
+    "status": "done",
     "track": "audit",
-    "note": "Platform-wide coverage sweep for remaining gaps outside the per-module parity sweeps.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "Platform-wide coverage sweep for remaining gaps outside the per-module parity sweeps."
   },
   {
-    "title": "Integrations sweep",
-    "status": "in_progress",
+    "title": "Integrations parity sweep",
+    "status": "done",
     "track": "audit",
-    "note": "Sweep of external/internal integration points for parity + completeness.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "Sweep of external/internal integration points for parity + completeness."
   },
   {
-    "title": "Financial-artifact removal (Omar-approved, queued)",
+    "title": "Financial-data finalization (artifact removal approved + JV line items 14,432 + Budget detail + banking + payment-terms + currencies)",
     "status": "pending",
     "track": "backend",
-    "note": "Omar approved removal of the legacy financial artifacts found by the dry-run audit; queued behind active lanes."
+    "note": "Not gated -- fleet-executable, waiting on a quiet window. Covers Omar-approved artifact removal, JV line items (14,432), Budget detail, banking, payment-terms, and currencies."
   },
   {
-    "title": "CountJournal migration (queued behind MGB)",
+    "title": "HR/QC cleanup (leavetracker + qc_app_moc synthetic rows) + CountJournal migration",
     "status": "pending",
     "track": "backend",
-    "note": "Queued behind the MGB HCAP populator + histories punch-timing lane."
+    "note": "leavetracker 349 blanks, qc_app_moc 12 synthetic rows, plus CountJournal migration -- queued behind the MGB HCAP populator + histories punch-timing lane."
   },
   {
     "title": "HR deep sweep",
@@ -909,6 +911,75 @@
     "title": "Gated post-parity: docs publish + :8012 avatar cutover",
     "status": "pending",
     "track": "deploy",
+    "gated": true,
     "note": "Reserved for Omar's explicit sign-off, alongside the Phase-5 production/cloud cutover."
+  },
+  {
+    "title": "RBAC recovery main: 31\u21927 role migration (210 users) + is_superuser gate fix + role-mgmt API",
+    "status": "done",
+    "track": "backend",
+    "note": "Commits 83af8fcd/d6de5494/1f5ee3bb."
+  },
+  {
+    "title": "Reporting parity sweep",
+    "status": "done",
+    "track": "audit",
+    "note": "Fresh adversarial parity sweep of the reporting service, post-backend-closer changes."
+  },
+  {
+    "title": "Ops parity sweep",
+    "status": "done",
+    "track": "audit",
+    "note": "Fresh adversarial parity sweep of the ops service, post-backend-closer changes."
+  },
+  {
+    "title": "Mission-control: progress-bar clustering fix + ETA autonomous-vs-gated split + heartbeat diagnosis/reconcile",
+    "status": "done",
+    "track": "archive",
+    "note": "Per-task-size duration bands fix the clustered mini progress bars; remaining-effort ETA split into autonomous vs. Omar-gated; heartbeat diagnosed and reconciled."
+  },
+  {
+    "title": "Engineering: valve-builder saga recovery",
+    "status": "done",
+    "track": "backend",
+    "note": "Valve-builder saga recovered; remaining net-new BE follow-up items tracked separately."
+  },
+  {
+    "title": "RBAC mapping correction (narrowing over-granted flagged groups)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Narrowing over-granted RBAC groups flagged during the recovery migration.",
+    "started_at": "2026-07-23T05:42:13Z"
+  },
+  {
+    "title": "HCAP/VS-Report analytics completeness (~8,700 rows) + AX Salary Report CSV generator",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "Consolidated frontend closer (all modules' FE gaps + AX-sync rewire + role-mgmt screen)",
+    "status": "pending",
+    "track": "frontend"
+  },
+  {
+    "title": "CRM company-map Maps key (gated on Omar)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Blocked on Omar providing a Google Maps API key for the CRM company-map feature."
+  },
+  {
+    "title": "Petty-Cash-Apply-Claim role decision (gated on Omar)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Blocked on Omar's decision on which role(s) may apply/claim petty cash."
+  },
+  {
+    "title": "Punch/GPS history-cutover decision (gated on Omar)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Blocked on Omar's decision on cutting over punch/GPS history to the new system."
   }
 ]
