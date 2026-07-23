@@ -1,6 +1,6 @@
 {
-  "active": true,
-  "message": "CRITICAL: apparent GL/sales-journal data loss in vams_accounting (0 rows) \u2014 forensics + restore in progress; recoverable from monolith_ref. DB writes classifier-blocked.",
+  "active": false,
+  "message": "",
   "options": [],
-  "raised_at": "2026-07-23T07:31:51Z"
+  "raised_at": null
 }
