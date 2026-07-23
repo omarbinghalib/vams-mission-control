@@ -283,9 +283,17 @@
   .tk .tkworker .wstats{color:var(--muted);font-variant-numeric:tabular-nums}
   .tk .tkworker .wlive{color:var(--warn);font-weight:600}
   .tk .tkworker .wdone{color:var(--ok-ink);font-weight:600}
-  /* system-resources placeholder panel — system-wide, not per-worker */
+  /* system-resources panel — system-wide (host CPU/mem + aggregate docker stats), not per-worker */
   .sysres-placeholder{border:1px dashed var(--line-strong);border-radius:10px;padding:14px 16px;
     color:var(--muted);font-size:12.5px;background:var(--panel-2)}
+  .sysgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:4px}
+  .syscard{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+  .syscard .sk{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .syscard .sv{font-size:21px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+  .syscard .ss{font-size:10.5px;color:var(--muted);margin-top:1px}
+  .sysbar{height:6px;background:var(--track);border-radius:99px;overflow:hidden;margin-top:7px}
+  .sysbar>i{display:block;height:100%;border-radius:99px;transition:width .5s ease}
+  .sysbar>i.ok{background:var(--ok)} .sysbar>i.warn{background:var(--warn)} .sysbar>i.bad{background:var(--bad)}
 
   /* collapsed "earlier this session" tail (declutter the long roster) */
   details.earlier{grid-column:1/-1;margin-top:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
@@ -482,20 +490,16 @@
     <p class="foot" style="margin:10px 0 0">Live from <span class="mono">docker ps</span> + HTTP smoke on the generator's host (LOCAL/dev). If Docker or the gateway is unreachable the generator degrades to <b>"unavailable"</b> rather than guessing.</p>
   </section>
 
-  <!-- ============ SYSTEM RESOURCES (SYSTEM-WIDE, PLACEHOLDER) ============ -->
+  <!-- ============ SYSTEM RESOURCES (SYSTEM-WIDE) ============ -->
   <section class="panel">
     <div class="split">
       <div>
         <p class="eyebrow">Host-level, system-wide only — NOT attributable per-worker (AI subagents don't have their own CPU/mem)</p>
         <h2>System resources</h2>
       </div>
+      <span class="foot mono" id="sysSummary">—</span>
     </div>
-    <div class="sysres-placeholder">
-      Awaiting heartbeat wiring: host CPU/mem + <span class="mono">docker stats</span> across the
-      ~31 containers. Flagged as a <span class="mono">gen_stats.py</span> follow-up (after the
-      capstone lane's current commit lands) — not faked here. This panel is a static slot the
-      heartbeat can fill in later without any other layout change.
-    </div>
+    <div id="sysRes"></div>
   </section>
 
   <!-- ============ RECENT COMMITS ============ -->
@@ -563,25 +567,25 @@
 <script>
 /* ================= baked real data (works offline; stats.json overrides sessions when served) ================= */
 const STATS = /*__STATS__*/{
-  "updated": "2026-07-23T05:33:30Z",
-  "heartbeat_at": "2026-07-23T05:33:30Z",
-  "last_activity": "2026-07-23T05:33:28Z",
+  "updated": "2026-07-23T11:12:17Z",
+  "heartbeat_at": "2026-07-23T11:12:17Z",
+  "last_activity": "2026-07-23T11:12:31Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
-    "output_tokens": 20394912,
-    "cache_read_tokens": 7317095369,
-    "cache_creation_tokens": 78455054,
-    "msgs": 17440,
-    "sessions": 41,
-    "live_sessions": 6,
+    "output_tokens": 21174246,
+    "cache_read_tokens": 7435586288,
+    "cache_creation_tokens": 80730111,
+    "msgs": 17673,
+    "sessions": 23,
+    "live_sessions": 5,
     "transcript_sessions": 12,
-    "subagent_sessions": 29,
-    "workers": 30,
-    "live_workers": 6,
+    "subagent_sessions": 11,
+    "workers": 12,
+    "live_workers": 5,
     "stopped_workers": 0,
-    "current_workers": 30,
-    "history_workers": 326,
+    "current_workers": 12,
+    "history_workers": 376,
     "recent_window_min": 120
   },
   "workers": [
@@ -595,7 +599,7 @@ const STATS = /*__STATS__*/{
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:33:28Z",
+      "out_last_active": "2026-07-23T11:12:16Z",
       "out_age_min": 0.0,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -604,638 +608,242 @@ const STATS = /*__STATS__*/{
       "recent": true
     },
     {
-      "name": "Build MGB HCAP populator + punch-timing",
+      "name": "Diagnose + restore stale heartbeat",
       "role": "worker",
       "branch": null,
-      "focus": "Build the MGB HCAPReportData populator (the last big HR-analytics parity item) and extend hr_app.",
-      "agent_id": "a4b397ed868aba3bc",
-      "short_id": "a4b397ed",
+      "focus": "URGENT: the mission-control dashboard is ~35 min STALE (heartbeat stopped).",
+      "agent_id": "ad05cd79669ddf69a",
+      "short_id": "ad05cd79",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:33:28Z",
-      "out_age_min": 0.0,
-      "log_bytes": 1683105,
-      "output_tokens": 147160,
-      "cache_read_tokens": 84574917,
-      "cache_creation_tokens": 807685,
-      "msgs": 359,
+      "out_last_active": "2026-07-23T11:11:59Z",
+      "out_age_min": 0.3,
+      "log_bytes": 268160,
+      "output_tokens": 24331,
+      "cache_read_tokens": 3118654,
+      "cache_creation_tokens": 123177,
+      "msgs": 71,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
       "recent": true
     },
     {
-      "name": "Build missing reporting exports/details",
+      "name": "Full-system health check",
       "role": "worker",
       "branch": null,
-      "focus": "Close the reporting module's BACKEND gaps found by the parity sweep \u2014 the computation is cent-exact, but some statutory exports and detail reports are missing.",
-      "agent_id": "a0ba7732dc5bb0cab",
-      "short_id": "a0ba7732",
+      "focus": "FULL-SYSTEM HEALTH CHECK \u2014 the dashboard heartbeat went stale (possible PC sleep or a broken gen_stats edit); verify NOTHING ELSE is broken across the whole local system.",
+      "agent_id": "aecfc69cdac5ea0b5",
+      "short_id": "aecfc69c",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:33:28Z",
+      "out_last_active": "2026-07-23T11:12:31Z",
       "out_age_min": 0.0,
-      "log_bytes": 1571943,
-      "output_tokens": 148365,
-      "cache_read_tokens": 93352445,
-      "cache_creation_tokens": 696431,
-      "msgs": 412,
+      "log_bytes": 148597,
+      "output_tokens": 17286,
+      "cache_read_tokens": 1230784,
+      "cache_creation_tokens": 96002,
+      "msgs": 45,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
       "recent": true
     },
     {
-      "name": "Close ops backend workflow gaps",
+      "name": "HR data: histories backfill + HCAP registers + doc window",
+      "role": "worker",
+      "branch": null,
+      "focus": "HR-side data closers from the HR deep sweep: backfill the histories, migrate the HCAP register rows, and fix the expiring-documents window.",
+      "agent_id": "aaffd4d8d0ce249ab",
+      "short_id": "aaffd4d8",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-23T11:12:22Z",
+      "out_age_min": 0.0,
+      "log_bytes": 1559358,
+      "output_tokens": 135816,
+      "cache_read_tokens": 87298219,
+      "cache_creation_tokens": 1468453,
+      "msgs": 508,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Purchasing completeness: backend + PR UI + tests",
       "role": "backend",
       "branch": "microservices-backend",
-      "focus": "Close the ops module's BACKEND workflow/logic gaps found by the parity sweep.",
-      "agent_id": "a1f8f55621977759a",
-      "short_id": "a1f8f556",
-      "head_commit": "rbac(platform): add role-management API + RBAC recovery tests (Job 3)",
-      "head_commit_at": "2026-07-23T09:31:06+04:00",
-      "head_ago_min": 2.4,
-      "out_last_active": "2026-07-23T05:23:48Z",
-      "out_age_min": 9.7,
-      "log_bytes": 1516299,
-      "output_tokens": 98685,
-      "cache_read_tokens": 84942880,
-      "cache_creation_tokens": 715508,
-      "msgs": 412,
+      "focus": "PURCHASING COMPLETENESS \u2014 close the flagged purchasing follow-ups end-to-end (backend + frontend + tests).",
+      "agent_id": "a5a2b2266bdb0b0a9",
+      "short_id": "a5a2b226",
+      "head_commit": "feat(purchasing): PR-line qualification badge field + MES exception-queue aggregate",
+      "head_commit_at": "2026-07-23T13:18:47+04:00",
+      "head_ago_min": 113.5,
+      "out_last_active": "2026-07-23T11:03:53Z",
+      "out_age_min": 8.4,
+      "log_bytes": 2092103,
+      "output_tokens": 191154,
+      "cache_read_tokens": 156859570,
+      "cache_creation_tokens": 3852287,
+      "msgs": 569,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
       "recent": true
     },
     {
-      "name": "Fix clustered progress bars",
+      "name": "Capstone: back-port learnings to kit + memories",
       "role": "worker",
       "branch": null,
-      "focus": "The in-progress progress bars all cluster at nearly the same percentage, which isn't informative.",
-      "agent_id": "ac1503bec0d2f5264",
-      "short_id": "ac1503be",
+      "focus": "SESSION CAPSTONE \u2014 back-port everything this fleet session learned into the reusable mission-control-kit + agent defs + memories, and commit the one uncommitted dashboard file.",
+      "agent_id": "a1540447c67f8acb0",
+      "short_id": "a1540447",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:33:26Z",
-      "out_age_min": 0.1,
-      "log_bytes": 215407,
-      "output_tokens": 17979,
-      "cache_read_tokens": 2162410,
-      "cache_creation_tokens": 125456,
-      "msgs": 51,
-      "signal": "task-output mtime + git commit",
-      "status": "live",
-      "live": true,
-      "recent": true
-    },
-    {
-      "name": "Migrate RBAC roles + fix enforcement",
-      "role": "worker",
-      "branch": null,
-      "focus": "CRITICAL RBAC RECOVERY (user-authorized) \u2014 real employees' role assignments were never migrated, and the enforcement gate ignores is_superuser, so all 1492 real users are locked ou",
-      "agent_id": "a0ae16cdeaa1faf34",
-      "short_id": "a0ae16cd",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:32:53Z",
-      "out_age_min": 0.6,
-      "log_bytes": 761475,
-      "output_tokens": 74210,
-      "cache_read_tokens": 21937463,
-      "cache_creation_tokens": 507630,
-      "msgs": 199,
-      "signal": "task-output mtime + git commit",
-      "status": "live",
-      "live": true,
-      "recent": true
-    },
-    {
-      "name": "Add mini progress bars to in-progress tasks",
-      "role": "worker",
-      "branch": null,
-      "focus": "Add mini progress bars to the IN-PROGRESS tasks on the mission-control dashboard.",
-      "agent_id": "a7615785455aa0a15",
-      "short_id": "a7615785",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:45:09Z",
-      "out_age_min": 108.4,
-      "log_bytes": 452590,
-      "output_tokens": 51274,
-      "cache_read_tokens": 8510921,
-      "cache_creation_tokens": 269712,
-      "msgs": 98,
+      "out_last_active": "2026-07-23T09:16:55Z",
+      "out_age_min": 115.4,
+      "log_bytes": 402871,
+      "output_tokens": 44998,
+      "cache_read_tokens": 7845070,
+      "cache_creation_tokens": 270180,
+      "msgs": 122,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Audit + fix completion-estimate section",
+      "name": "Narrow Petty Cash RBAC group",
       "role": "worker",
       "branch": null,
-      "focus": "Audit and correct the \"Project completion \u2014 estimate\" (ETA) section of the mission-control dashboard.",
-      "agent_id": "a495a2f5bed6e29d4",
-      "short_id": "a495a2f5",
+      "focus": "RBAC MAPPING CORRECTION (Omar-approved) \u2014 narrow the \"Petty Cash - Apply Claim\" group, which was left at accounts-admin pending Omar's call.",
+      "agent_id": "a602334e2502211d2",
+      "short_id": "a602334e",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T05:07:10Z",
-      "out_age_min": 26.3,
-      "log_bytes": 397860,
-      "output_tokens": 26496,
-      "cache_read_tokens": 6918857,
-      "cache_creation_tokens": 291542,
-      "msgs": 87,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Audit financial test-artifact rows (dry-run)",
-      "role": "worker",
-      "branch": null,
-      "focus": "DRY-RUN FINANCIAL DATA-INTEGRITY AUDIT \u2014 the accounting recovery lane found test/demo artifact rows polluting REAL financial tables in the new system (rows with ids beyond the orig",
-      "agent_id": "a6945c40c9615b4d5",
-      "short_id": "a6945c40",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:24:40Z",
-      "out_age_min": 68.8,
-      "log_bytes": 731586,
-      "output_tokens": 92936,
-      "cache_read_tokens": 14494157,
-      "cache_creation_tokens": 398920,
-      "msgs": 138,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Backfill zeroed PO grand_total_price",
-      "role": "worker",
-      "branch": null,
-      "focus": "Data-repair lane: ~11,000 of 63,328 `POLineItem` rows in the purchasing service have `grand_total_price = 0.",
-      "agent_id": "a4db4bd0fdc9d5029",
-      "short_id": "a4db4bd0",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:37:56Z",
+      "out_last_active": "2026-07-23T09:16:43Z",
       "out_age_min": 115.6,
-      "log_bytes": 525764,
-      "output_tokens": 43267,
-      "cache_read_tokens": 12003902,
-      "cache_creation_tokens": 222376,
-      "msgs": 136,
+      "log_bytes": 197374,
+      "output_tokens": 16056,
+      "cache_read_tokens": 2571913,
+      "cache_creation_tokens": 106095,
+      "msgs": 70,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Cross-service synthetic-data provenance audit",
+      "name": "Rebuild company-detail map like original",
       "role": "worker",
       "branch": null,
-      "focus": "CROSS-SERVICE SYNTHETIC-DATA PROVENANCE AUDIT \u2014 a systematic completeness backstop.",
-      "agent_id": "a4f766f7ff628f039",
-      "short_id": "a4f766f7",
+      "focus": "CRM COMPANY-DETAIL MAP \u2014 rebuild the interactive company-location map exactly as the ORIGINAL VAMS ran it, reusing the original's map library + API key/config.",
+      "agent_id": "a0b295d0ec9734704",
+      "short_id": "a0b295d0",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:43:35Z",
-      "out_age_min": 49.9,
-      "log_bytes": 665277,
-      "output_tokens": 82859,
-      "cache_read_tokens": 14189807,
-      "cache_creation_tokens": 292493,
-      "msgs": 144,
+      "out_last_active": "2026-07-23T09:37:58Z",
+      "out_age_min": 94.3,
+      "log_bytes": 638268,
+      "output_tokens": 55484,
+      "cache_read_tokens": 18398717,
+      "cache_creation_tokens": 1085216,
+      "msgs": 152,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Deep live parity sweep: CRM",
+      "name": "Recover stalled CRM map lane",
       "role": "worker",
       "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 CRM module.",
-      "agent_id": "a683d3e5e95695cdd",
-      "short_id": "a683d3e5",
+      "focus": "Recover a stalled frontend lane.",
+      "agent_id": "ad2ea976f7ab39797",
+      "short_id": "ad2ea976",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:01:36Z",
-      "out_age_min": 91.9,
-      "log_bytes": 750579,
-      "output_tokens": 45358,
-      "cache_read_tokens": 18322292,
-      "cache_creation_tokens": 352393,
-      "msgs": 212,
+      "out_last_active": "2026-07-23T09:59:48Z",
+      "out_age_min": 72.5,
+      "log_bytes": 261603,
+      "output_tokens": 24011,
+      "cache_read_tokens": 3335790,
+      "cache_creation_tokens": 117806,
+      "msgs": 86,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Deep live parity sweep: QC",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 QC module.",
-      "agent_id": "a6fcf5d0cbeaf8c41",
-      "short_id": "a6fcf5d0",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:58:31Z",
-      "out_age_min": 95.0,
-      "log_bytes": 1004945,
-      "output_tokens": 80302,
-      "cache_read_tokens": 34935265,
-      "cache_creation_tokens": 525940,
-      "msgs": 270,
+      "name": "Recover stalled HR/prod frontend lane",
+      "role": "frontend",
+      "branch": "frontend-redesign",
+      "focus": "Recover a stalled frontend lane.",
+      "agent_id": "a1e0ef3f32570cbdd",
+      "short_id": "a1e0ef3f",
+      "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+      "head_commit_at": "2026-07-20T08:46:30+04:00",
+      "head_ago_min": 4705.8,
+      "out_last_active": "2026-07-23T09:23:36Z",
+      "out_age_min": 108.7,
+      "log_bytes": 210029,
+      "output_tokens": 13002,
+      "cache_read_tokens": 2322048,
+      "cache_creation_tokens": 186974,
+      "msgs": 56,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Deep live parity sweep: engineering",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 engineering module.",
-      "agent_id": "a1b1fef484e6c86aa",
-      "short_id": "a1b1fef4",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:53:58Z",
-      "out_age_min": 99.5,
-      "log_bytes": 867157,
-      "output_tokens": 66330,
-      "cache_read_tokens": 28456315,
-      "cache_creation_tokens": 400038,
-      "msgs": 229,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Deep live parity sweep: ops",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 ops module.",
-      "agent_id": "a5ffc8e406c432c5b",
-      "short_id": "a5ffc8e4",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:26:33Z",
-      "out_age_min": 67.0,
-      "log_bytes": 450980,
-      "output_tokens": 34994,
-      "cache_read_tokens": 8280639,
-      "cache_creation_tokens": 368581,
-      "msgs": 118,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Deep live parity sweep: production",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 production module.",
-      "agent_id": "a7f81755f0c1b0fb3",
-      "short_id": "a7f81755",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:52:05Z",
-      "out_age_min": 101.4,
-      "log_bytes": 927294,
-      "output_tokens": 69146,
-      "cache_read_tokens": 33146487,
-      "cache_creation_tokens": 503557,
-      "msgs": 214,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Deep live parity sweep: reporting",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 reporting module.",
-      "agent_id": "ab2746d1a140757fa",
-      "short_id": "ab2746d1",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:30:32Z",
-      "out_age_min": 63.0,
-      "log_bytes": 469702,
-      "output_tokens": 51103,
-      "cache_read_tokens": 10381882,
-      "cache_creation_tokens": 548268,
-      "msgs": 117,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Deep parity sweep: integrations",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 integrations module.",
-      "agent_id": "ae129036ce3c3754b",
-      "short_id": "ae129036",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:44:23Z",
-      "out_age_min": 49.1,
-      "log_bytes": 347722,
-      "output_tokens": 22707,
-      "cache_read_tokens": 5107738,
-      "cache_creation_tokens": 279262,
-      "msgs": 92,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Deep parity sweep: platform",
-      "role": "worker",
-      "branch": null,
-      "focus": "DEEP LIVE PARITY SWEEP \u2014 platform module (users/roles/auth/tenant/notifications/audit).",
-      "agent_id": "a3913d1310718be53",
-      "short_id": "a3913d13",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:51:00Z",
-      "out_age_min": 42.5,
-      "log_bytes": 480474,
-      "output_tokens": 39013,
-      "cache_read_tokens": 9393011,
-      "cache_creation_tokens": 334048,
-      "msgs": 142,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Diagnose + reconcile dashboard task state",
+      "name": "Verify + reconcile mission control board",
       "role": "mission-control",
       "branch": "frontend-redesign",
-      "focus": "The dashboard's Tasks & progress section is LAGGING \u2014 completions/percentages aren't reflecting reality because tasks.",
-      "agent_id": "a724f8104830fd4e5",
-      "short_id": "a724f810",
+      "focus": "Verify and reconcile the mission-control board to current reality \u2014 a lot completed since the last update (GL incident recovery, etc.",
+      "agent_id": "abff35c5c41ae808a",
+      "short_id": "abff35c5",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 18615.9,
-      "out_last_active": "2026-07-23T04:44:56Z",
-      "out_age_min": 48.6,
-      "log_bytes": 280443,
-      "output_tokens": 24469,
-      "cache_read_tokens": 2704863,
-      "cache_creation_tokens": 210316,
-      "msgs": 59,
+      "head_ago_min": 18954.6,
+      "out_last_active": "2026-07-23T10:49:43Z",
+      "out_age_min": 22.6,
+      "log_bytes": 1051967,
+      "output_tokens": 135299,
+      "cache_read_tokens": 37247828,
+      "cache_creation_tokens": 1120688,
+      "msgs": 275,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
     },
     {
-      "name": "Extract new SPA report UI",
+      "name": "Wire OperationLocation API + data for map",
       "role": "worker",
       "branch": null,
-      "focus": "READ-ONLY extraction from a React/TypeScript SPA at C:\\Users\\obing\\Documents\\GitHub\\VAMS-frontend\\frontend.",
-      "agent_id": "a1cf283baa3763564",
-      "short_id": "a1cf283b",
+      "focus": "Wire the CRM `OperationLocation` API so the company-detail map binds to REAL data (the frontend map is built but has no backend endpoint).",
+      "agent_id": "afa544afa53ceb6dc",
+      "short_id": "afa544af",
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:12:56Z",
-      "out_age_min": 80.6,
-      "log_bytes": 317394,
-      "output_tokens": 12076,
-      "cache_read_tokens": 1281542,
-      "cache_creation_tokens": 499680,
-      "msgs": 30,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Extract original aging/VAT/WIP logic",
-      "role": "worker",
-      "branch": null,
-      "focus": "READ-ONLY forensic extraction from a Django monolith at git commit 6a68f9c on branch VAMS2.",
-      "agent_id": "af9aead0016a913df",
-      "short_id": "af9aead0",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:15:56Z",
-      "out_age_min": 77.6,
-      "log_bytes": 210606,
-      "output_tokens": 14661,
-      "cache_read_tokens": 1471352,
-      "cache_creation_tokens": 127302,
-      "msgs": 43,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Extract original financial-statement logic",
-      "role": "worker",
-      "branch": null,
-      "focus": "READ-ONLY forensic extraction from a Django monolith at git commit 6a68f9c on branch VAMS2.",
-      "agent_id": "af2be57ec9b9e28ba",
-      "short_id": "af2be57e",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:16:38Z",
-      "out_age_min": 76.9,
-      "log_bytes": 234424,
-      "output_tokens": 18959,
-      "cache_read_tokens": 1865668,
-      "cache_creation_tokens": 216134,
-      "msgs": 55,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Fix CRITICAL Component signal + valve-builder data",
-      "role": "worker",
-      "branch": null,
-      "focus": "CRITICAL FIX (top priority) \u2014 a latent BOM-estimate corruption trap in engineering, plus a valve-builder data recovery.",
-      "agent_id": "a17e8f61b6389c76c",
-      "short_id": "a17e8f61",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:51:19Z",
-      "out_age_min": 42.2,
-      "log_bytes": 826741,
-      "output_tokens": 52272,
-      "cache_read_tokens": 25031707,
-      "cache_creation_tokens": 283621,
-      "msgs": 252,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Recover CRM quotes + repair SO total_price",
-      "role": "worker",
-      "branch": null,
-      "focus": "CRM DATA RECOVERY + REPAIR \u2014 the deep parity sweep found unmigrated CRM data and a stale stored column.",
-      "agent_id": "af6db09c7423e9ef4",
-      "short_id": "af6db09c",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:30:39Z",
-      "out_age_min": 62.9,
-      "log_bytes": 608769,
-      "output_tokens": 45184,
-      "cache_read_tokens": 14722116,
-      "cache_creation_tokens": 268374,
-      "msgs": 161,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Recover QC real data, supersede synthetic",
-      "role": "worker",
-      "branch": null,
-      "focus": "QC DATA RECOVERY \u2014 the deep parity sweep found ~7 QC entities whose REAL historical monolith data is entirely absent, silently replaced by a single-session synthetic demo dataset (",
-      "agent_id": "a72707bd1bf978e9f",
-      "short_id": "a72707bd",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:30:20Z",
-      "out_age_min": 63.2,
-      "log_bytes": 700390,
-      "output_tokens": 77396,
-      "cache_read_tokens": 13314768,
-      "cache_creation_tokens": 383128,
-      "msgs": 110,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Recover production data + investigate CountJournal",
-      "role": "worker",
-      "branch": null,
-      "focus": "PRODUCTION DATA RECOVERY \u2014 the deep parity sweep found several production subledgers/histories were under-migrated.",
-      "agent_id": "a54a1239a48ecc1a1",
-      "short_id": "a54a1239",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:23:57Z",
-      "out_age_min": 69.6,
-      "log_bytes": 608417,
-      "output_tokens": 57772,
-      "cache_read_tokens": 13876487,
-      "cache_creation_tokens": 268927,
-      "msgs": 156,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Recover unmigrated accounting subledgers",
-      "role": "worker",
-      "branch": null,
-      "focus": "ACCOUNTING DATA RECOVERY \u2014 the deep parity sweep found several accounting subledgers were silently never migrated from the original.",
-      "agent_id": "a507a305ef7f04a37",
-      "short_id": "a507a305",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T03:48:02Z",
-      "out_age_min": 105.5,
-      "log_bytes": 645132,
-      "output_tokens": 57467,
-      "cache_read_tokens": 13443534,
-      "cache_creation_tokens": 338696,
-      "msgs": 120,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Scaffold AI datasheet extraction to boundary",
-      "role": "worker",
-      "branch": null,
-      "focus": "Build the AI datasheet-extraction feature's ENTIRE INTERNAL SURFACE up to (but NOT across) the external connection boundary.",
-      "agent_id": "a8a4cb2aaf9432fb3",
-      "short_id": "a8a4cb2a",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:22:26Z",
-      "out_age_min": 71.1,
-      "log_bytes": 1650265,
-      "output_tokens": 155735,
-      "cache_read_tokens": 101251918,
-      "cache_creation_tokens": 880650,
-      "msgs": 402,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Scaffold biometric attendance read-only",
-      "role": "worker",
-      "branch": null,
-      "focus": "Build the biometric/BioStar2 attendance-ingestion feature's ENTIRE INTERNAL SURFACE up to (but NOT across) the external connection boundary.",
-      "agent_id": "a6407f6e22e53c10d",
-      "short_id": "a6407f6e",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-23T04:29:32Z",
-      "out_age_min": 64.0,
-      "log_bytes": 1068057,
-      "output_tokens": 95314,
-      "cache_read_tokens": 42705218,
-      "cache_creation_tokens": 529622,
-      "msgs": 286,
+      "out_last_active": "2026-07-23T10:20:39Z",
+      "out_age_min": 51.6,
+      "log_bytes": 307137,
+      "output_tokens": 27841,
+      "cache_read_tokens": 4839158,
+      "cache_creation_tokens": 299691,
+      "msgs": 86,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -1247,11 +855,11 @@ const STATS = /*__STATS__*/{
       "id": "a49f5cc3",
       "group": "commander",
       "group_label": "Commander",
-      "output_tokens": 5919405,
-      "cache_read_tokens": 1053080650,
-      "cache_creation_tokens": 21777770,
-      "msgs": 2474,
-      "last_active": "2026-07-23T05:33:35Z",
+      "output_tokens": 6698739,
+      "cache_read_tokens": 1171571569,
+      "cache_creation_tokens": 24052827,
+      "msgs": 2707,
+      "last_active": "2026-07-23T11:12:31Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -1268,7 +876,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 20029.0,
+      "age_min": 20367.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1283,7 +891,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 28852.1,
+      "age_min": 29190.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1298,7 +906,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 22982.2,
+      "age_min": 23321.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1313,7 +921,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 22755.2,
+      "age_min": 23094.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1328,7 +936,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 18662.8,
+      "age_min": 19001.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1343,7 +951,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 20138.4,
+      "age_min": 20477.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1358,7 +966,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 18822.9,
+      "age_min": 19161.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1373,7 +981,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 22936.1,
+      "age_min": 23274.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1388,7 +996,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 22982.2,
+      "age_min": 23321.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1403,7 +1011,7 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 29557.4,
+      "age_min": 29896.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -1418,533 +1026,227 @@ const STATS = /*__STATS__*/{
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 29574.9,
+      "age_min": 29913.6,
       "live": false,
       "status": "idle",
       "subagent": false,
       "recent": true
     },
     {
-      "id": "a4b397ed",
-      "full_id": "a4b397ed868aba3bc",
+      "id": "ad05cd79",
+      "full_id": "ad05cd79669ddf69a",
       "group": "worker",
-      "group_label": "Build MGB HCAP populator + punch-timing",
-      "output_tokens": 147160,
-      "cache_read_tokens": 84574917,
-      "cache_creation_tokens": 807685,
-      "msgs": 359,
-      "last_active": "2026-07-23T05:33:28Z",
+      "group_label": "Diagnose + restore stale heartbeat",
+      "output_tokens": 24331,
+      "cache_read_tokens": 3118654,
+      "cache_creation_tokens": 123177,
+      "msgs": 71,
+      "last_active": "2026-07-23T11:11:59Z",
+      "age_min": 0.3,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 268160,
+      "recent": true
+    },
+    {
+      "id": "aecfc69c",
+      "full_id": "aecfc69cdac5ea0b5",
+      "group": "worker",
+      "group_label": "Full-system health check",
+      "output_tokens": 17286,
+      "cache_read_tokens": 1230784,
+      "cache_creation_tokens": 96002,
+      "msgs": 45,
+      "last_active": "2026-07-23T11:12:31Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1683105,
+      "log_bytes": 148597,
       "recent": true
     },
     {
-      "id": "a0ba7732",
-      "full_id": "a0ba7732dc5bb0cab",
+      "id": "aaffd4d8",
+      "full_id": "aaffd4d8d0ce249ab",
       "group": "worker",
-      "group_label": "Build missing reporting exports/details",
-      "output_tokens": 148365,
-      "cache_read_tokens": 93352445,
-      "cache_creation_tokens": 696431,
-      "msgs": 412,
-      "last_active": "2026-07-23T05:33:28Z",
+      "group_label": "HR data: histories backfill + HCAP registers + doc window",
+      "output_tokens": 135816,
+      "cache_read_tokens": 87298219,
+      "cache_creation_tokens": 1468453,
+      "msgs": 508,
+      "last_active": "2026-07-23T11:12:22Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1571943,
+      "log_bytes": 1559358,
       "recent": true
     },
     {
-      "id": "a1f8f556",
-      "full_id": "a1f8f55621977759a",
+      "id": "a5a2b226",
+      "full_id": "a5a2b2266bdb0b0a9",
       "group": "backend",
-      "group_label": "Close ops backend workflow gaps",
-      "output_tokens": 98685,
-      "cache_read_tokens": 84942880,
-      "cache_creation_tokens": 715508,
-      "msgs": 412,
-      "last_active": "2026-07-23T05:23:48Z",
-      "age_min": 9.7,
+      "group_label": "Purchasing completeness: backend + PR UI + tests",
+      "output_tokens": 191154,
+      "cache_read_tokens": 156859570,
+      "cache_creation_tokens": 3852287,
+      "msgs": 569,
+      "last_active": "2026-07-23T11:03:53Z",
+      "age_min": 8.4,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1516299,
+      "log_bytes": 2092103,
       "recent": true
     },
     {
-      "id": "ac1503be",
-      "full_id": "ac1503bec0d2f5264",
+      "id": "a1540447",
+      "full_id": "a1540447c67f8acb0",
       "group": "worker",
-      "group_label": "Fix clustered progress bars",
-      "output_tokens": 17979,
-      "cache_read_tokens": 2162410,
-      "cache_creation_tokens": 125456,
-      "msgs": 51,
-      "last_active": "2026-07-23T05:33:26Z",
-      "age_min": 0.1,
-      "live": true,
-      "status": "live",
-      "subagent": true,
-      "log_bytes": 215407,
-      "recent": true
-    },
-    {
-      "id": "a0ae16cd",
-      "full_id": "a0ae16cdeaa1faf34",
-      "group": "worker",
-      "group_label": "Migrate RBAC roles + fix enforcement",
-      "output_tokens": 74210,
-      "cache_read_tokens": 21937463,
-      "cache_creation_tokens": 507630,
-      "msgs": 199,
-      "last_active": "2026-07-23T05:32:53Z",
-      "age_min": 0.6,
-      "live": true,
-      "status": "live",
-      "subagent": true,
-      "log_bytes": 761475,
-      "recent": true
-    },
-    {
-      "id": "a7615785",
-      "full_id": "a7615785455aa0a15",
-      "group": "worker",
-      "group_label": "Add mini progress bars to in-progress tasks",
-      "output_tokens": 51274,
-      "cache_read_tokens": 8510921,
-      "cache_creation_tokens": 269712,
-      "msgs": 98,
-      "last_active": "2026-07-23T03:45:09Z",
-      "age_min": 108.4,
+      "group_label": "Capstone: back-port learnings to kit + memories",
+      "output_tokens": 44998,
+      "cache_read_tokens": 7845070,
+      "cache_creation_tokens": 270180,
+      "msgs": 122,
+      "last_active": "2026-07-23T09:16:55Z",
+      "age_min": 115.4,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 452590,
+      "log_bytes": 402871,
       "recent": true
     },
     {
-      "id": "a495a2f5",
-      "full_id": "a495a2f5bed6e29d4",
+      "id": "a602334e",
+      "full_id": "a602334e2502211d2",
       "group": "worker",
-      "group_label": "Audit + fix completion-estimate section",
-      "output_tokens": 26496,
-      "cache_read_tokens": 6918857,
-      "cache_creation_tokens": 291542,
-      "msgs": 87,
-      "last_active": "2026-07-23T05:07:10Z",
-      "age_min": 26.3,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 397860,
-      "recent": true
-    },
-    {
-      "id": "a6945c40",
-      "full_id": "a6945c40c9615b4d5",
-      "group": "worker",
-      "group_label": "Audit financial test-artifact rows (dry-run)",
-      "output_tokens": 92936,
-      "cache_read_tokens": 14494157,
-      "cache_creation_tokens": 398920,
-      "msgs": 138,
-      "last_active": "2026-07-23T04:24:40Z",
-      "age_min": 68.8,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 731586,
-      "recent": true
-    },
-    {
-      "id": "a4db4bd0",
-      "full_id": "a4db4bd0fdc9d5029",
-      "group": "worker",
-      "group_label": "Backfill zeroed PO grand_total_price",
-      "output_tokens": 43267,
-      "cache_read_tokens": 12003902,
-      "cache_creation_tokens": 222376,
-      "msgs": 136,
-      "last_active": "2026-07-23T03:37:56Z",
+      "group_label": "Narrow Petty Cash RBAC group",
+      "output_tokens": 16056,
+      "cache_read_tokens": 2571913,
+      "cache_creation_tokens": 106095,
+      "msgs": 70,
+      "last_active": "2026-07-23T09:16:43Z",
       "age_min": 115.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 525764,
+      "log_bytes": 197374,
       "recent": true
     },
     {
-      "id": "a4f766f7",
-      "full_id": "a4f766f7ff628f039",
+      "id": "a0b295d0",
+      "full_id": "a0b295d0ec9734704",
       "group": "worker",
-      "group_label": "Cross-service synthetic-data provenance audit",
-      "output_tokens": 82859,
-      "cache_read_tokens": 14189807,
-      "cache_creation_tokens": 292493,
-      "msgs": 144,
-      "last_active": "2026-07-23T04:43:35Z",
-      "age_min": 49.9,
+      "group_label": "Rebuild company-detail map like original",
+      "output_tokens": 55484,
+      "cache_read_tokens": 18398717,
+      "cache_creation_tokens": 1085216,
+      "msgs": 152,
+      "last_active": "2026-07-23T09:37:58Z",
+      "age_min": 94.3,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 665277,
+      "log_bytes": 638268,
       "recent": true
     },
     {
-      "id": "a683d3e5",
-      "full_id": "a683d3e5e95695cdd",
+      "id": "ad2ea976",
+      "full_id": "ad2ea976f7ab39797",
       "group": "worker",
-      "group_label": "Deep live parity sweep: CRM",
-      "output_tokens": 45358,
-      "cache_read_tokens": 18322292,
-      "cache_creation_tokens": 352393,
-      "msgs": 212,
-      "last_active": "2026-07-23T04:01:36Z",
-      "age_min": 91.9,
+      "group_label": "Recover stalled CRM map lane",
+      "output_tokens": 24011,
+      "cache_read_tokens": 3335790,
+      "cache_creation_tokens": 117806,
+      "msgs": 86,
+      "last_active": "2026-07-23T09:59:48Z",
+      "age_min": 72.5,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 750579,
+      "log_bytes": 261603,
       "recent": true
     },
     {
-      "id": "a6fcf5d0",
-      "full_id": "a6fcf5d0cbeaf8c41",
-      "group": "worker",
-      "group_label": "Deep live parity sweep: QC",
-      "output_tokens": 80302,
-      "cache_read_tokens": 34935265,
-      "cache_creation_tokens": 525940,
-      "msgs": 270,
-      "last_active": "2026-07-23T03:58:31Z",
-      "age_min": 95.0,
+      "id": "a1e0ef3f",
+      "full_id": "a1e0ef3f32570cbdd",
+      "group": "frontend",
+      "group_label": "Recover stalled HR/prod frontend lane",
+      "output_tokens": 13002,
+      "cache_read_tokens": 2322048,
+      "cache_creation_tokens": 186974,
+      "msgs": 56,
+      "last_active": "2026-07-23T09:23:36Z",
+      "age_min": 108.7,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 1004945,
+      "log_bytes": 210029,
       "recent": true
     },
     {
-      "id": "a1b1fef4",
-      "full_id": "a1b1fef484e6c86aa",
-      "group": "worker",
-      "group_label": "Deep live parity sweep: engineering",
-      "output_tokens": 66330,
-      "cache_read_tokens": 28456315,
-      "cache_creation_tokens": 400038,
-      "msgs": 229,
-      "last_active": "2026-07-23T03:53:58Z",
-      "age_min": 99.5,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 867157,
-      "recent": true
-    },
-    {
-      "id": "a5ffc8e4",
-      "full_id": "a5ffc8e406c432c5b",
-      "group": "worker",
-      "group_label": "Deep live parity sweep: ops",
-      "output_tokens": 34994,
-      "cache_read_tokens": 8280639,
-      "cache_creation_tokens": 368581,
-      "msgs": 118,
-      "last_active": "2026-07-23T04:26:33Z",
-      "age_min": 67.0,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 450980,
-      "recent": true
-    },
-    {
-      "id": "a7f81755",
-      "full_id": "a7f81755f0c1b0fb3",
-      "group": "worker",
-      "group_label": "Deep live parity sweep: production",
-      "output_tokens": 69146,
-      "cache_read_tokens": 33146487,
-      "cache_creation_tokens": 503557,
-      "msgs": 214,
-      "last_active": "2026-07-23T03:52:05Z",
-      "age_min": 101.4,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 927294,
-      "recent": true
-    },
-    {
-      "id": "ab2746d1",
-      "full_id": "ab2746d1a140757fa",
-      "group": "worker",
-      "group_label": "Deep live parity sweep: reporting",
-      "output_tokens": 51103,
-      "cache_read_tokens": 10381882,
-      "cache_creation_tokens": 548268,
-      "msgs": 117,
-      "last_active": "2026-07-23T04:30:32Z",
-      "age_min": 63.0,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 469702,
-      "recent": true
-    },
-    {
-      "id": "ae129036",
-      "full_id": "ae129036ce3c3754b",
-      "group": "worker",
-      "group_label": "Deep parity sweep: integrations",
-      "output_tokens": 22707,
-      "cache_read_tokens": 5107738,
-      "cache_creation_tokens": 279262,
-      "msgs": 92,
-      "last_active": "2026-07-23T04:44:23Z",
-      "age_min": 49.1,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 347722,
-      "recent": true
-    },
-    {
-      "id": "a3913d13",
-      "full_id": "a3913d1310718be53",
-      "group": "worker",
-      "group_label": "Deep parity sweep: platform",
-      "output_tokens": 39013,
-      "cache_read_tokens": 9393011,
-      "cache_creation_tokens": 334048,
-      "msgs": 142,
-      "last_active": "2026-07-23T04:51:00Z",
-      "age_min": 42.5,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 480474,
-      "recent": true
-    },
-    {
-      "id": "a724f810",
-      "full_id": "a724f8104830fd4e5",
+      "id": "abff35c5",
+      "full_id": "abff35c5c41ae808a",
       "group": "mission-control",
-      "group_label": "Diagnose + reconcile dashboard task state",
-      "output_tokens": 24469,
-      "cache_read_tokens": 2704863,
-      "cache_creation_tokens": 210316,
-      "msgs": 59,
-      "last_active": "2026-07-23T04:44:56Z",
-      "age_min": 48.6,
+      "group_label": "Verify + reconcile mission control board",
+      "output_tokens": 135299,
+      "cache_read_tokens": 37247828,
+      "cache_creation_tokens": 1120688,
+      "msgs": 275,
+      "last_active": "2026-07-23T10:49:43Z",
+      "age_min": 22.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 280443,
+      "log_bytes": 1051967,
       "recent": true
     },
     {
-      "id": "a1cf283b",
-      "full_id": "a1cf283baa3763564",
+      "id": "afa544af",
+      "full_id": "afa544afa53ceb6dc",
       "group": "worker",
-      "group_label": "Extract new SPA report UI",
-      "output_tokens": 12076,
-      "cache_read_tokens": 1281542,
-      "cache_creation_tokens": 499680,
-      "msgs": 30,
-      "last_active": "2026-07-23T04:12:56Z",
-      "age_min": 80.6,
+      "group_label": "Wire OperationLocation API + data for map",
+      "output_tokens": 27841,
+      "cache_read_tokens": 4839158,
+      "cache_creation_tokens": 299691,
+      "msgs": 86,
+      "last_active": "2026-07-23T10:20:39Z",
+      "age_min": 51.6,
       "live": false,
       "status": "idle",
       "subagent": true,
-      "log_bytes": 317394,
-      "recent": true
-    },
-    {
-      "id": "af9aead0",
-      "full_id": "af9aead0016a913df",
-      "group": "worker",
-      "group_label": "Extract original aging/VAT/WIP logic",
-      "output_tokens": 14661,
-      "cache_read_tokens": 1471352,
-      "cache_creation_tokens": 127302,
-      "msgs": 43,
-      "last_active": "2026-07-23T04:15:56Z",
-      "age_min": 77.6,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 210606,
-      "recent": true
-    },
-    {
-      "id": "af2be57e",
-      "full_id": "af2be57ec9b9e28ba",
-      "group": "worker",
-      "group_label": "Extract original financial-statement logic",
-      "output_tokens": 18959,
-      "cache_read_tokens": 1865668,
-      "cache_creation_tokens": 216134,
-      "msgs": 55,
-      "last_active": "2026-07-23T04:16:38Z",
-      "age_min": 76.9,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 234424,
-      "recent": true
-    },
-    {
-      "id": "a17e8f61",
-      "full_id": "a17e8f61b6389c76c",
-      "group": "worker",
-      "group_label": "Fix CRITICAL Component signal + valve-builder data",
-      "output_tokens": 52272,
-      "cache_read_tokens": 25031707,
-      "cache_creation_tokens": 283621,
-      "msgs": 252,
-      "last_active": "2026-07-23T04:51:19Z",
-      "age_min": 42.2,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 826741,
-      "recent": true
-    },
-    {
-      "id": "af6db09c",
-      "full_id": "af6db09c7423e9ef4",
-      "group": "worker",
-      "group_label": "Recover CRM quotes + repair SO total_price",
-      "output_tokens": 45184,
-      "cache_read_tokens": 14722116,
-      "cache_creation_tokens": 268374,
-      "msgs": 161,
-      "last_active": "2026-07-23T04:30:39Z",
-      "age_min": 62.9,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 608769,
-      "recent": true
-    },
-    {
-      "id": "a72707bd",
-      "full_id": "a72707bd1bf978e9f",
-      "group": "worker",
-      "group_label": "Recover QC real data, supersede synthetic",
-      "output_tokens": 77396,
-      "cache_read_tokens": 13314768,
-      "cache_creation_tokens": 383128,
-      "msgs": 110,
-      "last_active": "2026-07-23T04:30:20Z",
-      "age_min": 63.2,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 700390,
-      "recent": true
-    },
-    {
-      "id": "a54a1239",
-      "full_id": "a54a1239a48ecc1a1",
-      "group": "worker",
-      "group_label": "Recover production data + investigate CountJournal",
-      "output_tokens": 57772,
-      "cache_read_tokens": 13876487,
-      "cache_creation_tokens": 268927,
-      "msgs": 156,
-      "last_active": "2026-07-23T04:23:57Z",
-      "age_min": 69.6,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 608417,
-      "recent": true
-    },
-    {
-      "id": "a507a305",
-      "full_id": "a507a305ef7f04a37",
-      "group": "worker",
-      "group_label": "Recover unmigrated accounting subledgers",
-      "output_tokens": 57467,
-      "cache_read_tokens": 13443534,
-      "cache_creation_tokens": 338696,
-      "msgs": 120,
-      "last_active": "2026-07-23T03:48:02Z",
-      "age_min": 105.5,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 645132,
-      "recent": true
-    },
-    {
-      "id": "a8a4cb2a",
-      "full_id": "a8a4cb2aaf9432fb3",
-      "group": "worker",
-      "group_label": "Scaffold AI datasheet extraction to boundary",
-      "output_tokens": 155735,
-      "cache_read_tokens": 101251918,
-      "cache_creation_tokens": 880650,
-      "msgs": 402,
-      "last_active": "2026-07-23T04:22:26Z",
-      "age_min": 71.1,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1650265,
-      "recent": true
-    },
-    {
-      "id": "a6407f6e",
-      "full_id": "a6407f6e22e53c10d",
-      "group": "worker",
-      "group_label": "Scaffold biometric attendance read-only",
-      "output_tokens": 95314,
-      "cache_read_tokens": 42705218,
-      "cache_creation_tokens": 529622,
-      "msgs": 286,
-      "last_active": "2026-07-23T04:29:32Z",
-      "age_min": 64.0,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1068057,
+      "log_bytes": 307137,
       "recent": true
     }
   ],
-  "total_tokens": 20394912,
+  "total_tokens": 21174246,
   "history": {
-    "workers": 326,
+    "workers": 376,
     "by_status": {
-      "idle": 322,
+      "idle": 372,
       "stopped": 4
     },
-    "last_active": "2026-07-23T03:29:44Z",
+    "last_active": "2026-07-23T09:04:51Z",
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
-    "overall_pct": 78,
+    "overall_pct": 83,
     "remaining_hours": [
-      51,
-      102
+      46,
+      92
     ],
     "remaining_sessions": [
-      14,
-      27
+      12,
+      24
     ],
     "remaining_hours_autonomous": [
-      39,
-      78
+      34,
+      68
     ],
     "remaining_sessions_autonomous": [
-      10,
-      21
+      9,
+      18
     ],
     "remaining_hours_gated": [
       12,
@@ -1969,7 +1271,7 @@ const STATS = /*__STATS__*/{
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 45,
+        "pct": 62,
         "remaining_hours": [
           26,
           52
@@ -1983,7 +1285,7 @@ const STATS = /*__STATS__*/{
       {
         "track": "frontend",
         "label": "Frontend",
-        "pct": 50,
+        "pct": 79,
         "remaining_hours": [
           2,
           4
@@ -2011,21 +1313,7 @@ const STATS = /*__STATS__*/{
       {
         "track": "audit",
         "label": "Capstones",
-        "pct": 62,
-        "remaining_hours": [
-          10,
-          20
-        ],
-        "remaining_sessions": [
-          3,
-          5
-        ],
-        "weight": 1
-      },
-      {
-        "track": "docs",
-        "label": "Docs",
-        "pct": 0,
+        "pct": 79,
         "remaining_hours": [
           6,
           12
@@ -2035,15 +1323,43 @@ const STATS = /*__STATS__*/{
           3
         ],
         "weight": 1
+      },
+      {
+        "track": "docs",
+        "label": "Docs",
+        "pct": 25,
+        "remaining_hours": [
+          4,
+          9
+        ],
+        "remaining_sessions": [
+          1,
+          2
+        ],
+        "weight": 1
+      },
+      {
+        "track": "accounting",
+        "label": "Accounting",
+        "pct": 100,
+        "remaining_hours": [
+          0,
+          0
+        ],
+        "remaining_sessions": [
+          0,
+          0
+        ],
+        "weight": 1
       }
     ],
     "shipped": {
-      "done": 116,
-      "total": 156,
-      "pct": 74
+      "done": 143,
+      "total": 178,
+      "pct": 80
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (116/156 tasks done=74%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 8 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (143/178 tasks done=80%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 8 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
@@ -2051,90 +1367,90 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_accounting",
         "state": "running",
-        "status": "Up 26 minutes",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "26 minutes",
+        "uptime": "3 hours",
         "ports": "8008",
         "up": true
       },
       {
         "name": "vams_accounting_period_lock",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 6 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "6 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_accounting_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 6 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "6 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_accounting_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 6 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "6 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_bff",
         "state": "running",
-        "status": "Up 21 hours",
+        "status": "Up 24 hours",
         "health": "none",
-        "uptime": "21 hours",
+        "uptime": "24 hours",
         "ports": "8013",
         "up": true
       },
       {
         "name": "vams_crm",
         "state": "running",
-        "status": "Up 22 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "22 hours",
+        "uptime": "26 hours",
         "ports": "8005",
         "up": true
       },
       {
         "name": "vams_crm_worker",
         "state": "running",
-        "status": "Up 22 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "22 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering",
         "state": "running",
-        "status": "Up 33 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "33 minutes",
+        "uptime": "4 hours",
         "ports": "8006",
         "up": true
       },
       {
         "name": "vams_engineering_relay",
         "state": "running",
-        "status": "Up 33 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "33 minutes",
+        "uptime": "4 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering_worker",
         "state": "running",
-        "status": "Up 33 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "33 minutes",
+        "uptime": "4 hours",
         "ports": "",
         "up": true
       },
@@ -2150,45 +1466,45 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_gateway",
         "state": "running",
-        "status": "Up About an hour",
+        "status": "Up 8 minutes",
         "health": "none",
-        "uptime": "About an hour",
+        "uptime": "8 minutes",
         "ports": "8080",
         "up": true
       },
       {
         "name": "vams_hr",
         "state": "running",
-        "status": "Up 57 minutes",
+        "status": "Up 9 minutes",
         "health": "none",
-        "uptime": "57 minutes",
+        "uptime": "9 minutes",
         "ports": "8004",
         "up": true
       },
       {
         "name": "vams_hr_relay",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 9 minutes",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "9 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_hr_worker",
         "state": "running",
-        "status": "Up 19 hours",
+        "status": "Up 9 minutes",
         "health": "none",
-        "uptime": "19 hours",
+        "uptime": "9 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_integrations",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "8010",
         "up": true
       },
@@ -2204,27 +1520,27 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_ops",
         "state": "running",
-        "status": "Up 6 minutes",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "6 minutes",
+        "uptime": "3 hours",
         "ports": "8009",
         "up": true
       },
       {
         "name": "vams_ops_relay",
         "state": "running",
-        "status": "Up 15 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "15 minutes",
+        "uptime": "4 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_ops_worker",
         "state": "running",
-        "status": "Up 15 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "15 minutes",
+        "uptime": "4 hours",
         "ports": "",
         "up": true
       },
@@ -2240,90 +1556,90 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_platform",
         "state": "running",
-        "status": "Up 18 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "18 hours",
+        "uptime": "3 hours",
         "ports": "8001",
         "up": true
       },
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 21 hours",
+        "status": "Up 2 hours",
         "health": "none",
-        "uptime": "21 hours",
+        "uptime": "2 hours",
         "ports": "8007",
         "up": true
       },
       {
         "name": "vams_production_relay",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 21 hours",
+        "status": "Up 24 hours",
         "health": "none",
-        "uptime": "21 hours",
+        "uptime": "24 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_purchasing",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 5 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "5 hours",
         "ports": "8003",
         "up": true
       },
       {
         "name": "vams_purchasing_relay",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_purchasing_worker",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_qc",
         "state": "running",
-        "status": "Up 52 minutes",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "52 minutes",
+        "uptime": "4 hours",
         "ports": "8002",
         "up": true
       },
       {
         "name": "vams_qc_relay",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_qc_worker",
         "state": "running",
-        "status": "Up 23 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "23 hours",
+        "uptime": "26 hours",
         "ports": "",
         "up": true
       },
@@ -2339,27 +1655,27 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_reporting",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 40 minutes",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "40 minutes",
         "ports": "8011",
         "up": true
       },
       {
         "name": "vams_reporting_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 6 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "6 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_services_postgres",
         "state": "running",
-        "status": "Up 2 days (healthy)",
+        "status": "Up 3 days (healthy)",
         "health": "healthy",
-        "uptime": "2 days",
+        "uptime": "3 days",
         "ports": "5432",
         "up": true
       },
@@ -2375,9 +1691,9 @@ const STATS = /*__STATS__*/{
       {
         "name": "vams_web",
         "state": "running",
-        "status": "Up About an hour",
+        "status": "Up 42 minutes",
         "health": "none",
-        "uptime": "About an hour",
+        "uptime": "42 minutes",
         "ports": "8090",
         "up": true
       }
@@ -2388,7 +1704,7 @@ const STATS = /*__STATS__*/{
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-23T05:18:37Z",
+    "checked_at": "2026-07-23T08:38:39Z",
     "carried": true
   },
   "health": [
@@ -2424,75 +1740,38 @@ const STATS = /*__STATS__*/{
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 44,
-        "commits_7d": 129
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 2
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "1f5ee3bb",
-        "at": "2026-07-23T09:31:06+04:00",
-        "subject": "rbac(platform): add role-management API + RBAC recovery tests (Job 3)",
-        "track": "backend"
-      },
-      {
-        "hash": "d6de5494",
-        "at": "2026-07-23T09:31:04+04:00",
-        "subject": "rbac(gate): honor is_superuser in the shared permission gate + mint admin for superusers",
-        "track": "backend"
-      },
-      {
-        "hash": "83af8fcd",
-        "at": "2026-07-23T09:30:48+04:00",
-        "subject": "rbac(platform): migrate monolith 31 groups -> 7 roles into auth_userprofile.roles",
-        "track": "backend"
-      },
-      {
-        "hash": "8aa90b6c",
-        "at": "2026-07-23T09:22:19+04:00",
-        "subject": "ops: migrate 13 unmigrated todos; remove 2 stray SPA-test messages (gap 5)",
-        "track": "backend"
-      },
-      {
-        "hash": "3f36300c",
-        "at": "2026-07-23T09:22:06+04:00",
-        "subject": "ops: tests for OCN/visitor/SMS-campaign workflow gap closures",
-        "track": "backend"
-      },
-      {
-        "hash": "c84df60b",
-        "at": "2026-07-23T09:21:53+04:00",
-        "subject": "ops: notify OCN submit/approval via in-app outbox (email_ocn_async parity)",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-23T05:16:35Z",
+    "checked_at": "2026-07-23T08:32:36Z",
     "carried": true
+  },
+  "task_worker_live": {
+    "Purchasing completeness (supplier-qual serializer + MES endpoint + PR grid/doc-upload/badge + 7 tests)": {
+      "tokens": 191154,
+      "tool_uses": null,
+      "short_id": "a5a2b226",
+      "matched_worker": "Purchasing completeness: backend + PR UI + tests"
+    },
+    "HR data closers (histories 1.8M backfill + HCAP registers + expiring-docs window)": {
+      "tokens": 135816,
+      "tool_uses": null,
+      "short_id": "aaffd4d8",
+      "matched_worker": "HR data: histories backfill + HCAP registers + doc window"
+    }
   }
 }/*__/STATS__*/;
 
@@ -2787,7 +2066,37 @@ function renderPublisher(j){
   }
 }
 
-function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);}
+/* ================= system resources (host-wide; DEFERRED probe — see gen_stats.py note) =========
+   gen_stats.py's system_resources() (host CPU/mem + aggregate `docker stats`) was deliberately NOT
+   re-enabled during the 2026-07-23 freshness incident reconciliation: under the sustained heavy
+   load that caused the incident, `docker stats` alone was measured taking 2+ minutes — re-probing
+   it every heartbeat risked reproducing the exact stall that just took the dashboard offline. This
+   renderer is wired and ready (matches gen_stats.py's future `system_resources` shape exactly) so
+   turning the probe back on later (once load allows, or bounded harder) needs no further JS work;
+   until then it degrades honestly to "unavailable" rather than showing stale/fake numbers. */
+function _sysBarCls(pct){ if(pct==null) return "ok"; return pct>=90?"bad":(pct>=75?"warn":"ok"); }
+function renderSysres(j){
+  const sr=j.system_resources, host=$("sysRes"), sum=$("sysSummary");
+  if(!sr||!sr.available){
+    if(host) host.innerHTML=`<div class="sysres-placeholder">Unavailable${sr&&sr.error?" — "+esc(sr.error):""} — host CPU/mem + `+
+      `<span class="mono">docker stats</span> probe is deferred (measured 2+ min under heavy fleet `+
+      `load during the 2026-07-23 incident); degrades honestly rather than faking a reading.</div>`;
+    if(sum) sum.textContent="unavailable"; return;
+  }
+  const h=sr.host||{}, d=sr.docker||{};
+  const cards=[];
+  if(h.cpu_pct!=null) cards.push(["Host CPU", h.cpu_pct+"%", h.cpu_pct, sr.host_carried]);
+  if(h.mem_pct!=null) cards.push(["Host memory", h.mem_pct+"% · "+fmt(h.mem_used_mb)+"/"+fmt(h.mem_total_mb)+" MB", h.mem_pct, sr.host_carried]);
+  if(d.total_cpu_pct!=null) cards.push(["Docker CPU (agg)", d.total_cpu_pct+"% · "+(d.containers||0)+" containers", Math.min(100,d.total_cpu_pct), sr.docker_carried]);
+  if(d.total_mem_mb!=null) cards.push(["Docker memory (agg)", fmt(Math.round(d.total_mem_mb))+" MB", null, sr.docker_carried]);
+  if(host) host.innerHTML=cards.length?`<div class="sysgrid">${cards.map(([k,v,pct,carried])=>
+    `<div class="syscard"><div class="sk">${esc(k)}${carried?" · carried":""}</div><div class="sv">${esc(v)}</div>`+
+    (pct!=null?`<div class="sysbar"><i class="${_sysBarCls(pct)}" style="width:${Math.min(100,Math.max(0,pct))}%"></i></div>`:"")+
+    `</div>`).join("")}</div>`
+    : `<div class="sysres-placeholder">No readings yet.</div>`;
+  if(sum) sum.textContent=(h.cpu_pct!=null?"cpu "+h.cpu_pct+"%":"")+(h.mem_pct!=null?" · mem "+h.mem_pct+"%":"");
+}
+function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);renderSysres(j);}
 
 /* ================= tasks & progress (commander-maintained tracker) ================= */
 const TK_TRACK_ORDER=["backend","frontend","mission-control","audit"];
@@ -2858,8 +2167,24 @@ function fmtElapsed(startedAt){
 function renderTaskWorker(x,st){
   if(!x.worker) return "";
   const ws=x.worker_stats||{};
+  // LIVE per-worker tokens/tool_uses — sourced from stats.json's task_worker_live map (populated
+  // by gen_stats.py every heartbeat tick, matched off the exact task<->worker name and re-read from
+  // that worker's OWN transcript). Only overlays IN-PROGRESS cards; a done task's frozen
+  // worker_stats (from its completion report) is never touched by this live overlay.
+  let live=null;
+  if(st==="in_progress"){
+    const twl=(window.__lastStats && window.__lastStats.task_worker_live) || {};
+    live=twl[x.title];
+  }
   let stats="";
-  if(ws.status==="done" && (ws.tokens!=null || ws.tool_uses!=null || ws.runtime)){
+  if(live){
+    const parts=[];
+    if(live.tokens!=null) parts.push(fmt(live.tokens)+" tok");
+    if(live.tool_uses!=null) parts.push(live.tool_uses+" tools");
+    const el=x.started_at?fmtElapsed(x.started_at):null;
+    if(el) parts.push(el+" elapsed");
+    stats=`<span class="wstats wlive">live · ${esc(parts.join(" · ")||"running")}</span>`;
+  } else if(ws.status==="done" && (ws.tokens!=null || ws.tool_uses!=null || ws.runtime)){
     const parts=[];
     if(ws.tokens!=null) parts.push(fmt(ws.tokens)+" tok");
     if(ws.tool_uses!=null) parts.push(ws.tool_uses+" tools");
@@ -2870,6 +2195,28 @@ function renderTaskWorker(x,st){
     stats=`<span class="wstats wlive">live${el?" · "+el+" elapsed":""}</span>`;
   }
   return `<span class="tkworker"><span class="wtag">${esc(x.worker)}</span>${stats?" · "+stats:""}</span>`;
+}
+// Deterministic within-group sort: STAGE first (in_progress -> pending -> done), then PROGRESS %
+// descending (furthest-along first) within the same stage, with a stable original-index tiebreak
+// so the board never reshuffles randomly between heartbeats. Track grouping itself is untouched —
+// this only reorders the list WITHIN each existing track group.
+function taskSortRank(x){
+  const st=x.status||"pending";
+  return st==="in_progress" ? 0 : (st==="pending" ? 1 : 2);
+}
+function taskSortPct(x){
+  const st=x.status||"pending";
+  if(st==="in_progress") return taskPct(x).pct;
+  return st==="done" ? 100 : 0;
+}
+function sortTaskGroup(items){
+  return items.map((x,i)=>({x,i})).sort((a,b)=>{
+    const ra=taskSortRank(a.x), rb=taskSortRank(b.x);
+    if(ra!==rb) return ra-rb;
+    const pa=taskSortPct(a.x), pb=taskSortPct(b.x);
+    if(pb!==pa) return pb-pa;
+    return a.i-b.i;
+  }).map(o=>o.x);
 }
 function renderTasks(t){
   const host=$("tkGroups"); if(!host) return;
@@ -2894,7 +2241,7 @@ function renderTasks(t){
   const order=TK_TRACK_ORDER.concat(Object.keys(groups).filter(k=>!TK_TRACK_ORDER.includes(k)));
   let html=order.filter(k=>groups[k]).map(track=>{
     const col=TRACK[track]||"var(--muted)";
-    const rows=groups[track].map(x=>{
+    const rows=sortTaskGroup(groups[track]).map(x=>{
       const st=x.status||"pending";
       let mini="";
       if(st==="in_progress"){
@@ -2921,10 +2268,13 @@ function renderTasks(t){
 }
 async function pollTasks(){
   try{const r=await fetch("tasks.json?t="+Date.now(),{cache:"no-store"});
-    if(r.ok) renderTasks(await r.json());
+    if(r.ok){window.__lastTasks=await r.json();renderTasks(window.__lastTasks);}
   }catch(e){/* missing/offline: leave as-is */}
 }
 pollTasks(); setInterval(pollTasks, 15000);
+// re-render the task list whenever a fresh stats.json lands (task_worker_live overlay changed),
+// without waiting for the next independent tasks.json tick.
+const _rt=renderTasks; window.addEventListener("mc:stats-updated",()=>{ if(window.__lastTasks) _rt(window.__lastTasks); });
 
 /* ================= client-side freshness pulse (proves the PAGE is live) ================= */
 function clientTick(){
@@ -3017,7 +2367,7 @@ function freshTick(){
   else if(mins<180){f.textContent="aging · "+ago(mins)+psuffix;p.style.background="var(--warn)";p.classList.remove("live");}
   else{f.textContent="stale · "+ago(mins)+psuffix;p.style.background="var(--bad)";p.classList.remove("live");}
 }
-const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);renderWorkers(j);renderExtras(j);freshTick();};
+const _rs=renderSessions; renderSessions=function(j){window.__lastStats=j;_rs(j);renderWorkers(j);renderExtras(j);freshTick();window.dispatchEvent(new Event("mc:stats-updated"));};
 renderSessions(window.__lastStats||STATS);
 setInterval(freshTick,30000);
 
