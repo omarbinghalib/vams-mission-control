@@ -1,19 +1,19 @@
 {
  "available": true,
- "checked_at": "2026-07-23T15:23:29Z",
+ "checked_at": "2026-07-23T15:28:25Z",
  "host": {
   "cpu_pct": 100,
-  "mem_pct": 96.4,
-  "mem_used_mb": 15511,
+  "mem_pct": 95.4,
+  "mem_used_mb": 15347,
   "mem_total_mb": 16091
  },
  "docker": {
   "containers": 37,
-  "total_cpu_pct": 580.5,
-  "total_mem_mb": 4009.6
+  "total_cpu_pct": 690.4,
+  "total_mem_mb": 4089.7
  },
  "host_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-23T15:23:29Z",
- "docker_as_of": "2026-07-23T15:23:29Z"
+ "host_as_of": "2026-07-23T15:28:25Z",
+ "docker_as_of": "2026-07-23T15:28:25Z"
 }
