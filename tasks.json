@@ -1162,11 +1162,17 @@
   },
   {
     "title": "RBAC-UI fix: role-aware button gating (useIsAdmin hid workflow buttons from accounts-admin)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Real bug found by the accounts-admin guide lane -- UI gated workflow buttons on literal admin while the backend authorizes accounts-admin too.",
+    "note": "DONE -- every useIsAdmin gate re-mapped to PERM_ROLE_MAP + 2 under-gated spots tightened; per-role Playwright-verified; frontend rebuilt. Commit 5913515e.",
     "worker": "Fix role-aware UI gating (useIsAdmin)",
-    "started_at": "2026-07-23T13:18:09Z"
+    "started_at": "2026-07-23T13:18:09Z",
+    "worker_stats": {
+      "tokens": 269810,
+      "tool_uses": 275,
+      "runtime": "~86m",
+      "status": "done"
+    }
   },
   {
     "title": "Hub-assembler: 18 docs -> one offline HTML hub (+ reconciliations)",
@@ -1205,9 +1211,25 @@
     }
   },
   {
-    "title": "Browser-based final pixel/console verification (after RBAC-UI fix)",
-    "status": "pending",
+    "title": "Final browser pixel/console verification (acceptance evidence)",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "Queued: full pixel/console pass once the RBAC-UI role-gating fix lands."
+    "note": "Acceptance-evidence pass across roles now that the RBAC-UI fix is in.",
+    "worker": "Final browser pixel/console verification",
+    "worker_stats": {
+      "tokens": 269810,
+      "tool_uses": 275,
+      "runtime": "~86m",
+      "status": "done"
+    },
+    "started_at": "2026-07-23T14:42:44Z"
+  },
+  {
+    "title": "Doc caveat refresh + hub re-render (post-RBAC-fix)",
+    "status": "in_progress",
+    "track": "docs",
+    "worker": "Refresh doc caveats + re-render hub",
+    "note": "Refresh the RBAC caveat annotations in the docs/hub now that the fix has landed, re-render the hub.",
+    "started_at": "2026-07-23T14:42:44Z"
   }
 ]
