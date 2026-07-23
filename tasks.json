@@ -748,5 +748,13 @@
     "status": "pending",
     "track": "backend",
     "note": "Queued behind the active lanes above. Read path already confirmed resolvable once data exists (2368c87f); this lane populates the data itself."
+  },
+  {
+    "title": "Purchasing: PO grand_total_price backfill",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Backfilling grand_total_price on purchase orders; early stage.",
+    "progress": 25,
+    "started_at": "2026-07-23T03:37:06Z"
   }
 ]
