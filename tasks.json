@@ -1270,10 +1270,16 @@
   },
   {
     "title": "Entitle ops module for vbg org (tasks/OCN/SMS/visitor were Module-not-enabled)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "worker": "Entitle ops module for vbg org",
-    "note": "Real defect from the final browser verification pass.",
-    "started_at": "2026-07-23T15:41:21Z"
+    "note": "DONE -- root cause: `ops` module wasn't in the platform catalogue; added it + idempotent vbg-only entitlement migration (67f5ad54). Verified: vbg /me now returns ops:true; ops screens serve real data via gateway (tasks 5,745, ocns 44, todos 13, visit-logs 2); no frontend rebuild needed (runtime gate).",
+    "started_at": "2026-07-23T15:41:21Z",
+    "worker_stats": {
+      "tokens": 86182,
+      "tool_uses": 43,
+      "runtime": "~17m",
+      "status": "done"
+    }
   }
 ]
