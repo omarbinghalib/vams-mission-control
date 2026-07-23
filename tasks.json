@@ -749,11 +749,9 @@
   },
   {
     "title": "MGB HCAPReportData populator + HR histories punch-timing wiring",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Populates MGB HCAP report data now that the read path is confirmed; also wiring punch-timing into the HR histories day-classification engine. No longer blocked -- active lane.",
-    "progress": 30,
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "DONE -- MGB HCAP populator complete + HR histories punch-timing wired, cent-verified. Commits 56bedda6/26b468a8."
   },
   {
     "title": "Purchasing: PO grand_total_price backfill",
@@ -854,10 +852,9 @@
   },
   {
     "title": "Reporting backend closer",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Closing out remaining reporting-service backend gaps: VAT XLS export, P&L/BS detail, aging exports.",
-    "started_at": "2026-07-23T04:42:54Z"
+    "note": "DONE -- VAT-return XLS export + P&L/BS detail + aging exports shipped. Commits 9cd682c5/7da221cb/1fb795da."
   },
   {
     "title": "Cross-service provenance audit",
@@ -878,16 +875,11 @@
     "note": "Sweep of external/internal integration points for parity + completeness."
   },
   {
-    "title": "Financial-data finalization (artifact removal approved + JV line items 14,432 + Budget detail + banking + payment-terms + currencies)",
-    "status": "pending",
+    "title": "Financial GL surgery (artifact removal + JV line items 14,432)",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Not gated -- fleet-executable, waiting on a quiet window. Covers Omar-approved artifact removal, JV line items (14,432), Budget detail, banking, payment-terms, and currencies."
-  },
-  {
-    "title": "HR/QC cleanup (leavetracker + qc_app_moc synthetic rows) + CountJournal migration",
-    "status": "pending",
-    "track": "backend",
-    "note": "leavetracker 349 blanks, qc_app_moc 12 synthetic rows, plus CountJournal migration -- queued behind the MGB HCAP populator + histories punch-timing lane."
+    "note": "Omar-approved artifact removal in progress + JV line items backfill (14,432 rows). Budget detail/banking/payment-terms/currencies portion is done -- see Financial master-data recovery.",
+    "started_at": "2026-07-23T07:16:55Z"
   },
   {
     "title": "HR deep sweep",
@@ -946,20 +938,9 @@
   },
   {
     "title": "RBAC mapping correction (narrowing over-granted flagged groups)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Narrowing over-granted RBAC groups flagged during the recovery migration.",
-    "started_at": "2026-07-23T05:42:13Z"
-  },
-  {
-    "title": "HCAP/VS-Report analytics completeness (~8,700 rows) + AX Salary Report CSV generator",
-    "status": "pending",
-    "track": "backend"
-  },
-  {
-    "title": "Consolidated frontend closer (all modules' FE gaps + AX-sync rewire + role-mgmt screen)",
-    "status": "pending",
-    "track": "frontend"
+    "note": "DONE -- over-granted RBAC groups narrowed to correct scope. Commit e3f93458."
   },
   {
     "title": "CRM company-map Maps key (gated on Omar)",
@@ -981,5 +962,62 @@
     "track": "backend",
     "gated": true,
     "note": "Blocked on Omar's decision on cutting over punch/GPS history to the new system."
+  },
+  {
+    "title": "Engineering test-env fix (50/50 green)",
+    "status": "done",
+    "track": "backend",
+    "note": "Engineering test environment fixed -- full suite now 50/50 green. Commit eba1e162."
+  },
+  {
+    "title": "Frontend Lane 1 (accounting/production/engineering/purchasing + shared color/nav)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- consolidated FE closer lane 1 shipped across accounting/production/engineering/purchasing + shared color tokens/nav. Commits 26e983c4..8088905c."
+  },
+  {
+    "title": "Frontend Lane 2 (qc/crm/reporting)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Live lane running -- consolidated FE closer wave 2 across qc/crm/reporting.",
+    "started_at": "2026-07-23T07:16:55Z"
+  },
+  {
+    "title": "Frontend Lane 3 (ops/platform/integrations)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Live lane running -- consolidated FE closer wave 3 across ops/platform/integrations.",
+    "started_at": "2026-07-23T07:16:55Z"
+  },
+  {
+    "title": "Financial master-data recovery (Budget detail + banking + payment-terms 4,294 + currencies 140 + qc_moc cleanup)",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- Budget detail + banking + payment-terms (4,294 rows) + currencies (140 rows) recovered/cent-verified; qc_app_moc synthetic-row cleanup done. Commits 6e516a49/75a14190/c89dd3fc/1ccf2c87/3302abb4."
+  },
+  {
+    "title": "Production batch (HCAP completeness + CountJournal + prod test fixes)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "HCAP/VS-Report analytics completeness (~8,700 rows) + CountJournal migration + production test-suite fixes.",
+    "started_at": "2026-07-23T07:16:55Z"
+  },
+  {
+    "title": "HR batch (AX Salary Report CSV + leavetracker cleanup)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "AX Salary Report CSV generator + leavetracker synthetic-row cleanup (349 blanks).",
+    "started_at": "2026-07-23T07:16:55Z"
+  },
+  {
+    "title": "Purchasing PR follow-ups (supplier-qual serializer field + PR payment-term grid + PR doc-upload form + MES aggregate endpoint)",
+    "status": "pending",
+    "track": "backend"
+  },
+  {
+    "title": "3 residual dangling currency refs cleanup (small)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Small residual cleanup left over after the currencies (140-row) backfill."
   }
 ]
