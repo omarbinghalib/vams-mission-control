@@ -1478,9 +1478,9 @@
   },
   {
     "title": "QC frontend parity (NcrActionTask + valve-media + eval panels)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
+    "note": "DONE -- commit db6fd2f6. NcrActionTask corrective/preventive grids (2,009 rows, full CRUD), ValveTestMedia view (32), Supplier-Eval team grid (8,841) + documents (782), NCR statusSegments wired to live severity tallies. tsc clean under src/modules/qc.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1592,5 +1592,11 @@
     "track": "mission-control",
     "gated": true,
     "note": "Not urgent (legacy Pages builds are currently fine, ~25s) -- removes a latent future risk. Needs Omar sign-off before applying."
+  },
+  {
+    "title": "Fix mock-fixture drift in src/mocks/qcDb.ts+qcHandlers.ts (shared-surface cleanup for integration pass)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "NCR/incident mock rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures (predates this session)."
   }
 ]
