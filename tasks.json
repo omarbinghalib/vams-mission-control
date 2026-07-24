@@ -1445,21 +1445,28 @@
     "title": "Frontend foundation wave -- shell G1-G4/G7 (LegacyHeader/AppShell/Breadcrumbs/theme)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "G5 list status-bar DONE; shell G1-G4/G7 running.",
     "started_at": "2026-07-24T07:59:45Z"
   },
   {
     "title": ":8100 CSRF revert (security cleanup)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "In flight.",
+    "note": "DONE -- no action needed, was already clean; login works via legit nginx $http_host fix.",
     "started_at": "2026-07-24T07:59:45Z"
   },
   {
-    "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
+    "title": "Purchasing backend -- inbox consumer for payment_voucher.reversed (completes PJ-stage flip) + independent non-PO Purchase Journal posting",
     "status": "in_progress",
     "track": "backend",
-    "note": "Closing accounting parity-audit gaps: reverse_pv PJ-stage handling, AR/AP aging, SIF/HSBC.",
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:06:36Z"
+  },
+  {
+    "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- commit 40dd8c06, 56/56 tests. PV-reverse->PJ-stage now emitted via outbox; AR/AP aging verified byte-identical to monolith (gap is monolith-inherited, ties_to_cent honestly false); vendor Bulk-PV HSBC bank-file ported. SIF/WPS salary-file is dead-code in monolith + HR-domain (N/A).",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
