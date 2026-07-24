@@ -1485,9 +1485,9 @@
   },
   {
     "title": "Accounting frontend parity (WIP screen + JV-upload + tax-group + break-even + statusSegments)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
+    "note": "DONE -- commit 1343c921. WIP Summary screen, JV document panel, Tax-Group GL-account display, client-side cheque-print flow (+ list Print action), statusSegments on Sales Journals; break-even + PV/RV-status honestly flagged as no-monolith-feature/no-backend. 31/32 tests (1 pre-existing stale). tsc exit 0. All 5 backend-independent frontend lanes now DONE (CRM/HR-dashboard/purchasing/QC/accounting); reporting frontend still in_progress.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1605,5 +1605,11 @@
     "status": "pending",
     "track": "frontend",
     "note": "NCR/incident mock rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures (predates this session)."
+  },
+  {
+    "title": "Accounting backend follow-up: unlock JVDocument.number in PER_MODEL_UNLOCKED",
+    "status": "pending",
+    "track": "backend",
+    "note": "Add 'JVDocument': {'number'} to PER_MODEL_UNLOCKED in services/accounting/accounting_app/api.py so JV-document UPLOAD works (currently 500s: number is ALWAYS_LOCKED but user-entered)."
   }
 ]
