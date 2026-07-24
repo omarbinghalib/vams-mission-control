@@ -1444,9 +1444,9 @@
   },
   {
     "title": "Frontend gap-close wave (pending inventory)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.). Reporting + ops frontend DEFERRED until their backend lanes (VS-Report endpoint / ops Task-engine) land. BAR RAISED TO PIXEL-PERFECT -- integration phase will pixel-diff every screen :8100 vs :8090 and loop until match, on top of logic+depth parity.",
+    "note": "DONE -- MILESTONE: all 6 frontend module lanes complete (CRM, HR-dashboard, purchasing, QC, accounting, reporting), each with statusSegments/activeStatusId/onStatusSelect wired per entity. Ops frontend still separately DEFERRED until the ops Task-engine backend lands (tracked as its own lane). BAR RAISED TO PIXEL-PERFECT remains the next phase -- integration will pixel-diff every screen :8100 vs :8090 and loop until match, on top of logic+depth parity.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1575,9 +1575,9 @@
   },
   {
     "title": "Reporting frontend parity -- real per-department VS-Report dashboards + period pickers",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Build the real per-department VS-Report dashboards + year/month period pickers, consuming the newly-wired endpoint GET /api/v1/production/vs-report/<dept>/annual|monthly/ (52/21/47 keys); wire the 14 monolith VS-report nav entries to the dashboard views (replacing the single generic shallow page); pixel-match :8100. Closes the reporting domain, which was the biggest audit GAP.",
+    "note": "DONE -- 6 micro-commits ba255016..b4d23392. Full VS-Report dashboards: annual accounts 52 keys + monthly accounts 47 + annual sales 21 (every key rendered, none dropped), period-filter bar (year/month-range/refresh), VsReportHub across departments, new /m/reporting/vs-report/:department/:period route, original chart palette/types. tsc exit 0. MILESTONE: ALL 6 frontend module lanes DONE (CRM, HR-dashboard, purchasing, QC, accounting, reporting) -- frontend gap-close wave complete.",
     "started_at": "2026-07-24T10:01:04Z"
   },
   {
@@ -1611,5 +1611,17 @@
     "status": "pending",
     "track": "backend",
     "note": "Add 'JVDocument': {'number'} to PER_MODEL_UNLOCKED in services/accounting/accounting_app/api.py so JV-document UPLOAD works (currently 500s: number is ALWAYS_LOCKED but user-entered)."
+  },
+  {
+    "title": "Repoint navConfig.ts 14 VS-report nav entries to the new /m/reporting/vs-report/... routes",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Integration/shell task: repoint the 14 monolith VS-report nav entries (accounts annual/monthly, sales annual; the 5 module-context variants show 'not available' -- no rich server builder)."
+  },
+  {
+    "title": "Reporting backend gap: monthly inventory_data_by_type comes back empty",
+    "status": "pending",
+    "track": "backend",
+    "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
   }
 ]
