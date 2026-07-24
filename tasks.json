@@ -1301,18 +1301,18 @@
     }
   },
   {
-    "title": "VS-Report refresh-generator (additive populator, production)",
-    "status": "done",
+    "title": "VS-Report EXECUTION-parity fix (lane wiring endpoints + graceful-degrade + monthly keys)",
+    "status": "in_progress",
     "track": "backend",
     "worker": "Build VS-Report refresh generator",
-    "note": "DONE -- accounts 52/54 keys + sales 21/30 keys ported, cent-verified vs real ~990K-row GL. 2 accidentally-overwritten historical rows found and restored byte-exact (user-authorized).",
+    "note": "RECLASSIFIED done -> in_progress: builders were logic-only/unwired/crashed on missing grant. Now wiring lane endpoints + graceful-degrade + monthly 15/50->50 keys. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized).",
     "started_at": "2026-07-23T16:51:45Z"
   },
   {
     "title": "FINAL zero-missed re-audit (+ ops color-flag spot-check)",
     "status": "pending",
     "track": "backend",
-    "note": "UNBLOCKED -- VS-Report refresh-generator has landed; this re-audit can now fire."
+    "note": "RE-BLOCKED -- VS-Report reclassified done -> in_progress (EXECUTION-parity fix); this re-audit fires once that lane lands."
   },
   {
     "title": "RBAC drift closed: 7 per-service permissions.py re-synced to _shared canonical",
@@ -1322,9 +1322,9 @@
   },
   {
     "title": "_shared permissions.py back-port of 5 service-specific keys",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Back-porting 5 service-specific permission keys into _shared canonical so future drift can't recur.",
+    "note": "DONE -- 5 service-specific permission keys back-ported into _shared canonical; future drift can't recur.",
     "started_at": "2026-07-24T06:47:38Z"
   },
   {
@@ -1353,9 +1353,9 @@
   },
   {
     "title": "LEGACY-UI vs LIVE re-brand: bin ghalib logo + single-step login + remove org-selector/signup",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "ROOT CAUSE CONFIRMED for \"UI does not match live\": branding/login-flow gap, not a wrong-port issue -- framework itself is the same Bootstrap 2.3.2. Fix in flight: bin ghalib logo, single-step username/password login + Login button, remove org-selector/signup.",
+    "note": "DONE + LIVE on :8090 -- bin ghalib logo on login + header, single-step username/password login, org-selector/signup removed; matches the live original login exactly.",
     "started_at": "2026-07-23T17:37:51Z"
   },
   {
@@ -1366,10 +1366,10 @@
     "started_at": "2026-07-23T17:37:51Z"
   },
   {
-    "title": "Capstone parity audit: 9 domain auditors + synthesis artifact",
-    "status": "in_progress",
+    "title": "Capstone parity audit: 9 domain auditors complete",
+    "status": "done",
     "track": "audit",
-    "note": "Honest capability/logic/depth/complexity audit of original VAMS 2.0 vs the new system (distinct from the earlier completed data-parity sweeps). 2/9 domain auditors done (accounting ~85%, QC ~93%); 7 in flight (CRM, purchasing, production, HR, reporting, ops-integrations, platform-rbac-ui); synthesis artifact pending.",
+    "note": "DONE -- all 9 domain parity audits complete: accounting ~85%, QC ~93%, production MATCH, CRM ~83%, platform-RBAC-UI 91%, purchasing 88%, ops-integrations ~63%, reporting GAP, HR 82/78/70/74. Synthesis/master gap-backlog is now a separate in-progress lane (see below).",
     "started_at": "2026-07-24T06:47:38Z"
   },
   {
@@ -1377,7 +1377,7 @@
     "status": "pending",
     "track": "backend",
     "gated": true,
-    "note": "Needed to enable the account-manager-name VS-Report keys. Column-limited so password/totp are never exposed. Waiting on Omar's authorization + grant."
+    "note": "Needed to enable real account-manager names in VS-Report; VS-Report now runs without it via graceful-degrade. Column-limited so password/totp are never exposed. Waiting on Omar's authorization + grant."
   },
   {
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
@@ -1396,17 +1396,92 @@
   },
   {
     "title": "URGENT: verify legacy UI is served on :8090 (Omar says UI looks non-legacy)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
     "worker": "Urgent: verify :8090 is the legacy look",
-    "note": ":8090 confirmed serving the legacy shell (not the modern :3000 build) -- so the mismatch Omar saw is real but the ROOT CAUSE is branding/login-flow, not the wrong port. See the LEGACY-UI vs LIVE re-brand lane now fixing it (logo, single-step login, remove org-selector/signup).",
+    "note": "RESOLVED -- root cause (branding/login-flow) fixed by the LEGACY-UI re-brand lane; :8090 now matches the live original login exactly.",
     "started_at": "2026-07-23T17:37:51Z"
   },
   {
     "title": "Credential/login fix",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- backend side of the login-flow fix shipped alongside the LEGACY-UI re-brand; single-step login live on :8090.",
+    "started_at": "2026-07-23T17:37:51Z"
+  },
+  {
+    "title": "CRM backend gaps closed: 3 record-numbering bugs + AI-verify workflow restored",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- 3 record-numbering bugs fixed + AI-verify workflow restored. Commits dc405499/95f892cc."
+  },
+  {
+    "title": "Sysres cleanup: ~1GB reclaimed + mission-control heartbeat root-cause fixed",
+    "status": "done",
+    "track": "mission-control",
+    "note": "DONE -- ~1GB disk reclaimed; mission-control heartbeat root-cause fixed, freshness restored."
+  },
+  {
+    "title": "Capstone synthesis / master gap-backlog (pending internal-diff)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Synthesizing the 9 completed domain parity audits into one master gap-backlog; sequenced behind the :8100-vs-:8090 internal screen diff landing.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Frontend gap-close wave (pending inventory)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
     "status": "in_progress",
     "track": "backend",
-    "note": "Backend side of the login-flow fix -- pairs with the frontend LEGACY-UI re-brand lane (single-step username/password + Login button, removing org-selector/signup).",
-    "started_at": "2026-07-23T17:37:51Z"
+    "note": "Closing accounting parity-audit gaps: reverse_pv PJ-stage handling, AR/AP aging, SIF/HSBC.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "HR backend gap-fix: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Closing HR parity-audit gaps: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Ops Task-engine backend build-out: state machine + sprint/epic/attachment/time-logging/IT-support APIs",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Building out the ops task-engine: state machine + sprint/epic/attachment/time-logging/IT-support APIs.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Recurring disk-only cleanup task installer",
+    "status": "in_progress",
+    "track": "mission-control",
+    "note": "Installing a recurring OS-scheduled task for disk-only cleanup, separate from the freshness heartbeat.",
+    "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "PriceBook ETL migration (never loaded)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "PriceBook was never loaded by the ETL; queued, gated on Omar."
+  },
+  {
+    "title": "Synthetic-biometric-punch cleanup on real employees (needs auth)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Needs Omar's explicit pre-authorization before touching real-employee punch records (destructive-write pre-auth rule)."
+  },
+  {
+    "title": "Biometric punch-history migration",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Biometric punch-history migration queued, gated on Omar's live-wire creds/sign-off."
   }
 ]
