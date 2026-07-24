@@ -1519,16 +1519,16 @@
   },
   {
     "title": "HR backend gap-fix: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RESUMED -- backend tree cleared (VS-Report landed); finishing gratuity/HCAP-accounts/async-payroll.",
+    "note": "DONE -- 4 commits cbc2a79f/7a722276/f82198b4/66f9b75c, 74/74 tests. Export-404 fixed (all 10 forms x csv/xlsx/pdf 200), gratuity/EOSB estimator ported (cent-exact vs monolith), HCAPAccount model+5698 rows migrated + AX salary-JV export ported (fixed a monolith dead-code bug), bulk payroll -> Celery async (202 immediate, completes at 421-emp scale).",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
     "title": "Ops Task-engine backend build-out: state machine + sprint/epic/attachment/time-logging/IT-support APIs",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); has uncommitted work to finish/commit once resumed.",
+    "note": "RESUMED -- sole backend-tree writer, finishing state machine + sprint/epic/attachment/time-logging/IT-support APIs, committing incrementally.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1623,5 +1623,11 @@
     "status": "pending",
     "track": "backend",
     "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
+  },
+  {
+    "title": "Clean HR test artifacts created for scale-verification (data-cleanup lane scope)",
+    "status": "pending",
+    "track": "backend",
+    "note": "SalarySetting 671 + 409 test Payslips (period 2026-08, no financial postings) -- additive/harmless, remove with the biometric cleanup."
   }
 ]
