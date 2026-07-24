@@ -1604,9 +1604,9 @@
   },
   {
     "title": "Accounting JVDocument.number unlock (fixes JV-document upload 500)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "IN PROGRESS -- add 'JVDocument': {'number'} to PER_MODEL_UNLOCKED in services/accounting/accounting_app/api.py so JV-document UPLOAD works (currently 500s: number is ALWAYS_LOCKED but user-entered).",
+    "note": "DONE -- commit 042c747a. One-line PER_MODEL_UNLOCKED fix; rebuilt accounting image + verified live end-to-end (JV-document POST 201, was 500; view/list/delete all work; 2138 rows intact; test row cleaned); 56 tests pass.",
     "started_at": "2026-07-24T11:32:00Z"
   },
   {
@@ -1635,9 +1635,10 @@
     "note": "MSW mocks (src/mocks/opsHandlers.ts/tasksDb.ts) don't cover new ops task-workflow actions (offline-dev only) + no calendar-grid library bundled (agenda-list used instead) + ops \"Total Cost\" box rate-data not carved. Remaining build lanes: purchasing backend + biometric data lane (running); then backend-follow-ups batch; then INTEGRATION rebuild + pixel-diff re-audit."
   },
   {
-    "title": "HR document-lookup endpoint",
-    "status": "pending",
+    "title": "Document-lookup (backend endpoint + frontend search screen)",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Queued behind the biometric data lane. Then: INTEGRATION rebuild + pixel-diff re-audit + shared-surface cleanups (navConfig repoint, qc mocks, 'Clear Filters' -> 'Reset')."
+    "note": "IN PROGRESS -- porting monolith hrms ListDocumentLookupView + building the search screen (HR domain). Still RUNNING alongside: biometric data lane (~5.4M backfill), CRM backend follow-ups. Then: INTEGRATION rebuild + pixel-diff re-audit + shared-surface cleanups (navConfig repoint, qc mocks, 'Clear Filters' -> 'Reset').",
+    "started_at": "2026-07-24T11:42:30Z"
   }
 ]
