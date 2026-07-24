@@ -1555,25 +1555,19 @@
   },
   {
     "title": "PriceBook data lane (ETL migration + fix legacy id=1 row)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "DISPATCHED -- backend tree is now clean; fresh start. AUTHORIZED by Omar. PriceBook was never loaded by the original ETL; also fixing the legacy id=1 row.",
+    "note": "DONE -- commit 47b7b786. Additive ETL migrated PriceBook 2/2 + MaterialPrice 1/1 (target==source verified, valid cross-refs), legacy id=1 row corrected 000000001 -> VSMC0000001 (single-column authorized write). No truncate/cascade.",
     "started_at": "2026-07-24T10:54:45Z"
   },
   {
-    "title": "Synthetic-punch cleanup: remove 3 fake sync-runs + 36 fabricated punches",
-    "status": "pending",
+    "title": "Biometric data lane (synthetic-punch cleanup + HR test-artifact cleanup + ~5.4M-row backfill)",
+    "status": "in_progress",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup."
-  },
-  {
-    "title": "Biometric punch-history migration",
-    "status": "pending",
-    "track": "backend",
-    "gated": false,
-    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill)."
+    "note": "RUNNING -- Part A cleanup (3 synthetic BiometricSyncRuns + 36 fake punches on real employees; HR scale-test artifacts SalarySetting 671 + 409 payslips) with snapshot-before-delete; then Part B additive backfill of ~5.4M missing raw punch rows (batched, health-monitored). Both user-authorized. Destructive-write pre-auth rule satisfied; route through additive-safe cleanup.",
+    "started_at": "2026-07-24T11:00:56Z"
   },
   {
     "title": "Reporting frontend parity -- real per-department VS-Report dashboards + period pickers",
@@ -1625,11 +1619,5 @@
     "status": "pending",
     "track": "backend",
     "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
-  },
-  {
-    "title": "Clean HR test artifacts created for scale-verification (data-cleanup lane scope)",
-    "status": "pending",
-    "track": "backend",
-    "note": "SalarySetting 671 + 409 test Payslips (period 2026-08, no financial postings) -- additive/harmless, remove with the biometric cleanup."
   }
 ]
