@@ -88,7 +88,14 @@ PUB_TTL_MIN    = 20   # re-check the scheduled-task publisher state at most this
 # progress, all local file reads, no subprocess) always finishes and gets written. Raising the TTLs
 # (5->20, 10->20) also means that once a probe succeeds (or even fails-but-completes) again, we don't
 # keep re-paying for it every single tick.
-HEARTBEAT_BUDGET_SEC = 45   # hard cap on total time spent in the expensive external-probe phase
+# 2026-07-24 STALENESS INCIDENT #3: under an even heavier fleet (5 frontend + backend + VS-Report +
+# auth-grant lanes, 100% host CPU) a heartbeat run STILL blew past this budget and the outer
+# `timeout 150` in heartbeat.sh, even though the previous incident's fix (widening the scheduled
+# task's trigger to 2 min) was already in place -- the real cause turned out to be objective_of()/
+# branch_head() running unbounded over the FULL historical roster (see discover_workers), not this
+# budget being too generous. Shrunk further anyway as defense-in-depth now that the real leak is
+# plugged, so a run has comfortable margin under the 2-min trigger interval even under load spikes.
+HEARTBEAT_BUDGET_SEC = 20   # hard cap on total time spent in the expensive external-probe phase
 # 2026-07-24 STALENESS INCIDENT #2: HEARTBEAT_BUDGET_SEC above was believed to cover the whole
 # expensive part of a run, but it only ever wrapped docker/health/commits/publisher/branch_head.
 # token_usage() (the per-worker + per-baseline-session transcript token scan) had NO budget guard at
@@ -100,7 +107,14 @@ HEARTBEAT_BUDGET_SEC = 45   # hard cap on total time spent in the expensive exte
 # tokens are CARRIED FORWARD from the previously-published stats.json (never fabricated) instead of
 # blowing the wall-clock budget. Same shared _budget_start clock as HEARTBEAT_BUDGET_SEC, so total
 # worst-case added latency from probes+scan together still can't run away.
-ROSTER_BUDGET_SEC = 60      # hard cap on total time spent scanning worker/session transcripts
+ROSTER_BUDGET_SEC = 25      # hard cap on total time spent scanning worker/session transcripts
+                            # (shrunk 60->25 2026-07-24 INCIDENT #3, defense-in-depth alongside the
+                            # discover_workers gating fix above -- it now only ever scans the ~15-20
+                            # CURRENT files, not the full 477-file history, so this should rarely bind)
+TOKEN_SCAN_MAX_BYTES = 8 * 1024 * 1024   # skip a full-content token re-scan for any single current
+                            # worker's transcript above this size THIS cycle (carry forward instead)
+                            # -- caps the worst-case cost of any one oversized/fast-growing live file
+                            # regardless of how much wall-clock budget nominally remains.
 
 now = datetime.datetime.now(datetime.timezone.utc)
 _budget_start = time.monotonic()
@@ -186,12 +200,17 @@ def run_safe(args, timeout=15, cwd=None, extra_path=None):
     except Exception as e:
         return False, str(e)
 
-def branch_head(repo, branch, grep=None):
-    """Latest commit (subject, iso) on branch, optionally matching grep; None on failure."""
+def branch_head(repo, branch, grep=None, timeout=8):
+    """Latest commit (subject, iso) on branch, optionally matching grep; None on failure.
+    2026-07-24 STALENESS INCIDENT #3: this used to call run_safe() with its DEFAULT 15s timeout,
+    completely ignoring the caller's remaining budget — under heavy load a single slow git call
+    could burn the full 15s (x2 if grep given) regardless of how little budget was left, blowing
+    the run's wall clock well past its nominal caps. Timeout is now an explicit, budget-derived
+    argument from the caller (see discover_workers)."""
     if not os.path.isdir(repo): return None
     base = ["git", "-C", repo, "log", "-1", "--format=%s%x1f%cI"]
     for args in ([base+["--grep",grep,branch]] if grep else []) + [base+[branch]]:
-        ok, out = run_safe(args)
+        ok, out = run_safe(args, timeout=timeout)
         if ok and out.strip():
             subj, ci = out.strip().split("\x1f", 1)
             return subj, ci
@@ -563,7 +582,7 @@ def discover_workers(prev=None):
             # whole heartbeat — with a large/active fleet it can outrun the wall clock all on its own.
             # Once ROSTER_BUDGET_SEC is spent, stop reading NEW transcripts and carry forward this
             # worker's last-published numbers instead (never fabricate; None if we've never seen it).
-            if _time_left(ROSTER_BUDGET_SEC) > 3:
+            if _time_left(ROSTER_BUDGET_SEC) > 3 and (lb or 0) <= TOKEN_SCAN_MAX_BYTES:
                 out_tok, cr_tok, cc_tok, msgs = token_usage(jsonl)
             else:
                 pw = prev_by_short.get(agent_id[:8])
@@ -571,8 +590,19 @@ def discover_workers(prev=None):
                     out_tok, cr_tok, cc_tok, msgs = (pw.get("output_tokens"), pw.get("cache_read_tokens"),
                                                       pw.get("cache_creation_tokens"), pw.get("msgs"))
                     tokens_carried = True
+        # BUDGET GUARD (2026-07-24 STALENESS INCIDENT #3): objective_of()/first_user_text() and
+        # branch_head() used to run for EVERY discovered agent-*.jsonl -- the WHOLE historical
+        # roster (477 files and growing, one per worker ever spawned this session), not just the
+        # ~15-20 CURRENT ones. History rows are collapsed into a single summary count later in
+        # build_stats() and never render `focus`/`head_commit` individually, so that cost was 100%
+        # wasted on old workers every single cycle -- this (not the already-budgeted token scan) was
+        # the real driver of gen_stats blowing past its 150s outer timeout under heavy load. Gate
+        # BOTH the expensive focus-line scan and the git branch-head lookup behind `current`.
+        focus = desc
+        if os.path.exists(jsonl) and current:
+            focus = objective_of(jsonl, desc)
         rec = dict(name=desc, role=role, branch=branch,
-                   focus=(objective_of(jsonl, desc) if os.path.exists(jsonl) else desc),
+                   focus=focus,
                    agent_id=agent_id, short_id=agent_id[:8],
                    head_commit=None, head_commit_at=None, head_ago_min=None,
                    out_last_active=la2, out_age_min=age, log_bytes=lb,
@@ -580,8 +610,8 @@ def discover_workers(prev=None):
                    cache_creation_tokens=cc_tok, msgs=msgs, tokens_carried=tokens_carried,
                    signal=("stopped by user (harness-cancelled)" if stopped else "task-output mtime + git commit"),
                    status=status, live=(status == "live"))
-        if branch and rm.get("repo") and status in ("live", "idle") and _budget_left() > 4:
-            h = branch_head(rm["repo"], branch, rm.get("grep"))
+        if branch and rm.get("repo") and current and status in ("live", "idle") and _budget_left() > 6:
+            h = branch_head(rm["repo"], branch, rm.get("grep"), timeout=min(6, _budget_left()))
             if h:
                 rec["head_commit"], ci = h[0], h[1]
                 rec["head_commit_at"] = ci
@@ -603,7 +633,7 @@ def build_sessions(workers):
             # static BASELINE token totals (already the documented "numbers preserved" fallback) rather
             # than risk this loop being the thing that blows the heartbeat's wall clock.
             la = iso(datetime.datetime.fromtimestamp(os.path.getmtime(f), datetime.timezone.utc))
-            if _time_left(ROSTER_BUDGET_SEC) > 3:
+            if _time_left(ROSTER_BUDGET_SEC) > 3 and os.path.getsize(f) <= TOKEN_SCAN_MAX_BYTES:
                 o, cr, cc, n = token_usage(f)
         if sid == "a49f5cc3":                       # commander: live while any subagent is
             la = commander_activity() or la
