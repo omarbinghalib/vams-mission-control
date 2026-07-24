@@ -1315,10 +1315,10 @@
   },
   {
     "title": "VS-Report EXECUTION-parity fix (lane wiring endpoints + graceful-degrade + monthly keys)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "worker": "Build VS-Report refresh generator",
-    "note": "RESUMED after the restart -- finishing uncommitted wiring + graceful-degrade + monthly 15/50->50 keys; sole backend-tree writer right now. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized).",
+    "note": "DONE -- commit 4b6e5ab6. Crash fixed via graceful-degrade (fresh runs complete 52/21/47 keys); HTTP endpoint wired + verified live through gateway (200/401); monthly-accounts 15/50 -> 47/50; 94/94 VS-Report tests pass. Remaining 3/50: 2 N/A break-even URLs + job_costings follow-up.",
     "started_at": "2026-07-23T16:51:45Z"
   },
   {
@@ -1464,16 +1464,16 @@
   },
   {
     "title": "CRM frontend parity (G6 + opp sub-panels + Related-SOs + AI-verify banner + statusSegments)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
+    "note": "DONE -- commit ca087b42. G6 companies (A-Z, filters, columns, Export-CSV removed) + Related-SOs widget + AI-verify banner + 5 opportunity sub-panels + statusSegments on opp/SO lists. Follow-ups (backend): Country/Sources query fields, datasheet multipart upload, contacts org-chart endpoint+data, bulk SO-line import.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "Purchasing frontend parity (PO panels + RCN fields + status bar)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
+    "note": "DONE -- commit c1de1019. PO Payment-Terms/Documents/Additional-Remarks panels + RCN detail fields + documents widget + statusSegments on PO/PR/DN. 18/18 tests.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1492,9 +1492,9 @@
   },
   {
     "title": "HR dashboard frontend (G8 landing screen)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
+    "note": "DONE -- commit 65649ffc. Pixel-checked HCAP dashboard vs :8100 + monolith source + statusSegments on 12 HR lists. Follow-ups (backend): CompanyDocument model, dept-objectives, visa-cancellation/doc-missing queues.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1519,9 +1519,9 @@
   },
   {
     "title": "HR backend gap-fix: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); has uncommitted work to finish/commit once resumed.",
+    "note": "RESUMED -- backend tree cleared (VS-Report landed); finishing gratuity/HCAP-accounts/async-payroll.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1572,5 +1572,25 @@
     "track": "backend",
     "gated": false,
     "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill)."
+  },
+  {
+    "title": "Mission-control freshness fix",
+    "status": "done",
+    "track": "mission-control",
+    "note": "DONE -- root cause was NOT a Pages rate-limit (legacy Pages builds are fine, ~25s); it was gen_stats overrun + a timeout-lapping heartbeat wedge. gen_stats recency-gated (~41s under load), heartbeat timeout 150 -> 75s, hardened + back-ported to the kit; dashboard kept fresh via a temporary stopgap loop in the meantime."
+  },
+  {
+    "title": "GATED (admin): Windows Task Scheduler SERVICE wedged (0x800710E0 on all 3 VAMS tasks)",
+    "status": "pending",
+    "track": "mission-control",
+    "gated": true,
+    "note": "Needs an elevated `Restart-Service Schedule -Force` or a reboot to restore the self-sustaining heartbeat; a stopgap loop covers freshness for ~1hr meanwhile."
+  },
+  {
+    "title": "Optional: apply .github/workflows/pages.yml (uncommitted) to remove latent future Pages-throttle risk",
+    "status": "pending",
+    "track": "mission-control",
+    "gated": true,
+    "note": "Not urgent (legacy Pages builds are currently fine, ~25s) -- removes a latent future risk. Needs Omar sign-off before applying."
   }
 ]
