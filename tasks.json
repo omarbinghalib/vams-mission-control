@@ -1,10 +1,16 @@
 [
   {
     "title": "LIVE INCIDENT: :8090 login failing -- \"vbg org does not exist\"",
-    "status": "in_progress",
+    "status": "done",
     "track": "incident",
-    "note": "TOP PRIORITY. Claude process restarted mid-flight; org/tenant service went down after Docker-engine distress, breaking :8090 login. Recovery worker restarting the casualty container + verifying login as the #1 priority. Data NOT lost -- org mapping was verified earlier, this is a service-down issue, not a data-loss issue.",
+    "note": "RESOLVED -- root cause was Docker Desktop's engine fully stopped (all ~36 containers down). Recovery restarted Docker + compose up; verified login end-to-end (branding 200, /auth/token 200 JWT org_slug:vbg, Postgres healthy, re-brand build intact). Data NOT lost.",
     "started_at": "2026-07-24T08:43:11Z"
+  },
+  {
+    "title": "Post-restart recovery assessment",
+    "status": "done",
+    "track": "mission-control",
+    "note": "DONE -- no git corruption (both branches in sync, no wedged rebase), all containers Up, heartbeat Ready."
   },
   {
     "title": "Post-restart recovery: containers up, backfilled data verified, :8090 + gateway checked",
@@ -1312,7 +1318,7 @@
     "status": "in_progress",
     "track": "backend",
     "worker": "Build VS-Report refresh generator",
-    "note": "RECLASSIFIED done -> in_progress: builders were logic-only/unwired/crashed on missing grant. Now wiring lane endpoints + graceful-degrade + monthly 15/50->50 keys. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized). Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RESUMED after the restart -- finishing uncommitted wiring + graceful-degrade + monthly 15/50->50 keys; sole backend-tree writer right now. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized).",
     "started_at": "2026-07-23T16:51:45Z"
   },
   {
@@ -1381,10 +1387,11 @@
   },
   {
     "title": "AUTHORIZED (queued): column-limited view on auth UserProfile (id+name only) + grant vams_reporting_ro SELECT",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). Enables real account-manager names in VS-Report (which already runs without it via graceful-degrade). Column-limited so password/totp are never exposed."
+    "note": "RUNNING -- DB-only column-level grant so vams_reporting_ro can read UserProfile id+name. Enables real account-manager names in VS-Report (which already runs without it via graceful-degrade). Column-limited so password/totp are never exposed.",
+    "started_at": "2026-07-24T08:56:21Z"
   },
   {
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
@@ -1439,7 +1446,7 @@
     "title": "Frontend gap-close wave (pending inventory)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.). Reporting + ops frontend DEFERRED until their backend lanes (VS-Report endpoint / ops Task-engine) land.",
+    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.). Reporting + ops frontend DEFERRED until their backend lanes (VS-Report endpoint / ops Task-engine) land. BAR RAISED TO PIXEL-PERFECT -- integration phase will pixel-diff every screen :8100 vs :8090 and loop until match, on top of logic+depth parity.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1459,35 +1466,35 @@
     "title": "CRM frontend parity (G6 + opp sub-panels + Related-SOs + AI-verify banner + statusSegments)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "Purchasing frontend parity (PO panels + RCN fields + status bar)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "QC frontend parity (NcrActionTask + valve-media + eval panels)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "Accounting frontend parity (WIP screen + JV-upload + tax-group + break-even + statusSegments)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "HR dashboard frontend (G8 landing screen)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "RE-DISPATCHED fresh after the restart -- never started pre-crash.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1499,10 +1506,9 @@
   },
   {
     "title": "Purchasing backend -- inbox consumer for payment_voucher.reversed (completes PJ-stage flip) + independent non-PO Purchase Journal posting",
-    "status": "in_progress",
+    "status": "pending",
     "track": "backend",
-    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
-    "started_at": "2026-07-24T08:06:36Z"
+    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); fresh start queued behind HR backend + ops Task-engine."
   },
   {
     "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
@@ -1513,16 +1519,16 @@
   },
   {
     "title": "HR backend gap-fix: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async",
-    "status": "in_progress",
+    "status": "pending",
     "track": "backend",
-    "note": "Closing HR parity-audit gaps: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async. Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); has uncommitted work to finish/commit once resumed.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
     "title": "Ops Task-engine backend build-out: state machine + sprint/epic/attachment/time-logging/IT-support APIs",
-    "status": "in_progress",
+    "status": "pending",
     "track": "backend",
-    "note": "Building out the ops task-engine: state machine + sprint/epic/attachment/time-logging/IT-support APIs. Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
+    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); has uncommitted work to finish/commit once resumed.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1544,27 +1550,27 @@
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). PriceBook was never loaded by the original ETL."
+    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead). PriceBook was never loaded by the original ETL."
   },
   {
     "title": "Fix legacy PriceBook row",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear)."
+    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead)."
   },
   {
     "title": "Synthetic-punch cleanup: remove 3 fake sync-runs + 36 fabricated punches",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup."
+    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup. Runs before the biometric punch-history backfill below."
   },
   {
     "title": "Biometric punch-history migration",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear)."
+    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead), and behind the synthetic-punch cleanup above."
   }
 ]
