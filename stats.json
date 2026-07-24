@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-24T01:59:33Z",
-  "heartbeat_at": "2026-07-24T01:59:33Z",
+  "updated": "2026-07-24T02:14:34Z",
+  "heartbeat_at": "2026-07-24T02:14:34Z",
   "last_activity": "2026-07-23T23:00:14Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
@@ -32,7 +32,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-23T23:00:14Z",
-      "out_age_min": 179.3,
+      "out_age_min": 194.3,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "idle",
@@ -50,7 +50,7 @@
       "cache_creation_tokens": 37436641,
       "msgs": 3113,
       "last_active": "2026-07-23T23:00:14Z",
-      "age_min": 179.3,
+      "age_min": 194.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -66,7 +66,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 21255.1,
+      "age_min": 21270.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -81,7 +81,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 30078.2,
+      "age_min": 30093.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -96,7 +96,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 24208.2,
+      "age_min": 24223.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -111,7 +111,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 23981.3,
+      "age_min": 23996.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -126,7 +126,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 19888.9,
+      "age_min": 19903.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -141,7 +141,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 21364.4,
+      "age_min": 21379.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -156,7 +156,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 20048.9,
+      "age_min": 20063.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -171,7 +171,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 24162.1,
+      "age_min": 24177.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -186,7 +186,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 24208.2,
+      "age_min": 24223.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -201,7 +201,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 30783.4,
+      "age_min": 30798.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -216,7 +216,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 30800.9,
+      "age_min": 30815.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -420,9 +420,9 @@
       {
         "name": "vams_bff",
         "state": "running",
-        "status": "Up 41 hours",
+        "status": "Up 42 hours",
         "health": "none",
-        "uptime": "41 hours",
+        "uptime": "42 hours",
         "ports": "8013",
         "up": true
       },
@@ -492,27 +492,27 @@
       {
         "name": "vams_hr",
         "state": "running",
-        "status": "Up 16 hours",
+        "status": "Up 17 hours",
         "health": "none",
-        "uptime": "16 hours",
+        "uptime": "17 hours",
         "ports": "8004",
         "up": true
       },
       {
         "name": "vams_hr_relay",
         "state": "running",
-        "status": "Up 17 hours",
+        "status": "Up 18 hours",
         "health": "none",
-        "uptime": "17 hours",
+        "uptime": "18 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_hr_worker",
         "state": "running",
-        "status": "Up 16 hours",
+        "status": "Up 17 hours",
         "health": "none",
-        "uptime": "16 hours",
+        "uptime": "17 hours",
         "ports": "",
         "up": true
       },
@@ -582,9 +582,9 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 4 hours",
+        "status": "Up 5 hours",
         "health": "none",
-        "uptime": "4 hours",
+        "uptime": "5 hours",
         "ports": "8007",
         "up": true
       },
@@ -600,9 +600,9 @@
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 41 hours",
+        "status": "Up 42 hours",
         "health": "none",
-        "uptime": "41 hours",
+        "uptime": "42 hours",
         "ports": "",
         "up": true
       },
@@ -636,9 +636,9 @@
       {
         "name": "vams_qc",
         "state": "running",
-        "status": "Up 11 hours",
+        "status": "Up 12 hours",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "12 hours",
         "ports": "8002",
         "up": true
       },
@@ -721,8 +721,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-24T01:44:33Z",
-    "carried": true
+    "checked_at": "2026-07-24T02:14:34Z"
   },
   "health": [
     {
@@ -824,8 +823,7 @@
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-24T01:44:33Z",
-    "carried": true
+    "checked_at": "2026-07-24T02:14:34Z"
   },
   "task_worker_live": {}
 }
