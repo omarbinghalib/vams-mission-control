@@ -1432,8 +1432,28 @@
     "title": "Frontend gap-close wave (pending inventory)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory.",
+    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.).",
     "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Legacy-UI G5 -- colored status-count segment bar on LegacyListPage",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- commit eb03f19a on legacy-ui; additive backward-compatible statusSegments prop matching original :8100 progress_bar widget; 115 call sites untouched."
+  },
+  {
+    "title": "Frontend foundation wave -- shell G1-G4/G7 (LegacyHeader/AppShell/Breadcrumbs/theme)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T07:59:45Z"
+  },
+  {
+    "title": ":8100 CSRF revert (security cleanup)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T07:59:45Z"
   },
   {
     "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
