@@ -1506,9 +1506,9 @@
   },
   {
     "title": "Purchasing backend -- inbox consumer for payment_voucher.reversed (completes PJ-stage flip) + independent non-PO Purchase Journal posting",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- backend tree is now clean; fresh start.",
+    "note": "DONE -- commits fc0c9e9b/aeffafba, 92/92 tests. PV-reverse->PJ-stage inbox consumer live-verified (stage flipped 3->1 per monolith gate); independent non-PO PJ posting ported + cross-verified vs 126 real historical independent PJs (balanced to the cent). Test rows cleaned. MILESTONE: ALL backend gap-close lanes DONE (VS-Report, CRM, accounting, HR, ops, purchasing, auth-grant).",
     "started_at": "2026-07-24T10:54:45Z"
   },
   {
@@ -1603,10 +1603,18 @@
     "note": "NCR/incident mock rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures (predates this session)."
   },
   {
-    "title": "Accounting backend follow-up: unlock JVDocument.number in PER_MODEL_UNLOCKED",
-    "status": "pending",
+    "title": "Accounting JVDocument.number unlock (fixes JV-document upload 500)",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Add 'JVDocument': {'number'} to PER_MODEL_UNLOCKED in services/accounting/accounting_app/api.py so JV-document UPLOAD works (currently 500s: number is ALWAYS_LOCKED but user-entered)."
+    "note": "IN PROGRESS -- add 'JVDocument': {'number'} to PER_MODEL_UNLOCKED in services/accounting/accounting_app/api.py so JV-document UPLOAD works (currently 500s: number is ALWAYS_LOCKED but user-entered).",
+    "started_at": "2026-07-24T11:32:00Z"
+  },
+  {
+    "title": "CRM backend follow-ups (Country/Sources filter fields + datasheet multipart upload + contacts org-chart endpoint + bulk SO-line import)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "IN PROGRESS -- closing the CRM frontend-parity follow-up gaps: Country/Sources query filter fields, datasheet multipart upload, contacts org-chart endpoint + data, bulk SO-line import.",
+    "started_at": "2026-07-24T11:32:00Z"
   },
   {
     "title": "Repoint navConfig.ts 14 VS-report nav entries to the new /m/reporting/vs-report/... routes",
@@ -1625,5 +1633,11 @@
     "status": "pending",
     "track": "frontend",
     "note": "MSW mocks (src/mocks/opsHandlers.ts/tasksDb.ts) don't cover new ops task-workflow actions (offline-dev only) + no calendar-grid library bundled (agenda-list used instead) + ops \"Total Cost\" box rate-data not carved. Remaining build lanes: purchasing backend + biometric data lane (running); then backend-follow-ups batch; then INTEGRATION rebuild + pixel-diff re-audit."
+  },
+  {
+    "title": "HR document-lookup endpoint",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the biometric data lane. Then: INTEGRATION rebuild + pixel-diff re-audit + shared-surface cleanups (navConfig repoint, qc mocks, 'Clear Filters' -> 'Reset')."
   }
 ]
