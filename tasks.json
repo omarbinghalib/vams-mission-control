@@ -1513,9 +1513,9 @@
   },
   {
     "title": "Ops frontend (task workflow screens)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- fan-out now that the backend tree is clean; ops task-engine workflow screens.",
+    "note": "DONE -- 5 micro-commits 2551c6e3..61107189. Task detail with LegacyStatusStepper + transition-stage + per-stage note-prompt + guards, in-queue/reject flows, activity timer + log, attachments, IT-support raise/my-tickets, calendar (agenda list), Sprint/Epic admin, statusSegments on task list; fixed 2 badge-color bugs. tsc + eslint exit 0. MILESTONE: FULL FRONTEND COMPLETE -- all 7 module frontends done (CRM, HR-dashboard, purchasing, QC, accounting, reporting, ops).",
     "started_at": "2026-07-24T10:54:45Z"
   },
   {
@@ -1619,5 +1619,11 @@
     "status": "pending",
     "track": "backend",
     "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
+  },
+  {
+    "title": "Ops frontend shared-surface follow-up: MSW mock coverage + calendar-grid lib + Total Cost rate-data",
+    "status": "pending",
+    "track": "frontend",
+    "note": "MSW mocks (src/mocks/opsHandlers.ts/tasksDb.ts) don't cover new ops task-workflow actions (offline-dev only) + no calendar-grid library bundled (agenda-list used instead) + ops \"Total Cost\" box rate-data not carved. Remaining build lanes: purchasing backend + biometric data lane (running); then backend-follow-ups batch; then INTEGRATION rebuild + pixel-diff re-audit."
   }
 ]
