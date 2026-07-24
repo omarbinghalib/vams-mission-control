@@ -1506,9 +1506,17 @@
   },
   {
     "title": "Purchasing backend -- inbox consumer for payment_voucher.reversed (completes PJ-stage flip) + independent non-PO Purchase Journal posting",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "SERIALIZED -- waiting for the backend tree to clear (VS-Report is sole writer right now); fresh start queued behind HR backend + ops Task-engine."
+    "note": "DISPATCHED -- backend tree is now clean; fresh start.",
+    "started_at": "2026-07-24T10:54:45Z"
+  },
+  {
+    "title": "Ops frontend (task workflow screens)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- fan-out now that the backend tree is clean; ops task-engine workflow screens.",
+    "started_at": "2026-07-24T10:54:45Z"
   },
   {
     "title": "Accounting backend gap-fix: reverse_pv PJ-stage, AR/AP aging, SIF/HSBC",
@@ -1526,9 +1534,9 @@
   },
   {
     "title": "Ops Task-engine backend build-out: state machine + sprint/epic/attachment/time-logging/IT-support APIs",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RESUMED -- sole backend-tree writer, finishing state machine + sprint/epic/attachment/time-logging/IT-support APIs, committing incrementally.",
+    "note": "DONE -- commits c6a8b6ba/dfbfe51b/425fa3d9, 87/87 ops + 32/32 bff tests. Full state machine (sequential-stage gate, 5 mandatory-note guards, in-queue/code-review guards, audit+messages+notifications), new endpoints (activity/log-activity/upload-attachment/IT-support/calendar), + fixed 2 real routing bugs (tasks/<pk> collision, BFF content-type mapping). Throwaway records cleaned; real backlog unchanged. MILESTONE: backend tree now CLEAN -- all resumed backend lanes committed.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1546,18 +1554,12 @@
     "started_at": "2026-07-24T08:43:11Z"
   },
   {
-    "title": "PriceBook ETL migration (never loaded)",
-    "status": "pending",
+    "title": "PriceBook data lane (ETL migration + fix legacy id=1 row)",
+    "status": "in_progress",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases. PriceBook was never loaded by the original ETL."
-  },
-  {
-    "title": "Fix legacy PriceBook row",
-    "status": "pending",
-    "track": "backend",
-    "gated": false,
-    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases."
+    "note": "DISPATCHED -- backend tree is now clean; fresh start. AUTHORIZED by Omar. PriceBook was never loaded by the original ETL; also fixing the legacy id=1 row.",
+    "started_at": "2026-07-24T10:54:45Z"
   },
   {
     "title": "Synthetic-punch cleanup: remove 3 fake sync-runs + 36 fabricated punches",
