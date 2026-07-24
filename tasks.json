@@ -1302,17 +1302,82 @@
   },
   {
     "title": "VS-Report refresh-generator (additive populator, production)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "worker": "Build VS-Report refresh generator",
-    "note": "Additive populator (production) to (re)generate VS-Report data.",
+    "note": "DONE -- accounts 52/54 keys + sales 21/30 keys ported, cent-verified vs real ~990K-row GL. 2 accidentally-overwritten historical rows found and restored byte-exact (user-authorized).",
     "started_at": "2026-07-23T16:51:45Z"
   },
   {
     "title": "FINAL zero-missed re-audit (+ ops color-flag spot-check)",
     "status": "pending",
     "track": "backend",
-    "note": "Fires after VS-Report refresh-generator lands."
+    "note": "UNBLOCKED -- VS-Report refresh-generator has landed; this re-audit can now fire."
+  },
+  {
+    "title": "RBAC drift closed: 7 per-service permissions.py re-synced to _shared canonical",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- 7 per-service permissions.py files re-synced to the _shared canonical source; role-gate tests green."
+  },
+  {
+    "title": "_shared permissions.py back-port of 5 service-specific keys",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Back-porting 5 service-specific permission keys into _shared canonical so future drift can't recur.",
+    "started_at": "2026-07-24T06:47:38Z"
+  },
+  {
+    "title": ":8100 vams_original_ref reference container fixed (safe local mirror of original VAMS)",
+    "status": "done",
+    "track": "deploy",
+    "note": "DONE -- :8100 reference container repaired; safe local mirror of the original VAMS restored for screen-by-screen comparison work."
+  },
+  {
+    "title": "Sidebar -> menu copy fix",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- sidebar->menu copy fix shipped + frontend rebuilt."
+  },
+  {
+    "title": "GL data restore re-verified cent-exact (989,768 rows)",
+    "status": "done",
+    "track": "accounting",
+    "note": "DONE -- GL restore re-verified cent-exact at 989,768 rows against the source."
+  },
+  {
+    "title": "Destructive-write pre-auth process memory captured",
+    "status": "done",
+    "track": "docs",
+    "note": "DONE -- standing memory captured: any destructive DB write (DELETE/UPDATE/TRUNCATE, docker-exec) requires explicit user pre-authorization; route restores through additive loaders."
+  },
+  {
+    "title": "LEGACY-UI vs LIVE re-brand: bin ghalib logo + single-step login + remove org-selector/signup",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "ROOT CAUSE CONFIRMED for \"UI does not match live\": branding/login-flow gap, not a wrong-port issue -- framework itself is the same Bootstrap 2.3.2. Fix in flight: bin ghalib logo, single-step username/password login + Login button, remove org-selector/signup.",
+    "started_at": "2026-07-23T17:37:51Z"
+  },
+  {
+    "title": ":8100-vs-:8090 internal screen-by-screen comparison (re-skin gap spec)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Producing a re-skin gap spec via the safe local :8100 mirror (screen-by-screen vs :8090). Live 192.168.58.223 auto-login is blocked by the env safety classifier -- not attempted; do not touch that live-network host.",
+    "started_at": "2026-07-23T17:37:51Z"
+  },
+  {
+    "title": "Capstone parity audit: 9 domain auditors + synthesis artifact",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Honest capability/logic/depth/complexity audit of original VAMS 2.0 vs the new system (distinct from the earlier completed data-parity sweeps). 2/9 domain auditors done (accounting ~85%, QC ~93%); 7 in flight (CRM, purchasing, production, HR, reporting, ops-integrations, platform-rbac-ui); synthesis artifact pending.",
+    "started_at": "2026-07-24T06:47:38Z"
+  },
+  {
+    "title": "DECISION (awaiting Omar): column-limited view on auth UserProfile (id+name only) + grant vams_reporting_ro SELECT",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Needed to enable the account-manager-name VS-Report keys. Column-limited so password/totp are never exposed. Waiting on Omar's authorization + grant."
   },
   {
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
@@ -1334,14 +1399,14 @@
     "status": "in_progress",
     "track": "frontend",
     "worker": "Urgent: verify :8090 is the legacy look",
-    "note": "Investigating whether Omar was looking at :3000 (modern) vs :8090 (legacy), or whether frontend-web regressed to serve the modern UI on :8090.",
+    "note": ":8090 confirmed serving the legacy shell (not the modern :3000 build) -- so the mismatch Omar saw is real but the ROOT CAUSE is branding/login-flow, not the wrong port. See the LEGACY-UI vs LIVE re-brand lane now fixing it (logo, single-step login, remove org-selector/signup).",
     "started_at": "2026-07-23T17:37:51Z"
   },
   {
     "title": "Credential/login fix",
     "status": "in_progress",
     "track": "backend",
-    "note": "Lane in progress; details pending.",
+    "note": "Backend side of the login-flow fix -- pairs with the frontend LEGACY-UI re-brand lane (single-step username/password + Login button, removing org-selector/signup).",
     "started_at": "2026-07-23T17:37:51Z"
   }
 ]
