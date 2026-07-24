@@ -1386,11 +1386,11 @@
     "started_at": "2026-07-24T06:47:38Z"
   },
   {
-    "title": "AUTHORIZED (queued): column-limited view on auth UserProfile (id+name only) + grant vams_reporting_ro SELECT",
-    "status": "in_progress",
+    "title": "Auth-view grant (account-manager names)",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "RUNNING -- DB-only column-level grant so vams_reporting_ro can read UserProfile id+name. Enables real account-manager names in VS-Report (which already runs without it via graceful-degrade). Column-limited so password/totp are never exposed.",
+    "note": "DONE -- column-level GRANT of only (id, first_name, last_name) on vams_saas.vams.auth_userprofile to vams_reporting_ro; verified id+name readable, password/totp/username/SELECT* DENIED; idempotent, zero data touched; .sql documented at services/scripts/grant_reporting_ro_platform_names.sql. Real account-manager names now enabled for VS-Report (will show once VS-Report wiring lands).",
     "started_at": "2026-07-24T08:56:21Z"
   },
   {
@@ -1550,27 +1550,27 @@
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead). PriceBook was never loaded by the original ETL."
+    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases. PriceBook was never loaded by the original ETL."
   },
   {
     "title": "Fix legacy PriceBook row",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead)."
+    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases."
   },
   {
     "title": "Synthetic-punch cleanup: remove 3 fake sync-runs + 36 fabricated punches",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup. Runs before the biometric punch-history backfill below."
+    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup."
   },
   {
     "title": "Biometric punch-history migration",
     "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar -- serialized behind the backend tree clearing (HR backend + ops Task-engine + purchasing backend queued ahead), and behind the synthetic-punch cleanup above."
+    "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill)."
   }
 ]
