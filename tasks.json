@@ -1,5 +1,18 @@
 [
   {
+    "title": "SECURITY: PII snapshot removed from HEAD + .gitignore added",
+    "status": "done",
+    "track": "incident",
+    "note": "DONE-IN-PART -- commit d6609403. The pre-delete biometric-cleanup snapshot contained real employee data and was committed+pushed by mistake; removed from tree, preserved in local scratch only, .gitignore added to prevent recurrence. Full history purge tracked as a separate in-progress item below."
+  },
+  {
+    "title": "SECURITY: PII git-history purge + force-push (user-authorized)",
+    "status": "in_progress",
+    "track": "incident",
+    "note": "IN PROGRESS -- rewriting microservices-backend history to remove the PII snapshot from ALL history, then force-push to GitHub (leaving legacy-ui untouched). User-authorized.",
+    "started_at": "2026-07-24T15:06:37Z"
+  },
+  {
     "title": "LIVE INCIDENT: :8090 login failing -- \"vbg org does not exist\"",
     "status": "done",
     "track": "incident",
@@ -1563,10 +1576,10 @@
   },
   {
     "title": "Biometric data lane (synthetic-punch cleanup + HR test-artifact cleanup + ~5.4M-row backfill)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "RUNNING -- Part A cleanup (3 synthetic BiometricSyncRuns + 36 fake punches on real employees; HR scale-test artifacts SalarySetting 671 + 409 payslips) with snapshot-before-delete; then Part B additive backfill of ~5.4M missing raw punch rows (batched, health-monitored). Both user-authorized. Destructive-write pre-auth rule satisfied; route through additive-safe cleanup.",
+    "note": "DONE -- commit 54bcad03. Part A cleanup verified to the row (3 synthetic sync-runs + 36 fake punches removed, real punches untouched; 409 scale-test payslips removed, salaryhistory unchanged 48,050). Part B backfill full punch history 349,884 -> 5,736,479 (source==target exact, checksums identical, no dangling refs, aggregates untouched).",
     "started_at": "2026-07-24T11:00:56Z"
   },
   {
@@ -1598,9 +1611,9 @@
   },
   {
     "title": "Shared-surface cleanups (navConfig repoint + Clear-Filters label + qc/ops mock drift + _shared perm back-port)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "IN PROGRESS -- navConfig repoint (14 VS-report entries + document-lookup route), 'Clear Filters' -> 'Reset' label, qc/ops mock-fixture drift (qcDb.ts/qcHandlers.ts NCR/incident rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures; opsHandlers.ts/tasksDb.ts don't cover new ops task-workflow actions; no calendar-grid lib; ops Total Cost rate-data not carved), _shared/permissions.py perm back-port (sales_order.add_salesorderitem + svc:crm.verify_ai + HR document-lookup perm). Remaining build lane: biometric data lane (running, ~5.4M backfill) is the LAST build lane; then the single INTEGRATION rebuild + pixel-diff re-audit vs :8100.",
+    "note": "DONE -- frontend 16b8dea1..be416df1, backend 50ead4fa. navConfig repointed (19 VS-report nodes + document-lookup), Clear-Filters -> Reset, qc mocks 12/12, ops MSW 17/17 (+ fixed a routing collision), _shared perms back-ported (4 keys, 0 drift, tests green). MILESTONE: all build + follow-up + cleanup lanes done; only the PII history-purge + the final INTEGRATION rebuild + pixel-diff re-audit remain.",
     "started_at": "2026-07-24T12:11:40Z"
   },
   {
