@@ -54,9 +54,17 @@ LOG="$repo/.heartbeat.log"
 log(){ printf '%s pid=%s %s\n' "$(date -u +%H:%M:%S)" "$$" "$1" >> "$LOG"; }
 
 log "START"
-# hard-bound gen_stats too (belt & suspenders under the PT3M task limit): its probes are individually
-# bounded, but cap the whole thing so it can never hold the lock indefinitely.
-if timeout 150 python "$here/gen_stats.py" --heartbeat >> "$LOG" 2>&1; then
+# hard-bound gen_stats too (belt & suspenders under the task's ExecutionTimeLimit): its probes are
+# individually bounded, but cap the whole thing so it can never hold the lock indefinitely.
+# 2026-07-24 STALENESS INCIDENT #3: this was 150s — LONGER than the scheduled task's own 2-min
+# (120s) trigger interval, so a killed/slow run always laps the next trigger, which Windows Task
+# Scheduler then rejects at the OS level (MultipleInstances=IgnoreNew -> LastTaskResult=0x800710E0)
+# EVEN AFTER the underlying process is long gone (confirmed: stayed stuck for 45+ min with no live
+# wscript/sh/python process on the host). The real fix was plugging gen_stats.py's O(entire-history)
+# leak (see its 2026-07-24 INCIDENT #3 comments) — a run now completes in ~51s under this same heavy
+# load. Shrink this outer cap to 75s so even a bad run gets killed with time to spare before the next
+# 120s trigger, instead of just barely (or never) fitting.
+if timeout 75 python "$here/gen_stats.py" --heartbeat >> "$LOG" 2>&1; then
   log "gen_stats OK (push warranted)"
   # PATHSPEC-LIMITED add+commit — this script owns ONLY stats.json (it never bumps
   # version.json; that belongs to attention.sh/tasks.sh/build-pages.sh). The shared repo
