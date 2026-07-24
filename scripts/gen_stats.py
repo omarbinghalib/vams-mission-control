@@ -89,12 +89,27 @@ PUB_TTL_MIN    = 20   # re-check the scheduled-task publisher state at most this
 # (5->20, 10->20) also means that once a probe succeeds (or even fails-but-completes) again, we don't
 # keep re-paying for it every single tick.
 HEARTBEAT_BUDGET_SEC = 45   # hard cap on total time spent in the expensive external-probe phase
+# 2026-07-24 STALENESS INCIDENT #2: HEARTBEAT_BUDGET_SEC above was believed to cover the whole
+# expensive part of a run, but it only ever wrapped docker/health/commits/publisher/branch_head.
+# token_usage() (the per-worker + per-baseline-session transcript token scan) had NO budget guard at
+# all -- it just read every "current" worker's full .jsonl line-by-line, unconditionally. Under a
+# ~9-live-worker fleet with 453 subagent transcripts (308MB) on this machine, that scan alone
+# regularly exceeded heartbeat.sh's outer `timeout 150`, so gen_stats.py was killed (rc=124) before
+# write_stats() ever ran -- stats.json froze for >1h even though the scheduled task itself was firing
+# fine every minute. ROSTER_BUDGET_SEC below hard-bounds that scan; once spent, remaining workers'
+# tokens are CARRIED FORWARD from the previously-published stats.json (never fabricated) instead of
+# blowing the wall-clock budget. Same shared _budget_start clock as HEARTBEAT_BUDGET_SEC, so total
+# worst-case added latency from probes+scan together still can't run away.
+ROSTER_BUDGET_SEC = 60      # hard cap on total time spent scanning worker/session transcripts
 
 now = datetime.datetime.now(datetime.timezone.utc)
 _budget_start = time.monotonic()
+def _time_left(budget):
+    """Seconds remaining in this run's budget for a given cap (never negative)."""
+    return max(0.0, budget - (time.monotonic() - _budget_start))
 def _budget_left():
     """Seconds remaining in this run's expensive-probe budget (never negative)."""
-    return max(0.0, HEARTBEAT_BUDGET_SEC - (time.monotonic() - _budget_start))
+    return _time_left(HEARTBEAT_BUDGET_SEC)
 
 def _load_prev():
     """Best-effort load of the previously-published stats.json — the source for carry-forward of the
@@ -501,8 +516,15 @@ def _status_for(age, stopped):
     if age is None: return "idle"
     return "live" if age < LIVE_MIN else "idle"
 
-def discover_workers():
+def discover_workers(prev=None):
     workers = []
+    # carry-forward source for the token scan when ROSTER_BUDGET_SEC runs out mid-loop — keyed by
+    # short_id so a skipped worker's tokens show its LAST KNOWN real numbers, never fabricated/blank.
+    prev_by_short = {}
+    if isinstance(prev, dict):
+        for pw in (prev.get("workers") or []):
+            if pw.get("short_id"):
+                prev_by_short[pw["short_id"]] = pw
     # commander — transcript-based; live while ANY subagent is
     la = commander_activity()
     c_live = age_of(la) is not None and age_of(la) < LIVE_MIN
@@ -534,16 +556,28 @@ def discover_workers():
         # numbers track live activity instead of showing n/a. Bounded to the CURRENT fleet (live or
         # recently active) to keep each heartbeat fast and off the collapsed long tail.
         out_tok = cr_tok = cc_tok = msgs = None
+        tokens_carried = False
         current = (status == "live") or (status == "idle" and age is not None and age < RECENT_MIN)
         if os.path.exists(jsonl) and current:
-            out_tok, cr_tok, cc_tok, msgs = token_usage(jsonl)
+            # BUDGET GUARD (2026-07-24): this full-transcript read is the ONE unbounded step in the
+            # whole heartbeat — with a large/active fleet it can outrun the wall clock all on its own.
+            # Once ROSTER_BUDGET_SEC is spent, stop reading NEW transcripts and carry forward this
+            # worker's last-published numbers instead (never fabricate; None if we've never seen it).
+            if _time_left(ROSTER_BUDGET_SEC) > 3:
+                out_tok, cr_tok, cc_tok, msgs = token_usage(jsonl)
+            else:
+                pw = prev_by_short.get(agent_id[:8])
+                if pw:
+                    out_tok, cr_tok, cc_tok, msgs = (pw.get("output_tokens"), pw.get("cache_read_tokens"),
+                                                      pw.get("cache_creation_tokens"), pw.get("msgs"))
+                    tokens_carried = True
         rec = dict(name=desc, role=role, branch=branch,
                    focus=(objective_of(jsonl, desc) if os.path.exists(jsonl) else desc),
                    agent_id=agent_id, short_id=agent_id[:8],
                    head_commit=None, head_commit_at=None, head_ago_min=None,
                    out_last_active=la2, out_age_min=age, log_bytes=lb,
                    output_tokens=out_tok, cache_read_tokens=cr_tok,
-                   cache_creation_tokens=cc_tok, msgs=msgs,
+                   cache_creation_tokens=cc_tok, msgs=msgs, tokens_carried=tokens_carried,
                    signal=("stopped by user (harness-cancelled)" if stopped else "task-output mtime + git commit"),
                    status=status, live=(status == "live"))
         if branch and rm.get("repo") and status in ("live", "idle") and _budget_left() > 4:
@@ -564,8 +598,13 @@ def build_sessions(workers):
     for sid, group, label, o, cr, cc, n, la in BASELINE:
         f = find_transcript(sid)
         if f:
-            o, cr, cc, n = token_usage(f)
+            # BUDGET GUARD (2026-07-24): mtime stat is cheap and always kept fresh; the full-content
+            # token re-scan is the expensive part, so once ROSTER_BUDGET_SEC is spent fall back to the
+            # static BASELINE token totals (already the documented "numbers preserved" fallback) rather
+            # than risk this loop being the thing that blows the heartbeat's wall clock.
             la = iso(datetime.datetime.fromtimestamp(os.path.getmtime(f), datetime.timezone.utc))
+            if _time_left(ROSTER_BUDGET_SEC) > 3:
+                o, cr, cc, n = token_usage(f)
         if sid == "a49f5cc3":                       # commander: live while any subagent is
             la = commander_activity() or la
         live = age_of(la) is not None and age_of(la) < LIVE_MIN
@@ -650,7 +689,7 @@ def attach_task_worker_live(workers):
 def build_stats(prev=None):
     if prev is None:
         prev = _load_prev()   # source for carry-forward of the slow probes
-    all_workers = discover_workers()
+    all_workers = discover_workers(prev)
     # RECENCY: the ACTIVE roster is the CURRENT fleet ONLY — the commander plus any worker that is
     # live or was active within RECENT_MIN. Everything older (a prior session's finished workers)
     # is DROPPED from the roster and collapsed into a single `history` count, so the page never
