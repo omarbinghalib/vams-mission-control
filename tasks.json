@@ -1597,10 +1597,11 @@
     "note": "Not urgent (legacy Pages builds are currently fine, ~25s) -- removes a latent future risk. Needs Omar sign-off before applying."
   },
   {
-    "title": "Fix mock-fixture drift in src/mocks/qcDb.ts+qcHandlers.ts (shared-surface cleanup for integration pass)",
-    "status": "pending",
+    "title": "Shared-surface cleanups (navConfig repoint + Clear-Filters label + qc/ops mock drift + _shared perm back-port)",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "NCR/incident mock rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures (predates this session)."
+    "note": "IN PROGRESS -- navConfig repoint (14 VS-report entries + document-lookup route), 'Clear Filters' -> 'Reset' label, qc/ops mock-fixture drift (qcDb.ts/qcHandlers.ts NCR/incident rows missing relevant_standards/documents -> 8 pre-existing qc.test.tsx failures; opsHandlers.ts/tasksDb.ts don't cover new ops task-workflow actions; no calendar-grid lib; ops Total Cost rate-data not carved), _shared/permissions.py perm back-port (sales_order.add_salesorderitem + svc:crm.verify_ai + HR document-lookup perm). Remaining build lane: biometric data lane (running, ~5.4M backfill) is the LAST build lane; then the single INTEGRATION rebuild + pixel-diff re-audit vs :8100.",
+    "started_at": "2026-07-24T12:11:40Z"
   },
   {
     "title": "Accounting JVDocument.number unlock (fixes JV-document upload 500)",
@@ -1617,34 +1618,16 @@
     "started_at": "2026-07-24T11:32:00Z"
   },
   {
-    "title": "Repoint navConfig.ts 14 VS-report nav entries to the new /m/reporting/vs-report/... routes",
-    "status": "pending",
-    "track": "frontend",
-    "note": "Integration/shell task: repoint the 14 monolith VS-report nav entries (accounts annual/monthly, sales annual; the 5 module-context variants show 'not available' -- no rich server builder)."
-  },
-  {
     "title": "Reporting backend gap: monthly inventory_data_by_type comes back empty",
     "status": "pending",
     "track": "backend",
     "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
   },
   {
-    "title": "Ops frontend shared-surface follow-up: MSW mock coverage + calendar-grid lib + Total Cost rate-data",
-    "status": "pending",
-    "track": "frontend",
-    "note": "MSW mocks (src/mocks/opsHandlers.ts/tasksDb.ts) don't cover new ops task-workflow actions (offline-dev only) + no calendar-grid library bundled (agenda-list used instead) + ops \"Total Cost\" box rate-data not carved. Remaining build lanes: purchasing backend + biometric data lane (running); then backend-follow-ups batch; then INTEGRATION rebuild + pixel-diff re-audit."
-  },
-  {
     "title": "Document-lookup (backend endpoint + frontend search screen)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "IN PROGRESS -- porting monolith hrms ListDocumentLookupView + building the search screen (HR domain). Still RUNNING alongside: biometric data lane (~5.4M backfill). Then: INTEGRATION rebuild + pixel-diff re-audit + shared-surface cleanups (navConfig repoint, qc mocks, 'Clear Filters' -> 'Reset').",
+    "note": "DONE -- backend commit b7f0d282 (ported ListDocumentLookupView, exact perm gate + graceful degrade, live-verified 35/420 counts match, 74/74 tests) + frontend commit f603e562 (search screen matching list_doc_lookup.html, tsc/eslint clean). navConfig wiring left for integration. MILESTONE: ALL backend follow-ups done (CRM follow-ups, accounting JVDocument unlock, document-lookup).",
     "started_at": "2026-07-24T11:42:30Z"
-  },
-  {
-    "title": "Integration _shared re-sync: back-port new perm mappings to services/_shared/permissions.py canonical",
-    "status": "pending",
-    "track": "backend",
-    "note": "sales_order.add_salesorderitem (CRM) + svc:crm.verify_ai (CRM) + any HR document-lookup perm -- added to service copies during follow-ups, need canonical back-port."
   }
 ]
