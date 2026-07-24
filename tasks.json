@@ -1574,6 +1574,13 @@
     "note": "AUTHORIZED by Omar -- held briefly to avoid overloading Docker while the freshness heartbeat stabilizes; fire sequenced once freshness stable + load eases (biometric cleanup BEFORE backfill)."
   },
   {
+    "title": "Reporting frontend parity -- real per-department VS-Report dashboards + period pickers",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Build the real per-department VS-Report dashboards + year/month period pickers, consuming the newly-wired endpoint GET /api/v1/production/vs-report/<dept>/annual|monthly/ (52/21/47 keys); wire the 14 monolith VS-report nav entries to the dashboard views (replacing the single generic shallow page); pixel-match :8100. Closes the reporting domain, which was the biggest audit GAP.",
+    "started_at": "2026-07-24T10:01:04Z"
+  },
+  {
     "title": "Mission-control freshness fix",
     "status": "done",
     "track": "mission-control",
