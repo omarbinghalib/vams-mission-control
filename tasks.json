@@ -1,5 +1,12 @@
 [
   {
+    "title": "LIVE INCIDENT: :8090 login failing -- \"vbg org does not exist\"",
+    "status": "in_progress",
+    "track": "incident",
+    "note": "TOP PRIORITY. Claude process restarted mid-flight; org/tenant service went down after Docker-engine distress, breaking :8090 login. Recovery worker restarting the casualty container + verifying login as the #1 priority. Data NOT lost -- org mapping was verified earlier, this is a service-down issue, not a data-loss issue.",
+    "started_at": "2026-07-24T08:43:11Z"
+  },
+  {
     "title": "Post-restart recovery: containers up, backfilled data verified, :8090 + gateway checked",
     "status": "done",
     "track": "archive",
@@ -1305,7 +1312,7 @@
     "status": "in_progress",
     "track": "backend",
     "worker": "Build VS-Report refresh generator",
-    "note": "RECLASSIFIED done -> in_progress: builders were logic-only/unwired/crashed on missing grant. Now wiring lane endpoints + graceful-degrade + monthly 15/50->50 keys. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized).",
+    "note": "RECLASSIFIED done -> in_progress: builders were logic-only/unwired/crashed on missing grant. Now wiring lane endpoints + graceful-degrade + monthly 15/50->50 keys. Accounts 52/54 + sales 21/30 keys ported, cent-verified vs real ~990K-row GL; 2 accidentally-overwritten historical rows restored byte-exact (user-authorized). Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-23T16:51:45Z"
   },
   {
@@ -1373,11 +1380,11 @@
     "started_at": "2026-07-24T06:47:38Z"
   },
   {
-    "title": "DECISION (awaiting Omar): column-limited view on auth UserProfile (id+name only) + grant vams_reporting_ro SELECT",
+    "title": "AUTHORIZED (queued): column-limited view on auth UserProfile (id+name only) + grant vams_reporting_ro SELECT",
     "status": "pending",
     "track": "backend",
-    "gated": true,
-    "note": "Needed to enable real account-manager names in VS-Report; VS-Report now runs without it via graceful-degrade. Column-limited so password/totp are never exposed. Waiting on Omar's authorization + grant."
+    "gated": false,
+    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). Enables real account-manager names in VS-Report (which already runs without it via graceful-degrade). Column-limited so password/totp are never exposed."
   },
   {
     "title": "Documentation package completion: 4 cross-cutting docs (architecture, deployment/ops, data-model, RBAC matrix) + hub re-assembly w/ landing page",
@@ -1452,35 +1459,35 @@
     "title": "CRM frontend parity (G6 + opp sub-panels + Related-SOs + AI-verify banner + statusSegments)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "Purchasing frontend parity (PO panels + RCN fields + status bar)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "QC frontend parity (NcrActionTask + valve-media + eval panels)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "Accounting frontend parity (WIP screen + JV-upload + tax-group + break-even + statusSegments)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": "HR dashboard frontend (G8 landing screen)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:19:21Z"
   },
   {
@@ -1494,7 +1501,7 @@
     "title": "Purchasing backend -- inbox consumer for payment_voucher.reversed (completes PJ-stage flip) + independent non-PO Purchase Journal posting",
     "status": "in_progress",
     "track": "backend",
-    "note": "In flight.",
+    "note": "Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T08:06:36Z"
   },
   {
@@ -1508,42 +1515,56 @@
     "title": "HR backend gap-fix: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async",
     "status": "in_progress",
     "track": "backend",
-    "note": "Closing HR parity-audit gaps: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async.",
+    "note": "Closing HR parity-audit gaps: export-toolkit 404, gratuity estimator, HCAP accounts, bulk-payroll async. Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
     "title": "Ops Task-engine backend build-out: state machine + sprint/epic/attachment/time-logging/IT-support APIs",
     "status": "in_progress",
     "track": "backend",
-    "note": "Building out the ops task-engine: state machine + sprint/epic/attachment/time-logging/IT-support APIs.",
+    "note": "Building out the ops task-engine: state machine + sprint/epic/attachment/time-logging/IT-support APIs. Interrupted by Claude-process restart -- resuming after restart; recovery worker assessing committed-vs-partial state.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
     "title": "Recurring disk-only cleanup task installer",
-    "status": "in_progress",
+    "status": "done",
     "track": "mission-control",
-    "note": "Installing a recurring OS-scheduled task for disk-only cleanup, separate from the freshness heartbeat.",
+    "note": "DONE -- VAMS-MissionControl-Cleanup registered (every 30min, Priority 6, docker build-cache/dangling prune + aged-scratch only, NO process-kill, strict denylist; State=Ready, next run 12:35). User-authorized (disk-only choice). Script at mission-control-kit/scripts/sysres-cleanup.ps1.",
     "started_at": "2026-07-24T07:14:28Z"
+  },
+  {
+    "title": "Operational note: docker engine distress under heavy parallel load",
+    "status": "in_progress",
+    "track": "operational",
+    "note": "Docker engine distress observed under heavy parallel docker load (compose build/docker exec) -- a container briefly died+self-recovered; commander now staggering docker-heavy backend lanes to protect containers/DB.",
+    "started_at": "2026-07-24T08:43:11Z"
   },
   {
     "title": "PriceBook ETL migration (never loaded)",
     "status": "pending",
     "track": "backend",
-    "gated": true,
-    "note": "PriceBook was never loaded by the ETL; queued, gated on Omar."
+    "gated": false,
+    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). PriceBook was never loaded by the original ETL."
   },
   {
-    "title": "Synthetic-biometric-punch cleanup on real employees (needs auth)",
+    "title": "Fix legacy PriceBook row",
     "status": "pending",
     "track": "backend",
-    "gated": true,
-    "note": "Needs Omar's explicit pre-authorization before touching real-employee punch records (destructive-write pre-auth rule)."
+    "gated": false,
+    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear)."
+  },
+  {
+    "title": "Synthetic-punch cleanup: remove 3 fake sync-runs + 36 fabricated punches",
+    "status": "pending",
+    "track": "backend",
+    "gated": false,
+    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear). Destructive-write pre-auth rule satisfied; route through additive-safe cleanup."
   },
   {
     "title": "Biometric punch-history migration",
     "status": "pending",
     "track": "backend",
-    "gated": true,
-    "note": "Biometric punch-history migration queued, gated on Omar's live-wire creds/sign-off."
+    "gated": false,
+    "note": "AUTHORIZED by Omar -- queued, holding until Postgres healthy + login restored (recovery all-clear)."
   }
 ]
