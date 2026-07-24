@@ -1,9 +1,29 @@
 {
- "available": false,
- "checked_at": "2026-07-24T05:40:32Z",
- "host": {},
- "disks": [],
- "network": {},
+ "available": true,
+ "checked_at": "2026-07-24T05:49:14Z",
+ "host": {
+  "cpu_pct": 100,
+  "cores": [
+   100
+  ],
+  "mem_pct": 96.7,
+  "mem_used_mb": 15565,
+  "mem_total_mb": 16091,
+  "uptime_sec": 382537,
+  "process_count": 423
+ },
+ "disks": [
+  {
+   "drive": "C:",
+   "used_gb": 815.2,
+   "total_gb": 934.7,
+   "pct": 87.2
+  }
+ ],
+ "network": {
+  "rx_bytes_per_sec": 21873,
+  "tx_bytes_per_sec": 253972
+ },
  "temp_c": null,
  "temp_available": false,
  "docker": {},
@@ -12,15 +32,11 @@
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": false,
- "host_as_of": null,
- "disks_as_of": null,
- "network_as_of": null,
+ "host_as_of": "2026-07-24T05:49:14Z",
+ "disks_as_of": "2026-07-24T05:49:14Z",
+ "network_as_of": "2026-07-24T05:49:14Z",
  "temp_as_of": null,
  "docker_as_of": null,
- "host_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver",
- "disks_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver",
- "network_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver",
- "temp_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver",
- "docker_error": "Command '['docker', 'stats', '--no-stream', '--format', '{{json .}}']' timed out after 30 seconds",
- "error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver"
+ "temp_error": "Not supported ",
+ "docker_error": "Command '['docker', 'stats', '--no-stream', '--format', '{{json .}}']' timed out after 30 seconds"
 }
