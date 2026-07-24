@@ -1432,7 +1432,7 @@
     "title": "Frontend gap-close wave (pending inventory)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.).",
+    "note": "Frontend gap-close wave queued; scope depends on the :8100-vs-:8090 screen-diff inventory. PENDING: per-module lanes must wire statusSegments/activeStatusId/onStatusSelect into each list page to surface the G5 bar per entity (PO, NCR, etc.). Reporting + ops frontend DEFERRED until their backend lanes (VS-Report endpoint / ops Task-engine) land.",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -1443,10 +1443,45 @@
   },
   {
     "title": "Frontend foundation wave -- shell G1-G4/G7 (LegacyHeader/AppShell/Breadcrumbs/theme)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- shell G1-G4/G7 (commit 10cf2ff8: dup breadcrumb removed, VBG-intech badge + avatar added from real assets, boot-theme leak fixed, -hcap logo variant) + G5 list status-bar (eb03f19a). Foundation complete; shared shell+list match :8100.",
+    "started_at": "2026-07-24T07:59:45Z"
+  },
+  {
+    "title": "CRM frontend parity (G6 + opp sub-panels + Related-SOs + AI-verify banner + statusSegments)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "G5 list status-bar DONE; shell G1-G4/G7 running.",
-    "started_at": "2026-07-24T07:59:45Z"
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:19:21Z"
+  },
+  {
+    "title": "Purchasing frontend parity (PO panels + RCN fields + status bar)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:19:21Z"
+  },
+  {
+    "title": "QC frontend parity (NcrActionTask + valve-media + eval panels)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:19:21Z"
+  },
+  {
+    "title": "Accounting frontend parity (WIP screen + JV-upload + tax-group + break-even + statusSegments)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:19:21Z"
+  },
+  {
+    "title": "HR dashboard frontend (G8 landing screen)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "In flight.",
+    "started_at": "2026-07-24T08:19:21Z"
   },
   {
     "title": ":8100 CSRF revert (security cleanup)",
