@@ -1734,10 +1734,17 @@
     "note": "Platform-wide latent gap (also affects hcapDashboard MyTasksWidget); home lane worked around via /platform/members/ roster; fix at source to remove workarounds."
   },
   {
-    "title": "QC ncr.tsx: pass raised_on__ne=2 (NCR) / raised_on=2 (NCPR) for correct server pager counts",
-    "status": "in_progress",
+    "title": "QC ncr.tsx server filter wiring",
+    "status": "done",
     "track": "frontend",
-    "note": "IN PROGRESS -- tiny frontend follow-up wiring the new backend __ne convention into the NCR/NCPR tabs. NEXT (after this + raw-fetch fix land): RE-AUDIT #2.",
+    "note": "DONE -- commit 7e696eba. NCR tab -> raised_on__ne=2, NCPR tab -> raised_on=2, so both tabs get correct server pager counts (NCR ~1213 / NCPR ~387). Needs the re-audit rebuild to show live.",
     "started_at": "2026-07-25T17:47:50Z"
+  },
+  {
+    "title": "RE-AUDIT #2 (certification pass)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "IN PROGRESS -- rebuild full stack + pixel-diff vs :8100, re-verify fix-wave #1 closed (CoA balances, reporting analytics, PO/WO columns, CRM company depth, home BI dashboard, titles, map, NCR/NCPR) + sweep for remaining -> ranked verdict. MILESTONE: fix-wave #1 + all decision items (home BI, titles, map, NCR/NCPR) complete; this re-audit is the certification. Still running separately: mission-control raw-fetch durable freshness fix (mission-control repo only).",
+    "started_at": "2026-07-25T17:54:45Z"
   }
 ]
