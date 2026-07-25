@@ -1742,9 +1742,22 @@
   },
   {
     "title": "RE-AUDIT #2 (certification pass)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "IN PROGRESS -- rebuild full stack + pixel-diff vs :8100, re-verify fix-wave #1 closed (CoA balances, reporting analytics, PO/WO columns, CRM company depth, home BI dashboard, titles, map, NCR/NCPR) + sweep for remaining -> ranked verdict. MILESTONE: fix-wave #1 + all decision items (home BI, titles, map, NCR/NCPR) complete; this re-audit is the certification. Still running separately: mission-control raw-fetch durable freshness fix (mission-control repo only).",
+    "note": "DONE -- ALL 9 fix-wave-#1 + decision items CLOSED live vs :8100 (CoA balances, reporting analytics loads, PO 16-cols+supplier names, WO 13-cols, CRM company detail ~22 panels [EXCEEDS reference ~19-20], home BI dashboard, 'List of X' titles matching original's selective convention, map fallback, NCR 1213/NCPR 387 separate tabs). Swept 84 screens/13 modules: 82 clean. Overall parity: chrome/nav ~98%, depth ~95%. Final :8090 container 7471906be97a, bundle 508fb858. Per-module verdict: PASS all except HR (Leaves sub-tab only) + Integrations (Mattermost sub-panel) -- both being fixed now (see fix-wave #3).",
     "started_at": "2026-07-25T17:54:45Z"
+  },
+  {
+    "title": "Fix-wave #3 (2 isolated bugs)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "IN PROGRESS -- HR Leaves list zod crash (created non-nullable vs null rows) + Integrations Mattermost mm-sos/mmsos slug 404. Both ~1-line fixes.",
+    "started_at": "2026-07-25T18:58:28Z"
+  },
+  {
+    "title": "Perf follow-up (non-blocking): serial multi-request waterfalls on Home/Reporting-dashboards/PO/NCR lists",
+    "status": "pending",
+    "track": "backend",
+    "note": "Resolve via serial multi-request waterfalls (~5-30s) -- batch for speed; correctness fine (reference :8100 is also slow)."
   }
 ]
