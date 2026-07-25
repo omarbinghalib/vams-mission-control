@@ -1690,14 +1690,14 @@
     "title": "Home rich BI dashboard (user-chosen over onboarding home)",
     "status": "in_progress",
     "track": "frontend",
-    "note": "IN PROGRESS -- SO-pending-approval / opportunities-by-close / donut charts / streams / my-tasks / objectives. User chose this over the onboarding home.",
+    "note": "RUNNING (resumed after an API error) -- SO-pending-approval / opportunities-by-close / donut charts / streams / my-tasks / objectives. User chose this over the onboarding home.",
     "started_at": "2026-07-25T16:00:55Z"
   },
   {
     "title": "Frontend polish: 'List of X' titles + hide Google Map + NCR/NCPR verify",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "IN PROGRESS.",
+    "note": "DONE -- commits 6f1c3fc4 (titles), 52dfcb30 (map), 3314b798 (NCR/NCPR). ~55 'List of X' titles set where :8100 ACTUALLY uses them (verified live per-screen; correctly left plain/blank where the original does; +18 previously-undefined keys); Google Map replaced with a static location panel (no more error); NCR/NCPR split into two separate lists matching the original's two screens.",
     "started_at": "2026-07-25T16:00:55Z"
   },
   {
@@ -1712,5 +1712,19 @@
     "track": "operational",
     "note": "~250-300% CPU, 22-24 concurrent, degrading expensive queries service-wide. The reporting fix is resilient to it, but a quiet DB would be faster.",
     "started_at": "2026-07-25T16:00:55Z"
+  },
+  {
+    "title": "QC backend: register DjangoFilterBackend",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "IN PROGRESS -- qc service never registered DjangoFilterBackend, so server-side filterset_fields (NCR/NCPR raised_on + others) don't filter pager totals; frontend does client-side filtering meanwhile.",
+    "started_at": "2026-07-25T17:32:41Z"
+  },
+  {
+    "title": "Mission-control raw-fetch durable freshness fix",
+    "status": "in_progress",
+    "track": "mission-control",
+    "note": "RUNNING -- follow-up to the earlier freshness durable fix; hardening the page's raw client-side fetch path for lasting freshness.",
+    "started_at": "2026-07-25T17:32:41Z"
   }
 ]
