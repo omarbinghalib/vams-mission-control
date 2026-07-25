@@ -1688,9 +1688,9 @@
   },
   {
     "title": "Home rich BI dashboard (user-chosen over onboarding home)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RUNNING (resumed after an API error) -- SO-pending-approval / opportunities-by-close / donut charts / streams / my-tasks / objectives. User chose this over the onboarding home.",
+    "note": "DONE -- commits 4e6cf53c/1a628b4d/a1faa651/e0e4a30e/ad2671a1. BFF crm-home aggregation endpoint + frontend widgets, PIXEL-MATCHED vs :8100 live (KPI strip, SO-pending-final-approval AED-converted, opportunities-by-close buckets, projects/opportunities-by-stage donuts verified byte-for-byte, SO-doc-status grid, Message Stream, interactive Todo, My Tasks; Getting-Started kept as secondary). Fixed 2 real bugs (aggregation flakiness under load; /me/ missing user.id workaround). Deployed + live-verified. Honest gaps noted: Task/Dept Objectives (no carved model), tenant-wide Activity Stream (no actstream successor), SO-doc-status dept-scoping (no dept mapping post-carve).",
     "started_at": "2026-07-25T16:00:55Z"
   },
   {
@@ -1726,5 +1726,11 @@
     "track": "mission-control",
     "note": "RUNNING -- follow-up to the earlier freshness durable fix; hardening the page's raw client-side fetch path for lasting freshness.",
     "started_at": "2026-07-25T17:32:41Z"
+  },
+  {
+    "title": "Platform follow-up: /me/ endpoint doesn't return user.id",
+    "status": "pending",
+    "track": "backend",
+    "note": "Platform-wide latent gap (also affects hcapDashboard MyTasksWidget); home lane worked around via /platform/members/ roster; fix at source to remove workarounds."
   }
 ]
