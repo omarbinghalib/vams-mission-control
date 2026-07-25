@@ -1,5 +1,11 @@
 [
   {
+    "title": "MILESTONE: PARITY CERTIFIED",
+    "status": "done",
+    "track": "audit",
+    "note": "DONE -- all 84 audited screens across 13 modules now clean (was 82/84; the 2 gaps closed by fix-wave #3). Overall: chrome/nav ~98%, cross-panel/depth ~95%. CRM company detail exceeds the original's depth. Remaining are NON-blocking or no-source-data (honest, documented): perf waterfalls; Task/Dept Objectives + tenant-wide Activity Stream + Vendor Bank Details + SO-doc-status dept-scoping (no successor model in the carve); /me/ user.id; leftover chrome :9333. Still finalizing: mission-control raw-fetch durable freshness fix."
+  },
+  {
     "title": "SECURITY: PII snapshot removed from HEAD + .gitignore added",
     "status": "done",
     "track": "incident",
@@ -1749,9 +1755,9 @@
   },
   {
     "title": "Fix-wave #3 (2 isolated bugs)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "IN PROGRESS -- HR Leaves list zod crash (created non-nullable vs null rows) + Integrations Mattermost mm-sos/mmsos slug 404. Both ~1-line fixes.",
+    "note": "DONE -- HR Leaves zod-nullable fix (commit 46624259, verified: /leaves/ 200, 13,482 rows incl null-created, parses 100/100) + Integrations Mattermost SLUG_OVERRIDES MMSO->mm-sos (commit fd90738f, verified: /mm-sos/ 200 with 453 rows at :8010/:8080/:8090). Both live-verified post-deploy.",
     "started_at": "2026-07-25T18:58:28Z"
   },
   {
