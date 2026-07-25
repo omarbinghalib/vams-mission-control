@@ -1714,10 +1714,10 @@
     "started_at": "2026-07-25T16:00:55Z"
   },
   {
-    "title": "QC backend: register DjangoFilterBackend",
-    "status": "in_progress",
+    "title": "QC backend server-side filter (NCR/NCPR)",
+    "status": "done",
     "track": "backend",
-    "note": "IN PROGRESS -- qc service never registered DjangoFilterBackend, so server-side filterset_fields (NCR/NCPR raised_on + others) don't filter pager totals; frontend does client-side filtering meanwhile.",
+    "note": "DONE -- commit b65f0eeb. Reported root cause (missing DjangoFilterBackend) was a red herring; the generic engine already handles equality filtering (same pattern all services use, none register django-filter). Real gap: no not-equal/exclude for the NCR-only screen; added a scoped __ne convention. Live-verified: unfiltered 1600, NCPR-only 387, NCR-only 1213 (matches :8100), 15/15 tests. Note: filterset_fields are declared-but-inert across services (doc-cleanup someday, harmless).",
     "started_at": "2026-07-25T17:32:41Z"
   },
   {
@@ -1732,5 +1732,12 @@
     "status": "pending",
     "track": "backend",
     "note": "Platform-wide latent gap (also affects hcapDashboard MyTasksWidget); home lane worked around via /platform/members/ roster; fix at source to remove workarounds."
+  },
+  {
+    "title": "QC ncr.tsx: pass raised_on__ne=2 (NCR) / raised_on=2 (NCPR) for correct server pager counts",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "IN PROGRESS -- tiny frontend follow-up wiring the new backend __ne convention into the NCR/NCPR tabs. NEXT (after this + raw-fetch fix land): RE-AUDIT #2.",
+    "started_at": "2026-07-25T17:47:50Z"
   }
 ]
