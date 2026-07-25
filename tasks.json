@@ -1653,7 +1653,64 @@
     "title": "INTEGRATION FINALE -- rebuild complete stack + pixel-diff re-audit every screen vs :8100",
     "status": "in_progress",
     "track": "deploy",
-    "note": "IN PROGRESS -- rebuild complete stack (frontend + all backend services) + pixel-diff re-audit every screen vs :8100 -> ranked residual gaps + verify zero. MILESTONE: all build/follow-up/cleanup/security lanes complete; this is the last step.",
+    "note": "IN PROGRESS -- pixel-diff re-audit #1 landed a residual fix-wave (reporting/CoA/production/purchasing/CRM, see below) + 2 user-decision lanes now in flight (home BI dashboard, frontend polish). NEXT: after those land, FINAL re-audit (pixel-diff loop #2) to verify zero.",
     "started_at": "2026-07-24T15:26:28Z"
+  },
+  {
+    "title": "Reporting analytics hang fix",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- commit 66d049a5. Unbounded 989K-row GL join, serial 46-block fan-out -> 5s per-block timeout + concurrent + Redis cache; >90s hang -> 7-9s cold / <1s warm."
+  },
+  {
+    "title": "CoA balance rollup fix",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- commits d6b6a2bc + dc39f057. Server-side balances, cent-exact; also fixed the GL KPI strip."
+  },
+  {
+    "title": "Production WO-list columns",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- commits a00bdb2c + d090366c. 6 -> 13 cols match monolith; blank-Description was a sampling artifact."
+  },
+  {
+    "title": "Purchasing PO-list columns + supplier names",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- commits 631043b9 + f559adbd. 16 cols + resolved supplier names (now better than :8100's raw repr)."
+  },
+  {
+    "title": "CRM Company detail depth + name resolution",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- commits fbd8ef7a + 2c4a4f61. 12 sub-panels + header fields; name resolution fixed across all CRM screens; Vendor-Bank/Add-as-Supplier honestly blocked (no model / cross-service write)."
+  },
+  {
+    "title": "Home rich BI dashboard (user-chosen over onboarding home)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "IN PROGRESS -- SO-pending-approval / opportunities-by-close / donut charts / streams / my-tasks / objectives. User chose this over the onboarding home.",
+    "started_at": "2026-07-25T16:00:55Z"
+  },
+  {
+    "title": "Frontend polish: 'List of X' titles + hide Google Map + NCR/NCPR verify",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "IN PROGRESS.",
+    "started_at": "2026-07-25T16:00:55Z"
+  },
+  {
+    "title": "OPS INCIDENT: fix-worker ran Stop-Process -Force chrome (may have closed user's own Chrome windows)",
+    "status": "pending",
+    "track": "operational",
+    "note": "Apologized. A leftover headless chrome on port 9333 remains (harmless); cleanup pending."
+  },
+  {
+    "title": "PERF note: shared Postgres ambient contention from vams_monolith_ref message-polling flood",
+    "status": "in_progress",
+    "track": "operational",
+    "note": "~250-300% CPU, 22-24 concurrent, degrading expensive queries service-wide. The reporting fix is resilient to it, but a quiet DB would be faster.",
+    "started_at": "2026-07-25T16:00:55Z"
   }
 ]
