@@ -2189,6 +2189,30 @@ function renderSysres(j){
 }
 function renderExtras(j){renderProgress(j);renderActiveWorkers(j);renderDocker(j);renderHealth(j);renderCommits(j);renderPublisher(j);}
 
+/* ================= raw.githubusercontent.com FIRST, same-origin Pages copy as FALLBACK =================
+   ROOT CAUSE (fixed 2026-07-25): GitHub Pages only serves a NEW stats.json/tasks.json/attention.json/
+   sysres.json/version.json after its build/deploy Action finishes — which can lag 5min+ when commits
+   are frequent (heartbeat + task-updater). So even though fresh JSON is pushed to the repo immediately,
+   the PAGES-hosted copy of it lagged behind the slow build. raw.githubusercontent.com serves straight
+   from the git blob the instant it's pushed — no build step — and sends
+   `Access-Control-Allow-Origin: *` for public repos, so this cross-origin fetch works from the
+   Pages-hosted page. Try raw FIRST (still cache-busted with ?t=Date.now(), since raw sits behind its
+   own CDN cache), and fall back to the previous same-origin Pages fetch if raw errors, 404s, is
+   rate-limited, or the browser is offline from raw but not from Pages. Throws only if BOTH fail, so
+   existing per-poller catch/if(r.ok) semantics are preserved by each caller below.
+   Repo/branch are the actual `git remote -v` / default-branch values for this dashboard instance —
+   confirmed, not guessed: git@github.com:omarbinghalib/vams-mission-control.git, default branch main. */
+const MC_RAW_BASE = "https://raw.githubusercontent.com/omarbinghalib/vams-mission-control/main/";
+async function mcFetchJson(name){
+  try{
+    const r = await fetch(MC_RAW_BASE+name+"?t="+Date.now(), {cache:"no-store"});
+    if(r.ok) return await r.json();
+  }catch(e){ /* raw unreachable/CORS/offline — fall through to same-origin Pages copy */ }
+  const r2 = await fetch(name+"?t="+Date.now(), {cache:"no-store"});
+  if(!r2.ok) throw new Error("http "+r2.status);
+  return await r2.json();
+}
+
 // sysres.json is on its OWN poll/cadence (independent scheduled task, ~5 min) — NOT part of
 // renderExtras/pollStats, so a normal 15s stats.json poll can never stomp a fresher sysres reading
 // with a stale/absent one. STALE_MIN here is generous (15 min: 3x the collector's own ~5-min cadence)
@@ -2197,9 +2221,7 @@ const SYSRES_STALE_MIN = 15;
 async function pollSysres(){
   let sr;
   try{
-    const r = await fetch("sysres.json?t="+Date.now(), {cache:"no-store"});
-    if(!r.ok) throw new Error("http "+r.status);
-    sr = await r.json();
+    sr = await mcFetchJson("sysres.json");
     const ageMin = sr.checked_at ? (Date.now()-new Date(sr.checked_at).getTime())/60000 : Infinity;
     if(ageMin > SYSRES_STALE_MIN){
       sr = {available:false, error:"sysres.json stale ("+ageMin.toFixed(0)+"m old — collector task may be paused)"};
@@ -2380,9 +2402,8 @@ function renderTasks(t){
   host.innerHTML=html;
 }
 async function pollTasks(){
-  try{const r=await fetch("tasks.json?t="+Date.now(),{cache:"no-store"});
-    if(r.ok){window.__lastTasks=await r.json();renderTasks(window.__lastTasks);}
-  }catch(e){/* missing/offline: leave as-is */}
+  try{ window.__lastTasks = await mcFetchJson("tasks.json"); renderTasks(window.__lastTasks); }
+  catch(e){/* missing/offline: leave as-is */}
 }
 pollTasks(); setInterval(pollTasks, 15000);
 // re-render the task list whenever a fresh stats.json lands (task_worker_live overlay changed),
@@ -2445,17 +2466,15 @@ function renderAttention(a){
   }
 }
 async function pollAttention(){
-  try{ const r = await fetch("attention.json?t="+Date.now(), {cache:"no-store"});
-    if(r.ok){ renderAttention(await r.json()); }
-  }catch(e){ /* missing/offline: leave current state, retry next tick */ }
+  try{ renderAttention(await mcFetchJson("attention.json")); }
+  catch(e){ /* missing/offline: leave current state, retry next tick */ }
 }
 try{ if("Notification" in window && Notification.permission==="default") Notification.requestPermission(); }catch(e){}
 pollAttention(); setInterval(pollAttention, 15000);
 
 renderSessions(STATS); renderWorkers(STATS); renderExtras(STATS);
 async function pollStats(){
-  try{const r=await fetch("stats.json?t="+Date.now(),{cache:"no-store"});
-    if(r.ok){const j=await r.json();window.__lastPoll=Date.now();if(j&&j.totals){renderSessions(j);renderWorkers(j);renderExtras(j);}}}catch(e){}
+  try{const j=await mcFetchJson("stats.json");window.__lastPoll=Date.now();if(j&&j.totals){renderSessions(j);renderWorkers(j);renderExtras(j);}}catch(e){}
 }
 pollStats(); setInterval(pollStats,15000);
 
@@ -2495,7 +2514,7 @@ $("themebtn").onclick=()=>{
 (function(){
   let VER=null;
   setInterval(async()=>{
-    try{const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});const j=await r.json();
+    try{const j=await mcFetchJson("version.json");
       const b=$("attn");
       if(j.attention){b.style.display="block";b.textContent="NEEDS ATTENTION: "+j.attention;}
       else b.style.display="none";
