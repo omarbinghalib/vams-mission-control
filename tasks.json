@@ -2046,9 +2046,9 @@
   },
   {
     "title": "I2: AXJAReport cron",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- just unblocked by connector-settings. Assess-first: port if local-data-sourced, else document honest-empty (AX-sync is dead per I1).",
+    "note": "DONE -- backend e36a4fa3. Assess-first: NOT AX-dependent (unlike dead AX-sync/I1) -- it's a daily 02:30 cron over hr_app.JobActivity (100% local HR data; \"AX\" is just the downstream payroll system name). History is exact match (70=70, 2018-19). PORTED: cross-service read (self-minted system JWT), byte-identical 15-col CSV, mgmt command, celery-beat @ crontab(30 2). Live proof: generated CSV byte-identical (155 bytes, clean diff) to real 2018 files; beat picks up schedule. 21/21 tests.",
     "started_at": "2026-07-27T09:06:35Z"
   },
   {
@@ -2100,5 +2100,11 @@
     "track": "audit",
     "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end. Keep appending as more surface.",
     "started_at": "2026-07-27T09:44:34Z"
+  },
+  {
+    "title": "MEDIA-VOL: container MEDIA_ROOT not a persisted docker volume (real deployment defect)",
+    "status": "pending",
+    "track": "deploy",
+    "note": "MUST-FIX in the final integration step. /app/media is NOT a persisted docker volume; uploads from every service (C2 docs, Q1 valve-media, connector configs) would be LOST on container recreation. Fix: add persisted named volume(s) for media across upload-handling services in docker-compose + recreate + verify a file survives recreation. Shared-surface (compose) -- serialize as part of final integration, not concurrent with running lanes."
   }
 ]
