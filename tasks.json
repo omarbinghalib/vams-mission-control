@@ -1603,10 +1603,10 @@
   },
   {
     "title": "GATED (admin): Windows Task Scheduler SERVICE wedged (0x800710E0 on all 3 VAMS tasks)",
-    "status": "pending",
+    "status": "done",
     "track": "mission-control",
-    "gated": true,
-    "note": "Needs an elevated `Restart-Service Schedule -Force` or a reboot to restore the self-sustaining heartbeat; a stopgap loop covers freshness for ~1hr meanwhile."
+    "gated": false,
+    "note": "RESOLVED -- the machine reboot un-wedged Task Scheduler; all 3 VAMS scheduled tasks now LastTaskResult=0, self-sustaining. No admin action needed."
   },
   {
     "title": "Optional: apply .github/workflows/pages.yml (uncommitted) to remove latent future Pages-throttle risk",
@@ -1708,9 +1708,9 @@
   },
   {
     "title": "OPS INCIDENT: fix-worker ran Stop-Process -Force chrome (may have closed user's own Chrome windows)",
-    "status": "pending",
+    "status": "done",
     "track": "operational",
-    "note": "Apologized. A leftover headless chrome on port 9333 remains (harmless); cleanup pending."
+    "note": "CLOSED -- moot, the machine reboot cleared RAM + all orphaned processes (incl. the leftover headless chrome on port 9333)."
   },
   {
     "title": "PERF note: shared Postgres ambient contention from vams_monolith_ref message-polling flood",
@@ -1727,17 +1727,17 @@
     "started_at": "2026-07-25T17:32:41Z"
   },
   {
-    "title": "Mission-control raw-fetch durable freshness fix",
-    "status": "in_progress",
+    "title": "MILESTONE: Mission-control freshness DURABLE",
+    "status": "done",
     "track": "mission-control",
-    "note": "RUNNING -- follow-up to the earlier freshness durable fix; hardening the page's raw client-side fetch path for lasting freshness.",
+    "note": "DONE -- the machine reboot UN-WEDGED the Task Scheduler; all 3 VAMS scheduled tasks now LastTaskResult=0, heartbeat self-sustaining every ~2min; no stopgap loop or admin action needed anymore. The 'GATED admin: Restart-Service Schedule' item is RESOLVED by the reboot.",
     "started_at": "2026-07-25T17:32:41Z"
   },
   {
-    "title": "Platform follow-up: /me/ endpoint doesn't return user.id",
-    "status": "pending",
+    "title": "Platform follow-up: /me/ endpoint doesn't return user.id (backend)",
+    "status": "done",
     "track": "backend",
-    "note": "Platform-wide latent gap (also affects hcapDashboard MyTasksWidget); home lane worked around via /platform/members/ roster; fix at source to remove workarounds."
+    "note": "DONE -- backend committed 63188f2d. Frontend consumer switch tracked separately (see 'Finish + commit 3 partial lanes' below)."
   },
   {
     "title": "QC ncr.tsx server filter wiring",
@@ -1765,5 +1765,46 @@
     "status": "pending",
     "track": "backend",
     "note": "Resolve via serial multi-request waterfalls (~5-30s) -- batch for speed; correctness fine (reference :8100 is also slow)."
+  },
+  {
+    "title": "Post-reboot recovery",
+    "status": "done",
+    "track": "mission-control",
+    "note": "DONE -- all 37 containers up, Postgres healthy, login verified, git clean, RAM clean."
+  },
+  {
+    "title": "Finish + commit 3 partial lanes (/me/ frontend, tenant-wide Activity Stream, perf-counts caller-switch)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "IN PROGRESS -- a single worker is committing the co-mingled uncommitted work + finishing: /me/ frontend consumer switch, tenant-wide Activity Stream (backend+frontend), perf-counts backend+frontend caller-switch.",
+    "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Chrome-fidelity (nav/PDM/sizes/spacing/logos)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Vendor-Bank + SO-doc-scoping",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Task/Dept Objectives",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Prefs screen",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "started_at": "2026-07-27T03:39:45Z"
   }
 ]
