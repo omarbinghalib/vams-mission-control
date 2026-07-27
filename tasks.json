@@ -1949,16 +1949,16 @@
   },
   {
     "title": "PU1: purchasing supplier-name",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane (small).",
+    "note": "DONE -- PO Documents supplier id -> resolved company name. Backend b1774734 + frontend d68d1722; live-verified (PR 876 -> \"Lonestar Technical Services\", no #id).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
     "title": "H1: HR objectives",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane (small).",
+    "note": "DONE -- HCAP dashboard Task/Dept Objectives widget. Frontend 267f8829; live-verified (24 real objectives, dept='HR/ ADMIN', real pending/completed splits).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2047,5 +2047,11 @@
     "status": "pending",
     "track": "backend",
     "note": "Queued behind the category-A closer wave."
+  },
+  {
+    "title": "Wave-2 (small follow-on): pr.tsx Documents tab #id pattern (line 813)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Same #id pattern as PU1 -- wire it to read the now-available supplier_company_name (one-liner)."
   }
 ]
