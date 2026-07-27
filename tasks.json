@@ -2225,17 +2225,17 @@
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
-    "title": "ASSESS/PORT: superscreen kiosk + login-redirect (NEW-6)",
-    "status": "in_progress",
+    "title": "ASSESS/PORT: superscreen kiosk + login-redirect (NEW-6 + P3-frontend)",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- consolidated fix wave, lane 6/6. Also wires P3 frontend consumers. Assess-first: port if real source else honest-empty. tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "note": "DONE -- frontend a04c1c5a (tsc-only, goes live at integration rebuild). ASSESS found it's NOT niche: superscreen is the PRIMARY landing for ordinary employees (is_superscreen_allowed blanket-true for VBG; 1488/1492 users have roles=[]) -- was entirely missing due to a name collision. PORTED SelfServicePage (attendance + leave tracker + own payslips) + login-redirect (postLogin.ts). P3 booleans wired: is_superscreen_allowed->redirect, has_doc_lookup_perm->hide Document Lookup tab, is_not_hod_substitute->honest-empty (target figures don't exist in carve). Security: rendered employee's OWN payslips (not payroll-run detail that leaks company-wide salary); airfare block honestly omitted (no source). CAPSTONE: this was a MAJOR missing feature (primary experience for 1488/1492 users) -- important for zero-retraining on-site goal.",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
     "title": "FRONTEND-INTEGRATION rebuild (single frontend-web build + live verify)",
     "status": "pending",
     "track": "deploy",
-    "note": "Waiting on the VS-Report perf/cache/names (lane 3) and superscreen+P3 (lane 6) frontend edits to land -- Trial Balance dedup (lane 4) frontend edit already committed and waiting on this same rebuild. One npm build + frontend-web rebuild + live verify all frontend changes together."
+    "note": "TB(4)=committed 4b08e8fe, superscreen(6)=committed a04c1c5a. Still waiting on VS-Report perf/cache/names (lane 3, MonthlyAccountsDashboard edit pending). Fires once lane 3 lands: one npm build + frontend-web rebuild + live verify all frontend changes together."
   },
   {
     "title": "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
