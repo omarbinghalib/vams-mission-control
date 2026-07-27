@@ -2367,9 +2367,16 @@
   },
   {
     "title": "Final gap-sweep-to-dry v4 (certification gate)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- confirm the beat class closed live + notification-deferral legitimacy + hunt any remaining CLOSEABLE gap + reconfirm held/documented backlog. Verdict DRY-for-closeable or NOT. On DRY-for-closeable: declare FUNCTIONAL certification (every closeable gap closed; only documented B/C + held-for-user + notification-platform deferral remain).",
+    "note": "AUDIT COMPLETE (report scratchpad/capstone-audit/final-sweep-verify-v4.md) -- beat class CONFIRMED closed system-wide (all 4 scheduled services have beat+worker+queue, verified on deployed containers + live ticks); relay class healthy; notification-cron deferral confirmed legitimate (3/4 spot-checks data-present/delivery-deferred). Held/documented backlog reconfirmed unchanged. NOT fully dry: ONE new closeable gap found (NEW-12). Certification stays blocked pending NEW-12 + sweep v5.",
     "started_at": "2026-07-27T19:25:07Z"
+  },
+  {
+    "title": "NEW-12: Employee Transfer Tool (apply-engine + screen)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- change_employee_company is NOT a notification, it's the apply-engine for the monolith's Employee Transfer Tool. WorkingHistory data migrated (113/113 byte-exact) but NO apply-engine/screen exists (SPA self-documents todo at navConfig.ts:1375). Closeable additively; SAFE to build+enable (zero pending transfers -> no retroactive write; apply-engine only acts on future user-scheduled transfers). Building: backend schedule-endpoint + apply-engine (Celery task on hr_beat) + SPA screen, verified via test/rollback (no real employee mutated). Sequence: NEW-12 lands -> sweep v5 (loop-to-dry) -> certify on dry-for-closeable.",
+    "started_at": "2026-07-27T19:49:48Z"
   }
 ]
