@@ -1920,31 +1920,31 @@
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "O2: ops closer",
-    "status": "in_progress",
+    "title": "O2: ops closer (cross-service calendar blocks)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- backend 12ac6f23 + frontend 56f02435. timesheet(397)/planned_ewo(23)/planned_pwo(160) date-range blocks now render, 0 unmatched. (WO time-logged activity + Service-WO blocks disclosed as a separate sub-gap, deliberately scoped out.)",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "O3: ops closer",
-    "status": "in_progress",
+    "title": "O3: ops closer (OCN Admin screen)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- commits 12ac6f23 + 56f02435. Backend didn't exist, BUILT OCNPermission model+migration+admin mixins + frontend ocnAdmin.tsx; add->remove round-trip verified live.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "O4: ops closer",
-    "status": "in_progress",
+    "title": "O4: ops closer (SMS History status colors)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- same commits. Found still broken via a NEW root cause (status= vs labelClass= prop), fixed; green/red/NA render correctly.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "O5: ops closer",
-    "status": "in_progress",
+    "title": "O5: ops closer (Visitor Log columns)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- same commits. Restored all 10 columns with resolved dept names; 4 sub-screens already present (confirmed, not rebuilt).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2025,10 +2025,10 @@
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "E1: engineering closer (valve builder)",
-    "status": "in_progress",
+    "title": "E1: engineering closer (Valve Builder guided configurator)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- dispatched from the Wave-2 queue.",
+    "note": "DONE -- backend 0dc7f7f5 + frontend d2f68df6. Backend brain was already carved; built the missing 11-step wizard frontend (LegacyStatusStepper, live find-matches, real ValveBuilderLineItem creation, persisted via BuilderSaveView). Live-verified end-to-end at :8090 (added part 1002-9090, saved, confirmed row in psql); exact list parity vs :8100 (1745 materials/134 finishes/11 models). 57/57 engineering tests. One honest gap documented (not fabricated): the frozen 10-row sample can't reach the single-match part-resolve branch via live UI (pre-existing naming collision) -> unit-tested w/ fixtures instead.",
     "started_at": "2026-07-27T08:34:22Z"
   },
   {
@@ -2087,5 +2087,18 @@
     "status": "done",
     "track": "frontend",
     "note": "DONE -- mechanism built via connector-settings; live Google Maps embed renders once the key is entered in the settings page (self-service). Was B/decision (vendor/key) -> now built; only the actual key entry is the user's, which is by design."
+  },
+  {
+    "title": "Final-sweep git-integrity check (cross-lane broad-staging verification)",
+    "status": "pending",
+    "track": "audit",
+    "note": "Cross-lane broad-staging swept some ops shared-file edits into sibling commits (integrations/engineering) but byte-verified no loss (blob hashes match). Full git-integrity check to run at certification."
+  },
+  {
+    "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end. Keep appending as more surface.",
+    "started_at": "2026-07-27T09:44:34Z"
   }
 ]
