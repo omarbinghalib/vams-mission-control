@@ -2089,7 +2089,7 @@
     "title": "DECISION (open): ~14 ambiguous DIRECT_PERM_ROLE_MAP codenames default to 'hod'",
     "status": "pending",
     "track": "backend",
-    "note": "Surfaced by P2 -- same class as the earlier flagged-groups RBAC decision. Needs a mapping review to confirm/adjust the default."
+    "note": "Surfaced by P2 -- same class as the earlier flagged-groups RBAC decision. Needs a mapping review to confirm/adjust the default. This is now the ONLY RBAC B/decision review item remaining (genuinely ambiguous, for user review) -- separate from abdel_karim, which the P2-unmapped fix resolved CLEAR."
   },
   {
     "title": "I3: external connector credentials",
@@ -2161,9 +2161,9 @@
   },
   {
     "title": "P2-COMPLETION: migrate_rbac_roles only writes when roles are empty (137 users missing entitled direct-perm roles)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "REAL GAP found by the crm/purchasing/qc/hr/platform+chrome verify lane. 137 real active users never get the additional roles their DIRECT monolith perms entitle them to (e.g. jerry missing sales+hr-manager, raghunath missing hr-manager). Fix = additive UNION (add entitled direct-perm roles into existing, never remove), snapshot first, oracle-verify each added role is entitled. Additive/reversible, not a delete/overwrite. Queued for a consolidated fix wave after all 4 auditors report."
+    "note": "DONE -- fixed via the FIX: Platform RBAC + /me/ lane (backend 2405b5e1 + bc32f3e2). Additive UNION applied: 140 users updated (210 grants added), snapshot-verified 0 roles lost, entitlement spot-checked vs oracle."
   },
   {
     "title": "OPS-RBAC: ops_app has NO RBAC enforcement (real security gap)",
@@ -2191,9 +2191,9 @@
   },
   {
     "title": "FIX: Platform RBAC + /me/ (P2 additive union + P2-unmapped + P3 NEW-7)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- consolidated fix wave, lane 1/6 (disjoint by service). P2 additive union (137 users, snapshot+oracle-verify, never removes), P2-unmapped (abdel_karim: map if clear else document ambiguous), P3 add 3 booleans to BFF MeView (NEW-7).",
+    "note": "DONE -- backend 2405b5e1 + bc32f3e2. P2-union: 140 users updated (210 grants added), snapshot-verified 0 roles lost, entitlement spot-checked vs oracle (jerry/raghunath now have entitled roles live via /auth/profile/ AND BFF /me/). P2-unmapped: abdel_karim resolved CLEAR (ot_access_all_companies->hr-manager, plan_ot_display_cost->[] display-only); other 23 remaining roles=[] users confirmed GENUINELY zero-authority (not a gap). P3-wiring: BFF MeView proxies platform profile + merges the 3 booleans (fail-closed); jerry /me/ byte-identical to platform source. 46/46 platform + 39/39 bff tests. Fully closes the P1/P2/P3 partials from the verify lanes.",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
