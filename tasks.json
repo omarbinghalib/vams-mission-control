@@ -2293,10 +2293,10 @@
     "note": "REAL login-credential change -> HELD for user authorization (snapshot+documented), not auto-applied. Underlying user id=7 is power-user sdasilva but username was corrupted to 'invitee-1783708248', stuck at roles:['member']. Fix = restore username + RBAC re-backfill, once authorized."
   },
   {
-    "title": "FIX NEW-9: VS-Report stale cache + no beat runner",
-    "status": "in_progress",
+    "title": "FIX NEW-9: VS-Report beat + cache regen",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- the prewarm celery-beat SCHEDULE exists but NO beat container runs it (same for integrations AXJAReport); adding a beat runner + regenerating new-system-computed stale cache rows with the FIN-1 name fix (leaving/holding faithful ETL-migrated historical snapshots). 235 rows predate the fix so plain requests serve stale names.",
+    "note": "DONE -- backend ca8ec8fe. Added production_beat runner (proven firing); caught+fixed 2 more silent bugs (beat entry had no queue -> ticks routed to 'celery' not 'production'; stale production containers rebuilt). Stale-row classification: 217/235 are FAITHFUL historical snapshots (bare name correct for pre-HR-link era, e.g. 2017) -> held untouched; only 18 genuinely-computed rows regenerated with the FIN-1 fix. Plain-request proof: 2024 returns full name from cache, 2017 control faithfully shows historical name. 116 tests.",
     "started_at": "2026-07-27T15:55:40Z"
   },
   {
@@ -2325,8 +2325,15 @@
   },
   {
     "title": "PII git-history purge (commit 5d88350c blob, exclusive force-push step)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "incident",
-    "note": "Runs the moment NEW-9 lands and the branch is quiescent: git-filter-repo (isolated clone, --replace-text scrub), force-push microservices-backend. EXCLUSIVE step -- no other lane pushes during this window. Then: sweep v3 -> certify if dry."
+    "note": "RUNNING NOW, EXCLUSIVE + security-critical. NEW-9 landed, branch quiescent. git-filter-repo scrub of the PII strings from ALL history (blob at 5d88350c) + force-push microservices-backend + reset working repo; legacy-ui untouched. No lane should push to VAMS-backend during this window. NOTE: this rewrites commit hashes from 5d88350c onward (5d88350c/47db9a63/ca8ec8fe get new hashes) -- board's old-hash references become historical labels, that's expected. After purge: sweep v3 (loop-to-dry) -> certify if dry. SECURITY INCIDENT stays open until the purge verifies zero PII in history.",
+    "started_at": "2026-07-27T17:26:04Z"
+  },
+  {
+    "title": "INT-BEAT: integrations AXJAReport celery-beat has no runner",
+    "status": "pending",
+    "track": "backend",
+    "note": "Small follow-on, same class as NEW-9 (production_beat runner just fixed). Add an integrations beat runner."
   }
 ]
