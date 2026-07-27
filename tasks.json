@@ -2347,9 +2347,9 @@
   },
   {
     "title": "SYSTEM-WIDE beat/cron audit + fix (NEW-10 CRM + NEW-11 HR + all 12 services)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- root cause: NEW-9/INT-BEAT fixed the missing-beat-container class for only 2 of 12 services. ONE comprehensive lane across all 12: add missing beat/worker/run_*.py/queue-routing; port missing monolith crons w/ real source. CRITICAL classification applied: additive-safe crons (CRM crm-expiring-docs-weekly notifications, NEW-10, 64 real legal-doc rows) ENABLED+verified. NEW-11 (HR daily leave-accrual, update_leave_tracker_data, monolith crontab 4:30) is a BULK WRITE to real employee entitlement balances -> BUILD+verify logic but HOLD the enable/bulk-run for user auth (snapshot+documented, see HELD-FOR-USER item). Sequence: this lane lands -> sweep v4 (should be dry on the beat class) -> certify.",
+    "note": "DONE -- backend be8ab362. Full 12-service audit: only CRM had the infra gap. NEW-10 (CRM expiring-docs) FIXED + enabled (additive outbox, live-verified). NEW-11 (HR leave-accrual) BUILT but HELD behind HR_LEAVE_ACCRUAL_CRON_ENABLED=0 guard (verified no-op, 225 rows stable) -- dry check found 100+ day balance swing + this bulk call caused a dev-DB incident 2026-07-22, so needs HR/finance review before enable. Snapshot taken (PII-free). crm 61/61, hr 84/84 tests.",
     "started_at": "2026-07-27T18:29:43Z"
   },
   {
@@ -2357,6 +2357,19 @@
     "status": "pending",
     "track": "backend",
     "gated": true,
-    "note": "LeaveTracker materially stale (225 rows untouched 24h, oldest 2016); Leave Balances screen reads stale value. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), but this is a BULK WRITE to real employee entitlement balances -> nightly enable/first-run awaiting Omar's explicit authorization."
+    "note": "LeaveTracker materially stale (225 rows untouched 24h, oldest 2016); Leave Balances screen reads stale value. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), held behind HR_LEAVE_ACCRUAL_CRON_ENABLED=0 guard (verified no-op, 225 rows stable). Dry check found a 100+ day balance swing, and this bulk call caused a dev-DB incident on 2026-07-22 -> needs HR/finance review before enable, not just Omar's routine sign-off. Snapshot taken (PII-free)."
+  },
+  {
+    "title": "DOCUMENTED B/decision: notification-platform deferral (~15 monolith email/Mattermost crons)",
+    "status": "pending",
+    "track": "backend",
+    "note": "~15 monolith email/Mattermost notification crons (hod_portal/hrms/inventory/lessons_learned/mattermost/moc/overtime/sales_order/tas) deliberately not carried -- prior architectural decision: notifications are a platform concern. In-app notification infra IS carried; external email/Mattermost delivery is the deferred net-new subsystem. Not a close-today item."
+  },
+  {
+    "title": "Final gap-sweep-to-dry v4 (certification gate)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- confirm the beat class closed live + notification-deferral legitimacy + hunt any remaining CLOSEABLE gap + reconfirm held/documented backlog. Verdict DRY-for-closeable or NOT. On DRY-for-closeable: declare FUNCTIONAL certification (every closeable gap closed; only documented B/C + held-for-user + notification-platform deferral remain).",
+    "started_at": "2026-07-27T19:25:07Z"
   }
 ]
