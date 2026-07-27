@@ -1,16 +1,16 @@
 {
  "available": true,
- "checked_at": "2026-07-27T21:03:20Z",
+ "checked_at": "2026-07-27T21:08:17Z",
  "host": {
-  "cpu_pct": 100,
+  "cpu_pct": 99,
   "cores": [
-   100
+   99
   ],
-  "mem_pct": 90.9,
-  "mem_used_mb": 14628,
+  "mem_pct": 92.1,
+  "mem_used_mb": 14821,
   "mem_total_mb": 16091,
-  "uptime_sec": 65082,
-  "process_count": 373
+  "uptime_sec": 65378,
+  "process_count": 364
  },
  "disks": [
   {
@@ -21,218 +21,197 @@
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 218,
-  "tx_bytes_per_sec": 200
+  "rx_bytes_per_sec": 8322,
+  "tx_bytes_per_sec": 10718
  },
  "temp_c": null,
  "temp_available": false,
  "docker": {
   "containers": 43,
-  "total_cpu_pct": 299.0,
-  "total_mem_mb": 4132.7,
+  "total_cpu_pct": 166.3,
+  "total_mem_mb": 4345.1,
   "list": [
    {
-    "name": "vams_services_postgres",
-    "cpu_pct": 131.0,
-    "mem_used_mb": 797.5,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 10.22
-   },
-   {
-    "name": "vams_integrations",
-    "cpu_pct": 16.0,
-    "mem_used_mb": 114.2,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.46
-   },
-   {
     "name": "vams_reporting",
-    "cpu_pct": 15.1,
+    "cpu_pct": 19.6,
     "mem_used_mb": 100.7,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.29
    },
    {
-    "name": "vams_purchasing",
-    "cpu_pct": 14.3,
-    "mem_used_mb": 83.8,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.07
-   },
-   {
-    "name": "vams_crm",
-    "cpu_pct": 12.6,
-    "mem_used_mb": 125.3,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.61
-   },
-   {
-    "name": "vams_production",
-    "cpu_pct": 11.5,
-    "mem_used_mb": 134.2,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.72
-   },
-   {
     "name": "vams_accounting",
-    "cpu_pct": 10.6,
+    "cpu_pct": 18.8,
     "mem_used_mb": 76.1,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.98
    },
    {
-    "name": "vams_platform",
-    "cpu_pct": 10.2,
-    "mem_used_mb": 94.8,
+    "name": "vams_engineering",
+    "cpu_pct": 17.5,
+    "mem_used_mb": 69.3,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 1.22
+    "mem_pct": 0.89
+   },
+   {
+    "name": "vams_integrations",
+    "cpu_pct": 13.3,
+    "mem_used_mb": 114.1,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.46
+   },
+   {
+    "name": "vams_production",
+    "cpu_pct": 11.8,
+    "mem_used_mb": 134.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.72
+   },
+   {
+    "name": "vams_hr",
+    "cpu_pct": 10.2,
+    "mem_used_mb": 129.4,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.66
+   },
+   {
+    "name": "vams_crm",
+    "cpu_pct": 9.6,
+    "mem_used_mb": 125.5,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.61
+   },
+   {
+    "name": "vams_qc",
+    "cpu_pct": 8.8,
+    "mem_used_mb": 88.0,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.13
+   },
+   {
+    "name": "vams_purchasing",
+    "cpu_pct": 7.8,
+    "mem_used_mb": 83.6,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.07
+   },
+   {
+    "name": "vams_services_postgres",
+    "cpu_pct": 6.8,
+    "mem_used_mb": 740.5,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 9.49
    },
    {
     "name": "vams_bff",
-    "cpu_pct": 10.2,
+    "cpu_pct": 6.6,
     "mem_used_mb": 92.7,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.19
    },
    {
     "name": "vams_ops",
-    "cpu_pct": 9.9,
+    "cpu_pct": 6.3,
     "mem_used_mb": 84.0,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.08
    },
    {
-    "name": "vams_qc",
-    "cpu_pct": 9.8,
-    "mem_used_mb": 87.9,
+    "name": "vams_platform",
+    "cpu_pct": 5.6,
+    "mem_used_mb": 94.8,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 1.13
+    "mem_pct": 1.22
    },
    {
-    "name": "vams_engineering",
-    "cpu_pct": 6.9,
-    "mem_used_mb": 69.2,
+    "name": "vams_accounting_relay",
+    "cpu_pct": 4.1,
+    "mem_used_mb": 41.2,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.89
-   },
-   {
-    "name": "vams_hr",
-    "cpu_pct": 6.3,
-    "mem_used_mb": 129.3,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.66
-   },
-   {
-    "name": "vams_production_worker",
-    "cpu_pct": 5.7,
-    "mem_used_mb": 767.7,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 9.84
-   },
-   {
-    "name": "vams_purchasing_relay",
-    "cpu_pct": 3.9,
-    "mem_used_mb": 39.5,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.51
-   },
-   {
-    "name": "vams_production_relay",
-    "cpu_pct": 3.6,
-    "mem_used_mb": 58.8,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.75
-   },
-   {
-    "name": "vams_engineering_relay",
-    "cpu_pct": 3.3,
-    "mem_used_mb": 46.3,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.59
-   },
-   {
-    "name": "vams_qc_relay",
-    "cpu_pct": 3.0,
-    "mem_used_mb": 38.0,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.49
+    "mem_pct": 0.53
    },
    {
     "name": "vams_services_redis",
-    "cpu_pct": 2.9,
+    "cpu_pct": 3.0,
     "mem_used_mb": 8.1,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.1
    },
    {
-    "name": "vams_ops_relay",
-    "cpu_pct": 2.3,
-    "mem_used_mb": 43.2,
+    "name": "vams_production_worker",
+    "cpu_pct": 2.6,
+    "mem_used_mb": 1032.2,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.55
+    "mem_pct": 13.23
    },
    {
-    "name": "vams_crm_worker",
-    "cpu_pct": 1.6,
-    "mem_used_mb": 74.3,
+    "name": "vams_engineering_worker",
+    "cpu_pct": 2.5,
+    "mem_used_mb": 48.9,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.95
+    "mem_pct": 0.63
+   },
+   {
+    "name": "vams_integrations_worker",
+    "cpu_pct": 2.4,
+    "mem_used_mb": 84.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.08
+   },
+   {
+    "name": "vams_qc_worker",
+    "cpu_pct": 2.0,
+    "mem_used_mb": 38.7,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.5
+   },
+   {
+    "name": "vams_reporting_worker",
+    "cpu_pct": 1.5,
+    "mem_used_mb": 39.8,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.51
    },
    {
     "name": "vams_accounting_worker",
-    "cpu_pct": 1.6,
+    "cpu_pct": 1.4,
     "mem_used_mb": 42.8,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.55
    },
    {
     "name": "vams_hr_worker",
-    "cpu_pct": 1.3,
+    "cpu_pct": 1.1,
     "mem_used_mb": 79.5,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.02
    },
    {
-    "name": "vams_integrations_worker",
-    "cpu_pct": 1.0,
-    "mem_used_mb": 84.2,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.08
-   },
-   {
-    "name": "vams_reporting_worker",
-    "cpu_pct": 1.0,
-    "mem_used_mb": 39.8,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.51
-   },
-   {
     "name": "vams_purchasing_worker",
-    "cpu_pct": 0.9,
+    "cpu_pct": 1.1,
     "mem_used_mb": 40.8,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.52
    },
    {
     "name": "vams_ops_worker",
-    "cpu_pct": 0.8,
+    "cpu_pct": 1.0,
     "mem_used_mb": 49.1,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.63
    },
    {
-    "name": "vams_engineering_worker",
+    "name": "vams_crm_worker",
     "cpu_pct": 0.8,
-    "mem_used_mb": 48.9,
+    "mem_used_mb": 74.3,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.63
+    "mem_pct": 0.95
    },
    {
-    "name": "vams_qc_worker",
-    "cpu_pct": 0.8,
-    "mem_used_mb": 38.7,
+    "name": "vams_web",
+    "cpu_pct": 0.0,
+    "mem_used_mb": 7.4,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.5
+    "mem_pct": 0.1
    },
    {
     "name": "vams_hr_beat",
@@ -263,18 +242,39 @@
     "mem_pct": 0.83
    },
    {
-    "name": "vams_web",
+    "name": "vams_production_relay",
     "cpu_pct": 0.0,
-    "mem_used_mb": 8.6,
+    "mem_used_mb": 58.7,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.11
+    "mem_pct": 0.75
    },
    {
     "name": "vams_gateway",
     "cpu_pct": 0.0,
-    "mem_used_mb": 9.9,
+    "mem_used_mb": 10.1,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.13
+   },
+   {
+    "name": "vams_ops_relay",
+    "cpu_pct": 0.0,
+    "mem_used_mb": 43.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.55
+   },
+   {
+    "name": "vams_engineering_relay",
+    "cpu_pct": 0.0,
+    "mem_used_mb": 46.3,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.59
+   },
+   {
+    "name": "vams_qc_relay",
+    "cpu_pct": 0.0,
+    "mem_used_mb": 38.0,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.49
    },
    {
     "name": "vams_hr_relay",
@@ -284,11 +284,11 @@
     "mem_pct": 0.56
    },
    {
-    "name": "vams_accounting_relay",
+    "name": "vams_purchasing_relay",
     "cpu_pct": 0.0,
-    "mem_used_mb": 41.2,
+    "mem_used_mb": 39.5,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.53
+    "mem_pct": 0.51
    },
    {
     "name": "vams_docs",
@@ -328,9 +328,9 @@
    {
     "name": "vams_original_ref",
     "cpu_pct": 0.0,
-    "mem_used_mb": 80.5,
+    "mem_used_mb": 86.2,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 1.03
+    "mem_pct": 1.11
    }
   ]
  },
@@ -339,10 +339,10 @@
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-27T21:03:20Z",
- "disks_as_of": "2026-07-27T21:03:20Z",
- "network_as_of": "2026-07-27T21:03:20Z",
+ "host_as_of": "2026-07-27T21:08:17Z",
+ "disks_as_of": "2026-07-27T21:08:17Z",
+ "network_as_of": "2026-07-27T21:08:17Z",
  "temp_as_of": null,
- "docker_as_of": "2026-07-27T21:03:20Z",
+ "docker_as_of": "2026-07-27T21:08:17Z",
  "temp_error": "Not supported "
 }
