@@ -1963,16 +1963,16 @@
   },
   {
     "title": "Q1: QC valve-media",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- ValveTestMedia upload/viewer UI. Frontend e6b5f0d7; live-verified via :8090 (upload->created row 36->delete->back to 32).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
     "title": "PU2: purchasing filterset cleanup",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane (QC/purchasing wave).",
+    "note": "DONE -- dead filterset_fields cleanup in qc. Backend 77d327a3; 24 lines removed, qc tests 10/10, filters still work (?raised_on=2->387, __ne=2->1213).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2061,5 +2061,11 @@
     "track": "backend",
     "note": "DISPATCHED -- real active perf defect surfaced by the perf lane: 6 relay containers pegged 80-107% CPU in a tight shipped=0 poll loop, no backoff. Add idle sleep, rebuild relays, verify CPU drops.",
     "started_at": "2026-07-27T08:34:22Z"
+  },
+  {
+    "title": "Q2: orphaned empty qc_app_moc table",
+    "status": "done",
+    "track": "audit",
+    "note": "DOCUMENTED, NO-ACTION per rules -- confirmed 0 rows, unregistered, left as-is intentionally."
   }
 ]
