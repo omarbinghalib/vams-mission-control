@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-27T03:06:00Z",
-  "heartbeat_at": "2026-07-27T03:06:00Z",
-  "last_activity": "2026-07-27T03:05:54Z",
+  "updated": "2026-07-27T03:07:48Z",
+  "heartbeat_at": "2026-07-27T03:07:48Z",
+  "last_activity": "2026-07-27T03:07:41Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T03:05:54Z",
+      "out_last_active": "2026-07-27T03:07:41Z",
       "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T03:05:54Z",
+      "out_last_active": "2026-07-27T03:07:41Z",
       "out_age_min": 0.1,
-      "log_bytes": 59833,
-      "output_tokens": 3293,
-      "cache_read_tokens": 397278,
-      "cache_creation_tokens": 46420,
-      "msgs": 23,
+      "log_bytes": 130511,
+      "output_tokens": 7372,
+      "cache_read_tokens": 883691,
+      "cache_creation_tokens": 109832,
+      "msgs": 41,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -71,9 +71,9 @@
       "short_id": "ab98fcaf",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 24228.4,
+      "head_ago_min": 24230.2,
       "out_last_active": "2026-07-27T02:28:25Z",
-      "out_age_min": 37.6,
+      "out_age_min": 39.4,
       "log_bytes": 294526,
       "output_tokens": 29484,
       "cache_read_tokens": 4152346,
@@ -94,9 +94,9 @@
       "short_id": "a285f36a",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 24228.4,
+      "head_ago_min": 24230.2,
       "out_last_active": "2026-07-27T02:08:12Z",
-      "out_age_min": 57.8,
+      "out_age_min": 59.6,
       "log_bytes": 524761,
       "output_tokens": 51926,
       "cache_read_tokens": 10106709,
@@ -119,7 +119,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:46Z",
-      "out_age_min": 8.2,
+      "out_age_min": 10.0,
       "log_bytes": 479662,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -142,7 +142,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:47Z",
-      "out_age_min": 8.2,
+      "out_age_min": 10.0,
       "log_bytes": 806954,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -165,7 +165,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:42Z",
-      "out_age_min": 8.3,
+      "out_age_min": 10.1,
       "log_bytes": 2951940,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -188,7 +188,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:43Z",
-      "out_age_min": 8.3,
+      "out_age_min": 10.1,
       "log_bytes": 732718,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -211,7 +211,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:42Z",
-      "out_age_min": 8.3,
+      "out_age_min": 10.1,
       "log_bytes": 328315,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -234,7 +234,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:41Z",
-      "out_age_min": 8.3,
+      "out_age_min": 10.1,
       "log_bytes": 703327,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -257,7 +257,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:46Z",
-      "out_age_min": 8.2,
+      "out_age_min": 10.0,
       "log_bytes": 759838,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -280,7 +280,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T02:57:43Z",
-      "out_age_min": 8.3,
+      "out_age_min": 10.1,
       "log_bytes": 733148,
       "output_tokens": null,
       "cache_read_tokens": null,
@@ -302,7 +302,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-27T03:05:54Z",
+      "last_active": "2026-07-27T03:07:41Z",
       "age_min": 0.1,
       "live": true,
       "status": "live",
@@ -319,7 +319,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 25641.5,
+      "age_min": 25643.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -334,7 +334,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 34464.6,
+      "age_min": 34466.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -349,7 +349,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 28594.7,
+      "age_min": 28596.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -364,7 +364,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 28367.7,
+      "age_min": 28369.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -379,7 +379,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 24275.3,
+      "age_min": 24277.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -394,7 +394,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 25750.9,
+      "age_min": 25752.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -409,7 +409,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 24435.4,
+      "age_min": 24437.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -424,7 +424,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 28548.6,
+      "age_min": 28550.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -439,7 +439,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 28594.7,
+      "age_min": 28596.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -454,7 +454,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 35169.9,
+      "age_min": 35171.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -469,7 +469,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 35187.4,
+      "age_min": 35189.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -480,16 +480,16 @@
       "full_id": "aafbd9a0815ed87df",
       "group": "worker",
       "group_label": "Post-reboot: bring stack up + assess 8 lanes",
-      "output_tokens": 3293,
-      "cache_read_tokens": 397278,
-      "cache_creation_tokens": 46420,
-      "msgs": 23,
-      "last_active": "2026-07-27T03:05:54Z",
+      "output_tokens": 7372,
+      "cache_read_tokens": 883691,
+      "cache_creation_tokens": 109832,
+      "msgs": 41,
+      "last_active": "2026-07-27T03:07:41Z",
       "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 59833,
+      "log_bytes": 130511,
       "recent": true
     },
     {
@@ -502,7 +502,7 @@
       "cache_creation_tokens": 129861,
       "msgs": 97,
       "last_active": "2026-07-27T02:28:25Z",
-      "age_min": 37.6,
+      "age_min": 39.4,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -519,7 +519,7 @@
       "cache_creation_tokens": 426880,
       "msgs": 144,
       "last_active": "2026-07-27T02:08:12Z",
-      "age_min": 57.8,
+      "age_min": 59.6,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -536,7 +536,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:46Z",
-      "age_min": 8.2,
+      "age_min": 10.0,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -553,7 +553,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:47Z",
-      "age_min": 8.2,
+      "age_min": 10.0,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -570,7 +570,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:42Z",
-      "age_min": 8.3,
+      "age_min": 10.1,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -587,7 +587,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:43Z",
-      "age_min": 8.3,
+      "age_min": 10.1,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -604,7 +604,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:42Z",
-      "age_min": 8.3,
+      "age_min": 10.1,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -621,7 +621,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:41Z",
-      "age_min": 8.3,
+      "age_min": 10.1,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -638,7 +638,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:46Z",
-      "age_min": 8.2,
+      "age_min": 10.0,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -655,7 +655,7 @@
       "cache_creation_tokens": null,
       "msgs": null,
       "last_active": "2026-07-27T02:57:43Z",
-      "age_min": 8.3,
+      "age_min": 10.1,
       "live": false,
       "status": "stopped",
       "subagent": true,
@@ -853,346 +853,345 @@
     "containers": [
       {
         "name": "vams_accounting",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "8008",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_accounting_period_lock",
-        "state": "running",
-        "status": "Up 12 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_accounting_relay",
-        "state": "running",
-        "status": "Up 12 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_accounting_worker",
-        "state": "running",
-        "status": "Up 12 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_bff",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8013",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_crm",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "8005",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_crm_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_engineering",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8006",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_engineering_relay",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_engineering_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_frontend",
-        "state": "running",
-        "status": "Up 20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "20 hours",
+        "uptime": "",
         "ports": "3000",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_gateway",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "8080",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_hr",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8004",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_hr_relay",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_hr_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_integrations",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8010",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_monolith_app",
-        "state": "running",
-        "status": "Up 20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "20 hours",
+        "uptime": "",
         "ports": "8012",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_ops",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8009",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_ops_relay",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_ops_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_original_ref",
-        "state": "running",
-        "status": "Up 20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "20 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_platform",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8001",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_production",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "8007",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_production_relay",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_production_worker",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_purchasing",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "8003",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_purchasing_relay",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_purchasing_worker",
-        "state": "running",
-        "status": "Up 11 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_qc",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "8002",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_qc_relay",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_qc_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_ref_proxy",
-        "state": "running",
-        "status": "Up 20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "20 hours",
+        "uptime": "",
         "ports": "8100",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_reporting",
-        "state": "running",
-        "status": "Up 12 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "",
         "ports": "8011",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_reporting_worker",
-        "state": "running",
-        "status": "Up 13 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "",
         "ports": "",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_services_postgres",
-        "state": "running",
-        "status": "Up 20 hours (healthy)",
-        "health": "healthy",
-        "uptime": "20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
+        "health": "starting",
+        "uptime": "",
         "ports": "5432",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_services_redis",
-        "state": "running",
-        "status": "Up 20 hours (healthy)",
-        "health": "healthy",
-        "uptime": "20 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
+        "health": "starting",
+        "uptime": "",
         "ports": "6379",
-        "up": true
+        "up": false
       },
       {
         "name": "vams_web",
-        "state": "running",
-        "status": "Up 10 hours",
+        "state": "exited",
+        "status": "Exited (255) About a minute ago",
         "health": "none",
-        "uptime": "10 hours",
+        "uptime": "",
         "ports": "8090",
-        "up": true
+        "up": false
       }
     ],
     "summary": {
-      "running": 37,
+      "running": 0,
       "total": 37,
-      "healthy": 2,
-      "problem": 0
+      "healthy": 0,
+      "problem": 37
     },
-    "checked_at": "2026-07-25T04:25:33Z",
-    "carried": true
+    "checked_at": "2026-07-27T03:07:48Z"
   },
   "health": [
     {
@@ -1229,17 +1228,68 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 1,
+        "commits_7d": 238
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 1
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "63188f2d",
+        "at": "2026-07-27T06:17:13+04:00",
+        "subject": "Add user.id to /me/ response (bff MeView)",
+        "track": "backend"
+      },
+      {
+        "hash": "fd90738f",
+        "at": "2026-07-25T23:12:29+04:00",
+        "subject": "fix(integrations): route MMSO to mm-sos to match the frontend",
+        "track": "backend"
+      },
+      {
+        "hash": "b65f0eeb",
+        "at": "2026-07-25T21:45:45+04:00",
+        "subject": "fix(qc): close NCR/NCPR server-side filter gap without diverging from the fleet pattern",
+        "track": "backend"
+      },
+      {
+        "hash": "e0e4a30e",
+        "at": "2026-07-25T21:30:24+04:00",
+        "subject": "Further harden CRM home dashboard against real-page-load contention",
+        "track": "backend"
+      },
+      {
+        "hash": "a1faa651",
+        "at": "2026-07-25T21:22:19+04:00",
+        "subject": "Fix CRM home dashboard flakiness: dial back fan-out, retry transient GETs",
+        "track": "backend"
+      },
+      {
+        "hash": "4e6cf53c",
+        "at": "2026-07-25T20:49:51+04:00",
+        "subject": "Add CRM home BI dashboard aggregation endpoint (BFF)",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
