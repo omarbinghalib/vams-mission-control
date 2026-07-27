@@ -1,6 +1,10 @@
 {
-  "active": false,
-  "message": "",
-  "options": [],
-  "raised_at": null
+  "active": true,
+  "message": "SECURITY: PII-in-git incident (NEW-8 lane) -- docs/parity/NEW-8-ocn-identity-fix.md (commit 5d88350c) was pushed containing unauthorized real user PII (employee emails/names/superuser status) from live DBs. Same class as the earlier hr_cleanup PII incident. Remediation IN PROGRESS: HEAD redaction running now; git-history purge (git-filter-repo + force-push) queued as an exclusive step after NEW-9 lands.",
+  "options": [
+    "Acknowledge -- remediation already in progress, no action needed from you right now",
+    "Review the exposed file/commit yourself before it's purged from history",
+    "Authorize the sdasilva username/RBAC restoration (separately HELD, unrelated login-credential change)"
+  ],
+  "raised_at": "2026-07-27T16:24:23Z"
 }
