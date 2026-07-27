@@ -1872,23 +1872,23 @@
   },
   {
     "title": "P1: platform RBAC backfill",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- backend b070b3da. Extended backfill to direct per-user perms (the real gap; groups were already converged). 214->259 users with roles (45 backfilled), never-overwrite guard proven (214 pre-existing rows byte-identical), snapshot taken (local). Live-verified (Ahmed_Salim []->['hod','quality'], NCR approve gate 403->404).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "P2: platform RBAC backfill",
-    "status": "in_progress",
+    "title": "P2: platform RBAC backfill (group/perm->role mapping)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- commit b070b3da. Added DIRECT_PERM_ROLE_MAP (66 access_* codenames -> 7 roles). Note: ~14 ambiguous codenames default to 'hod' pending mapping review (same class as the earlier flagged-groups decision -- tracked as an open decision item).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
     "title": "P3: platform /me/ perms",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- commit b070b3da. has_doc_lookup_perm + is_superscreen_allowed + is_not_hod_substitute added to /api/v1/auth/profile/, per-request computed, live-verified true-paths. Two negative paths mock-tested only (all real candidates inactive) -- documented.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2067,5 +2067,11 @@
     "status": "done",
     "track": "audit",
     "note": "DOCUMENTED, NO-ACTION per rules -- confirmed 0 rows, unregistered, left as-is intentionally."
+  },
+  {
+    "title": "DECISION (open): ~14 ambiguous DIRECT_PERM_ROLE_MAP codenames default to 'hod'",
+    "status": "pending",
+    "track": "backend",
+    "note": "Surfaced by P2 -- same class as the earlier flagged-groups RBAC decision. Needs a mapping review to confirm/adjust the default."
   }
 ]
