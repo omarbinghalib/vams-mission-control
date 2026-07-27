@@ -2114,7 +2114,7 @@
     "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
     "status": "in_progress",
     "track": "audit",
-    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end (independently reconfirmed broken-original). (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). (5) O4 SMS History -- 2 prior bugs fixed, exact bucket parity vs the original. Keep appending as more surface.",
+    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end (independently reconfirmed broken-original). (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). (5) O4 SMS History -- 2 prior bugs fixed, exact bucket parity vs the original. (6) PO grand_total_price -- new system serves correct totals for 10,758 historical POs the monolith itself displays as $0.00 (fixes a real monolith financial-display bug). Keep appending as more surface.",
     "started_at": "2026-07-27T09:44:34Z"
   },
   {
@@ -2218,10 +2218,10 @@
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
-    "title": "ASSESS: PO $27M grand_total_price divergence",
-    "status": "in_progress",
+    "title": "ASSESS: PO $27M grand_total_price divergence (NEW-4)",
+    "status": "done",
     "track": "audit",
-    "note": "DISPATCHED -- consolidated fix wave, lane 5/6. Read-only assess correction-vs-error; if a corrective FINANCIAL UPDATE is needed it will be HELD for explicit user authorization (destructive-financial-write rule).",
+    "note": "DONE -- VERDICT: CORRECTION, not a gap (assessment at scratchpad/capstone-audit/po-divergence-assessment.md; scratchpad not a repo so uncommitted). The monolith's OWN stored grand_total_price violates its own formula for 10,759 early-2014 POs (no display recompute -> monolith shows $0.00 for these real POs today = a real monolith bug). New system recomputes correctly, cent-exact 10,758/10,759; $27,029,875.53 = exactly the correction size; GL perfect match (isolated). No change made (leave-as-is, it's correct). One 1-row straggler (POLineItem id=1) held separately for Omar authorization -- see PO 1-row straggler task.",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
@@ -2236,5 +2236,12 @@
     "status": "pending",
     "track": "deploy",
     "note": "Waiting on the VS-Report perf/cache/names (lane 3) and superscreen+P3 (lane 6) frontend edits to land -- Trial Balance dedup (lane 4) frontend edit already committed and waiting on this same rebuild. One npm build + frontend-web rebuild + live verify all frontend changes together."
+  },
+  {
+    "title": "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "The ONLY financial-write item held (destructive-financial-write rule). Re-running the existing idempotent backfill_po_lineitem_grand_total command fixes only this 1 row (still $0.00, backfill missed it -> +$2,960.00 -> correct). Additive/idempotent but a real financial write -> queued for Omar's explicit authorization. NOT a blocking closeable gap for certification -- documented held-financial-write."
   }
 ]
