@@ -2060,9 +2060,9 @@
   },
   {
     "title": "Wave-2 (small follow-on): pr.tsx Documents tab #id pattern (line 813)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "IN PROGRESS -- part of Integration-finalize. Same #id pattern as PU1 -- wire it to read the now-available supplier_company_name (one-liner).",
+    "note": "DONE -- frontend 37c0fe14. pr.tsx #id -> supplier_company_name.",
     "started_at": "2026-07-27T11:05:13Z"
   },
   {
@@ -2098,9 +2098,9 @@
   },
   {
     "title": "Final-sweep git-integrity check (cross-lane broad-staging verification)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "IN PROGRESS -- part of Integration-finalize (all lane commits + en.json completeness). Cross-lane broad-staging swept some ops shared-file edits into sibling commits (integrations/engineering) but byte-verified no loss (blob hashes match).",
+    "note": "DONE -- all 16 lane commits present on both HEADs, en.json all 9 namespaces intact. Also caught + committed a stranded untracked grant SQL (backend b3d2e391) -- column-limited GRANT verified correct.",
     "started_at": "2026-07-27T11:05:13Z"
   },
   {
@@ -2112,16 +2112,44 @@
   },
   {
     "title": "MEDIA-VOL: container MEDIA_ROOT not a persisted docker volume (real deployment defect)",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "IN PROGRESS -- part of Integration-finalize. /app/media is NOT a persisted docker volume; uploads from every service (C2 docs, Q1 valve-media, connector configs) would be LOST on container recreation. Fix: add persisted named volume(s) for media across upload-handling services in docker-compose + recreate + verify a file survives recreation.",
+    "note": "DONE -- backend a389470c. Per-service named media volumes added; durability PROVEN -- a file survived --force-recreate; /srv/media RO untouched; only disposable test residue was present.",
     "started_at": "2026-07-27T11:05:13Z"
   },
   {
     "title": "Integration-finalize (exclusive finale)",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "RUNNING, EXCLUSIVE -- pr.tsx #id follow-on + MEDIA-VOL persisted-media volume fix + git-integrity audit (all lane commits + en.json complete) + full-stack recreate + smoke test. This is the final step before certification.",
+    "note": "DONE -- frontend 37c0fe14 (pr.tsx), backend a389470c (MEDIA-VOL), backend b3d2e391 (stranded grant SQL committed). git-integrity: all 16 lane commits present on both HEADs, en.json all 9 namespaces intact. Full-stack smoke green (all 12 services + gateway/bff/web/ref/docs healthy, login works, 4 new features 200 w/ real data).",
     "started_at": "2026-07-27T11:05:13Z"
+  },
+  {
+    "title": "Final verification: gap-sweep-to-dry",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- read-only. Re-confirms all 26 category-A closes live + hunts any new closeable gap. Certification follows if dry.",
+    "started_at": "2026-07-27T11:37:19Z"
+  },
+  {
+    "title": "Final verification: parity re-verify (financials)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "started_at": "2026-07-27T11:37:19Z"
+  },
+  {
+    "title": "Final verification: parity re-verify (ops/production/engineering)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "started_at": "2026-07-27T11:37:19Z"
+  },
+  {
+    "title": "Final verification: parity re-verify (crm/purchasing/qc/hr/platform+chrome)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "started_at": "2026-07-27T11:37:19Z"
   }
 ]
