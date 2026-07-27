@@ -1999,7 +1999,7 @@
     "title": "R4: reporting closer (VAT 7-sheet XLSX)",
     "status": "done",
     "track": "frontend",
-    "note": "DONE -- frontend 18a15351. Backend was already built (vat_export.py, box totals tie to cent), added the missing download button.",
+    "note": "DONE -- frontend 18a15351. Backend was already built (vat_export.py, box totals tie to cent), added the missing download button. CAPSTONE note (bug-for-bug parity, not a gap): faithfully reproduces the monolith's own row-mislabel bug verbatim.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2133,9 +2133,9 @@
   },
   {
     "title": "Final verification: parity re-verify (financials)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "note": "AUDIT COMPLETE (report at scratchpad/PARITY-REVERIFY-financial-closed-gaps.md -- not git-committed, scratchpad isn't a repo) -- 7/9 cent-exact PASS, 3 findings (FIN-1/2/3). NOT YET certified pending those fixes.",
     "started_at": "2026-07-27T11:37:19Z"
   },
   {
@@ -2163,5 +2163,23 @@
     "status": "pending",
     "track": "backend",
     "note": "REAL SECURITY GAP found by the ops/production/engineering verify lane. ops_app has no permissions.py, zero require_perm -> any authenticated user can approve any OCN department stage / hit ops write endpoints ungated. ALSO OCNPermission has 0/37 real grants migrated from the monolith. Fix = add require_perm gate to ops_app write/approve endpoints (mirror qc/crm/_shared PERM_ROLE_MAP pattern) + additively migrate the 37 OCN grants (INSERT, ON CONFLICT DO NOTHING). Verify non-entitled 403 / entitled 200 / 37 grants present. Queued for the consolidated fix wave (running tally: P2-COMPLETION + OPS-RBAC)."
+  },
+  {
+    "title": "FIN-1: VS-Report account-manager names -- live regression (stale unrefreshable cache)",
+    "status": "pending",
+    "track": "backend",
+    "note": "REAL LIVE REGRESSION found by the financials verify lane. Live serves a stale 2025-12-25 cache-forever report with garbled composite names matching NO auth_userprofile row (worse than bare IDs); ?refresh=1 never completes (280s+). Code fix exists but is unreachable live. Fix = confirm correct name format vs oracle + invalidate/rebuild the cached report (pre-warm server-side, don't rely on gateway refresh). Shares root cause with FIN-2. Fix-wave tally: P2-COMPLETION, OPS-RBAC, FIN-1, FIN-2, FIN-3."
+  },
+  {
+    "title": "FIN-2: VS-Report logistics + all -- 504 on cold cache",
+    "status": "pending",
+    "track": "backend",
+    "note": "REAL UX GAP found by the financials verify lane. Compute exceeds gateway proxy_read_timeout (120s); finishes+caches server-side but the first user request errors with 504. Fix = async/pre-warm generation (or optimize) so cold requests don't 504. Shares root cause with FIN-1 (slow VS-Report generation)."
+  },
+  {
+    "title": "FIN-3: R7 left the old flat Accounting>GL>Trial Balance screen live alongside the new fixed tab",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Lower severity, found by the financials verify lane. Fix = remove/redirect the stale duplicate Accounting>GL>Trial Balance screen (or apply R7's fix to both)."
   }
 ]
