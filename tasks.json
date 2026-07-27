@@ -3,7 +3,7 @@
     "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
     "status": "in_progress",
     "track": "incident",
-    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard. The NEW-8 lane committed+pushed a doc containing unauthorized real user PII (employee emails/names/superuser status) from the live DBs. Same class as the earlier hr_cleanup PII incident. Remediation: (1) HEAD redaction lane running now, (2) git-history purge (git-filter-repo + force-push) queued as an exclusive step after NEW-9 lands.",
+    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard -- STILL OPEN. (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed (7 email + 5 name placeholders in doc; 3 email occurrences in ETL docstring), HEAD confirmed clean of personal emails/names. Kept ids/usernames (held-fix stays actionable) + shared dept mailboxes + .local seed (not personal). Password-hash snapshot stays untracked/local-only. (2) git-HISTORY purge of the original PII blob at commit 5d88350c is STILL REQUIRED (HEAD is clean but history retains it) -- an EXCLUSIVE force-push step (git-filter-repo, isolated clone, --replace-text scrub, force-push microservices-backend), to run the moment NEW-9 lands and the branch is quiescent. Sequence after NEW-9: (1) exclusive git-history purge, (2) sweep v3, (3) certify if dry.",
     "started_at": "2026-07-27T16:26:43Z"
   },
   {
@@ -2316,5 +2316,17 @@
     "status": "pending",
     "track": "backend",
     "note": "Small finding from the NEW-8 assessment. Needs product sign-off."
+  },
+  {
+    "title": "PII HEAD-redaction",
+    "status": "done",
+    "track": "incident",
+    "note": "DONE -- backend 47db9a63. Doc + ETL docstring scrubbed (7 email + 5 name placeholders in doc; 3 email occurrences in ETL docstring), HEAD confirmed clean of personal emails/names. Kept ids/usernames (held-fix stays actionable) + shared dept mailboxes + .local seed (not personal). Password-hash snapshot stays untracked/local-only. git-history purge of commit 5d88350c still required -- see SECURITY INCIDENT task above."
+  },
+  {
+    "title": "PII git-history purge (commit 5d88350c blob, exclusive force-push step)",
+    "status": "pending",
+    "track": "incident",
+    "note": "Runs the moment NEW-9 lands and the branch is quiescent: git-filter-repo (isolated clone, --replace-text scrub), force-push microservices-backend. EXCLUSIVE step -- no other lane pushes during this window. Then: sweep v3 -> certify if dry."
   }
 ]
