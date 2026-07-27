@@ -1820,9 +1820,9 @@
   },
   {
     "title": "Prefs screen",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "note": "DONE -- backend 5c93549f + frontend 1692b227. 'Preferences' = the auth account-settings (Edit Profile + Change Password); built /settings/account 'My Profile' screen matching :8100, wired header avatar to it, added TenantUser.mobile_number + migrated 51 rows. 33 platform + frontend tests green, live-verified vs :8100. This mobile_number addition is the likely fix for the transient platform/bff 'mobile_number does not exist' 500 (referenced-before-column-existed); migration-check lane to confirm.",
     "started_at": "2026-07-27T03:39:45Z"
   },
   {
@@ -1841,7 +1841,13 @@
     "title": "Migration-check lane (platform/bff mobile_number 500 investigation)",
     "status": "in_progress",
     "track": "backend",
-    "note": "DISPATCHED -- investigating the transient platform/bff 500 'mobile_number does not exist'.",
+    "note": "STILL RUNNING -- likely already fixed by the Prefs screen lane's TenantUser.mobile_number addition (migrated 51 rows); confirming resolved.",
     "started_at": "2026-07-27T05:17:58Z"
+  },
+  {
+    "title": "Infra gap (documented): avatar/signature file UPLOAD not wired on the platform service",
+    "status": "pending",
+    "track": "backend",
+    "note": "No MEDIA_ROOT on the platform service; monolith's files are on unreachable NFS. Needs a media-storage decision."
   }
 ]
