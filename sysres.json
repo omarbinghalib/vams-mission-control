@@ -1,42 +1,46 @@
 {
  "available": true,
- "checked_at": "2026-07-27T03:03:13Z",
+ "checked_at": "2026-07-27T03:08:12Z",
  "host": {
-  "cpu_pct": 94,
+  "cpu_pct": 48,
   "cores": [
-   94
+   48
   ],
-  "mem_pct": 69.9,
-  "mem_used_mb": 11255,
+  "mem_pct": 99.4,
+  "mem_used_mb": 15992,
   "mem_total_mb": 16091,
-  "uptime_sec": 271,
-  "process_count": 280
+  "uptime_sec": 568,
+  "process_count": 367
  },
  "disks": [
   {
    "drive": "C:",
-   "used_gb": 803.9,
+   "used_gb": 804,
    "total_gb": 934.7,
    "pct": 86
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 2686,
-  "tx_bytes_per_sec": 3825
+  "rx_bytes_per_sec": 11476,
+  "tx_bytes_per_sec": 177837
  },
  "temp_c": null,
  "temp_available": false,
- "docker": {},
+ "docker": {
+  "containers": 0,
+  "total_cpu_pct": 0.0,
+  "total_mem_mb": 0.0,
+  "list": []
+ },
  "host_carried": false,
  "disks_carried": false,
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-27T03:03:13Z",
- "disks_as_of": "2026-07-27T03:03:13Z",
- "network_as_of": "2026-07-27T03:03:13Z",
+ "host_as_of": "2026-07-27T03:08:12Z",
+ "disks_as_of": "2026-07-27T03:08:12Z",
+ "network_as_of": "2026-07-27T03:08:12Z",
  "temp_as_of": null,
- "docker_as_of": null,
- "temp_error": "Not supported ",
- "docker_error": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot f"
+ "docker_as_of": "2026-07-27T03:08:12Z",
+ "temp_error": "Not supported "
 }
