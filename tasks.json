@@ -2388,9 +2388,35 @@
   },
   {
     "title": "NEW-13: actual-overtime reconciliation (apply-engine + SPA register screen)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- HR sync_actual_ot (monolith every 30min) has no equivalent; models.py:2203-2209 admits it was deferred 'with the payroll wiring step' (never done). Data migrated (PlannedOvertime 51,287, AXOvertime 14,538, Punch, JobActivity); self-documented missing at navConfig.ts:1177; mis-rated FULL/FULL in the coverage doc. Building: port apply-engine + SPA register screen + fix the coverage-doc rating; CLASSIFY write blast-radius -> enable if informational, BUILD+HOLD if payroll-financial. Sequence: NEW-13 lands -> sweep v6 -> certify on dry-for-closeable.",
+    "note": "DONE -- backend c25ef7f0 + be35290d, frontend 797d8073. sync_actual_ot DOES write a computed money value (ActualOvertime.amount at status=reviewed) -> payroll-relevant -> BUILD+HOLD (like NEW-11). Apply-engine + beat infra + mgmt command + SPA register screen (46,970-row list + verify/review/approve/reject) + coverage-doc fix all landed. Logic byte-exact vs oracle on 10/10 rows; rolled-back dry-run posted 50, zero residue. 25 tests. Guarded off (HR_ACTUAL_OT_SYNC_ENABLED), zero-impact-today (all data historical). Further approved->create_ot_entries payroll-posting branch = documented deferral (see task below).",
     "started_at": "2026-07-27T21:40:41Z"
+  },
+  {
+    "title": "HELD-FOR-USER-AUTH: NEW-13 actual-OT sync enable",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Payroll-relevant write, guarded off (HR_ACTUAL_OT_SYNC_ENABLED), zero-impact today (all data historical). Enable awaits Omar's explicit authorization."
+  },
+  {
+    "title": "DOCUMENTED deferral: actual-OT approved->create_ot_entries payroll-posting branch",
+    "status": "pending",
+    "track": "backend",
+    "note": "Further payroll-posting branch beyond the NEW-13 apply-engine/register screen; deliberately deferred, documented."
+  },
+  {
+    "title": "Minor follow-up: docker-compose HR_ACTUAL_OT_SYNC_ENABLED env line",
+    "status": "pending",
+    "track": "deploy",
+    "note": "Add the explicit env line to docker-compose (functionally off already)."
+  },
+  {
+    "title": "Final gap-sweep-to-dry v6 (FINAL certification gate)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- confirm NEW-13 + final exhaustive loop-to-dry across all classes (apply-engines, empty-dropdowns, ETL integrity, un-run jobs, stale caches, value-drift, SPA stubs/todos, missing RBAC gates) + reconfirm backlog + GL cent-exact. On DRY: FUNCTIONAL CERTIFICATION declared.",
+    "started_at": "2026-07-27T23:04:38Z"
   }
 ]
