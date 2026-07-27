@@ -2414,9 +2414,16 @@
   },
   {
     "title": "Final gap-sweep-to-dry v6 (FINAL certification gate)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- confirm NEW-13 + final exhaustive loop-to-dry across all classes (apply-engines, empty-dropdowns, ETL integrity, un-run jobs, stale caches, value-drift, SPA stubs/todos, missing RBAC gates) + reconfirm backlog + GL cent-exact. On DRY: FUNCTIONAL CERTIFICATION declared.",
+    "note": "AUDIT COMPLETE -- NEW-13 CONFIRMED closed live (beat ticks observed no-opping, 25/25 tests, logic byte-exact, SPA route). GL cent-exact + fresh spot-checks (Credit Notes 53/$202,876.43, Receipt Vouchers 998/$34,062,027.60, Payment Vouchers 26,564/$94,268,288.83 all exact both sides). Periodic-task class NOW genuinely exhaustive (was 24 tasks/42 files not 13; all 8 missed dispositioned legit/deferred/held). NOT dry: switching audit ANGLE (component-usage grep) found QC-1 + QC-2. LESSON (capstone-worthy): certification is angle-dependent -- each new audit lens finds a few small gaps; convergence 7->2->2->1->1->2. Fixing whole-class (like beat), not per-instance.",
     "started_at": "2026-07-27T23:04:38Z"
+  },
+  {
+    "title": "SYSTEM-WIDE file-upload/attachment audit + fix (QC-1 + QC-2 + all modules)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- QC-1 (supplierEval EvaluationDocument read-only, 782 rows) + QC-2 (calibrationCertificate missing file field, 57 rows) + audit ALL modules for the same class (read-only/missing upload where a live backend FileField exists) and wire them all using the proven AttachmentsLive pattern (already live 6x). Also corrects the mis-marked 'Q3 CLOSED' (was verified by display, not actual upload). Sequence: this lands -> sweep v7 (a THIRD new angle: endpoint-without-screen / screen-without-endpoint / filter+pagination coverage) -> certify when a fresh-angle pass comes back clean.",
+    "started_at": "2026-07-27T23:36:57Z"
   }
 ]
