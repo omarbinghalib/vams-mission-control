@@ -1929,7 +1929,7 @@
     "title": "O2: ops closer (cross-service calendar blocks)",
     "status": "done",
     "track": "backend",
-    "note": "DONE -- backend 12ac6f23 + frontend 56f02435. timesheet(397)/planned_ewo(23)/planned_pwo(160) date-range blocks now render, 0 unmatched. (WO time-logged activity + Service-WO blocks disclosed as a separate sub-gap, deliberately scoped out.)",
+    "note": "DONE -- backend 12ac6f23 + frontend 56f02435. timesheet(397)/planned_ewo(23)/planned_pwo(160) date-range blocks now render, 0 unmatched. (WO time-logged activity + Service-WO blocks disclosed as a separate sub-gap, deliberately scoped out.) CAVEAT (not a gap): best-effort cross-service reads drop under back-to-back calls on single-threaded LOCAL dev servers -- a dev-env artifact; prod uses proper workers.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2107,7 +2107,7 @@
     "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
     "status": "in_progress",
     "track": "audit",
-    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end. (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). Keep appending as more surface.",
+    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end (independently reconfirmed broken-original). (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). (5) O4 SMS History -- 2 prior bugs fixed, exact bucket parity vs the original. Keep appending as more surface.",
     "started_at": "2026-07-27T09:44:34Z"
   },
   {
@@ -2140,9 +2140,9 @@
   },
   {
     "title": "Final verification: parity re-verify (ops/production/engineering)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "note": "AUDIT COMPLETE (report commit dce248dd) -- 6/7 PASS, 2 exceed-original, 1 GAP. NOT YET certified: one real gap found (see OPS-RBAC, queued for the consolidated fix wave).",
     "started_at": "2026-07-27T11:37:19Z"
   },
   {
@@ -2157,5 +2157,11 @@
     "status": "pending",
     "track": "backend",
     "note": "REAL GAP found by the crm/purchasing/qc/hr/platform+chrome verify lane. 137 real active users never get the additional roles their DIRECT monolith perms entitle them to (e.g. jerry missing sales+hr-manager, raghunath missing hr-manager). Fix = additive UNION (add entitled direct-perm roles into existing, never remove), snapshot first, oracle-verify each added role is entitled. Additive/reversible, not a delete/overwrite. Queued for a consolidated fix wave after all 4 auditors report."
+  },
+  {
+    "title": "OPS-RBAC: ops_app has NO RBAC enforcement (real security gap)",
+    "status": "pending",
+    "track": "backend",
+    "note": "REAL SECURITY GAP found by the ops/production/engineering verify lane. ops_app has no permissions.py, zero require_perm -> any authenticated user can approve any OCN department stage / hit ops write endpoints ungated. ALSO OCNPermission has 0/37 real grants migrated from the monolith. Fix = add require_perm gate to ops_app write/approve endpoints (mirror qc/crm/_shared PERM_ROLE_MAP pattern) + additively migrate the 37 OCN grants (INSERT, ON CONFLICT DO NOTHING). Verify non-entitled 403 / entitled 200 / 37 grants present. Queued for the consolidated fix wave (running tally: P2-COMPLETION + OPS-RBAC)."
   }
 ]
