@@ -1,16 +1,16 @@
 {
  "available": true,
- "checked_at": "2026-07-27T08:03:58Z",
+ "checked_at": "2026-07-27T08:08:41Z",
  "host": {
   "cpu_pct": 100,
   "cores": [
    100
   ],
-  "mem_pct": 95.7,
-  "mem_used_mb": 15404,
+  "mem_pct": 95.5,
+  "mem_used_mb": 15367,
   "mem_total_mb": 16091,
-  "uptime_sec": 18325,
-  "process_count": 409
+  "uptime_sec": 18618,
+  "process_count": 437
  },
  "disks": [
   {
@@ -21,8 +21,8 @@
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 3386,
-  "tx_bytes_per_sec": 442
+  "rx_bytes_per_sec": 6217,
+  "tx_bytes_per_sec": 65002
  },
  "temp_c": null,
  "temp_available": false,
@@ -304,9 +304,9 @@
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": true,
- "host_as_of": "2026-07-27T08:03:58Z",
- "disks_as_of": "2026-07-27T08:03:58Z",
- "network_as_of": "2026-07-27T08:03:58Z",
+ "host_as_of": "2026-07-27T08:08:41Z",
+ "disks_as_of": "2026-07-27T08:08:41Z",
+ "network_as_of": "2026-07-27T08:08:41Z",
  "temp_as_of": null,
  "docker_as_of": "2026-07-27T07:53:49Z",
  "temp_error": "Not supported ",
