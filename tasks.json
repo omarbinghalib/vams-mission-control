@@ -1892,31 +1892,31 @@
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "C1: CRM closer",
-    "status": "in_progress",
+    "title": "C1: CRM closer (Add-as-Supplier / Add-as-Customer CRM->Accounting)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- backend da5fd06e + frontend d984c511. Idempotent from-company actions, perm-gated, live-verified (company 3372 -> SPL00981/CST01082 created, retry created:false, sales-only 403, full cleanup to 404).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "C2: CRM closer",
-    "status": "in_progress",
+    "title": "C2: CRM closer (Company legal Documents real file upload)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- commits da5fd06e + d984c511. Multipart PATCH via new uploadCompanyLegalDocumentFile.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "C3: CRM closer",
-    "status": "in_progress",
+    "title": "C3: CRM closer (Related Projects link)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- same commit. Project names now link to /m/projects/:id.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "C4: CRM closer",
-    "status": "in_progress",
+    "title": "C4: CRM closer (SO GP% 3-tier threshold)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- already correct, matches monolith sales_order/models.py:894-947 exactly (<=10 red, 11-40 yellow, >=41 green); reported closed, no change needed.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
