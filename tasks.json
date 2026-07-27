@@ -1469,9 +1469,9 @@
   },
   {
     "title": "Capstone synthesis / master gap-backlog (pending internal-diff)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Synthesizing the 9 completed domain parity audits into one master gap-backlog; sequenced behind the :8100-vs-:8090 internal screen diff landing.",
+    "note": "SUPERSEDED -- the full gap-close/verify/fix-wave cycle since this was opened fulfills the intent of this task; the final consolidated write-up is now the 'Capstone parity-comparison synthesis' lane below (VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md).",
     "started_at": "2026-07-24T07:14:28Z"
   },
   {
@@ -2233,9 +2233,9 @@
   },
   {
     "title": "FRONTEND-INTEGRATION rebuild (single frontend-web build + live verify)",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "RUNNING -- all 3 frontend lanes committed (TB 4b08e8fe, superscreen a04c1c5a, VS-Report/Monthly 2d36cce7). Brings TB + superscreen/self-service + P3 gates + Monthly part-category live together; confirms pr.tsx too. After this: final certification re-verify -> certify zero-closeable-gaps (excluding documented B/C + the held PO 1-row).",
+    "note": "DONE -- frontend fully live at :8090 (bundle index-iivOlMm0.js). Caught+fixed a real cross-lane CONTRACT bug (commit 6455bf21): BFF /me/ returns the 3 P3 booleans at TOP LEVEL but frontend meSchema only parsed them under flags -> superscreen redirect never fired; fixed meSchema, re-verified. ALL frontend fixes PASS live: TB dedup (one reachable, blue headers, integer grand total 132,084,694/695), self-service redirect (own payslips employee=1231), P3 gates (doc-lookup tab shows/hidden by perm), Monthly VS-Report (5 real buckets, warm 0.39-0.87s no 504), smoke (home 407 projects, CRM, accounting, zero console errors). CAPSTONE methodology note: this single rebuild caught a contract bug the tsc-only edit lanes structurally couldn't -- validates the one-rebuild pattern.",
     "started_at": "2026-07-27T14:22:17Z"
   },
   {
@@ -2256,5 +2256,19 @@
     "status": "pending",
     "track": "backend",
     "note": "2 fabricated-id test artifacts (OCN #46, Task #5756, ids 9001-9099) left in local vams_ops DB from the ops_app RBAC live-verify -- not real data, harmless. Low-priority cleanup."
+  },
+  {
+    "title": "Final gap-sweep-to-dry v2",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING -- confirm all fixes closed live + hunt any new gap -> dryness verdict. Certification greenlights once this sweep returns DRY.",
+    "started_at": "2026-07-27T15:07:51Z"
+  },
+  {
+    "title": "Capstone parity-comparison synthesis",
+    "status": "in_progress",
+    "track": "docs",
+    "note": "RUNNING -- writes the capstone deliverable: VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md (honest capability/logic/depth/complexity comparison, original VAMS 2.0 vs the new system).",
+    "started_at": "2026-07-27T15:07:51Z"
   }
 ]
