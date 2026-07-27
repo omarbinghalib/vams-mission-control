@@ -1773,11 +1773,29 @@
     "note": "DONE -- all 37 containers up, Postgres healthy, login verified, git clean, RAM clean."
   },
   {
-    "title": "Finish + commit 3 partial lanes (/me/ frontend, tenant-wide Activity Stream, perf-counts caller-switch)",
-    "status": "in_progress",
-    "track": "backend",
-    "note": "IN PROGRESS -- a single worker is committing the co-mingled uncommitted work + finishing: /me/ frontend consumer switch, tenant-wide Activity Stream (backend+frontend), perf-counts backend+frontend caller-switch.",
+    "title": "/me/ user.id (frontend)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- commit 6c6dc998. Live-verified id returns, Todo/My-Tasks scope correctly.",
     "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Tenant-wide Activity Stream",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- backend 09c2233f + frontend in 6c6dc998. Real cross-service feed (accounting/crm/ops), resolves to real records; live-verified."
+  },
+  {
+    "title": "Perf-counts",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- backend 8aadb554 + frontend 2064a588. PO/PR/DN + Opportunities/SO status bars use one grouped /counts/ query; PO bar 8.06s -> 0.44s (~18x)."
+  },
+  {
+    "title": "Perf follow-up (non-gated): wire remaining page_size=1 tally sites to /counts/ + reduce crm-home heaviness",
+    "status": "pending",
+    "track": "backend",
+    "note": "Wire remaining page_size=1 tally sites to /counts/ (hr/api.ts+lib.tsx+hcapDashboard, ops/api.ts+lib.tsx, accounting sj.tsx/pv.tsx) -- backend ready; and reduce the crm-home dashboard endpoint heaviness (~12s, a 499 abort observed)."
   },
   {
     "title": "Chrome-fidelity (nav/PDM/sizes/spacing/logos)",
