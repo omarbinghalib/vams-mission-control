@@ -2039,9 +2039,9 @@
   },
   {
     "title": "PR1: GPS breadcrumb / job-tracker position backfill",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- CPU now free (post outbox-relay fix). Assess-first: additively backfill (batched INSERT, ON CONFLICT DO NOTHING, truncate=False) if a real migration miss, else document intentional thinning. Verify by source-vs-target row count.",
+    "note": "DONE -- backend 5971f356. Assess-first result: (a) job_tracker_position \"2.7% thinning\" is INTENTIONAL, not a miss -- status=4 raw GPS-poll stream (13.575M) deliberately excluded per the monolith's own ingest split; all non-4 statuses 100% exact match (target 370,638). No backfill (would regress the unpaginated history table); documented in loader with re-load cmd for future map-replay. (b) Found + fixed a GENUINE adjacent miss: LivePosition (job_tracker_liveposition) was entirely un-migrated (0 rows, no ETL spec) -> backfilled 12,756 rows additively, verified source=target count + value fidelity (lat/lng sums match, 41 employees both sides), no other table touched.",
     "started_at": "2026-07-27T09:07:56Z"
   },
   {
