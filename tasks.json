@@ -1795,7 +1795,7 @@
     "title": "Perf follow-up (non-gated): wire remaining page_size=1 tally sites to /counts/ + reduce crm-home heaviness",
     "status": "pending",
     "track": "backend",
-    "note": "Wire remaining page_size=1 tally sites to /counts/ (hr/api.ts+lib.tsx+hcapDashboard, ops/api.ts+lib.tsx, accounting sj.tsx/pv.tsx) -- backend ready; and reduce the crm-home dashboard endpoint heaviness (~12s, a 499 abort observed)."
+    "note": "EXPANDED -- wire remaining page_size=1 tally sites to /counts/ (hr/api.ts+lib.tsx+hcapDashboard, ops/api.ts+lib.tsx, accounting sj.tsx/pv.tsx) -- backend ready; PROPAGATE the generic_engine ?field__in=a,b silent-no-op fix (from crm e604de7f) to the other 8 service copies + _shared; and reduce the crm-home dashboard endpoint heaviness (~12s, a 499 abort observed). Dispatch after migration-check clears the backend tree."
   },
   {
     "title": "Chrome-fidelity (nav/PDM/sizes/spacing/logos)",
@@ -1806,9 +1806,9 @@
   },
   {
     "title": "Vendor-Bank + SO-doc-scoping",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "note": "DONE -- backend cade6108 + e604de7f, frontend ef80fc6b. Vendor Bank: model+129 rows already existed, wired CRM->accounting reader + panel, live-verified (TAMCO Gulf real bank row matches monolith). SO-doc dept-scoping: dept ids 3/85 DO exist in carved HR (earlier \"no mapping\" belief was wrong); scoped 3136->372 (340 matching monolith both sides). Fixed a real generic-engine bug: ?field__in=a,b was a silent no-op. 52 crm + 39 bff tests. MILESTONE: ALL 4 fresh non-gated lanes DONE (chrome-fidelity, Task/Dept Objectives, Prefs, Vendor-Bank+SO-doc). Source-data widgets all now real data.",
     "started_at": "2026-07-27T03:39:45Z"
   },
   {
