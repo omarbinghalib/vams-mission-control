@@ -2197,10 +2197,10 @@
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
-    "title": "FIX: ops_app RBAC",
-    "status": "in_progress",
+    "title": "FIX: ops_app RBAC (OPS-RBAC)",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- consolidated fix wave, lane 2/6. Add require_perm gate mirroring qc/crm/_shared + migrate 37 OCN grants (INSERT). Verify 403/200.",
+    "note": "DONE -- backend e2dc136b. Added ops_app/permissions.py (mirrors the other 8 services) + gated every mutating/approve action to its real monolith perm: OCN approve_department/reject via per-department OCNPermission allowlist (hod/admin/superuser bypass), OCN admin CRUD (closed a PATCH side-door), task transitions, visitor evaluate, SMS campaigns. Migrated 37/37 OCN grants (additive INSERT, verified by count+per-dept+oracle). 112/112 tests (12 new). Live: non-entitled 403 / entitled 200 / admin bypass / nonexistent 404. Note: 2 fabricated-id test artifacts (OCN #46, Task #5756, ids 9001-9099) left in local vams_ops DB from live-verify -- not real data, harmless (see cleanup task).",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
@@ -2243,5 +2243,17 @@
     "track": "backend",
     "gated": true,
     "note": "The ONLY financial-write item held (destructive-financial-write rule). Re-running the existing idempotent backfill_po_lineitem_grand_total command fixes only this 1 row (still $0.00, backfill missed it -> +$2,960.00 -> correct). Additive/idempotent but a real financial write -> queued for Omar's explicit authorization. NOT a blocking closeable gap for certification -- documented held-financial-write."
+  },
+  {
+    "title": "_shared permissions back-port: ops access_hrms + can_evaluate_visitor",
+    "status": "pending",
+    "track": "backend",
+    "note": "Minor disclosed residual, canonical hygiene not a functional gap. ops added access_hrms + can_evaluate_visitor to its LOCAL permissions.py; back-port to services/_shared/permissions.py at next shared resync (disclosed-drift convention, same as crm's copy)."
+  },
+  {
+    "title": "Cleanup: fabricated-id test artifacts in local vams_ops DB (OCN RBAC live-verify residue)",
+    "status": "pending",
+    "track": "backend",
+    "note": "2 fabricated-id test artifacts (OCN #46, Task #5756, ids 9001-9099) left in local vams_ops DB from the ops_app RBAC live-verify -- not real data, harmless. Low-priority cleanup."
   }
 ]
