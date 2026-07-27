@@ -1793,9 +1793,10 @@
   },
   {
     "title": "Perf follow-up (non-gated): wire remaining page_size=1 tally sites to /counts/ + reduce crm-home heaviness",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "EXPANDED -- wire remaining page_size=1 tally sites to /counts/ (hr/api.ts+lib.tsx+hcapDashboard, ops/api.ts+lib.tsx, accounting sj.tsx/pv.tsx) -- backend ready; PROPAGATE the generic_engine ?field__in=a,b silent-no-op fix (from crm e604de7f) to the other 8 service copies + _shared; and reduce the crm-home dashboard endpoint heaviness (~12s, a 499 abort observed). Dispatch after migration-check clears the backend tree."
+    "note": "IN PROGRESS -- wire remaining page_size=1 tally sites to /counts/ (hr/ops/accounting sj+pv); propagate generic_engine __in/counts/__ne consistency to _shared + 8 copies; reduce crm-home dashboard endpoint heaviness (~12s) via concurrent+timeout+cache like the reporting fix. After this: FINAL re-verify vs :8100 -> certify.",
+    "started_at": "2026-07-27T05:42:23Z"
   },
   {
     "title": "Chrome-fidelity (nav/PDM/sizes/spacing/logos)",
@@ -1839,9 +1840,9 @@
   },
   {
     "title": "Migration-check lane (platform/bff mobile_number 500 investigation)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "STILL RUNNING -- likely already fixed by the Prefs screen lane's TenantUser.mobile_number addition (migrated 51 rows); confirming resolved.",
+    "note": "DONE -- commit f4f0b986. Found REAL drift: platform_app 1-4 migrations behind on 4/5 tenant schemas + mobile_number column added only lazily by the profile endpoint -> login/admin 500 until a chance profile hit healed it. Shipped backfill migration 0007 (ensures columns at migrate-time for all orgs) + applied all pending across all schemas + cosmetic bff index-rename. Login now 401 not 500; 33+39 tests; migrate --check clean.",
     "started_at": "2026-07-27T05:17:58Z"
   },
   {
@@ -1849,5 +1850,11 @@
     "status": "pending",
     "track": "backend",
     "note": "No MEDIA_ROOT on the platform service; monolith's files are on unreachable NFS. Needs a media-storage decision."
+  },
+  {
+    "title": "Low-pri hardening: defensively call ensure_prefs_columns in auth/admin views",
+    "status": "pending",
+    "track": "backend",
+    "note": "Unmanaged-model pattern hardening; existing tenants already covered by the migration-check backfill migration."
   }
 ]
