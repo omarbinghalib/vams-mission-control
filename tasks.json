@@ -3,7 +3,7 @@
     "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
     "status": "in_progress",
     "track": "incident",
-    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard -- STILL OPEN. (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed (7 email + 5 name placeholders in doc; 3 email occurrences in ETL docstring), HEAD confirmed clean of personal emails/names. Kept ids/usernames (held-fix stays actionable) + shared dept mailboxes + .local seed (not personal). Password-hash snapshot stays untracked/local-only. (2) git-HISTORY purge of the original PII blob at commit 5d88350c is STILL REQUIRED (HEAD is clean but history retains it) -- an EXCLUSIVE force-push step (git-filter-repo, isolated clone, --replace-text scrub, force-push microservices-backend), to run the moment NEW-9 lands and the branch is quiescent. Sequence after NEW-9: (1) exclusive git-history purge, (2) sweep v3, (3) certify if dry.",
+    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard -- STILL OPEN. STATUS: HEAD-clean, history-purge held-for-user-auth. (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed, HEAD confirmed clean of personal emails/names; active exposure minimized. (2) git-HISTORY purge of the original PII blob at commit 5d88350c is HELD -- BLOCKED by the auto-mode classifier (force-push/history-rewrite = destructive, hard-to-reverse); not bypassed. Requires Omar's explicit authorization (see HELD-FOR-USER: PII git-history purge task). Sequence: INT-BEAT lands -> sweep v3 -> certify FUNCTIONAL zero-closeable-gaps (held git-purge + held data-writes documented, not blocking the functional cert). Incident stays open until the purge is authorized + run and verifies zero PII in history.",
     "started_at": "2026-07-27T16:26:43Z"
   },
   {
@@ -2324,16 +2324,18 @@
     "note": "DONE -- backend 47db9a63. Doc + ETL docstring scrubbed (7 email + 5 name placeholders in doc; 3 email occurrences in ETL docstring), HEAD confirmed clean of personal emails/names. Kept ids/usernames (held-fix stays actionable) + shared dept mailboxes + .local seed (not personal). Password-hash snapshot stays untracked/local-only. git-history purge of commit 5d88350c still required -- see SECURITY INCIDENT task above."
   },
   {
-    "title": "PII git-history purge (commit 5d88350c blob, exclusive force-push step)",
-    "status": "in_progress",
+    "title": "HELD-FOR-USER: PII git-history purge (commit 5d88350c blob, force-push)",
+    "status": "pending",
     "track": "incident",
-    "note": "RUNNING NOW, EXCLUSIVE + security-critical. NEW-9 landed, branch quiescent. git-filter-repo scrub of the PII strings from ALL history (blob at 5d88350c) + force-push microservices-backend + reset working repo; legacy-ui untouched. No lane should push to VAMS-backend during this window. NOTE: this rewrites commit hashes from 5d88350c onward (5d88350c/47db9a63/ca8ec8fe get new hashes) -- board's old-hash references become historical labels, that's expected. After purge: sweep v3 (loop-to-dry) -> certify if dry. SECURITY INCIDENT stays open until the purge verifies zero PII in history.",
+    "gated": true,
+    "note": "HELD -- the git-HISTORY purge dispatch was BLOCKED by the auto-mode classifier (force-push / history-rewrite = destructive, outward-facing, hard-to-reverse); not bypassed, per the hold-destructive-ops rule. Requires Omar's explicit authorization for the git push --force (or a Bash force-push permission rule). HEAD is already redacted (47db9a63) so active exposure is minimized; residual PII is only in the historical 5d88350c blob. Exact git-filter-repo procedure documented for when authorized (isolated clone, --replace-text scrub, force-push microservices-backend, legacy-ui untouched). NOTE: this will rewrite commit hashes from 5d88350c onward once run.",
     "started_at": "2026-07-27T17:26:04Z"
   },
   {
     "title": "INT-BEAT: integrations AXJAReport celery-beat has no runner",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Small follow-on, same class as NEW-9 (production_beat runner just fixed). Add an integrations beat runner."
+    "note": "DISPATCHED -- mirrors NEW-9's production_beat fix. Sequence: INT-BEAT lands -> sweep v3 (loop-to-dry) -> certify functional zero-closeable-gaps (the held git-purge + held data-writes are documented, not blocking the FUNCTIONAL cert).",
+    "started_at": "2026-07-27T17:27:55Z"
   }
 ]
