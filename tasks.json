@@ -2266,9 +2266,9 @@
   },
   {
     "title": "Capstone parity-comparison synthesis",
-    "status": "in_progress",
+    "status": "done",
     "track": "docs",
-    "note": "RUNNING -- writes the capstone deliverable: VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md (honest capability/logic/depth/complexity comparison, original VAMS 2.0 vs the new system).",
+    "note": "DONE -- committed c15e286a at VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md. Verdict: Capability ~95%, Logic ~97% (cent-verified; GL perfect exact match 989,768 rows), Depth ~93%, Complexity at-parity+architecture-premium. 8 evidence-backed 'exceeds original' cases. Honest remaining B/C/held documented. Honestly marked NEW-1..7 as 'commit-closed, re-verify pending' since sweep-v2 wasn't done at compile time -- to be flipped to confirmed once sweep-v2 returns DRY.",
     "started_at": "2026-07-27T15:07:51Z"
   }
 ]
