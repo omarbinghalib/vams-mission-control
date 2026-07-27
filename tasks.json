@@ -2381,9 +2381,16 @@
   },
   {
     "title": "Final gap-sweep-to-dry v5 (final certification gate)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- confirm NEW-12 closed live + final adversarial loop-to-dry + reconfirm held/documented backlog + GL cent-exact. Sweeps converging 7->2->2->1->? On DRY-for-closeable: FUNCTIONAL CERTIFICATION declared, capstone + board banner flipped to CERTIFIED (with held/gated/deferred items listed for Omar).",
+    "note": "AUDIT COMPLETE -- NEW-12 CONFIRMED closed live (gateway contract 401/403/400, rollback-wrapped apply-engine no-op, 14/14 tests, SPA route, designation fix propagates to 4 screens, zero residue). GL still cent-exact. Held/documented backlog unchanged. NOT dry: 1 new closeable gap (NEW-13), same apply-engine-hiding-behind-classification shape as NEW-12. This sweep was EXHAUSTIVE on all 13 periodic tasks (12 legit, NEW-13 the only gap) -- the periodic-task class should be fully covered after NEW-13. Certification stays blocked pending NEW-13 + sweep v6.",
     "started_at": "2026-07-27T21:15:51Z"
+  },
+  {
+    "title": "NEW-13: actual-overtime reconciliation (apply-engine + SPA register screen)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- HR sync_actual_ot (monolith every 30min) has no equivalent; models.py:2203-2209 admits it was deferred 'with the payroll wiring step' (never done). Data migrated (PlannedOvertime 51,287, AXOvertime 14,538, Punch, JobActivity); self-documented missing at navConfig.ts:1177; mis-rated FULL/FULL in the coverage doc. Building: port apply-engine + SPA register screen + fix the coverage-doc rating; CLASSIFY write blast-radius -> enable if informational, BUILD+HOLD if payroll-financial. Sequence: NEW-13 lands -> sweep v6 -> certify on dry-for-closeable.",
+    "started_at": "2026-07-27T21:40:41Z"
   }
 ]
