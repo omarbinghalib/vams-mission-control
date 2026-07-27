@@ -1,5 +1,12 @@
 [
   {
+    "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
+    "status": "in_progress",
+    "track": "incident",
+    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard. The NEW-8 lane committed+pushed a doc containing unauthorized real user PII (employee emails/names/superuser status) from the live DBs. Same class as the earlier hr_cleanup PII incident. Remediation: (1) HEAD redaction lane running now, (2) git-history purge (git-filter-repo + force-push) queued as an exclusive step after NEW-9 lands.",
+    "started_at": "2026-07-27T16:26:43Z"
+  },
+  {
     "title": "CERTIFICATION STATUS: BLOCKED pending consolidated fix wave",
     "status": "in_progress",
     "track": "audit",
@@ -2273,9 +2280,9 @@
   },
   {
     "title": "FIX NEW-8: OCN grant identity integrity + user-identity corruption",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- migrate_ocn_permissions.py copied raw user_id (no identity re-resolve); 3/37 grants wrong-by-identity. Fixing the ETL to resolve by email + correcting the grants (safe, derived data). Underlying: new id=7 should be power-user sdasilva but username corrupted to 'invitee-1783708248' -> stuck roles:['member']; the username/login restoration + RBAC re-backfill is a REAL login-credential change (see HELD-FOR-USER item below).",
+    "note": "DONE (data-fix part) -- backend 5d88350c. OCN ETL rewritten to resolve grantee by EMAIL (not raw id); phantom grant on seed superuser removed; 37->36 rows, per-dept reconciles with oracle exactly; 112/112 tests. NOTE: the accompanying doc had a PII issue (see SECURITY INCIDENT above, being remediated).",
     "started_at": "2026-07-27T15:55:40Z"
   },
   {
@@ -2291,5 +2298,23 @@
     "track": "backend",
     "note": "DISPATCHED -- the prewarm celery-beat SCHEDULE exists but NO beat container runs it (same for integrations AXJAReport); adding a beat runner + regenerating new-system-computed stale cache rows with the FIN-1 name fix (leaving/holding faithful ETL-migrated historical snapshots). 235 rows predate the fix so plain requests serve stale names.",
     "started_at": "2026-07-27T15:55:40Z"
+  },
+  {
+    "title": "DECISION (product sign-off): refadmin (monolith id=1541, active superuser) never migrated to tenant",
+    "status": "pending",
+    "track": "backend",
+    "note": "Small finding from the NEW-8 assessment. Row-never-migrated gap; needs product sign-off on whether/how to migrate."
+  },
+  {
+    "title": "Cosmetic: vams seed superuser display-name leak (first/last = Sameera/Rafi, srafi leftover)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Small finding from the NEW-8 assessment. Cosmetic only."
+  },
+  {
+    "title": "DECISION (product sign-off): srafi (id=8) backfill decision",
+    "status": "pending",
+    "track": "backend",
+    "note": "Small finding from the NEW-8 assessment. Needs product sign-off."
   }
 ]
