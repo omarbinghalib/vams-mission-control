@@ -2019,9 +2019,9 @@
   },
   {
     "title": "Connector-settings page (self-service Wave-3 creds)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RUNNING -- self-service settings page so the user can enter their own AI-datasheet/biometric/SMS-gateway credentials, replacing the Omar-creds gate on Wave-3 live-wire.",
+    "note": "DONE -- backend d7aa24e0 + frontend ec3efac0. Standalone connector_settings_app, Fernet-encrypted, admin-only masked reads, signed inter-service resolve, all 6 connectors wired, BioStar2 read-only preserved (NoWriteSurfaceTests untouched). Satisfies user's explicit \"API settings in a settings page for these connectors.\"",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2044,10 +2044,11 @@
     "note": "Queued behind the category-A closer wave."
   },
   {
-    "title": "Wave-2 (queued): I2 integrations closer",
-    "status": "pending",
+    "title": "I2: AXJAReport cron",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Queued behind the category-A closer wave."
+    "note": "DISPATCHED -- just unblocked by connector-settings. Assess-first: port if local-data-sourced, else document honest-empty (AX-sync is dead per I1).",
+    "started_at": "2026-07-27T09:06:35Z"
   },
   {
     "title": "Wave-2 (small follow-on): pr.tsx Documents tab #id pattern (line 813)",
@@ -2073,5 +2074,17 @@
     "status": "pending",
     "track": "backend",
     "note": "Surfaced by P2 -- same class as the earlier flagged-groups RBAC decision. Needs a mapping review to confirm/adjust the default."
+  },
+  {
+    "title": "I3: external connector credentials",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- closed via connector-settings. Self-service creds store now exists (was B/decision, now resolved)."
+  },
+  {
+    "title": "C5: Google Map on CRM Operation Locations",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- mechanism built via connector-settings; live Google Maps embed renders once the key is entered in the settings page (self-service). Was B/decision (vendor/key) -> now built; only the actual key entry is the user's, which is by design."
   }
 ]
