@@ -360,22 +360,22 @@
     "title": "Screenshot recapture on mock data (PII fix)",
     "status": "pending",
     "track": "docs",
-    "gated": true,
-    "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "gated": false,
+    "note": "De-gated -- gating reduced to ONLY the go-live cutover. Practical need superseded by the internal docs hub (done, localhost:8095, offline, in-app link); retained as backlog only if a true external/public docs publish with real screenshots is wanted later."
   },
   {
     "title": "Purge real-data screenshots from git history (frontend-redesign)",
     "status": "pending",
     "track": "docs",
-    "gated": true,
-    "note": "part of external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "gated": false,
+    "note": "De-gated -- gating reduced to ONLY the go-live cutover. Practical need superseded by the internal docs hub (done, localhost:8095, offline, in-app link); retained as backlog only if a true external/public docs publish with real screenshots is wanted later."
   },
   {
     "title": "Assemble visual doc hubs (clean screenshots) + walkthrough videos + publish",
     "status": "pending",
     "track": "docs",
-    "gated": true,
-    "note": "external docs publish -- gated on Omar's explicit OK (scope: local + private GitHub only)"
+    "gated": false,
+    "note": "De-gated -- gating reduced to ONLY the go-live cutover. Practical need superseded by the internal docs hub (done, localhost:8095, offline, in-app link); retained as backlog only if a true external/public docs publish with videos is wanted later."
   },
   {
     "title": "Phase-5 production/cloud cutover",
@@ -822,11 +822,11 @@
     "note": "Adversarial live-data parity sweep against the original, focused on CRM -- COMPLETE, no unresolved gaps outstanding."
   },
   {
-    "title": "Wave-3 live-wire: AI-datasheet + biometric + SMS gateway (needs Omar creds)",
+    "title": "Wave-3 live-wire: AI-datasheet + biometric + SMS gateway (self-service via connector-settings)",
     "status": "pending",
     "track": "backend",
-    "gated": true,
-    "note": "Blocked on Omar providing live credentials/connections for all three integrations before wiring to production."
+    "gated": false,
+    "note": "De-gated -- no longer needs Omar to hand-provide creds directly; a self-service connector-settings page is being built (see the connector-settings closer lane) so the user enters their own credentials."
   },
   {
     "title": "Deep live parity sweep: reporting",
@@ -939,11 +939,11 @@
     }
   },
   {
-    "title": "Gated post-parity: docs publish + :8012 avatar cutover",
+    "title": "Gated post-parity: :8012 avatar cutover",
     "status": "pending",
     "track": "deploy",
     "gated": true,
-    "note": "Reserved for Omar's explicit sign-off, alongside the Phase-5 production/cloud cutover."
+    "note": "Docs-publish portion is DONE (internal hub, see 'Docs publish' task) and no longer gated. Remaining :8012 avatar cutover reserved for Omar's explicit sign-off, alongside the Phase-5 production/cloud cutover -- gating is now reduced to ONLY this go-live cutover."
   },
   {
     "title": "RBAC recovery main: 31\u21927 role migration (210 users) + is_superuser gate fix + role-mgmt API",
@@ -1856,5 +1856,196 @@
     "status": "pending",
     "track": "backend",
     "note": "Unmanaged-model pattern hardening; existing tenants already covered by the migration-check backfill migration."
+  },
+  {
+    "title": "Docs publish (internal hub, local-deploy)",
+    "status": "done",
+    "track": "docs",
+    "note": "DONE -- commit 9dd789d5 (docs service) + 3cb88d82 (frontend link). Docs hub (33 docs, self-contained/offline) served internally at localhost:8095 via a new docs nginx container; in-app 'Documentation' button (local-deploy build only, gated VITE_DOCS_URL); verified live (offline, no console errors). Previously-gated item now closed."
+  },
+  {
+    "title": "Autonomous close-today run: category-A closer lanes (platform/CRM/ops/small/QC/reporting/connector-settings)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- umbrella for the parallel category-A closer lanes below (P1-P3, C1-C4, O2-O5, PU1/H1, Q1/PU2, R1/R3-R7, connector-settings). Wave-2 queued behind this: engineering E1, R2/PR2 seam, PR1 GPS, I2.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "P1: platform RBAC backfill",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "P2: platform RBAC backfill",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "P3: platform /me/ perms",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "C1: CRM closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "C2: CRM closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "C3: CRM closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "C4: CRM closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "O2: ops closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "O3: ops closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "O4: ops closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "O5: ops closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "PU1: purchasing supplier-name",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane (small).",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "H1: HR objectives",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane (small).",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "Q1: QC valve-media",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "PU2: purchasing filterset cleanup",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane (QC/purchasing wave).",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R1: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R3: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R4: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R5: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R6: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "R7: reporting closer",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING -- category-A closer lane.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "Connector-settings page (self-service Wave-3 creds)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "RUNNING -- self-service settings page so the user can enter their own AI-datasheet/biometric/SMS-gateway credentials, replacing the Omar-creds gate on Wave-3 live-wire.",
+    "started_at": "2026-07-27T07:52:08Z"
+  },
+  {
+    "title": "Wave-2 (queued): E1 engineering closer",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the category-A closer wave."
+  },
+  {
+    "title": "Wave-2 (queued): R2/PR2 reporting-production seam",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the category-A closer wave."
+  },
+  {
+    "title": "Wave-2 (queued): PR1 production GPS",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the category-A closer wave."
+  },
+  {
+    "title": "Wave-2 (queued): I2 integrations closer",
+    "status": "pending",
+    "track": "backend",
+    "note": "Queued behind the category-A closer wave."
   }
 ]
