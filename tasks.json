@@ -2107,7 +2107,7 @@
     "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
     "status": "in_progress",
     "track": "audit",
-    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end. Keep appending as more surface.",
+    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end. (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). Keep appending as more surface.",
     "started_at": "2026-07-27T09:44:34Z"
   },
   {
@@ -2147,9 +2147,15 @@
   },
   {
     "title": "Final verification: parity re-verify (crm/purchasing/qc/hr/platform+chrome)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- read-only. Verify values to the cent vs the oracle.",
+    "note": "AUDIT COMPLETE (report commit afadaf26) -- 18 PASS, 2 exceed-original, 1 GAP. NOT YET certified: one real gap found (see P2-COMPLETION, queued for a consolidated fix wave after all 4 auditors report).",
     "started_at": "2026-07-27T11:37:19Z"
+  },
+  {
+    "title": "P2-COMPLETION: migrate_rbac_roles only writes when roles are empty (137 users missing entitled direct-perm roles)",
+    "status": "pending",
+    "track": "backend",
+    "note": "REAL GAP found by the crm/purchasing/qc/hr/platform+chrome verify lane. 137 real active users never get the additional roles their DIRECT monolith perms entitle them to (e.g. jerry missing sales+hr-manager, raghunath missing hr-manager). Fix = additive UNION (add entitled direct-perm roles into existing, never remove), snapshot first, oracle-verify each added role is entitled. Additive/reversible, not a delete/overwrite. Queued for a consolidated fix wave after all 4 auditors report."
   }
 ]
