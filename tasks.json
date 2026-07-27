@@ -2259,16 +2259,37 @@
   },
   {
     "title": "Final gap-sweep-to-dry v2",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- confirm all fixes closed live + hunt any new gap -> dryness verdict. Certification greenlights once this sweep returns DRY.",
+    "note": "AUDIT COMPLETE (report scratchpad/capstone-audit/final-sweep-verify-v2.md) -- all 6 fix-wave items CONFIRMED CLOSED LIVE (also confirms the capstone doc's NEW-1..7 'commit-closed, re-verify pending' items as CONFIRMED live-closed). NOT DRY: 2 new closeable gaps found (NEW-8, NEW-9). Certification STAYS BLOCKED pending sweep v3.",
     "started_at": "2026-07-27T15:07:51Z"
   },
   {
     "title": "Capstone parity-comparison synthesis",
     "status": "done",
     "track": "docs",
-    "note": "DONE -- committed c15e286a at VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md. Verdict: Capability ~95%, Logic ~97% (cent-verified; GL perfect exact match 989,768 rows), Depth ~93%, Complexity at-parity+architecture-premium. 8 evidence-backed 'exceeds original' cases. Honest remaining B/C/held documented. Honestly marked NEW-1..7 as 'commit-closed, re-verify pending' since sweep-v2 wasn't done at compile time -- to be flipped to confirmed once sweep-v2 returns DRY.",
+    "note": "DONE -- committed c15e286a at VAMS-backend/docs/parity/FINAL-PARITY-COMPARISON.md. Verdict: Capability ~95%, Logic ~97% (cent-verified; GL perfect exact match 989,768 rows), Depth ~93%, Complexity at-parity+architecture-premium. 8 evidence-backed 'exceeds original' cases. Honest remaining B/C/held documented. NEW-1..7 'commit-closed, re-verify pending' items NOW CONFIRMED live-closed by sweep-v2 (doc note update pending). 2 new gaps (NEW-8, NEW-9) found by sweep-v2, being fixed now.",
     "started_at": "2026-07-27T15:07:51Z"
+  },
+  {
+    "title": "FIX NEW-8: OCN grant identity integrity + user-identity corruption",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- migrate_ocn_permissions.py copied raw user_id (no identity re-resolve); 3/37 grants wrong-by-identity. Fixing the ETL to resolve by email + correcting the grants (safe, derived data). Underlying: new id=7 should be power-user sdasilva but username corrupted to 'invitee-1783708248' -> stuck roles:['member']; the username/login restoration + RBAC re-backfill is a REAL login-credential change (see HELD-FOR-USER item below).",
+    "started_at": "2026-07-27T15:55:40Z"
+  },
+  {
+    "title": "HELD-FOR-USER: restore sdasilva username/login (corrupted to invitee-1783708248)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "REAL login-credential change -> HELD for user authorization (snapshot+documented), not auto-applied. Underlying user id=7 is power-user sdasilva but username was corrupted to 'invitee-1783708248', stuck at roles:['member']. Fix = restore username + RBAC re-backfill, once authorized."
+  },
+  {
+    "title": "FIX NEW-9: VS-Report stale cache + no beat runner",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- the prewarm celery-beat SCHEDULE exists but NO beat container runs it (same for integrations AXJAReport); adding a beat runner + regenerating new-system-computed stale cache rows with the FIN-1 name fix (leaving/holding faithful ETL-migrated historical snapshots). 235 rows predate the fix so plain requests serve stale names.",
+    "started_at": "2026-07-27T15:55:40Z"
   }
 ]
