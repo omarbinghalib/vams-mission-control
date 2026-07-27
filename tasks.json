@@ -2173,15 +2173,15 @@
   },
   {
     "title": "FIN-1: VS-Report account-manager names -- live regression (stale unrefreshable cache)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "REAL LIVE REGRESSION found by the financials verify lane. Live serves a stale 2025-12-25 cache-forever report with garbled composite names matching NO auth_userprofile row (worse than bare IDs); ?refresh=1 never completes (280s+). Code fix exists but is unreachable live. Fix = confirm correct name format vs oracle + invalidate/rebuild the cached report (pre-warm server-side, don't rely on gateway refresh). Shares root cause with FIN-2. Fix-wave tally: P2-COMPLETION, OPS-RBAC, FIN-1, FIN-2, FIN-3."
+    "note": "DONE -- fixed via FIX: VS-Report perf/cache/names (backend 8dd7d1d6). The \"garbled\" names were actually the CORRECT linked-Employee full names the monolith displays (resolve_user_names was missing the employee branch); fixed via hr_ro seam. The stale 2025-12-25 row is a genuine historical snapshot with already-correct names (regenerating = destructive delete -> classifier blocked -> left untouched, correct)."
   },
   {
     "title": "FIN-2: VS-Report logistics + all -- 504 on cold cache",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "REAL UX GAP found by the financials verify lane. Compute exceeds gateway proxy_read_timeout (120s); finishes+caches server-side but the first user request errors with 504. Fix = async/pre-warm generation (or optimize) so cold requests don't 504. Shares root cause with FIN-1 (slow VS-Report generation)."
+    "note": "DONE -- fixed via FIX: VS-Report perf/cache/names (backend 8dd7d1d6). Prewarm module + celery-beat(*/20) + prewarm_vs_reports cmd + narrow 700s nginx timeout on vs-report path only; cold 200 (was 504), warm 0.4-0.6s from cache."
   },
   {
     "title": "FIN-3: R7 left the old flat Accounting>GL>Trial Balance screen live alongside the new fixed tab",
@@ -2204,10 +2204,10 @@
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
-    "title": "FIX: VS-Report perf/cache/names",
-    "status": "in_progress",
+    "title": "FIX: VS-Report perf/cache/names (FIN-1 + FIN-2/NEW-2 + NEW-1)",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- consolidated fix wave, lane 3/6. Celery-beat cache-warmer (kills the cold-cache 504), correct+revalidate account-manager names (pre-warm, not gateway refresh), wire MonthlyAccountsDashboard.tsx (NEW-1). Backend rebuild; frontend tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "note": "DONE -- backend 8dd7d1d6 + frontend 2d36cce7. FIN-2: prewarm module + celery-beat(*/20) + prewarm_vs_reports cmd + narrow 700s nginx timeout on vs-report path only; cold 200 (was 504), warm 0.4-0.6s from cache. FIN-1: the \"garbled\" names were actually the CORRECT linked-Employee full names the monolith displays (resolve_user_names was missing the employee branch); fixed via hr_ro seam. The \"stale 2025-12-25\" row is a genuine historical snapshot with already-correct names (regenerating = destructive delete -> classifier blocked -> left untouched, correct). NEW-1: Monthly dashboard part-category panel now shows real inventory_data_by_type buckets. 139/139 tests. MILESTONE: all 6 fix-wave lanes DONE.",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
@@ -2233,9 +2233,10 @@
   },
   {
     "title": "FRONTEND-INTEGRATION rebuild (single frontend-web build + live verify)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "deploy",
-    "note": "TB(4)=committed 4b08e8fe, superscreen(6)=committed a04c1c5a. Still waiting on VS-Report perf/cache/names (lane 3, MonthlyAccountsDashboard edit pending). Fires once lane 3 lands: one npm build + frontend-web rebuild + live verify all frontend changes together."
+    "note": "RUNNING -- all 3 frontend lanes committed (TB 4b08e8fe, superscreen a04c1c5a, VS-Report/Monthly 2d36cce7). Brings TB + superscreen/self-service + P3 gates + Monthly part-category live together; confirms pr.tsx too. After this: final certification re-verify -> certify zero-closeable-gaps (excluding documented B/C + the held PO 1-row).",
+    "started_at": "2026-07-27T14:22:17Z"
   },
   {
     "title": "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
