@@ -1640,7 +1640,7 @@
     "title": "Reporting backend gap: monthly inventory_data_by_type comes back empty",
     "status": "pending",
     "track": "backend",
-    "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data."
+    "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data. Being closed now by the running R2/PR2 lane (engineering_ro seam)."
   },
   {
     "title": "Document-lookup (backend endpoint + frontend search screen)",
@@ -1976,45 +1976,45 @@
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R1: reporting closer",
-    "status": "in_progress",
+    "title": "R1: reporting closer (VS-Report dept builders logistics/quality/production/engineering/all)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- backend 2403ec48 + frontend 18a15351. ~2000 lines + new SyncDashboard; live-verified real values (Quality AED 308,560 NCR cost, Logistics 3,822 POs / AED 797,811.57 inventory aging). 166 tests. Follow-up (Production/Engineering builder keys) closed by R2/PR2.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R3: reporting closer",
-    "status": "in_progress",
+    "title": "R3: reporting closer (sales_activities)",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "note": "DONE -- backend 2403ec48+d4972bfa. Ported over new ops_ro seam (ops_app.Message 214,040 rows). ALSO fixed a live bug: account-manager names were 100% degrading to bare IDs across ALL VS-Reports (wrong grant column) -> now resolve.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R4: reporting closer",
-    "status": "in_progress",
-    "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "title": "R4: reporting closer (VAT 7-sheet XLSX)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- frontend 18a15351. Backend was already built (vat_export.py, box totals tie to cent), added the missing download button.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R5: reporting closer",
-    "status": "in_progress",
-    "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "title": "R5: reporting closer (P&L/BS per-account detail)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- frontend 18a15351. Backend detail views already built, added Summary/Detail toggle + PDF/XLSX export.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R6: reporting closer",
-    "status": "in_progress",
-    "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "title": "R6: reporting closer (aging CSV export)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- frontend 18a15351.",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
-    "title": "R7: reporting closer",
-    "status": "in_progress",
-    "track": "backend",
-    "note": "RUNNING -- category-A closer lane.",
+    "title": "R7: reporting closer (Trial Balance)",
+    "status": "done",
+    "track": "frontend",
+    "note": "DONE -- frontend 18a15351. Nav tab + group headers already existed; fixed 2 real gaps (blue alert-info group headers + grand-total integer ROUND_HALF_UP matching monolith).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2032,10 +2032,11 @@
     "started_at": "2026-07-27T08:34:22Z"
   },
   {
-    "title": "Wave-2 (queued): R2/PR2 reporting-production seam",
-    "status": "pending",
+    "title": "R2/PR2: engineering_ro seam",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Queued behind the category-A closer wave."
+    "note": "DISPATCHED -- final category-A lane. Also closes R1's documented follow-up (Production/Engineering builder keys need this same seam). part_main_category resolution + monthly inventory_data_by_type + Production valve/parts/tooling/so-completion keys + Engineering engg_detail_data.",
+    "started_at": "2026-07-27T10:01:17Z"
   },
   {
     "title": "PR1: GPS breadcrumb / job-tracker position backfill",
