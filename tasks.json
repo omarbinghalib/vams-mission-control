@@ -1,5 +1,11 @@
 [
   {
+    "title": "MILESTONE: ALL 26 CATEGORY-A GAPS CLOSED",
+    "status": "done",
+    "track": "audit",
+    "note": "DONE -- every category-A closer lane from the post-reboot capstone closer wave is now closed: platform P1-P3, CRM C1-C5, ops O2-O5, small PU1/H1/PU2/Q1/Q2, reporting R1/R3-R7 + R2/PR2, integrations I2/I3, production PR1, connector-settings, perf follow-up, outbox-relay busy-loop fix, docs publish. Remaining work is the exclusive Integration-finalize finale (pr.tsx #id follow-on, MEDIA-VOL fix, git-integrity audit, full-stack recreate + smoke test) before final certification; plus a small number of honestly-documented open decisions/backlog items (see pending)."
+  },
+  {
     "title": "MILESTONE: PARITY CERTIFIED",
     "status": "done",
     "track": "audit",
@@ -1638,9 +1644,9 @@
   },
   {
     "title": "Reporting backend gap: monthly inventory_data_by_type comes back empty",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Engineering-seam backend gap; frontend explicitly shows 'not available' rather than faking data. Being closed now by the running R2/PR2 lane (engineering_ro seam)."
+    "note": "DONE -- closed by R2/PR2 (same commit fb19d11f)."
   },
   {
     "title": "Document-lookup (backend endpoint + frontend search screen)",
@@ -2033,9 +2039,9 @@
   },
   {
     "title": "R2/PR2: engineering_ro seam",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- final category-A lane. Also closes R1's documented follow-up (Production/Engineering builder keys need this same seam). part_main_category resolution + monthly inventory_data_by_type + Production valve/parts/tooling/so-completion keys + Engineering engg_detail_data.",
+    "note": "DONE -- backend fb19d11f. Built engineering_ro seam (no new grant needed), resolved part_definition->PartDefinition.type + top-12/Others grouping, wired R1's remaining Production/Engineering builder keys via 3-service recursive BOM-actual-cost fold. Live-verified cent-consistent (382 valve rows, 816 parts, 82 SO-completion rows, SO0000301 ~4.32M root-BOM spot-checked); 8/8 hardcoded user lists resolved portably by name. 187/190 tests (3 pre-existing unrelated failures). MILESTONE: ALL 26 category-A gaps are now CLOSED.",
     "started_at": "2026-07-27T10:01:17Z"
   },
   {
@@ -2054,9 +2060,10 @@
   },
   {
     "title": "Wave-2 (small follow-on): pr.tsx Documents tab #id pattern (line 813)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "frontend",
-    "note": "Same #id pattern as PU1 -- wire it to read the now-available supplier_company_name (one-liner)."
+    "note": "IN PROGRESS -- part of Integration-finalize. Same #id pattern as PU1 -- wire it to read the now-available supplier_company_name (one-liner).",
+    "started_at": "2026-07-27T11:05:13Z"
   },
   {
     "title": "OUTBOX-RELAY busy-loop fix",
@@ -2091,9 +2098,10 @@
   },
   {
     "title": "Final-sweep git-integrity check (cross-lane broad-staging verification)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "audit",
-    "note": "Cross-lane broad-staging swept some ops shared-file edits into sibling commits (integrations/engineering) but byte-verified no loss (blob hashes match). Full git-integrity check to run at certification."
+    "note": "IN PROGRESS -- part of Integration-finalize (all lane commits + en.json completeness). Cross-lane broad-staging swept some ops shared-file edits into sibling commits (integrations/engineering) but byte-verified no loss (blob hashes match).",
+    "started_at": "2026-07-27T11:05:13Z"
   },
   {
     "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
@@ -2104,8 +2112,16 @@
   },
   {
     "title": "MEDIA-VOL: container MEDIA_ROOT not a persisted docker volume (real deployment defect)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "deploy",
-    "note": "MUST-FIX in the final integration step. /app/media is NOT a persisted docker volume; uploads from every service (C2 docs, Q1 valve-media, connector configs) would be LOST on container recreation. Fix: add persisted named volume(s) for media across upload-handling services in docker-compose + recreate + verify a file survives recreation. Shared-surface (compose) -- serialize as part of final integration, not concurrent with running lanes."
+    "note": "IN PROGRESS -- part of Integration-finalize. /app/media is NOT a persisted docker volume; uploads from every service (C2 docs, Q1 valve-media, connector configs) would be LOST on container recreation. Fix: add persisted named volume(s) for media across upload-handling services in docker-compose + recreate + verify a file survives recreation.",
+    "started_at": "2026-07-27T11:05:13Z"
+  },
+  {
+    "title": "Integration-finalize (exclusive finale)",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "RUNNING, EXCLUSIVE -- pr.tsx #id follow-on + MEDIA-VOL persisted-media volume fix + git-integrity audit (all lane commits + en.json complete) + full-stack recreate + smoke test. This is the final step before certification.",
+    "started_at": "2026-07-27T11:05:13Z"
   }
 ]
