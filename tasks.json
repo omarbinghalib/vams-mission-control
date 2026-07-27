@@ -1799,9 +1799,9 @@
   },
   {
     "title": "Chrome-fidelity (nav/PDM/sizes/spacing/logos)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "note": "DONE -- commit 1d422447. ROOT CAUSE of off sizes + squished menus: Tailwind border-box vs legacy content-box; restored content-box for .vams-legacy -> nav rows 20-28px->38px, buttons to exact original dims (matches :8100). Fixed duplicate menu items (superuser rendered both {% if/else %} branches -> 38->37 top-level, matches :8100) + 2 header button colors. PDM verified CORRECT (original _menubar.html groups PDM under the 'Engineering'-labeled group; SPA matches; full nav tree now diffs identical to :8100). Logos: none actually missing (bin-ghalib + VBG-intech pixel-identical). tsc clean, rebuilt+live-verified.",
     "started_at": "2026-07-27T03:39:45Z"
   },
   {
@@ -1813,9 +1813,9 @@
   },
   {
     "title": "Task/Dept Objectives",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED fresh onto the clean post-reboot tree.",
+    "note": "DONE -- backend e58158bf + frontend 12d1a7ec. Ported DepartmentObjective model, additive ETL migrated 86/86 rows (0 orphans vs 2032 already-carved task links), new /ops/department-objectives/widget/ endpoint, home-dashboard widget wired with monolith-exact scoping. Live-verified to the row (Sales-and-Marketing obj = 21 pending/37 completed). Note: the home dashboard's \"Sales\" dept genuinely has 0 objectives, so its Objectives section shows a real empty state. 92/92 ops tests.",
     "started_at": "2026-07-27T03:39:45Z"
   },
   {
@@ -1824,5 +1824,24 @@
     "track": "frontend",
     "note": "DISPATCHED fresh onto the clean post-reboot tree.",
     "started_at": "2026-07-27T03:39:45Z"
+  },
+  {
+    "title": "Backend follow-up: transient platform/bff 500 'mobile_number does not exist'",
+    "status": "pending",
+    "track": "backend",
+    "note": "Flagged by the chrome-fidelity lane; a migration-check lane is dispatching now to investigate."
+  },
+  {
+    "title": "Backend follow-up: /me/ doesn't surface 3 pseudo-attrs (has_doc_lookup_perm, is_superscreen_allowed, is_not_hod_substitute)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Flagged by the chrome-fidelity lane; superuser-bypassed for now."
+  },
+  {
+    "title": "Migration-check lane (platform/bff mobile_number 500 investigation)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- investigating the transient platform/bff 500 'mobile_number does not exist'.",
+    "started_at": "2026-07-27T05:17:58Z"
   }
 ]
