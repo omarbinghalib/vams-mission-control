@@ -2332,10 +2332,17 @@
     "started_at": "2026-07-27T17:26:04Z"
   },
   {
-    "title": "INT-BEAT: integrations AXJAReport celery-beat has no runner",
-    "status": "in_progress",
+    "title": "INT-BEAT: integrations AXJAReport beat runner",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- mirrors NEW-9's production_beat fix. Sequence: INT-BEAT lands -> sweep v3 (loop-to-dry) -> certify functional zero-closeable-gaps (the held git-purge + held data-writes are documented, not blocking the FUNCTIONAL cert).",
+    "note": "DONE -- backend 4f6306b6. Found integrations had NO celery worker at all (tasks ran eager-inline); added run_worker.py + run_beat.py + integrations_worker + integrations_beat + queue routing fix. Live-verified end-to-end (beat->worker->AXJAReport succeeded, recurring, rows created additive). Stale integrations image rebuilt.",
     "started_at": "2026-07-27T17:27:55Z"
+  },
+  {
+    "title": "Final gap-sweep-to-dry v3 (certification gate)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING, adversarial round 3 -- confirms NEW-8/NEW-9/INT-BEAT closed live + hunts any remaining gap + confirms the held/documented items are correctly still-open. Verdict DRY or NOT-DRY. On DRY: FUNCTIONAL certification declared (all closeable gaps closed; held git-purge + held data-writes + documented B/C are the only open items, all queued for Omar) + capstone doc's re-verify-pending flipped to confirmed + board banner set to CERTIFIED (with held/gated items listed).",
+    "started_at": "2026-07-27T17:53:47Z"
   }
 ]
