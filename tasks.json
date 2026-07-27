@@ -1,5 +1,12 @@
 [
   {
+    "title": "CERTIFICATION STATUS: BLOCKED pending consolidated fix wave",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "All 4 final-verify lanes complete (crm/purchasing/qc/hr/platform+chrome, ops/production/engineering, financials, gap-sweep-to-dry): 19/26 category-A gaps fully closed, 5 partial, 7 new/refined closeable gaps found. Consolidated 6-lane fix wave dispatched (P2/RBAC, ops_app RBAC, VS-Report perf/cache/names, Trial Balance dedup, PO $27M assess, superscreen assess/port) + a follow-on single frontend-integration rebuild. Certification will NOT be declared until the fix wave lands and re-verify passes.",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
     "title": "MILESTONE: ALL 26 CATEGORY-A GAPS CLOSED",
     "status": "done",
     "track": "audit",
@@ -2126,9 +2133,9 @@
   },
   {
     "title": "Final verification: gap-sweep-to-dry",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING -- read-only. Re-confirms all 26 category-A closes live + hunts any new closeable gap. Certification follows if dry.",
+    "note": "AUDIT COMPLETE (report at scratchpad/capstone-audit/final-sweep-verify.md) -- NOT dry: 19/26 fully closed, 5 partial, 7 new/refined closeable gaps. All 4 verify lanes now complete; consolidated fix wave dispatched (see below). Certification BLOCKED until the fix wave + re-verify pass.",
     "started_at": "2026-07-27T11:37:19Z"
   },
   {
@@ -2181,5 +2188,47 @@
     "status": "pending",
     "track": "frontend",
     "note": "Lower severity, found by the financials verify lane. Fix = remove/redirect the stale duplicate Accounting>GL>Trial Balance screen (or apply R7's fix to both)."
+  },
+  {
+    "title": "FIX: Platform RBAC + /me/ (P2 additive union + P2-unmapped + P3 NEW-7)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- consolidated fix wave, lane 1/6 (disjoint by service). P2 additive union (137 users, snapshot+oracle-verify, never removes), P2-unmapped (abdel_karim: map if clear else document ambiguous), P3 add 3 booleans to BFF MeView (NEW-7).",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "FIX: ops_app RBAC",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- consolidated fix wave, lane 2/6. Add require_perm gate mirroring qc/crm/_shared + migrate 37 OCN grants (INSERT). Verify 403/200.",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "FIX: VS-Report perf/cache/names",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- consolidated fix wave, lane 3/6. Celery-beat cache-warmer (kills the cold-cache 504), correct+revalidate account-manager names (pre-warm, not gateway refresh), wire MonthlyAccountsDashboard.tsx (NEW-1). Backend rebuild; frontend tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "FIX: Trial Balance dedup",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- consolidated fix wave, lane 4/6. Make the reachable Accounting>GL TB the single fixed one, remove the orphan duplicate. tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "ASSESS: PO $27M grand_total_price divergence",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "DISPATCHED -- consolidated fix wave, lane 5/6. Read-only assess correction-vs-error; if a corrective FINANCIAL UPDATE is needed it will be HELD for explicit user authorization (destructive-financial-write rule).",
+    "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "ASSESS/PORT: superscreen kiosk + login-redirect (NEW-6)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- consolidated fix wave, lane 6/6. Also wires P3 frontend consumers. Assess-first: port if real source else honest-empty. tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "started_at": "2026-07-27T13:09:51Z"
   }
 ]
