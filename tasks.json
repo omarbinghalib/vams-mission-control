@@ -2340,9 +2340,23 @@
   },
   {
     "title": "Final gap-sweep-to-dry v3 (certification gate)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING, adversarial round 3 -- confirms NEW-8/NEW-9/INT-BEAT closed live + hunts any remaining gap + confirms the held/documented items are correctly still-open. Verdict DRY or NOT-DRY. On DRY: FUNCTIONAL certification declared (all closeable gaps closed; held git-purge + held data-writes + documented B/C are the only open items, all queued for Omar) + capstone doc's re-verify-pending flipped to confirmed + board banner set to CERTIFIED (with held/gated items listed).",
+    "note": "AUDIT COMPLETE (report scratchpad/capstone-audit/final-sweep-verify-v3.md) -- NEW-8/NEW-9/INT-BEAT re-confirmed closed live (independent per-row/content evidence); GL still cent-exact (989,768 rows); held/documented items all unchanged; NO regressions. NOT DRY: 2 new gaps found, SAME bug class (registered beat schedule with no beat container), systemic across services -- NEW-10 (CRM), NEW-11 (HR). Certification STAYS BLOCKED pending the system-wide fix + sweep v4.",
     "started_at": "2026-07-27T17:53:47Z"
+  },
+  {
+    "title": "SYSTEM-WIDE beat/cron audit + fix (NEW-10 CRM + NEW-11 HR + all 12 services)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED -- root cause: NEW-9/INT-BEAT fixed the missing-beat-container class for only 2 of 12 services. ONE comprehensive lane across all 12: add missing beat/worker/run_*.py/queue-routing; port missing monolith crons w/ real source. CRITICAL classification applied: additive-safe crons (CRM crm-expiring-docs-weekly notifications, NEW-10, 64 real legal-doc rows) ENABLED+verified. NEW-11 (HR daily leave-accrual, update_leave_tracker_data, monolith crontab 4:30) is a BULK WRITE to real employee entitlement balances -> BUILD+verify logic but HOLD the enable/bulk-run for user auth (snapshot+documented, see HELD-FOR-USER item). Sequence: this lane lands -> sweep v4 (should be dry on the beat class) -> certify.",
+    "started_at": "2026-07-27T18:29:43Z"
+  },
+  {
+    "title": "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave balances)",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "LeaveTracker materially stale (225 rows untouched 24h, oldest 2016); Leave Balances screen reads stale value. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), but this is a BULK WRITE to real employee entitlement balances -> nightly enable/first-run awaiting Omar's explicit authorization."
   }
 ]
