@@ -2211,10 +2211,10 @@
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
-    "title": "FIX: Trial Balance dedup",
-    "status": "in_progress",
+    "title": "FIX: Trial Balance dedup (FIN-3/NEW-3)",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- consolidated fix wave, lane 4/6. Make the reachable Accounting>GL TB the single fixed one, remove the orphan duplicate. tsc-only (single frontend-web rebuild happens in the later integration lane).",
+    "note": "DONE -- frontend 4b08e8fe. Applied R7 polish (grouped alert-info headers + subtotals + grand-total integer ROUND_HALF_UP matching accounts/views.py:493-494) to the REACHABLE gl.tsx TB; deleted orphan reporting/trialBalance.tsx; redirected old route. Exactly one reachable fixed TB now. tsc clean. NOTE: frontend edit committed but not yet built into frontend-web -- goes live at the pending frontend-integration rebuild.",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
@@ -2230,5 +2230,11 @@
     "track": "backend",
     "note": "DISPATCHED -- consolidated fix wave, lane 6/6. Also wires P3 frontend consumers. Assess-first: port if real source else honest-empty. tsc-only (single frontend-web rebuild happens in the later integration lane).",
     "started_at": "2026-07-27T13:09:51Z"
+  },
+  {
+    "title": "FRONTEND-INTEGRATION rebuild (single frontend-web build + live verify)",
+    "status": "pending",
+    "track": "deploy",
+    "note": "Waiting on the VS-Report perf/cache/names (lane 3) and superscreen+P3 (lane 6) frontend edits to land -- Trial Balance dedup (lane 4) frontend edit already committed and waiting on this same rebuild. One npm build + frontend-web rebuild + live verify all frontend changes together."
   }
 ]
