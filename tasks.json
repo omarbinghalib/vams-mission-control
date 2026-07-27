@@ -2038,10 +2038,11 @@
     "note": "Queued behind the category-A closer wave."
   },
   {
-    "title": "Wave-2 (queued): PR1 production GPS",
-    "status": "pending",
+    "title": "PR1: GPS breadcrumb / job-tracker position backfill",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Queued behind the category-A closer wave."
+    "note": "DISPATCHED -- CPU now free (post outbox-relay fix). Assess-first: additively backfill (batched INSERT, ON CONFLICT DO NOTHING, truncate=False) if a real migration miss, else document intentional thinning. Verify by source-vs-target row count.",
+    "started_at": "2026-07-27T09:07:56Z"
   },
   {
     "title": "I2: AXJAReport cron",
@@ -2058,9 +2059,9 @@
   },
   {
     "title": "OUTBOX-RELAY busy-loop fix",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- real active perf defect surfaced by the perf lane: 6 relay containers pegged 80-107% CPU in a tight shipped=0 poll loop, no backoff. Add idle sleep, rebuild relays, verify CPU drops.",
+    "note": "DONE -- backend 13c78bec. Root cause was per-tick Django cold-start (~11-13s CPU x2/tick/relay), not a missing sleep. Fixed to boot-once/loop-in-process with idle backoff. CPU 80-107% -> 0-5.6% sustained across all 7 relays; shipping verified end-to-end (synthetic row shipped+cleaned, no real data touched). Applied to all 8 relay copies.",
     "started_at": "2026-07-27T08:34:22Z"
   },
   {
