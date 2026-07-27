@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-27T23:02:04Z",
-  "heartbeat_at": "2026-07-27T23:02:04Z",
-  "last_activity": "2026-07-27T23:02:04Z",
+  "updated": "2026-07-27T23:04:06Z",
+  "heartbeat_at": "2026-07-27T23:04:06Z",
+  "last_activity": "2026-07-27T23:04:14Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -9,14 +9,14 @@
     "cache_read_tokens": 6267974779,
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
-    "sessions": 16,
-    "live_sessions": 2,
+    "sessions": 17,
+    "live_sessions": 4,
     "transcript_sessions": 12,
-    "subagent_sessions": 4,
-    "workers": 5,
-    "live_workers": 2,
+    "subagent_sessions": 5,
+    "workers": 6,
+    "live_workers": 4,
     "stopped_workers": 0,
-    "current_workers": 5,
+    "current_workers": 6,
     "history_workers": 553,
     "recent_window_min": 120
   },
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T23:02:04Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-27T23:03:56Z",
+      "out_age_min": 0.2,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -49,13 +49,59 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T23:02:04Z",
+      "out_last_active": "2026-07-27T23:02:30Z",
+      "out_age_min": 1.6,
+      "log_bytes": 1733020,
+      "output_tokens": 155689,
+      "cache_read_tokens": 109932566,
+      "cache_creation_tokens": 802178,
+      "msgs": 462,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Persistent mission-control updater",
+      "role": "mission-control",
+      "branch": "frontend-redesign",
+      "focus": "The heartbeat (freshness timestamp + stats) is now self-sustaining via the repaired scheduled task; YOUR job is to keep the TASK CONTENT (done vs in-progress vs pending) accurate b",
+      "agent_id": "ad03536fbeb860646",
+      "short_id": "ad03536f",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 25426.5,
+      "out_last_active": "2026-07-27T23:04:14Z",
       "out_age_min": 0.0,
-      "log_bytes": 1723201,
-      "output_tokens": 152975,
-      "cache_read_tokens": 109161505,
-      "cache_creation_tokens": 800420,
-      "msgs": 460,
+      "log_bytes": 3518187,
+      "output_tokens": 307698,
+      "cache_read_tokens": 393308631,
+      "cache_creation_tokens": 41125827,
+      "msgs": 1343,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Sweep v6 (final certification gate)",
+      "role": "worker",
+      "branch": null,
+      "focus": "FINAL certification sweep ROUND 6.",
+      "agent_id": "a03dbbee2088bbdba",
+      "short_id": "a03dbbee",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-27T23:03:54Z",
+      "out_age_min": 0.2,
+      "log_bytes": 15435,
+      "output_tokens": 617,
+      "cache_read_tokens": 47195,
+      "cache_creation_tokens": 48502,
+      "msgs": 6,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -73,35 +119,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T21:14:22Z",
-      "out_age_min": 107.7,
+      "out_age_min": 109.7,
       "log_bytes": 1734642,
       "output_tokens": 127020,
       "cache_read_tokens": 100569556,
       "cache_creation_tokens": 1164936,
       "msgs": 409,
-      "tokens_carried": false,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Persistent mission-control updater",
-      "role": "mission-control",
-      "branch": "frontend-redesign",
-      "focus": "The heartbeat (freshness timestamp + stats) is now self-sustaining via the repaired scheduled task; YOUR job is to keep the TASK CONTENT (done vs in-progress vs pending) accurate b",
-      "agent_id": "ad03536fbeb860646",
-      "short_id": "ad03536f",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 25424.4,
-      "out_last_active": "2026-07-27T21:41:48Z",
-      "out_age_min": 80.3,
-      "log_bytes": 3500059,
-      "output_tokens": 305563,
-      "cache_read_tokens": 391077590,
-      "cache_creation_tokens": 40008757,
-      "msgs": 1337,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -119,7 +142,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T21:38:17Z",
-      "out_age_min": 83.8,
+      "out_age_min": 85.8,
       "log_bytes": 634207,
       "output_tokens": 57016,
       "cache_read_tokens": 14750538,
@@ -141,7 +164,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-27T23:02:04Z",
+      "last_active": "2026-07-27T23:04:17Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -158,7 +181,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 26837.6,
+      "age_min": 26839.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -173,7 +196,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 35660.7,
+      "age_min": 35662.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -188,7 +211,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29790.7,
+      "age_min": 29792.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -203,7 +226,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 29563.8,
+      "age_min": 29565.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -218,7 +241,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 25471.4,
+      "age_min": 25473.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -233,7 +256,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 26947.0,
+      "age_min": 26949.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -248,7 +271,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 25631.4,
+      "age_min": 25633.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -263,7 +286,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 29744.6,
+      "age_min": 29746.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -278,7 +301,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29790.7,
+      "age_min": 29792.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -293,7 +316,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 36366.0,
+      "age_min": 36368.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -308,7 +331,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 36383.4,
+      "age_min": 36385.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -319,16 +342,50 @@
       "full_id": "a819118b6e2dce522",
       "group": "worker",
       "group_label": "NEW-13: actual-overtime reconciliation",
-      "output_tokens": 152975,
-      "cache_read_tokens": 109161505,
-      "cache_creation_tokens": 800420,
-      "msgs": 460,
-      "last_active": "2026-07-27T23:02:04Z",
+      "output_tokens": 155689,
+      "cache_read_tokens": 109932566,
+      "cache_creation_tokens": 802178,
+      "msgs": 462,
+      "last_active": "2026-07-27T23:02:30Z",
+      "age_min": 1.6,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 1733020,
+      "recent": true
+    },
+    {
+      "id": "ad03536f",
+      "full_id": "ad03536fbeb860646",
+      "group": "mission-control",
+      "group_label": "Persistent mission-control updater",
+      "output_tokens": 307698,
+      "cache_read_tokens": 393308631,
+      "cache_creation_tokens": 41125827,
+      "msgs": 1343,
+      "last_active": "2026-07-27T23:04:14Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1723201,
+      "log_bytes": 3518187,
+      "recent": true
+    },
+    {
+      "id": "a03dbbee",
+      "full_id": "a03dbbee2088bbdba",
+      "group": "worker",
+      "group_label": "Sweep v6 (final certification gate)",
+      "output_tokens": 617,
+      "cache_read_tokens": 47195,
+      "cache_creation_tokens": 48502,
+      "msgs": 6,
+      "last_active": "2026-07-27T23:03:54Z",
+      "age_min": 0.2,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 15435,
       "recent": true
     },
     {
@@ -341,28 +398,11 @@
       "cache_creation_tokens": 1164936,
       "msgs": 409,
       "last_active": "2026-07-27T21:14:22Z",
-      "age_min": 107.7,
+      "age_min": 109.7,
       "live": false,
       "status": "idle",
       "subagent": true,
       "log_bytes": 1734642,
-      "recent": true
-    },
-    {
-      "id": "ad03536f",
-      "full_id": "ad03536fbeb860646",
-      "group": "mission-control",
-      "group_label": "Persistent mission-control updater",
-      "output_tokens": 305563,
-      "cache_read_tokens": 391077590,
-      "cache_creation_tokens": 40008757,
-      "msgs": 1337,
-      "last_active": "2026-07-27T21:41:48Z",
-      "age_min": 80.3,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 3500059,
       "recent": true
     },
     {
@@ -375,7 +415,7 @@
       "cache_creation_tokens": 365457,
       "msgs": 181,
       "last_active": "2026-07-27T21:38:17Z",
-      "age_min": 83.8,
+      "age_min": 85.8,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -394,32 +434,32 @@
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
-    "overall_pct": 86,
+    "overall_pct": 85,
     "remaining_hours": [
-      76,
-      152
+      80,
+      160
     ],
     "remaining_sessions": [
-      20,
-      40
+      21,
+      43
     ],
     "remaining_hours_autonomous": [
-      62,
-      124
+      65,
+      130
     ],
     "remaining_sessions_autonomous": [
       17,
-      33
+      35
     ],
     "remaining_hours_gated": [
-      14,
-      27
+      15,
+      30
     ],
     "remaining_sessions_gated": [
       4,
-      7
+      8
     ],
-    "gated_open": 9,
+    "gated_open": 10,
     "gated_titles": [
       "DECISION (awaiting Omar): rotate leaked credentials found in original settings.py (AX/SMS/",
       "Run ALTER DATABASE ... SET search_path='vams,public' on 7 DBs",
@@ -429,20 +469,21 @@
       "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
       "HELD-FOR-USER: restore sdasilva username/login (corrupted to invitee-1783708248)",
       "HELD-FOR-USER: PII git-history purge (commit 5d88350c blob, force-push)",
-      "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave b"
+      "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave b",
+      "HELD-FOR-USER-AUTH: NEW-13 actual-OT sync enable"
     ],
     "tracks": [
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 75,
+        "pct": 74,
         "remaining_hours": [
-          50,
-          99
+          52,
+          104
         ],
         "remaining_sessions": [
-          13,
-          26
+          14,
+          28
         ],
         "weight": 1
       },
@@ -463,10 +504,10 @@
       {
         "track": "deploy",
         "label": "Deployment",
-        "pct": 55,
+        "pct": 50,
         "remaining_hours": [
-          7,
-          14
+          8,
+          16
         ],
         "remaining_sessions": [
           2,
@@ -480,7 +521,7 @@
         "pct": 86,
         "remaining_hours": [
           8,
-          15
+          16
         ],
         "remaining_sessions": [
           2,
@@ -560,12 +601,12 @@
       }
     ],
     "shipped": {
-      "done": 298,
-      "total": 353,
+      "done": 299,
+      "total": 357,
       "pct": 84
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (298/353 tasks done=84%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 9 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (299/357 tasks done=84%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 10 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
@@ -1000,68 +1041,17 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 41,
-        "commits_7d": 217
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 0
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "be35290d",
-        "at": "2026-07-28T03:01:15+04:00",
-        "subject": "docs: correct honest-accuracy mis-rating on the overtime row (coverage-crmhropsx.md:53)",
-        "track": "backend"
-      },
-      {
-        "hash": "c25ef7f0",
-        "at": "2026-07-28T02:29:09+04:00",
-        "subject": "hr: close NEW-13 -- actual-overtime punch-reconciliation apply-engine",
-        "track": "backend"
-      },
-      {
-        "hash": "0c2b7ad8",
-        "at": "2026-07-28T00:39:59+04:00",
-        "subject": "hr: close NEW-12 -- Employee Transfer Tool schedule + apply-engine",
-        "track": "backend"
-      },
-      {
-        "hash": "be8ab362",
-        "at": "2026-07-27T23:20:13+04:00",
-        "subject": "crm+hr/celery: close NEW-10 + NEW-11 -- systemic beat/queue infra gap (sweep v3)",
-        "track": "backend"
-      },
-      {
-        "hash": "4f6306b6",
-        "at": "2026-07-27T21:51:08+04:00",
-        "subject": "integrations/celery: close INT-BEAT -- run the daily AX JA Report beat schedule for real (follow-on to NEW-9)",
-        "track": "backend"
-      },
-      {
-        "hash": "ca8ec8fe",
-        "at": "2026-07-27T21:21:59+04:00",
-        "subject": "production/celery: close NEW-9 -- run the VS-Report prewarm beat schedule for real, propagate FIN-1 name fix into cache",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
