@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-27T17:50:01Z",
-  "heartbeat_at": "2026-07-27T17:50:01Z",
-  "last_activity": "2026-07-27T17:49:58Z",
+  "updated": "2026-07-27T17:51:59Z",
+  "heartbeat_at": "2026-07-27T17:51:59Z",
+  "last_activity": "2026-07-27T17:51:52Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -9,15 +9,15 @@
     "cache_read_tokens": 6267974779,
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
-    "sessions": 18,
+    "sessions": 17,
     "live_sessions": 2,
     "transcript_sessions": 12,
-    "subagent_sessions": 6,
-    "workers": 7,
+    "subagent_sessions": 5,
+    "workers": 6,
     "live_workers": 2,
     "stopped_workers": 0,
-    "current_workers": 7,
-    "history_workers": 545,
+    "current_workers": 6,
+    "history_workers": 546,
     "recent_window_min": 120
   },
   "workers": [
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T17:49:58Z",
+      "out_last_active": "2026-07-27T17:51:52Z",
       "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,40 +49,17 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-27T17:49:58Z",
+      "out_last_active": "2026-07-27T17:51:52Z",
       "out_age_min": 0.1,
-      "log_bytes": 484629,
-      "output_tokens": 27187,
-      "cache_read_tokens": 10916671,
-      "cache_creation_tokens": 229612,
-      "msgs": 160,
+      "log_bytes": 533053,
+      "output_tokens": 31515,
+      "cache_read_tokens": 13024391,
+      "cache_creation_tokens": 239822,
+      "msgs": 180,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
-      "recent": true
-    },
-    {
-      "name": "Final gap-sweep v2 (confirm dry)",
-      "role": "worker",
-      "branch": null,
-      "focus": "FINAL loop-to-dry confirmation sweep (round 2) over the fully-fixed VAMS system.",
-      "agent_id": "a71691ba11ef10444",
-      "short_id": "a71691ba",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
-      "out_last_active": "2026-07-27T15:51:12Z",
-      "out_age_min": 118.8,
-      "log_bytes": 1175498,
-      "output_tokens": 88724,
-      "cache_read_tokens": 47410452,
-      "cache_creation_tokens": 610605,
-      "msgs": 315,
-      "tokens_carried": true,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
       "recent": true
     },
     {
@@ -96,7 +73,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T16:19:52Z",
-      "out_age_min": 90.2,
+      "out_age_min": 92.1,
       "log_bytes": 621765,
       "output_tokens": 80280,
       "cache_read_tokens": 11902472,
@@ -119,7 +96,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T17:23:00Z",
-      "out_age_min": 27.0,
+      "out_age_min": 29.0,
       "log_bytes": 1041429,
       "output_tokens": 87058,
       "cache_read_tokens": 37189747,
@@ -138,17 +115,17 @@
       "focus": "The heartbeat (freshness timestamp + stats) is now self-sustaining via the repaired scheduled task; YOUR job is to keep the TASK CONTENT (done vs in-progress vs pending) accurate b",
       "agent_id": "ad03536fbeb860646",
       "short_id": "ad03536f",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 25114.3,
       "out_last_active": "2026-07-27T17:29:50Z",
-      "out_age_min": 20.2,
+      "out_age_min": 22.2,
       "log_bytes": 3256778,
       "output_tokens": 288173,
       "cache_read_tokens": 341410292,
       "cache_creation_tokens": 33508856,
       "msgs": 1233,
-      "tokens_carried": true,
+      "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -165,13 +142,13 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-27T16:30:42Z",
-      "out_age_min": 79.3,
+      "out_age_min": 81.3,
       "log_bytes": 236269,
       "output_tokens": 26356,
       "cache_read_tokens": 2972529,
       "cache_creation_tokens": 328079,
       "msgs": 58,
-      "tokens_carried": true,
+      "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -187,8 +164,8 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-27T17:50:45Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-27T17:51:52Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -204,7 +181,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 26525.6,
+      "age_min": 26527.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -219,7 +196,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 35348.6,
+      "age_min": 35350.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -234,7 +211,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29478.7,
+      "age_min": 29480.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -249,7 +226,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 29251.7,
+      "age_min": 29253.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -264,7 +241,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 25159.3,
+      "age_min": 25161.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -279,7 +256,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 26634.9,
+      "age_min": 26636.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -294,7 +271,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 25319.4,
+      "age_min": 25321.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -309,7 +286,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 29432.6,
+      "age_min": 29434.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -324,7 +301,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29478.7,
+      "age_min": 29480.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -339,7 +316,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 36053.9,
+      "age_min": 36055.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -354,7 +331,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 36071.4,
+      "age_min": 36073.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -365,33 +342,16 @@
       "full_id": "a0804d036246476ff",
       "group": "worker",
       "group_label": "INT-BEAT: integrations beat runner",
-      "output_tokens": 27187,
-      "cache_read_tokens": 10916671,
-      "cache_creation_tokens": 229612,
-      "msgs": 160,
-      "last_active": "2026-07-27T17:49:58Z",
+      "output_tokens": 31515,
+      "cache_read_tokens": 13024391,
+      "cache_creation_tokens": 239822,
+      "msgs": 180,
+      "last_active": "2026-07-27T17:51:52Z",
       "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 484629,
-      "recent": true
-    },
-    {
-      "id": "a71691ba",
-      "full_id": "a71691ba11ef10444",
-      "group": "worker",
-      "group_label": "Final gap-sweep v2 (confirm dry)",
-      "output_tokens": 88724,
-      "cache_read_tokens": 47410452,
-      "cache_creation_tokens": 610605,
-      "msgs": 315,
-      "last_active": "2026-07-27T15:51:12Z",
-      "age_min": 118.8,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1175498,
+      "log_bytes": 533053,
       "recent": true
     },
     {
@@ -404,7 +364,7 @@
       "cache_creation_tokens": 366884,
       "msgs": 123,
       "last_active": "2026-07-27T16:19:52Z",
-      "age_min": 90.2,
+      "age_min": 92.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -421,7 +381,7 @@
       "cache_creation_tokens": 991153,
       "msgs": 325,
       "last_active": "2026-07-27T17:23:00Z",
-      "age_min": 27.0,
+      "age_min": 29.0,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -438,7 +398,7 @@
       "cache_creation_tokens": 33508856,
       "msgs": 1233,
       "last_active": "2026-07-27T17:29:50Z",
-      "age_min": 20.2,
+      "age_min": 22.2,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -455,7 +415,7 @@
       "cache_creation_tokens": 328079,
       "msgs": 58,
       "last_active": "2026-07-27T16:30:42Z",
-      "age_min": 79.3,
+      "age_min": 81.3,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -465,12 +425,12 @@
   ],
   "total_tokens": 14558747,
   "history": {
-    "workers": 545,
+    "workers": 546,
     "by_status": {
-      "idle": 533,
+      "idle": 534,
       "stopped": 12
     },
-    "last_active": "2026-07-27T15:12:45Z",
+    "last_active": "2026-07-27T15:51:12Z",
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
@@ -652,9 +612,9 @@
       {
         "name": "vams_accounting",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8008",
         "up": true
       },
@@ -697,9 +657,9 @@
       {
         "name": "vams_crm",
         "state": "running",
-        "status": "Up 5 hours",
+        "status": "Up 6 hours",
         "health": "none",
-        "uptime": "5 hours",
+        "uptime": "6 hours",
         "ports": "8005",
         "up": true
       },
@@ -715,36 +675,36 @@
       {
         "name": "vams_docs",
         "state": "running",
-        "status": "Up 11 hours",
+        "status": "Up 12 hours",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "12 hours",
         "ports": "8095",
         "up": true
       },
       {
         "name": "vams_engineering",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8006",
         "up": true
       },
       {
         "name": "vams_engineering_relay",
         "state": "running",
-        "status": "Up 8 hours",
+        "status": "Up 9 hours",
         "health": "none",
-        "uptime": "8 hours",
+        "uptime": "9 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering_worker",
         "state": "running",
-        "status": "Up 8 hours",
+        "status": "Up 9 hours",
         "health": "none",
-        "uptime": "8 hours",
+        "uptime": "9 hours",
         "ports": "",
         "up": true
       },
@@ -769,9 +729,9 @@
       {
         "name": "vams_hr",
         "state": "running",
-        "status": "Up 9 hours",
+        "status": "Up 10 hours",
         "health": "none",
-        "uptime": "9 hours",
+        "uptime": "10 hours",
         "ports": "8004",
         "up": true
       },
@@ -796,10 +756,28 @@
       {
         "name": "vams_integrations",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 8 minutes",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "8 minutes",
         "ports": "8010",
+        "up": true
+      },
+      {
+        "name": "vams_integrations_beat",
+        "state": "running",
+        "status": "Up 2 minutes",
+        "health": "none",
+        "uptime": "2 minutes",
+        "ports": "",
+        "up": true
+      },
+      {
+        "name": "vams_integrations_worker",
+        "state": "running",
+        "status": "Up 2 minutes",
+        "health": "none",
+        "uptime": "2 minutes",
+        "ports": "",
         "up": true
       },
       {
@@ -859,45 +837,45 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 10 minutes",
+        "status": "Up 32 minutes",
         "health": "none",
-        "uptime": "10 minutes",
+        "uptime": "32 minutes",
         "ports": "8007",
         "up": true
       },
       {
         "name": "vams_production_beat",
         "state": "running",
-        "status": "Up 10 minutes",
+        "status": "Up 32 minutes",
         "health": "none",
-        "uptime": "10 minutes",
+        "uptime": "32 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_relay",
         "state": "running",
-        "status": "Up 10 minutes",
+        "status": "Up 32 minutes",
         "health": "none",
-        "uptime": "10 minutes",
+        "uptime": "32 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 10 minutes",
+        "status": "Up 32 minutes",
         "health": "none",
-        "uptime": "10 minutes",
+        "uptime": "32 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_purchasing",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8003",
         "up": true
       },
@@ -922,9 +900,9 @@
       {
         "name": "vams_qc",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8002",
         "up": true
       },
@@ -958,9 +936,9 @@
       {
         "name": "vams_reporting",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8011",
         "up": true
       },
@@ -1002,13 +980,12 @@
       }
     ],
     "summary": {
-      "running": 39,
-      "total": 39,
+      "running": 41,
+      "total": 41,
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-27T17:30:01Z",
-    "carried": true
+    "checked_at": "2026-07-27T17:51:59Z"
   },
   "health": [
     {
@@ -1021,8 +998,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     },
     {
       "name": "auth token",
@@ -1036,8 +1012,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     }
   ],
   "commits": {
@@ -1045,17 +1020,68 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 37,
+        "commits_7d": 213
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 0
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "4f6306b6",
+        "at": "2026-07-27T21:51:08+04:00",
+        "subject": "integrations/celery: close INT-BEAT -- run the daily AX JA Report beat schedule for real (follow-on to NEW-9)",
+        "track": "backend"
+      },
+      {
+        "hash": "ca8ec8fe",
+        "at": "2026-07-27T21:21:59+04:00",
+        "subject": "production/celery: close NEW-9 -- run the VS-Report prewarm beat schedule for real, propagate FIN-1 name fix into cache",
+        "track": "backend"
+      },
+      {
+        "hash": "47db9a63",
+        "at": "2026-07-27T20:29:13+04:00",
+        "subject": "docs(parity)+etl: redact real user PII from NEW-8 OCN identity-fix (HEAD)",
+        "track": "backend"
+      },
+      {
+        "hash": "5d88350c",
+        "at": "2026-07-27T20:18:48+04:00",
+        "subject": "ops/scripts: fix OCN-permission ETL identity resolution (NEW-8)",
+        "track": "backend"
+      },
+      {
+        "hash": "c15e286a",
+        "at": "2026-07-27T19:11:54+04:00",
+        "subject": "docs(parity): capstone FINAL-PARITY-COMPARISON (monolith vs microservices+legacy-UI)",
+        "track": "backend"
+      },
+      {
+        "hash": "8dd7d1d6",
+        "at": "2026-07-27T18:17:25+04:00",
+        "subject": "production/gateway: close VS-Report perf+cache+name-resolution gaps (FIN-1, FIN-2/NEW-2)",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
