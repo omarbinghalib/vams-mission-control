@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-28T15:20:10Z",
-  "heartbeat_at": "2026-07-28T15:20:10Z",
-  "last_activity": "2026-07-28T15:20:23Z",
+  "updated": "2026-07-28T15:22:05Z",
+  "heartbeat_at": "2026-07-28T15:22:05Z",
+  "last_activity": "2026-07-28T15:21:47Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T15:20:08Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-28T15:21:47Z",
+      "out_age_min": 0.3,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T15:20:23Z",
-      "out_age_min": 0.0,
-      "log_bytes": 954785,
-      "output_tokens": 68468,
-      "cache_read_tokens": 31491933,
-      "cache_creation_tokens": 1866133,
-      "msgs": 268,
+      "out_last_active": "2026-07-28T15:21:47Z",
+      "out_age_min": 0.3,
+      "log_bytes": 966647,
+      "output_tokens": 69425,
+      "cache_read_tokens": 32675406,
+      "cache_creation_tokens": 1867561,
+      "msgs": 273,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -71,9 +71,9 @@
       "short_id": "a1df77cc",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 26402.5,
+      "head_ago_min": 26404.4,
       "out_last_active": "2026-07-28T13:30:39Z",
-      "out_age_min": 109.5,
+      "out_age_min": 111.4,
       "log_bytes": 652884,
       "output_tokens": 99791,
       "cache_read_tokens": 13202888,
@@ -96,7 +96,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T13:23:18Z",
-      "out_age_min": 116.9,
+      "out_age_min": 118.8,
       "log_bytes": 414968,
       "output_tokens": 40992,
       "cache_read_tokens": 7021178,
@@ -118,8 +118,8 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-28T15:20:23Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-28T15:21:47Z",
+      "age_min": 0.3,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -135,7 +135,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27815.7,
+      "age_min": 27817.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -150,7 +150,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36638.8,
+      "age_min": 36640.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -165,7 +165,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30768.8,
+      "age_min": 30770.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -180,7 +180,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30541.9,
+      "age_min": 30543.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -195,7 +195,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26449.5,
+      "age_min": 26451.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -210,7 +210,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27925.1,
+      "age_min": 27927.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -225,7 +225,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26609.5,
+      "age_min": 26611.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -240,7 +240,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30722.7,
+      "age_min": 30724.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -255,7 +255,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30768.8,
+      "age_min": 30770.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -270,7 +270,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37344.1,
+      "age_min": 37346.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -285,7 +285,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37361.5,
+      "age_min": 37363.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -296,16 +296,16 @@
       "full_id": "abca58cbd576fa8f0",
       "group": "worker",
       "group_label": "Final integration rebuild + registry + verify",
-      "output_tokens": 68468,
-      "cache_read_tokens": 31491933,
-      "cache_creation_tokens": 1866133,
-      "msgs": 268,
-      "last_active": "2026-07-28T15:20:23Z",
-      "age_min": 0.0,
+      "output_tokens": 69425,
+      "cache_read_tokens": 32675406,
+      "cache_creation_tokens": 1867561,
+      "msgs": 273,
+      "last_active": "2026-07-28T15:21:47Z",
+      "age_min": 0.3,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 954785,
+      "log_bytes": 966647,
       "recent": true
     },
     {
@@ -318,7 +318,7 @@
       "cache_creation_tokens": 1323051,
       "msgs": 173,
       "last_active": "2026-07-28T13:30:39Z",
-      "age_min": 109.5,
+      "age_min": 111.4,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -335,7 +335,7 @@
       "cache_creation_tokens": 258055,
       "msgs": 103,
       "last_active": "2026-07-28T13:23:18Z",
-      "age_min": 116.9,
+      "age_min": 118.8,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -934,8 +934,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     },
     {
       "name": "auth token",
@@ -949,8 +948,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     }
   ],
   "commits": {
@@ -958,17 +956,68 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 14,
+        "commits_7d": 223
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 0
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "afa3f471",
+        "at": "2026-07-28T14:11:39+04:00",
+        "subject": "hr: enable NEW-13 actual-OT sync guard, keep NEW-11 leave-accrual guard OFF",
+        "track": "backend"
+      },
+      {
+        "hash": "1fca5b83",
+        "at": "2026-07-28T12:57:32+04:00",
+        "subject": "docs(parity): log execution of 4 authorized corrective data fixes",
+        "track": "backend"
+      },
+      {
+        "hash": "01a1494b",
+        "at": "2026-07-28T08:00:22+04:00",
+        "subject": "Fix generic-engine `options` action shadowing DRF's HTTP OPTIONS handler",
+        "track": "backend"
+      },
+      {
+        "hash": "3441fda6",
+        "at": "2026-07-28T06:22:35+04:00",
+        "subject": "crm+purchasing: fix generic-serializer field locks blocking real document registries",
+        "track": "backend"
+      },
+      {
+        "hash": "cfd830c2",
+        "at": "2026-07-28T06:10:45+04:00",
+        "subject": "fix(engineering,accounting): CREATE-path defects from file-upload audit",
+        "track": "backend"
+      },
+      {
+        "hash": "df8fb480",
+        "at": "2026-07-28T05:33:44+04:00",
+        "subject": "qc: add RCN/RCNDocument/RCNConcern registry endpoints (file-upload audit gap)",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
