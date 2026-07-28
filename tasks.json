@@ -2592,7 +2592,7 @@
     "title": "Integration rebuild (bakes 2cd73f80 + coverage lanes)",
     "status": "pending",
     "track": "deploy",
-    "note": "Queued after COV-PUR/COV-PROD/COV-QCCRM land. Then continue sweeps (v8, new angles) per Omar's KEEP-CLOSING decision."
+    "note": "PENDING (final) -- frontend-web + backend container rebuilds for enables/options-fix/coverage + registry.ts consolidation (debit-notes/policies global entries). COV-PUR/COV-PROD/COV-QCCRM all landed; queued behind the PII git-history purge (force-push must land first so the rebuild doesn't rebase onto rewritten history). Then continue sweeps (v8, new angles) per Omar's KEEP-CLOSING decision. OPS HAZARD: shared session-scratchpad root is NOT per-worker isolated (a sibling wiped a lane's snapshot mid-run) + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped."
   },
   {
     "title": "PII git-history purge (Omar directly authorized)",
