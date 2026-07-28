@@ -2428,9 +2428,9 @@
   },
   {
     "title": "LONG-TAIL TRANCHE A: backend create defects (Drawing.partdefinition, ToolingAssembly number, FixedAsset/VendorBank required-fields)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED -- 2 pre-existing backend create bugs found by the file-upload audit: Drawing.partdefinition editable, ToolingAssembly number auto-gen, FixedAsset/VendorBank required-field wiring.",
+    "note": "DONE -- backend d3d1073d. Drawing.partdefinition (removed editable=False), ToolingAssembly.number (double-save force_insert bug + prefix TA->T), FixedAsset (derive 3 account fields from category, monolith-parity), VendorBank (already correct, regression-locked). engineering 61/61, accounting 71/73 (2 pre-existing unrelated). Verified via rolled-back transactions, zero residue, containers rebuilt.",
     "started_at": "2026-07-28T00:58:37Z"
   },
   {
@@ -2451,6 +2451,12 @@
     "title": "Sweep v7 new angle: schema-field-name vs backend-field mismatch (silently-empty panels/dropdowns)",
     "status": "pending",
     "track": "audit",
-    "note": "Recurring bug CLASS found twice now (designation name->title, employeeDocument fabricated field names) -- each silently zod-errors real rows into an empty panel. v7 should grep ALL zod schemas vs actual backend fields system-wide to close the whole class, not just these 2 instances. Still RUNNING before v7: Tranche A (backend create defects), Tranche B (missing document-registry pages -- editing rcn.tsx/so.tsx). Integration rebuild after Tranche B lands."
+    "note": "Recurring bug CLASS found twice now (designation name->title, employeeDocument fabricated field names) -- each silently zod-errors real rows into an empty panel. v7 should grep ALL zod schemas vs actual backend fields system-wide to close the whole class, not just these 2 instances. Still RUNNING before v7: Tranche B (missing document-registry pages -- editing rcn.tsx/so.tsx). Integration rebuild after Tranche B lands."
+  },
+  {
+    "title": "Tiny cleanup (low-risk): stray ToolingAssembly id=83 test artifact blocks LIVE create",
+    "status": "pending",
+    "track": "backend",
+    "note": "id=83, number='', a LANE-TEST artifact created by the audit today (self-labeled safe-to-delete) blocks the LIVE ToolingAssembly create via the unique constraint. Single-row DELETE ... WHERE id=83 AND number='' -- held (a DELETE) but it's a test artifact not real data; low-risk cleanup for when convenient/authorized. Code fix (Tranche A) is complete + verified via rollback regardless of this cleanup."
   }
 ]
