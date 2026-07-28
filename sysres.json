@@ -1,16 +1,16 @@
 {
  "available": true,
- "checked_at": "2026-07-28T05:48:47Z",
+ "checked_at": "2026-07-28T05:53:31Z",
  "host": {
   "cpu_pct": 100,
   "cores": [
    100
   ],
-  "mem_pct": 96,
-  "mem_used_mb": 15448,
+  "mem_pct": 92.7,
+  "mem_used_mb": 14914,
   "mem_total_mb": 16091,
-  "uptime_sec": 96615,
-  "process_count": 384
+  "uptime_sec": 96893,
+  "process_count": 378
  },
  "disks": [
   {
@@ -21,8 +21,8 @@
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 12664,
-  "tx_bytes_per_sec": 97856
+  "rx_bytes_per_sec": 10743,
+  "tx_bytes_per_sec": 2297
  },
  "temp_c": null,
  "temp_available": false,
@@ -338,11 +338,12 @@
  "disks_carried": false,
  "network_carried": false,
  "temp_carried": false,
- "docker_carried": false,
- "host_as_of": "2026-07-28T05:48:47Z",
- "disks_as_of": "2026-07-28T05:48:47Z",
- "network_as_of": "2026-07-28T05:48:47Z",
+ "docker_carried": true,
+ "host_as_of": "2026-07-28T05:53:31Z",
+ "disks_as_of": "2026-07-28T05:53:31Z",
+ "network_as_of": "2026-07-28T05:53:31Z",
  "temp_as_of": null,
  "docker_as_of": "2026-07-28T05:48:47Z",
- "temp_error": "Not supported "
+ "temp_error": "Not supported ",
+ "docker_error": "Command '['docker', 'stats', '--no-stream', '--format', '{{json .}}']' timed out after 30 seconds"
 }
