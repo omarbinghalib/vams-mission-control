@@ -2519,10 +2519,10 @@
   },
   {
     "title": "HELD (data artifact, DELETE): PJ id=28019 ($1,000, null PO) causes count/sum divergence",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane (the other of the 2 test-row deletes). Leftover live-test residue (same class as ToolingAssembly id=83); causes new=27,239 vs oracle=27,238 + $1,000 sum divergence.",
+    "note": "DONE -- closed by DATA-FIX lane, commit 30005efb. Leftover live-test residue PJ id=28019 ($1,000, null PO) deleted; count/sum now ties to oracle to the cent (27,238 both sides). Authorized by Omar (AskUserQuestion 'Execute now (snapshotted)', 2026-07-28).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
