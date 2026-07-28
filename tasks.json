@@ -2534,9 +2534,9 @@
   },
   {
     "title": "Coverage gap: SubPO (4,880 rows + naming-collision fix)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PUR lane (PRAdditionalRemark/SubPO/DebitNote frontend, tsc-only).",
+    "note": "DONE -- commit 40f1e341 (COV-PUR lane). Real SubPO panel landed, fixed the split-PO naming collision. tsc clean.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
