@@ -2548,9 +2548,9 @@
   },
   {
     "title": "Coverage gap: ApprovedVendor (22,770 rows, per-part vendor panel)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PROD lane (ApprovedVendor/EWO-SWO activity frontend, tsc-only).",
+    "note": "DONE -- commit 83da71dd (COV-PROD lane). ApprovedVendor panel on InventoryItem detail (company names via existing cross-service useCompanies hook, monolith-faithful placement). tsc clean for modules/production; goes live at the pending integration rebuild.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
