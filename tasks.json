@@ -2247,10 +2247,10 @@
   },
   {
     "title": "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane. Re-running the existing idempotent backfill_po_lineitem_grand_total command fixes only this 1 row (still $0.00, backfill missed it -> +$2,960.00 -> correct).",
+    "note": "DONE -- closed by DATA-FIX lane, commit 30005efb. POLineItem id=1 (PO000000402) backfilled $0.00 -> +$2,960.00 via the existing idempotent backfill_po_lineitem_grand_total command. Authorized by Omar (AskUserQuestion 'Execute now (snapshotted)', 2026-07-28).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
