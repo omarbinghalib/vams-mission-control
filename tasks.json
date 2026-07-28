@@ -2590,9 +2590,10 @@
   },
   {
     "title": "Integration rebuild (bakes 2cd73f80 + coverage lanes)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "deploy",
-    "note": "PENDING (final) -- frontend-web + backend container rebuilds for enables/options-fix/coverage + registry.ts consolidation (debit-notes/policies global entries). COV-PUR/COV-PROD/COV-QCCRM all landed; queued behind the PII git-history purge (force-push must land first so the rebuild doesn't rebase onto rewritten history). Then continue sweeps (v8, new angles) per Omar's KEEP-CLOSING decision. OPS HAZARD: shared session-scratchpad root is NOT per-worker isolated (a sibling wiped a lane's snapshot mid-run) + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped."
+    "note": "RUNNING (final) -- frontend-web + all backend container rebuilds for enables/options-fix/coverage + registry.ts consolidation (debit-notes/policies global entries), then live-verify the new coverage surfaces + options-fix + NEW-13. PII purge landed first (VAMS-backend afa3f471, clean) so this rebuild is unblocked. OPS HAZARD carried forward: shared session-scratchpad root is NOT per-worker isolated + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped.",
+    "started_at": "2026-07-28T13:27:56Z"
   },
   {
     "title": "PII git-history purge (Omar directly authorized)",
