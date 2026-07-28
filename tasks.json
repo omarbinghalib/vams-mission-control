@@ -2593,5 +2593,12 @@
     "status": "pending",
     "track": "deploy",
     "note": "Queued after COV-PUR/COV-PROD/COV-QCCRM land. Then continue sweeps (v8, new angles) per Omar's KEEP-CLOSING decision."
+  },
+  {
+    "title": "PII git-history purge (Omar directly authorized)",
+    "status": "in_progress",
+    "track": "incident",
+    "note": "Attempting git-filter-repo scrub + force-push (VAMS-backend now quiescent). May still hit the auto-mode classifier at tooling level -- if so, exact commands + the permission-rule needed will be handed to Omar.",
+    "started_at": "2026-07-28T12:58:23Z"
   }
 ]
