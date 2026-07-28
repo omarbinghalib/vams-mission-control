@@ -2442,9 +2442,15 @@
   },
   {
     "title": "LONG-TAIL TRANCHE C: HR + engineering scale document surfaces",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- HR doc surfaces at scale (EmployeeDocument 47707, JobActivityDocument 60017), eng part media (picture/casting_drawing 11079). Placement-verified, paginated. tsc-only -- one integration rebuild after B+C land. HONEST NOTE for capstone: each new audit angle/depth finds more long-tail (missing secondary pages, scale doc surfaces) -- this is the nature of a large ERP; convergence is angle-dependent. Sequence: tranche lands -> integration rebuild -> sweep v7 -> honest certification accounting.",
+    "note": "DONE -- engineering e9d87295 + hr 3af74ed6. Wired EmployeeDocument (47,707), JobActivityDocument (60,017, +new JobActivity screen), RenumerationDocument (3,600), RewardDocument (724), TrainingDocument (737) [=5,061, the '~5,000 more'], eng PartDefinition picture/casting_drawing (11,079), PdmDocument upload (42,367, was dead code). All display+upload+delete, placement-verified vs monolith, slugs live-verified (401 not 404), paginated parent-scoped. Bug fixed: employeeDocumentSchema validated FABRICATED field names -> every real row zod-errored -> panel silently empty (same CLASS as the earlier designation name->title bug). tsc-only -- one integration rebuild after Tranche B lands.",
     "started_at": "2026-07-28T00:58:37Z"
+  },
+  {
+    "title": "Sweep v7 new angle: schema-field-name vs backend-field mismatch (silently-empty panels/dropdowns)",
+    "status": "pending",
+    "track": "audit",
+    "note": "Recurring bug CLASS found twice now (designation name->title, employeeDocument fabricated field names) -- each silently zod-errors real rows into an empty panel. v7 should grep ALL zod schemas vs actual backend fields system-wide to close the whole class, not just these 2 instances. Still RUNNING before v7: Tranche A (backend create defects), Tranche B (missing document-registry pages -- editing rcn.tsx/so.tsx). Integration rebuild after Tranche B lands."
   }
 ]
