@@ -2435,9 +2435,9 @@
   },
   {
     "title": "LONG-TAIL TRANCHE B: missing document-registry pages (crm/qc/purchasing)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- missing whole pages found by the file-upload audit: RCN, ContractRenewalLog (6989), SODocumentation/SODocumentLineItem, GroupCompanyDocument, PJDocument (20710). Verify standalone-vs-subtab placement vs the monolith. tsc-only -- one integration rebuild after B+C land.",
+    "note": "DONE -- backend 2625a9da (qc RCN full API, was zero serializer/viewset) + a9006b03 (crm+purchasing field-lock create bugs) + frontend 5f18643c. Built with monolith-verified placement: RCN (standalone), PJDocument (PJ sub-tab), SODocumentation+SODocumentLineItem (SO sub-tab), GroupCompanyDocument + PolicyDocument. Fixed 3 more backend create bugs (number-lock x2, doc_file-required). ContractRenewalLog = NOT a gap (already has working HR screen). ProcessData deferred (valve-sizing wizard snapshot, needs Valve Manager backend -- documented). All live-tested, row counts match, tsc -b clean whole frontend. ALL 3 tranche lanes DONE.",
     "started_at": "2026-07-28T00:58:37Z"
   },
   {
@@ -2458,5 +2458,30 @@
     "status": "pending",
     "track": "backend",
     "note": "id=83, number='', a LANE-TEST artifact created by the audit today (self-labeled safe-to-delete) blocks the LIVE ToolingAssembly create via the unique constraint. Single-row DELETE ... WHERE id=83 AND number='' -- held (a DELETE) but it's a test artifact not real data; low-risk cleanup for when convenient/authorized. Code fix (Tranche A) is complete + verified via rollback regardless of this cleanup."
+  },
+  {
+    "title": "DOCUMENTED deferral: ProcessData (valve-sizing wizard snapshot) needs Valve Manager backend",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by Tranche B. Deliberately deferred -- depends on a Valve Manager backend that doesn't exist yet."
+  },
+  {
+    "title": "DOCUMENTED deferral: GroupCompanyDocument true HrmsCompany-detail home (built as approximation)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Found by Tranche B. Built as an approximation in the HR lane pending the true HrmsCompany-detail home placement."
+  },
+  {
+    "title": "DOCUMENTED deferral: RCN Tasks widget (no Task model in the carve)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by Tranche B. RCN's Tasks widget has no equivalent Task model in the current carve."
+  },
+  {
+    "title": "Integration rebuild + smoke new surfaces",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "RUNNING -- all 3 long-tail tranche lanes (A/B/C) done. Frontend-web rebuild + backend-container currency + live-smoke the new RCN/PJ/SO/Policy/GroupCompany/EmployeeDoc/JobActivity/part-media/PdmDocument surfaces + create-defect spot-checks. Sequence: rebuild lands -> sweep v7 (angles: schema-field-mismatch class + endpoint/screen coverage) -> honest certification accounting.",
+    "started_at": "2026-07-28T02:31:52Z"
   }
 ]
