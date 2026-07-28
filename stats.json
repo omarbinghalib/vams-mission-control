@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-28T17:25:57Z",
-  "heartbeat_at": "2026-07-28T17:25:57Z",
+  "updated": "2026-07-28T17:42:02Z",
+  "heartbeat_at": "2026-07-28T17:42:02Z",
   "last_activity": "2026-07-28T15:22:22Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
@@ -32,7 +32,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T15:22:22Z",
-      "out_age_min": 123.6,
+      "out_age_min": 139.7,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "idle",
@@ -50,7 +50,7 @@
       "cache_creation_tokens": 530517,
       "msgs": 68,
       "last_active": "2026-07-28T15:22:22Z",
-      "age_min": 123.6,
+      "age_min": 139.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -66,7 +66,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27941.5,
+      "age_min": 27957.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -81,7 +81,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36764.6,
+      "age_min": 36780.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -96,7 +96,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30894.6,
+      "age_min": 30910.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -111,7 +111,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30667.7,
+      "age_min": 30683.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -126,7 +126,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26575.3,
+      "age_min": 26591.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -141,7 +141,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 28050.8,
+      "age_min": 28066.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -156,7 +156,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26735.3,
+      "age_min": 26751.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -171,7 +171,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30848.5,
+      "age_min": 30864.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -186,7 +186,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30894.6,
+      "age_min": 30910.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -201,7 +201,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37469.8,
+      "age_min": 37485.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -216,7 +216,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37487.3,
+      "age_min": 37503.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -418,27 +418,27 @@
       {
         "name": "vams_accounting_period_lock",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_accounting_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_accounting_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -463,18 +463,18 @@
       {
         "name": "vams_crm_beat",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_crm_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -499,18 +499,18 @@
       {
         "name": "vams_engineering_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -526,9 +526,9 @@
       {
         "name": "vams_gateway",
         "state": "running",
-        "status": "Up 27 hours",
+        "status": "Up 28 hours",
         "health": "none",
-        "uptime": "27 hours",
+        "uptime": "28 hours",
         "ports": "8080",
         "up": true
       },
@@ -544,27 +544,27 @@
       {
         "name": "vams_hr_beat",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_hr_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_hr_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -580,18 +580,18 @@
       {
         "name": "vams_integrations_beat",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_integrations_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -616,18 +616,18 @@
       {
         "name": "vams_ops_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_ops_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -643,9 +643,9 @@
       {
         "name": "vams_platform",
         "state": "running",
-        "status": "Up 27 hours",
+        "status": "Up 28 hours",
         "health": "none",
-        "uptime": "27 hours",
+        "uptime": "28 hours",
         "ports": "8001",
         "up": true
       },
@@ -661,27 +661,27 @@
       {
         "name": "vams_production_beat",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -697,18 +697,18 @@
       {
         "name": "vams_purchasing_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_purchasing_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -724,18 +724,18 @@
       {
         "name": "vams_qc_relay",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_qc_worker",
         "state": "running",
-        "status": "Up 2 hours",
+        "status": "Up 3 hours",
         "health": "none",
-        "uptime": "2 hours",
+        "uptime": "3 hours",
         "ports": "",
         "up": true
       },
@@ -787,9 +787,9 @@
       {
         "name": "vams_web",
         "state": "running",
-        "status": "Up 3 hours",
+        "status": "Up 4 hours",
         "health": "none",
-        "uptime": "3 hours",
+        "uptime": "4 hours",
         "ports": "8090",
         "up": true
       }
@@ -800,8 +800,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-28T17:09:59Z",
-    "carried": true
+    "checked_at": "2026-07-28T17:42:02Z"
   },
   "health": [
     {
@@ -903,7 +902,8 @@
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-28T17:25:57Z"
+    "checked_at": "2026-07-28T17:25:57Z",
+    "carried": true
   },
   "task_worker_live": {}
 }
