@@ -2501,9 +2501,9 @@
   },
   {
     "title": "FIX systemic options() action collision (all 9 services)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "DISPATCHED, disjoint from the running schema-mismatch lane. GenericEngineMixin `options` action shadows DRF's HTTP-OPTIONS across all 9 services (raw OPTIONS 500; not SPA-reachable but latent). Renaming method (keep url_path='options') + re-copy to 9 + regression test.",
+    "note": "DONE -- backend c9671517. Renamed method options->field_options, kept url_path='options' + url_name='options' (SPA URL + reverse-name unchanged). Root cause confirmed via test-client (reproduced the 500, fixed -> raw OPTIONS 200 DRF metadata; renamed GET still serves FK choices). All 10 copies byte-identical, 17/17 qc + 2 new regression tests. No frontend caller (uses client-side ref lists) so no frontend change. Fix baked into images at the final integration rebuild.",
     "started_at": "2026-07-28T03:45:47Z"
   },
   {
