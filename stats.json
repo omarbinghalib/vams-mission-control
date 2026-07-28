@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-28T12:48:00Z",
-  "heartbeat_at": "2026-07-28T12:48:00Z",
-  "last_activity": "2026-07-28T10:45:15Z",
+  "updated": "2026-07-28T12:52:13Z",
+  "heartbeat_at": "2026-07-28T12:52:13Z",
+  "last_activity": "2026-07-28T12:50:37Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -10,11 +10,11 @@
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
     "sessions": 12,
-    "live_sessions": 0,
+    "live_sessions": 1,
     "transcript_sessions": 12,
     "subagent_sessions": 0,
     "workers": 1,
-    "live_workers": 0,
+    "live_workers": 1,
     "stopped_workers": 0,
     "current_workers": 1,
     "history_workers": 573,
@@ -31,12 +31,12 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T10:45:15Z",
-      "out_age_min": 122.8,
+      "out_last_active": "2026-07-28T12:50:37Z",
+      "out_age_min": 1.6,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
-      "status": "idle",
-      "live": false,
+      "status": "live",
+      "live": true,
       "recent": true
     }
   ],
@@ -49,10 +49,10 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-28T10:45:15Z",
-      "age_min": 122.8,
-      "live": false,
-      "status": "idle",
+      "last_active": "2026-07-28T12:50:37Z",
+      "age_min": 1.6,
+      "live": true,
+      "status": "live",
       "subagent": false,
       "full_id": "a49f5cc3-b0f2-48bb-9a39-375e69aae05d",
       "recent": true
@@ -66,7 +66,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27663.5,
+      "age_min": 27667.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -81,7 +81,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36486.6,
+      "age_min": 36490.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -96,7 +96,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30616.7,
+      "age_min": 30620.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -111,7 +111,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30389.7,
+      "age_min": 30393.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -126,7 +126,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26297.3,
+      "age_min": 26301.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -141,7 +141,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27772.9,
+      "age_min": 27777.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -156,7 +156,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26457.4,
+      "age_min": 26461.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -171,7 +171,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30570.6,
+      "age_min": 30574.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -186,7 +186,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30616.7,
+      "age_min": 30620.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -201,7 +201,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37191.9,
+      "age_min": 37196.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -216,7 +216,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37209.4,
+      "age_min": 37213.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -481,9 +481,9 @@
       {
         "name": "vams_docs",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "8095",
         "up": true
       },
@@ -499,18 +499,18 @@
       {
         "name": "vams_engineering_relay",
         "state": "running",
-        "status": "Up 27 hours",
+        "status": "Up 28 hours",
         "health": "none",
-        "uptime": "27 hours",
+        "uptime": "28 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering_worker",
         "state": "running",
-        "status": "Up 27 hours",
+        "status": "Up 28 hours",
         "health": "none",
-        "uptime": "27 hours",
+        "uptime": "28 hours",
         "ports": "",
         "up": true
       },
@@ -652,36 +652,36 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 19 hours",
+        "status": "Up 20 hours",
         "health": "none",
-        "uptime": "19 hours",
+        "uptime": "20 hours",
         "ports": "8007",
         "up": true
       },
       {
         "name": "vams_production_beat",
         "state": "running",
-        "status": "Up 19 hours",
+        "status": "Up 20 hours",
         "health": "none",
-        "uptime": "19 hours",
+        "uptime": "20 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_relay",
         "state": "running",
-        "status": "Up 19 hours",
+        "status": "Up 20 hours",
         "health": "none",
-        "uptime": "19 hours",
+        "uptime": "20 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 19 hours",
+        "status": "Up 20 hours",
         "health": "none",
-        "uptime": "19 hours",
+        "uptime": "20 hours",
         "ports": "",
         "up": true
       },
@@ -751,9 +751,9 @@
       {
         "name": "vams_reporting",
         "state": "running",
-        "status": "Up 25 hours",
+        "status": "Up 26 hours",
         "health": "none",
-        "uptime": "25 hours",
+        "uptime": "26 hours",
         "ports": "8011",
         "up": true
       },
@@ -787,9 +787,9 @@
       {
         "name": "vams_web",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 8 hours",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "8 hours",
         "ports": "8090",
         "up": true
       }
@@ -800,8 +800,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-28T12:31:59Z",
-    "carried": true
+    "checked_at": "2026-07-28T12:52:13Z"
   },
   "health": [
     {
@@ -837,15 +836,14 @@
         "track": "backend",
         "branch": "microservices-backend",
         "available": true,
-        "commits_24h": 20,
+        "commits_24h": 19,
         "commits_7d": 223
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 0
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
     "recent": [
@@ -884,18 +882,6 @@
         "at": "2026-07-28T05:33:44+04:00",
         "subject": "qc: add RCN/RCNDocument/RCNConcern registry endpoints (file-upload audit gap)",
         "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
       }
     ]
   },
