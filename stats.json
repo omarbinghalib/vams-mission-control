@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-28T12:58:08Z",
-  "heartbeat_at": "2026-07-28T12:58:08Z",
-  "last_activity": "2026-07-28T12:58:06Z",
+  "updated": "2026-07-28T13:00:01Z",
+  "heartbeat_at": "2026-07-28T13:00:01Z",
+  "last_activity": "2026-07-28T12:59:57Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T12:58:06Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-28T12:59:57Z",
+      "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -48,14 +48,14 @@
       "short_id": "a1df77cc",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 26260.5,
-      "out_last_active": "2026-07-28T12:57:22Z",
-      "out_age_min": 0.8,
-      "log_bytes": 586660,
-      "output_tokens": 90889,
-      "cache_read_tokens": 10248810,
-      "cache_creation_tokens": 1022035,
-      "msgs": 150,
+      "head_ago_min": 26262.4,
+      "out_last_active": "2026-07-28T12:59:57Z",
+      "out_age_min": 0.1,
+      "log_bytes": 603231,
+      "output_tokens": 93541,
+      "cache_read_tokens": 10924965,
+      "cache_creation_tokens": 1029033,
+      "msgs": 155,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -72,13 +72,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T12:58:06Z",
-      "out_age_min": 0.0,
-      "log_bytes": 84936,
-      "output_tokens": 7898,
-      "cache_read_tokens": 440066,
-      "cache_creation_tokens": 56653,
-      "msgs": 20,
+      "out_last_active": "2026-07-28T12:59:37Z",
+      "out_age_min": 0.4,
+      "log_bytes": 174565,
+      "output_tokens": 13916,
+      "cache_read_tokens": 1040911,
+      "cache_creation_tokens": 155348,
+      "msgs": 34,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -95,7 +95,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-28T12:58:06Z",
+      "last_active": "2026-07-28T13:00:11Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -112,7 +112,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27673.7,
+      "age_min": 27675.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -127,7 +127,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36496.7,
+      "age_min": 36498.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -142,7 +142,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30626.8,
+      "age_min": 30628.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -157,7 +157,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30399.9,
+      "age_min": 30401.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -172,7 +172,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26307.5,
+      "age_min": 26309.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -187,7 +187,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27783.0,
+      "age_min": 27784.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -202,7 +202,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26467.5,
+      "age_min": 26469.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -217,7 +217,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30580.7,
+      "age_min": 30582.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -232,7 +232,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30626.8,
+      "age_min": 30628.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -247,7 +247,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37202.0,
+      "age_min": 37203.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -262,7 +262,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37219.5,
+      "age_min": 37221.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -273,16 +273,16 @@
       "full_id": "a1df77cc76b8368d3",
       "group": "mission-control",
       "group_label": "Diagnose + fix mission-control staleness",
-      "output_tokens": 90889,
-      "cache_read_tokens": 10248810,
-      "cache_creation_tokens": 1022035,
-      "msgs": 150,
-      "last_active": "2026-07-28T12:57:22Z",
-      "age_min": 0.8,
+      "output_tokens": 93541,
+      "cache_read_tokens": 10924965,
+      "cache_creation_tokens": 1029033,
+      "msgs": 155,
+      "last_active": "2026-07-28T12:59:57Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 586660,
+      "log_bytes": 603231,
       "recent": true
     },
     {
@@ -290,16 +290,16 @@
       "full_id": "a9ad5c5ec063c3b18",
       "group": "worker",
       "group_label": "PII git-history purge (user-authorized)",
-      "output_tokens": 7898,
-      "cache_read_tokens": 440066,
-      "cache_creation_tokens": 56653,
-      "msgs": 20,
-      "last_active": "2026-07-28T12:58:06Z",
-      "age_min": 0.0,
+      "output_tokens": 13916,
+      "cache_read_tokens": 1040911,
+      "cache_creation_tokens": 155348,
+      "msgs": 34,
+      "last_active": "2026-07-28T12:59:37Z",
+      "age_min": 0.4,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 84936,
+      "log_bytes": 174565,
       "recent": true
     }
   ],
@@ -317,15 +317,15 @@
     "overall_pct": 86,
     "remaining_hours": [
       82,
-      164
+      165
     ],
     "remaining_sessions": [
       22,
       44
     ],
     "remaining_hours_autonomous": [
-      74,
-      148
+      75,
+      150
     ],
     "remaining_sessions_autonomous": [
       20,
@@ -421,14 +421,14 @@
       {
         "track": "incident",
         "label": "Incident",
-        "pct": 92,
+        "pct": 86,
         "remaining_hours": [
-          1,
-          2
+          2,
+          3
         ],
         "remaining_sessions": [
           0,
-          0
+          1
         ],
         "weight": 1
       },
@@ -477,11 +477,11 @@
     ],
     "shipped": {
       "done": 323,
-      "total": 382,
-      "pct": 85
+      "total": 383,
+      "pct": 84
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (323/382 tasks done=85%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 5 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (323/383 tasks done=84%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 5 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
@@ -894,7 +894,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     },
     {
       "name": "auth token",
@@ -908,7 +909,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     }
   ],
   "commits": {
@@ -916,68 +918,17 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 19,
-        "commits_7d": 223
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 0
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "ca9013b7",
-        "at": "2026-07-28T14:11:39+04:00",
-        "subject": "hr: enable NEW-13 actual-OT sync guard, keep NEW-11 leave-accrual guard OFF",
-        "track": "backend"
-      },
-      {
-        "hash": "30005efb",
-        "at": "2026-07-28T12:57:32+04:00",
-        "subject": "docs(parity): log execution of 4 authorized corrective data fixes",
-        "track": "backend"
-      },
-      {
-        "hash": "c9671517",
-        "at": "2026-07-28T08:00:22+04:00",
-        "subject": "Fix generic-engine `options` action shadowing DRF's HTTP OPTIONS handler",
-        "track": "backend"
-      },
-      {
-        "hash": "a9006b03",
-        "at": "2026-07-28T06:22:35+04:00",
-        "subject": "crm+purchasing: fix generic-serializer field locks blocking real document registries",
-        "track": "backend"
-      },
-      {
-        "hash": "d3d1073d",
-        "at": "2026-07-28T06:10:45+04:00",
-        "subject": "fix(engineering,accounting): CREATE-path defects from file-upload audit",
-        "track": "backend"
-      },
-      {
-        "hash": "2625a9da",
-        "at": "2026-07-28T05:33:44+04:00",
-        "subject": "qc: add RCN/RCNDocument/RCNConcern registry endpoints (file-upload audit gap)",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
