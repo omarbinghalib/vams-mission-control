@@ -2600,5 +2600,11 @@
     "track": "incident",
     "note": "DONE -- force-push succeeded on first attempt (not classifier-blocked). Scrubbed 4 emails + 2 names across 724 rewritten commits, new HEAD afa3f471 (was ca9013b7), zero PII across 15,947 objects (full cat-file scan), legacy-ui untouched. VAMS-backend now afa3f471, clean+synced. Git-hygiene sweep: VAMS-frontend, VAMS, mission-control-kit, CV-sizing all clean/synced too.",
     "started_at": "2026-07-28T12:58:23Z"
+  },
+  {
+    "title": "EMBEDDED-MONOLITH PII: reference source dir deamdev-kestrel_binghalib_vams_hcap-.../ (4,174 files)",
+    "status": "pending",
+    "track": "incident",
+    "note": "GATED on Omar's decision (bigger exposure than NEW-8, another history rewrite). The committed reference dir (original VAMS monolith source) contains extensive real employee PII (emails in settings.py/example-env/celery_tasks.py; payroll/HR CSVs with real names) + a 64MB phantomjs binary bloating the repo. Recommendation: remove the dir from the repo entirely (keep locally as reference, gitignore it) via git-filter-repo -- fixes both PII + bloat in one pass. Awaiting Omar's decision before any action."
   }
 ]
