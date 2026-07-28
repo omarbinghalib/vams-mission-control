@@ -1,10 +1,6 @@
 {
-  "active": true,
-  "message": "SECURITY: PII-in-git incident (NEW-8 lane) -- STATUS: HEAD-clean (redacted, commit 47db9a63), history-purge HELD for user authorization. docs/parity/NEW-8-ocn-identity-fix.md (original commit 5d88350c) contained unauthorized real user PII (employee emails/names/superuser status) from live DBs; HEAD is now scrubbed so active exposure is minimized, but the historical blob at 5d88350c still contains PII. Purging it requires a git push --force / history rewrite, which the auto-mode classifier correctly blocked as destructive -- NOT bypassed. Needs your explicit authorization (or a Bash force-push permission rule) before it can run.",
-  "options": [
-    "Authorize the git-history purge (git-filter-repo scrub + force-push microservices-backend; exact procedure documented)",
-    "Acknowledge -- HEAD is clean, no urgent action needed, purge stays held until you decide",
-    "Authorize the sdasilva username/RBAC restoration (separately HELD, unrelated login-credential change)"
-  ],
-  "raised_at": "2026-07-27T17:29:00Z"
+  "active": false,
+  "message": "",
+  "options": [],
+  "raised_at": null
 }
