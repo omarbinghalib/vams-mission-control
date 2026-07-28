@@ -2527,9 +2527,9 @@
   },
   {
     "title": "Coverage gap: PRAdditionalRemark (63,118 rows, PR thread)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PUR lane (PRAdditionalRemark/SubPO/DebitNote frontend, tsc-only).",
+    "note": "DONE -- commit 40f1e341 (COV-PUR lane). PRAdditionalRemark thread landed. tsc clean. Flag: registry.ts global entry for debit-notes still needed (shared-surface; folding into the integration rebuild).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
