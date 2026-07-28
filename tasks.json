@@ -3,7 +3,7 @@
     "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
     "status": "in_progress",
     "track": "incident",
-    "note": "TOP PRIORITY -- decision ANSWERED by Omar (authorized), dashboard attention banner CLEARED 2026-07-28. STATUS: HEAD-clean, purge AUTHORIZED, now held for VAMS-backend quiescence only (not for authorization -- no open question remains). (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed, HEAD confirmed clean of personal emails/names; active exposure minimized. (2) git-HISTORY purge of the original PII blob at commit 5d88350c: dispatching once PAYROLL-ENABLE + DATA-FIX finish pushing (concurrent force-push would orphan their commits). May still hit the classifier as force-push/history-rewrite is destructive -- will report if a permission rule is needed. Incident stays open (in_progress) until the purge runs and verifies zero PII in history.",
+    "note": "TOP PRIORITY -- STILL OPEN (purge running). STATUS: HEAD-clean, Omar directly re-confirmed authorization, VAMS-backend now quiescent (PAYROLL-ENABLE + DATA-FIX landed) -- git-filter-repo scrub + force-push now IN PROGRESS (see 'PII git-history purge (Omar directly authorized)'). May still hit the auto-mode classifier at tooling level; exact commands + permission-rule will be handed to Omar if so. Incident stays open until the purge runs and verifies zero PII in history.",
     "started_at": "2026-07-27T16:26:43Z"
   },
   {
