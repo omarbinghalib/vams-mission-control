@@ -2356,10 +2356,10 @@
   },
   {
     "title": "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave balances)",
-    "status": "in_progress",
+    "status": "pending",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + ENABLE NOW, with snapshots) -- now in the PAYROLL-ENABLE lane: snapshot -> enable -> verify-correctness -> keep-or-rollback. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), was behind HR_LEAVE_ACCRUAL_CRON_ENABLED=0 guard. Dry check previously found a 100+ day balance swing and a dev-DB incident on 2026-07-22 -- lane will verify correctness carefully before keeping enabled.",
+    "note": "NOT ENABLED -- ROLLED BACK (guard stays OFF, PAYROLL-ENABLE lane). Correctness check on 69 tracked employees found it genuinely BROKEN: stale attendance-feed -> History.is_absent defaults true unbounded -> impossible negative balances (e.g. 3 employees at exactly -178.000). Rolled back from reference DB, 0 mismatches. NOT a gated-decision anymore -- reclassified as a real CODE DEFECT to fix in hr_app/histories.py (add an absent-day ceiling / repair the attendance feed) BEFORE any future enable attempt; guard-off state documented in a docker-compose.yml comment.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
