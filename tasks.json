@@ -1,9 +1,9 @@
 [
   {
     "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
-    "status": "in_progress",
+    "status": "done",
     "track": "incident",
-    "note": "TOP PRIORITY -- STILL OPEN (purge running). STATUS: HEAD-clean, Omar directly re-confirmed authorization, VAMS-backend now quiescent (PAYROLL-ENABLE + DATA-FIX landed) -- git-filter-repo scrub + force-push now IN PROGRESS (see 'PII git-history purge (Omar directly authorized)'). May still hit the auto-mode classifier at tooling level; exact commands + permission-rule will be handed to Omar if so. Incident stays open until the purge runs and verifies zero PII in history.",
+    "note": "RESOLVED -- purge COMPLETED + verified. Force-push succeeded (not classifier-blocked). git-filter-repo scrubbed 4 emails + 2 names across 724 rewritten commits; new VAMS-backend HEAD afa3f471 (was ca9013b7). Full cat-file scan of 15,947 objects = ZERO PII hits. legacy-ui untouched, working repo reset clean, password-hash snapshots never-tracked. Also scrubbed a PII re-introduction that commit 30005efb had added at HEAD. Dashboard attention banner confirmed clear (already inactive). Incident fully closed.",
     "started_at": "2026-07-27T16:26:43Z"
   },
   {
