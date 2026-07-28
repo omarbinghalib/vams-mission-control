@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-28T02:29:58Z",
-  "heartbeat_at": "2026-07-28T02:29:58Z",
-  "last_activity": "2026-07-28T02:29:59Z",
+  "updated": "2026-07-28T02:32:03Z",
+  "heartbeat_at": "2026-07-28T02:32:03Z",
+  "last_activity": "2026-07-28T02:32:04Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -9,14 +9,14 @@
     "cache_read_tokens": 6267974779,
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
-    "sessions": 17,
-    "live_sessions": 2,
+    "sessions": 18,
+    "live_sessions": 4,
     "transcript_sessions": 12,
-    "subagent_sessions": 5,
-    "workers": 6,
-    "live_workers": 2,
+    "subagent_sessions": 6,
+    "workers": 7,
+    "live_workers": 4,
     "stopped_workers": 0,
-    "current_workers": 6,
+    "current_workers": 7,
     "history_workers": 557,
     "recent_window_min": 120
   },
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T02:29:38Z",
+      "out_last_active": "2026-07-28T02:31:45Z",
       "out_age_min": 0.3,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -50,12 +50,58 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T02:29:59Z",
-      "out_age_min": 0.0,
+      "out_age_min": 2.1,
       "log_bytes": 2264434,
       "output_tokens": 192471,
       "cache_read_tokens": 183244797,
       "cache_creation_tokens": 1070943,
       "msgs": 627,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Integration rebuild + smoke new surfaces",
+      "role": "worker",
+      "branch": null,
+      "focus": "Single integration rebuild + live smoke for the long-tail tranche (A backend defects, B missing pages, C scale doc surfaces).",
+      "agent_id": "a89009031c0904f42",
+      "short_id": "a8900903",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-28T02:31:45Z",
+      "out_age_min": 0.3,
+      "log_bytes": 21255,
+      "output_tokens": 1413,
+      "cache_read_tokens": 115742,
+      "cache_creation_tokens": 19214,
+      "msgs": 8,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Persistent mission-control updater",
+      "role": "mission-control",
+      "branch": "frontend-redesign",
+      "focus": "The heartbeat (freshness timestamp + stats) is now self-sustaining via the repaired scheduled task; YOUR job is to keep the TASK CONTENT (done vs in-progress vs pending) accurate b",
+      "agent_id": "ad03536fbeb860646",
+      "short_id": "ad03536f",
+      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
+      "head_commit_at": "2026-07-10T11:17:39+04:00",
+      "head_ago_min": 25634.4,
+      "out_last_active": "2026-07-28T02:32:04Z",
+      "out_age_min": 0.0,
+      "log_bytes": 3707443,
+      "output_tokens": 324718,
+      "cache_read_tokens": 433982450,
+      "cache_creation_tokens": 45749412,
+      "msgs": 1422,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -73,35 +119,12 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T02:11:57Z",
-      "out_age_min": 18.0,
+      "out_age_min": 20.1,
       "log_bytes": 1353584,
       "output_tokens": 112315,
       "cache_read_tokens": 62516010,
       "cache_creation_tokens": 1034146,
       "msgs": 367,
-      "tokens_carried": false,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Persistent mission-control updater",
-      "role": "mission-control",
-      "branch": "frontend-redesign",
-      "focus": "The heartbeat (freshness timestamp + stats) is now self-sustaining via the repaired scheduled task; YOUR job is to keep the TASK CONTENT (done vs in-progress vs pending) accurate b",
-      "agent_id": "ad03536fbeb860646",
-      "short_id": "ad03536f",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 25632.3,
-      "out_last_active": "2026-07-28T02:15:16Z",
-      "out_age_min": 14.7,
-      "log_bytes": 3683236,
-      "output_tokens": 322161,
-      "cache_read_tokens": 429891662,
-      "cache_creation_tokens": 44576624,
-      "msgs": 1413,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "idle",
@@ -119,7 +142,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T00:55:21Z",
-      "out_age_min": 94.6,
+      "out_age_min": 96.7,
       "log_bytes": 2534357,
       "output_tokens": 194086,
       "cache_read_tokens": 240442066,
@@ -142,7 +165,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T02:11:09Z",
-      "out_age_min": 18.8,
+      "out_age_min": 20.9,
       "log_bytes": 2171235,
       "output_tokens": 192315,
       "cache_read_tokens": 174303411,
@@ -164,7 +187,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-28T02:29:59Z",
+      "last_active": "2026-07-28T02:32:04Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -181,7 +204,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27045.5,
+      "age_min": 27047.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -196,7 +219,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 35868.6,
+      "age_min": 35870.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -211,7 +234,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29998.6,
+      "age_min": 30000.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -226,7 +249,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 29771.7,
+      "age_min": 29773.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -241,7 +264,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 25679.3,
+      "age_min": 25681.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -256,7 +279,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27154.9,
+      "age_min": 27156.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -271,7 +294,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 25839.3,
+      "age_min": 25841.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -286,7 +309,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 29952.5,
+      "age_min": 29954.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -301,7 +324,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 29998.6,
+      "age_min": 30000.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -316,7 +339,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 36573.9,
+      "age_min": 36575.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -331,7 +354,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 36591.3,
+      "age_min": 36593.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -347,11 +370,45 @@
       "cache_creation_tokens": 1070943,
       "msgs": 627,
       "last_active": "2026-07-28T02:29:59Z",
-      "age_min": 0.0,
+      "age_min": 2.1,
       "live": true,
       "status": "live",
       "subagent": true,
       "log_bytes": 2264434,
+      "recent": true
+    },
+    {
+      "id": "a8900903",
+      "full_id": "a89009031c0904f42",
+      "group": "worker",
+      "group_label": "Integration rebuild + smoke new surfaces",
+      "output_tokens": 1413,
+      "cache_read_tokens": 115742,
+      "cache_creation_tokens": 19214,
+      "msgs": 8,
+      "last_active": "2026-07-28T02:31:45Z",
+      "age_min": 0.3,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 21255,
+      "recent": true
+    },
+    {
+      "id": "ad03536f",
+      "full_id": "ad03536fbeb860646",
+      "group": "mission-control",
+      "group_label": "Persistent mission-control updater",
+      "output_tokens": 324718,
+      "cache_read_tokens": 433982450,
+      "cache_creation_tokens": 45749412,
+      "msgs": 1422,
+      "last_active": "2026-07-28T02:32:04Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 3707443,
       "recent": true
     },
     {
@@ -364,28 +421,11 @@
       "cache_creation_tokens": 1034146,
       "msgs": 367,
       "last_active": "2026-07-28T02:11:57Z",
-      "age_min": 18.0,
+      "age_min": 20.1,
       "live": false,
       "status": "idle",
       "subagent": true,
       "log_bytes": 1353584,
-      "recent": true
-    },
-    {
-      "id": "ad03536f",
-      "full_id": "ad03536fbeb860646",
-      "group": "mission-control",
-      "group_label": "Persistent mission-control updater",
-      "output_tokens": 322161,
-      "cache_read_tokens": 429891662,
-      "cache_creation_tokens": 44576624,
-      "msgs": 1413,
-      "last_active": "2026-07-28T02:15:16Z",
-      "age_min": 14.7,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 3683236,
       "recent": true
     },
     {
@@ -398,7 +438,7 @@
       "cache_creation_tokens": 996428,
       "msgs": 820,
       "last_active": "2026-07-28T00:55:21Z",
-      "age_min": 94.6,
+      "age_min": 96.7,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -415,7 +455,7 @@
       "cache_creation_tokens": 849790,
       "msgs": 644,
       "last_active": "2026-07-28T02:11:09Z",
-      "age_min": 18.8,
+      "age_min": 20.9,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -434,22 +474,22 @@
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
-    "overall_pct": 85,
+    "overall_pct": 84,
     "remaining_hours": [
-      83,
-      166
+      88,
+      176
     ],
     "remaining_sessions": [
-      22,
-      44
+      23,
+      47
     ],
     "remaining_hours_autonomous": [
-      68,
-      136
+      73,
+      146
     ],
     "remaining_sessions_autonomous": [
-      18,
-      36
+      19,
+      39
     ],
     "remaining_hours_gated": [
       15,
@@ -476,24 +516,24 @@
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 74,
+        "pct": 73,
         "remaining_hours": [
-          53,
-          106
+          56,
+          112
         ],
         "remaining_sessions": [
-          14,
-          28
+          15,
+          30
         ],
         "weight": 1
       },
       {
         "track": "frontend",
         "label": "Frontend",
-        "pct": 96,
+        "pct": 95,
         "remaining_hours": [
-          3,
-          6
+          4,
+          8
         ],
         "remaining_sessions": [
           1,
@@ -506,12 +546,12 @@
         "label": "Deployment",
         "pct": 50,
         "remaining_hours": [
-          8,
-          16
+          9,
+          18
         ],
         "remaining_sessions": [
           2,
-          4
+          5
         ],
         "weight": 1
       },
@@ -601,12 +641,12 @@
       }
     ],
     "shipped": {
-      "done": 303,
-      "total": 363,
+      "done": 304,
+      "total": 367,
       "pct": 83
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (303/363 tasks done=83%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 10 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (304/367 tasks done=83%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 10 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
@@ -614,9 +654,9 @@
       {
         "name": "vams_accounting",
         "state": "running",
-        "status": "Up 8 minutes",
+        "status": "Up 30 minutes",
         "health": "none",
-        "uptime": "8 minutes",
+        "uptime": "30 minutes",
         "ports": "8008",
         "up": true
       },
@@ -632,9 +672,9 @@
       {
         "name": "vams_accounting_relay",
         "state": "running",
-        "status": "Up 17 hours",
+        "status": "Up 18 hours",
         "health": "none",
-        "uptime": "17 hours",
+        "uptime": "18 hours",
         "ports": "",
         "up": true
       },
@@ -659,27 +699,27 @@
       {
         "name": "vams_crm",
         "state": "running",
-        "status": "Up 7 minutes",
+        "status": "Up 18 minutes",
         "health": "none",
-        "uptime": "7 minutes",
+        "uptime": "18 minutes",
         "ports": "8005",
         "up": true
       },
       {
         "name": "vams_crm_beat",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 8 hours",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "8 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_crm_worker",
         "state": "running",
-        "status": "Up 7 hours",
+        "status": "Up 8 hours",
         "health": "none",
-        "uptime": "7 hours",
+        "uptime": "8 hours",
         "ports": "",
         "up": true
       },
@@ -695,9 +735,9 @@
       {
         "name": "vams_engineering",
         "state": "running",
-        "status": "Up 8 minutes",
+        "status": "Up 30 minutes",
         "health": "none",
-        "uptime": "8 minutes",
+        "uptime": "30 minutes",
         "ports": "8006",
         "up": true
       },
@@ -731,9 +771,9 @@
       {
         "name": "vams_gateway",
         "state": "running",
-        "status": "Up 12 hours",
+        "status": "Up 13 hours",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "13 hours",
         "ports": "8080",
         "up": true
       },
@@ -758,9 +798,9 @@
       {
         "name": "vams_hr_relay",
         "state": "running",
-        "status": "Up 17 hours",
+        "status": "Up 18 hours",
         "health": "none",
-        "uptime": "17 hours",
+        "uptime": "18 hours",
         "ports": "",
         "up": true
       },
@@ -776,27 +816,27 @@
       {
         "name": "vams_integrations",
         "state": "running",
-        "status": "Up 8 hours",
+        "status": "Up 9 hours",
         "health": "none",
-        "uptime": "8 hours",
+        "uptime": "9 hours",
         "ports": "8010",
         "up": true
       },
       {
         "name": "vams_integrations_beat",
         "state": "running",
-        "status": "Up 8 hours",
+        "status": "Up 9 hours",
         "health": "none",
-        "uptime": "8 hours",
+        "uptime": "9 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_integrations_worker",
         "state": "running",
-        "status": "Up 8 hours",
+        "status": "Up 9 hours",
         "health": "none",
-        "uptime": "8 hours",
+        "uptime": "9 hours",
         "ports": "",
         "up": true
       },
@@ -812,27 +852,27 @@
       {
         "name": "vams_ops",
         "state": "running",
-        "status": "Up 12 hours",
+        "status": "Up 13 hours",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "13 hours",
         "ports": "8009",
         "up": true
       },
       {
         "name": "vams_ops_relay",
         "state": "running",
-        "status": "Up 12 hours",
+        "status": "Up 13 hours",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "13 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_ops_worker",
         "state": "running",
-        "status": "Up 12 hours",
+        "status": "Up 13 hours",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "13 hours",
         "ports": "",
         "up": true
       },
@@ -848,9 +888,9 @@
       {
         "name": "vams_platform",
         "state": "running",
-        "status": "Up 12 hours",
+        "status": "Up 13 hours",
         "health": "none",
-        "uptime": "12 hours",
+        "uptime": "13 hours",
         "ports": "8001",
         "up": true
       },
@@ -893,18 +933,18 @@
       {
         "name": "vams_purchasing",
         "state": "running",
-        "status": "Up 7 minutes",
+        "status": "Up 29 minutes",
         "health": "none",
-        "uptime": "7 minutes",
+        "uptime": "29 minutes",
         "ports": "8003",
         "up": true
       },
       {
         "name": "vams_purchasing_relay",
         "state": "running",
-        "status": "Up 17 hours",
+        "status": "Up 18 hours",
         "health": "none",
-        "uptime": "17 hours",
+        "uptime": "18 hours",
         "ports": "",
         "up": true
       },
@@ -920,18 +960,18 @@
       {
         "name": "vams_qc",
         "state": "running",
-        "status": "Up 44 minutes",
+        "status": "Up About an hour",
         "health": "none",
-        "uptime": "44 minutes",
+        "uptime": "About an hour",
         "ports": "8002",
         "up": true
       },
       {
         "name": "vams_qc_relay",
         "state": "running",
-        "status": "Up 17 hours",
+        "status": "Up 18 hours",
         "health": "none",
-        "uptime": "17 hours",
+        "uptime": "18 hours",
         "ports": "",
         "up": true
       },
@@ -1005,8 +1045,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-28T02:10:12Z",
-    "carried": true
+    "checked_at": "2026-07-28T02:32:03Z"
   },
   "health": [
     {
