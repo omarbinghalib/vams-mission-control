@@ -2494,9 +2494,65 @@
   },
   {
     "title": "Sweep v7 coverage (read-only)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "RUNNING, read-only -- endpoint-without-screen / broken-wiring / residual-stubs / value-parity, a different angle from the schema-field-mismatch lane. Sequence: these 2 lanes land -> honest CERTIFICATION ACCOUNTING (certify primary+secondary workflows complete + precisely characterize remaining long-tail).",
+    "note": "AUDIT COMPLETE -- 9 new closeable findings + backlog reconfirmed (GL cent-exact 989,768 both sides). Non-gaps cleared (record-changes/outbox/ledger-nested/CMTR-nested confirmed served differently, not missing). HONEST framing for cert: convergence is per-angle for a large ERP; closing this batch then producing the certification accounting.",
     "started_at": "2026-07-28T03:01:42Z"
+  },
+  {
+    "title": "FIX systemic options() action collision (all 9 services)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "DISPATCHED, disjoint from the running schema-mismatch lane. GenericEngineMixin `options` action shadows DRF's HTTP-OPTIONS across all 9 services (raw OPTIONS 500; not SPA-reachable but latent). Renaming method (keep url_path='options') + re-copy to 9 + regression test.",
+    "started_at": "2026-07-28T03:45:47Z"
+  },
+  {
+    "title": "HELD (data artifact, DELETE): PJ id=28019 ($1,000, null PO) causes count/sum divergence",
+    "status": "pending",
+    "track": "backend",
+    "gated": true,
+    "note": "Leftover live-test residue (same class as ToolingAssembly id=83). Causes new=27,239 vs oracle=27,238 + $1,000 sum divergence. Single-row DELETE -- held for authorization."
+  },
+  {
+    "title": "Coverage gap: PRAdditionalRemark (63,118 rows, PR thread)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane (avoid frontend api.ts races) as coverage Lane A (purchasing/inventory)."
+  },
+  {
+    "title": "Coverage gap: SubPO (4,880 rows + naming-collision fix)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane A (purchasing/inventory)."
+  },
+  {
+    "title": "Coverage gap: ApprovedVendor (22,770 rows, per-part vendor panel)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane A (purchasing/inventory)."
+  },
+  {
+    "title": "Coverage gap: EWO/SWO activity panels",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+  },
+  {
+    "title": "Coverage gap: NearMissReport.conditions M2M",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+  },
+  {
+    "title": "Coverage gap: DebitNote register (247 rows / $327,158.87)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+  },
+  {
+    "title": "Coverage gap: Policy/PolicyCategory content library",
+    "status": "pending",
+    "track": "backend",
+    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
   }
 ]
