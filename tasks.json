@@ -2288,10 +2288,10 @@
   },
   {
     "title": "HELD-FOR-USER: restore sdasilva username/login (corrupted to invitee-1783708248)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane. Underlying user id=7 is power-user sdasilva but username was corrupted to 'invitee-1783708248', stuck at roles:['member']. Fix = restore username + RBAC re-backfill.",
+    "note": "DONE -- closed by DATA-FIX lane, commit 30005efb. User id=7 username restored invitee-1783708248->sdasilva; RBAC re-backfilled member->[hod,accounts-admin,quality,sales,hr-manager,mes,member]; live-verified /me/ + /auth/profile/. Authorized by Omar (AskUserQuestion 'Execute now (snapshotted)', 2026-07-28).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
