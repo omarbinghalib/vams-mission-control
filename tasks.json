@@ -2555,9 +2555,9 @@
   },
   {
     "title": "Coverage gap: EWO/SWO activity panels",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PROD lane (ApprovedVendor/EWO-SWO activity frontend, tsc-only).",
+    "note": "DONE -- commit 83da71dd (COV-PROD lane). EnggWorkOrderActivity/ServiceWorkOrderActivity time-tracking panels mirroring the PWO Operations panel (SWO with directly-editable times per its monolith form). tsc clean for modules/production; goes live at the pending integration rebuild.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
