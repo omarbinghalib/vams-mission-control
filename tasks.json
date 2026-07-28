@@ -2569,9 +2569,9 @@
   },
   {
     "title": "Coverage gap: Policy/PolicyCategory content library",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-QCCRM lane (NearMiss conditions/Policy library frontend, tsc-only).",
+    "note": "DONE -- commit ed5e4d37 (COV-QCCRM lane). Policy/PolicyCategory content library landed. tsc -b clean (full project). Flag: registry.ts global entry for policies still needed (shared-surface; folding into the integration rebuild).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
