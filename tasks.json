@@ -2454,10 +2454,11 @@
     "note": "Recurring bug CLASS found twice now (designation name->title, employeeDocument fabricated field names) -- each silently zod-errors real rows into an empty panel. v7 should grep ALL zod schemas vs actual backend fields system-wide to close the whole class, not just these 2 instances. Still RUNNING before v7: Tranche B (missing document-registry pages -- editing rcn.tsx/so.tsx). Integration rebuild after Tranche B lands."
   },
   {
-    "title": "Tiny cleanup (low-risk): stray ToolingAssembly id=83 test artifact blocks LIVE create",
+    "title": "HELD (now BLOCKING live create): stray ToolingAssembly id=83 test artifact",
     "status": "pending",
     "track": "backend",
-    "note": "id=83, number='', a LANE-TEST artifact created by the audit today (self-labeled safe-to-delete) blocks the LIVE ToolingAssembly create via the unique constraint. Single-row DELETE ... WHERE id=83 AND number='' -- held (a DELETE) but it's a test artifact not real data; low-risk cleanup for when convenient/authorized. Code fix (Tranche A) is complete + verified via rollback regardless of this cleanup."
+    "gated": true,
+    "note": "RE-CONFIRMED blocking -- ToolingAssembly create still 500s LIVE, ONLY due to id=83 (number='', self-labeled 'LANE-TEST, safe to delete', our audit residue) poisoning the unique constraint. Code fix (Tranche A) confirmed correct by source -- create works once removed. Single-row DELETE ... WHERE id=83 AND number='' -- held for authorization (a DELETE, even though it's a test artifact not real data)."
   },
   {
     "title": "DOCUMENTED deferral: ProcessData (valve-sizing wizard snapshot) needs Valve Manager backend",
@@ -2479,9 +2480,23 @@
   },
   {
     "title": "Integration rebuild + smoke new surfaces",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "RUNNING -- all 3 long-tail tranche lanes (A/B/C) done. Frontend-web rebuild + backend-container currency + live-smoke the new RCN/PJ/SO/Policy/GroupCompany/EmployeeDoc/JobActivity/part-media/PdmDocument surfaces + create-defect spot-checks. Sequence: rebuild lands -> sweep v7 (angles: schema-field-mismatch class + endpoint/screen coverage) -> honest certification accounting.",
+    "note": "DONE -- all tranche surfaces LIVE + verified with real data (RCN 45, PJDocument 20710, SODocumentation 7292, PolicyDocument 18, GroupCompanyDocument 1308, EmployeeDocument 47707, JobActivity 212574, PdmDocument 42367, part-media 11079, etc.). Deployed bundle md5-confirmed new code; all 5 touched backend containers rebuilt (they predated their commits). Create-defect spot-checks: Drawing 201 PASS, FixedAsset 201 PASS (accounts auto-derived), both cleaned up. ToolingAssembly create still 500s LIVE -- code fix confirmed correct by source, blocked only by the held id=83 test-artifact row (see task above).",
     "started_at": "2026-07-28T02:31:52Z"
+  },
+  {
+    "title": "Schema-field-mismatch audit+fix (system-wide)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "RUNNING -- closes the recurring silently-empty-panel class (designation, employeeDocument) across ALL modules: grep every zod schema vs actual backend field names.",
+    "started_at": "2026-07-28T03:01:42Z"
+  },
+  {
+    "title": "Sweep v7 coverage (read-only)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "RUNNING, read-only -- endpoint-without-screen / broken-wiring / residual-stubs / value-parity, a different angle from the schema-field-mismatch lane. Sequence: these 2 lanes land -> honest CERTIFICATION ACCOUNTING (certify primary+secondary workflows complete + precisely characterize remaining long-tail).",
+    "started_at": "2026-07-28T03:01:42Z"
   }
 ]
