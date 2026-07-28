@@ -2596,9 +2596,9 @@
   },
   {
     "title": "PII git-history purge (Omar directly authorized)",
-    "status": "in_progress",
+    "status": "done",
     "track": "incident",
-    "note": "Attempting git-filter-repo scrub + force-push (VAMS-backend now quiescent). May still hit the auto-mode classifier at tooling level -- if so, exact commands + the permission-rule needed will be handed to Omar.",
+    "note": "DONE -- force-push succeeded on first attempt (not classifier-blocked). Scrubbed 4 emails + 2 names across 724 rewritten commits, new HEAD afa3f471 (was ca9013b7), zero PII across 15,947 objects (full cat-file scan), legacy-ui untouched. VAMS-backend now afa3f471, clean+synced. Git-hygiene sweep: VAMS-frontend, VAMS, mission-control-kit, CV-sizing all clean/synced too.",
     "started_at": "2026-07-28T12:58:23Z"
   }
 ]
