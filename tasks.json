@@ -2562,9 +2562,9 @@
   },
   {
     "title": "Coverage gap: NearMissReport.conditions M2M",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-QCCRM lane (NearMiss conditions/Policy library frontend, tsc-only).",
+    "note": "DONE -- commit ed5e4d37 (COV-QCCRM lane). NearMiss conditions M2M bound to the CRUD endpoint. tsc -b clean (full project).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
