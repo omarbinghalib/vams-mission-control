@@ -1,29 +1,9 @@
 {
  "available": true,
- "checked_at": "2026-07-28T06:34:06Z",
- "host": {
-  "cpu_pct": 100,
-  "cores": [
-   100
-  ],
-  "mem_pct": 90.8,
-  "mem_used_mb": 14614,
-  "mem_total_mb": 16091,
-  "uptime_sec": 98436,
-  "process_count": 376
- },
- "disks": [
-  {
-   "drive": "C:",
-   "used_gb": 829.8,
-   "total_gb": 934.7,
-   "pct": 88.8
-  }
- ],
- "network": {
-  "rx_bytes_per_sec": 3942,
-  "tx_bytes_per_sec": 936
- },
+ "checked_at": "2026-07-28T06:39:29Z",
+ "host": {},
+ "disks": [],
+ "network": {},
  "temp_c": null,
  "temp_available": false,
  "docker": {
@@ -334,14 +314,14 @@
    }
   ]
  },
- "host_carried": true,
- "disks_carried": true,
- "network_carried": true,
+ "host_carried": false,
+ "disks_carried": false,
+ "network_carried": false,
  "temp_carried": false,
  "docker_carried": true,
- "host_as_of": "2026-07-28T06:18:57Z",
- "disks_as_of": "2026-07-28T06:18:57Z",
- "network_as_of": "2026-07-28T06:18:57Z",
+ "host_as_of": null,
+ "disks_as_of": null,
+ "network_as_of": null,
  "temp_as_of": null,
  "docker_as_of": "2026-07-28T06:28:44Z",
  "host_error": "Command '['powershell', '-NoProfile', '-NonInteractive', '-Command', '\\n$ErrorActionPreference=\\'Stop\\'\\n$result = [ordered]@{}\\ntry {\\n  $os=Get-CimInstance Win32_OperatingSystem\\n  $procsAll=Get-CimInstance Win32_Processor\\n  $cpu=($procsAll | Measure-Object -Property LoadPercentage -Average).Aver",
