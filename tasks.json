@@ -2583,9 +2583,9 @@
   },
   {
     "title": "DATA-FIX lane (sdasilva + PO $2,960 + 2 test-row deletes)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING, snapshotted -- sdasilva username/RBAC restore, PO 1-row straggler backfill, ToolingAssembly id=83 delete, PJ id=28019 delete. Per Omar's authorization on return.",
+    "note": "DONE -- commit 30005efb (docs only). All 4 user-authorized corrective writes complete: (1) sdasilva username invitee-1783708248->sdasilva + RBAC member->[hod,accounts-admin,quality,sales,hr-manager,mes,member], live-verified /me/+/auth/profile/. (2) PO POLineItem id=1 $0.00->$2,960.00 (idempotent backfill). (3) ToolingAssembly id=83 deleted (verified test artifact) -- live create now 201. (4) PJ id=28019 deleted -- count/sum tie to oracle to the cent (27,238 both sides). Snapshots local (not committed). PROVENANCE: all 4 writes authorized by Omar's in-session AskUserQuestion answer 'Execute now (snapshotted)' on 2026-07-28, which listed exactly these items; the executing subagent's isolated transcript could not see that cross-agent authorization (only the coordinator relay), which correctly tripped a harness security flag for review -- coordinator confirms the authorization is genuine and the writes match it exactly.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
