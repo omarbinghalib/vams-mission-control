@@ -2459,10 +2459,10 @@
   },
   {
     "title": "HELD (now BLOCKING live create): stray ToolingAssembly id=83 test artifact",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane (one of the 2 test-row deletes). id=83, number='', self-labeled 'LANE-TEST, safe to delete', our audit residue; ToolingAssembly create works once removed.",
+    "note": "DONE -- closed by DATA-FIX lane, commit 30005efb. Verified test artifact (self-labeled 'LANE-TEST, safe to delete') deleted; live ToolingAssembly create now returns 201 (was blocked). Authorized by Omar (AskUserQuestion 'Execute now (snapshotted)', 2026-07-28).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
