@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-28T11:44:16Z",
-  "heartbeat_at": "2026-07-28T11:44:16Z",
+  "updated": "2026-07-28T11:59:56Z",
+  "heartbeat_at": "2026-07-28T11:59:56Z",
   "last_activity": "2026-07-28T10:45:15Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
@@ -9,15 +9,15 @@
     "cache_read_tokens": 6267974779,
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
-    "sessions": 15,
+    "sessions": 14,
     "live_sessions": 0,
     "transcript_sessions": 12,
-    "subagent_sessions": 3,
-    "workers": 4,
+    "subagent_sessions": 2,
+    "workers": 3,
     "live_workers": 0,
     "stopped_workers": 0,
-    "current_workers": 4,
-    "history_workers": 570,
+    "current_workers": 3,
+    "history_workers": 571,
     "recent_window_min": 120
   },
   "workers": [
@@ -32,32 +32,9 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T10:45:15Z",
-      "out_age_min": 59.0,
+      "out_age_min": 74.7,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
-      "status": "idle",
-      "live": false,
-      "recent": true
-    },
-    {
-      "name": "Coverage frontend: purchasing",
-      "role": "frontend",
-      "branch": "frontend-redesign",
-      "focus": "Build the purchasing-module frontend for 3 sweep-v7 coverage gaps against ALREADY-EXISTING, verified backend endpoints (the schema-mismatch lane is done, so no api.",
-      "agent_id": "a1e25e46f61f0da8d",
-      "short_id": "a1e25e46",
-      "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-      "head_commit_at": "2026-07-20T08:46:30+04:00",
-      "head_ago_min": 11937.8,
-      "out_last_active": "2026-07-28T09:48:13Z",
-      "out_age_min": 116.1,
-      "log_bytes": 1440955,
-      "output_tokens": 161588,
-      "cache_read_tokens": 78610419,
-      "cache_creation_tokens": 3894951,
-      "msgs": 361,
-      "tokens_carried": false,
-      "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
       "recent": true
@@ -69,17 +46,17 @@
       "focus": "Build the qc + crm frontend for 2 sweep-v7 coverage gaps against ALREADY-EXISTING backend endpoints (schema lane done, no race).",
       "agent_id": "ad8298fcd2ed759be",
       "short_id": "ad8298fc",
-      "head_commit": null,
-      "head_commit_at": null,
-      "head_ago_min": null,
+      "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+      "head_commit_at": "2026-07-20T08:46:30+04:00",
+      "head_ago_min": 11953.4,
       "out_last_active": "2026-07-28T10:45:12Z",
-      "out_age_min": 59.1,
+      "out_age_min": 74.7,
       "log_bytes": 1486888,
       "output_tokens": 212396,
       "cache_read_tokens": 67527128,
       "cache_creation_tokens": 6011484,
       "msgs": 368,
-      "tokens_carried": true,
+      "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -96,7 +73,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T10:19:02Z",
-      "out_age_min": 85.2,
+      "out_age_min": 100.9,
       "log_bytes": 1171467,
       "output_tokens": 118417,
       "cache_read_tokens": 49860994,
@@ -119,7 +96,7 @@
       "cache_creation_tokens": 530517,
       "msgs": 68,
       "last_active": "2026-07-28T10:45:15Z",
-      "age_min": 59.0,
+      "age_min": 74.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -135,7 +112,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27599.8,
+      "age_min": 27615.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -150,7 +127,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36422.9,
+      "age_min": 36438.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -165,7 +142,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30552.9,
+      "age_min": 30568.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -180,7 +157,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30326.0,
+      "age_min": 30341.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -195,7 +172,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26233.6,
+      "age_min": 26249.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -210,7 +187,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27709.2,
+      "age_min": 27724.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -225,7 +202,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26393.6,
+      "age_min": 26409.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -240,7 +217,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30506.8,
+      "age_min": 30522.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -255,7 +232,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30552.9,
+      "age_min": 30568.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -270,7 +247,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37128.2,
+      "age_min": 37143.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -285,27 +262,10 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37145.6,
+      "age_min": 37161.3,
       "live": false,
       "status": "idle",
       "subagent": false,
-      "recent": true
-    },
-    {
-      "id": "a1e25e46",
-      "full_id": "a1e25e46f61f0da8d",
-      "group": "frontend",
-      "group_label": "Coverage frontend: purchasing",
-      "output_tokens": 161588,
-      "cache_read_tokens": 78610419,
-      "cache_creation_tokens": 3894951,
-      "msgs": 361,
-      "last_active": "2026-07-28T09:48:13Z",
-      "age_min": 116.1,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 1440955,
       "recent": true
     },
     {
@@ -318,7 +278,7 @@
       "cache_creation_tokens": 6011484,
       "msgs": 368,
       "last_active": "2026-07-28T10:45:12Z",
-      "age_min": 59.1,
+      "age_min": 74.7,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -335,7 +295,7 @@
       "cache_creation_tokens": 1348493,
       "msgs": 367,
       "last_active": "2026-07-28T10:19:02Z",
-      "age_min": 85.2,
+      "age_min": 100.9,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -345,12 +305,12 @@
   ],
   "total_tokens": 14558747,
   "history": {
-    "workers": 570,
+    "workers": 571,
     "by_status": {
-      "idle": 558,
+      "idle": 559,
       "stopped": 12
     },
-    "last_active": "2026-07-28T09:18:25Z",
+    "last_active": "2026-07-28T09:48:13Z",
     "note": "Prior-session fleet \u2014 productization, full local deployment, and the parity + knowledge capstones (all shipped). Retired; not part of the current redesign work."
   },
   "progress": {
@@ -601,9 +561,9 @@
       {
         "name": "vams_docs",
         "state": "running",
-        "status": "Up 29 hours",
+        "status": "Up 30 hours",
         "health": "none",
-        "uptime": "29 hours",
+        "uptime": "30 hours",
         "ports": "8095",
         "up": true
       },
@@ -619,18 +579,18 @@
       {
         "name": "vams_engineering_relay",
         "state": "running",
-        "status": "Up 26 hours",
+        "status": "Up 27 hours",
         "health": "none",
-        "uptime": "26 hours",
+        "uptime": "27 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_engineering_worker",
         "state": "running",
-        "status": "Up 26 hours",
+        "status": "Up 27 hours",
         "health": "none",
-        "uptime": "26 hours",
+        "uptime": "27 hours",
         "ports": "",
         "up": true
       },
@@ -655,18 +615,18 @@
       {
         "name": "vams_hr",
         "state": "running",
-        "status": "Up 13 hours",
+        "status": "Up 14 hours",
         "health": "none",
-        "uptime": "13 hours",
+        "uptime": "14 hours",
         "ports": "8004",
         "up": true
       },
       {
         "name": "vams_hr_beat",
         "state": "running",
-        "status": "Up About an hour",
+        "status": "Up 2 hours",
         "health": "none",
-        "uptime": "About an hour",
+        "uptime": "2 hours",
         "ports": "",
         "up": true
       },
@@ -682,9 +642,9 @@
       {
         "name": "vams_hr_worker",
         "state": "running",
-        "status": "Up About an hour",
+        "status": "Up 2 hours",
         "health": "none",
-        "uptime": "About an hour",
+        "uptime": "2 hours",
         "ports": "",
         "up": true
       },
@@ -772,36 +732,36 @@
       {
         "name": "vams_production",
         "state": "running",
-        "status": "Up 18 hours",
+        "status": "Up 19 hours",
         "health": "none",
-        "uptime": "18 hours",
+        "uptime": "19 hours",
         "ports": "8007",
         "up": true
       },
       {
         "name": "vams_production_beat",
         "state": "running",
-        "status": "Up 18 hours",
+        "status": "Up 19 hours",
         "health": "none",
-        "uptime": "18 hours",
+        "uptime": "19 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_relay",
         "state": "running",
-        "status": "Up 18 hours",
+        "status": "Up 19 hours",
         "health": "none",
-        "uptime": "18 hours",
+        "uptime": "19 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_production_worker",
         "state": "running",
-        "status": "Up 18 hours",
+        "status": "Up 19 hours",
         "health": "none",
-        "uptime": "18 hours",
+        "uptime": "19 hours",
         "ports": "",
         "up": true
       },
@@ -871,9 +831,9 @@
       {
         "name": "vams_reporting",
         "state": "running",
-        "status": "Up 24 hours",
+        "status": "Up 25 hours",
         "health": "none",
-        "uptime": "24 hours",
+        "uptime": "25 hours",
         "ports": "8011",
         "up": true
       },
@@ -889,27 +849,27 @@
       {
         "name": "vams_services_postgres",
         "state": "running",
-        "status": "Up 32 hours (healthy)",
+        "status": "Up 33 hours (healthy)",
         "health": "healthy",
-        "uptime": "32 hours",
+        "uptime": "33 hours",
         "ports": "5432",
         "up": true
       },
       {
         "name": "vams_services_redis",
         "state": "running",
-        "status": "Up 32 hours (healthy)",
+        "status": "Up 33 hours (healthy)",
         "health": "healthy",
-        "uptime": "32 hours",
+        "uptime": "33 hours",
         "ports": "6379",
         "up": true
       },
       {
         "name": "vams_web",
         "state": "running",
-        "status": "Up 6 hours",
+        "status": "Up 7 hours",
         "health": "none",
-        "uptime": "6 hours",
+        "uptime": "7 hours",
         "ports": "8090",
         "up": true
       }
@@ -920,8 +880,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-28T11:27:55Z",
-    "carried": true
+    "checked_at": "2026-07-28T11:59:56Z"
   },
   "health": [
     {
@@ -934,8 +893,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     },
     {
       "name": "auth token",
@@ -949,8 +907,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     }
   ],
   "commits": {
@@ -958,24 +915,74 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 21,
+        "commits_7d": 223
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 0
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "ca9013b7",
+        "at": "2026-07-28T14:11:39+04:00",
+        "subject": "hr: enable NEW-13 actual-OT sync guard, keep NEW-11 leave-accrual guard OFF",
+        "track": "backend"
+      },
+      {
+        "hash": "30005efb",
+        "at": "2026-07-28T12:57:32+04:00",
+        "subject": "docs(parity): log execution of 4 authorized corrective data fixes",
+        "track": "backend"
+      },
+      {
+        "hash": "c9671517",
+        "at": "2026-07-28T08:00:22+04:00",
+        "subject": "Fix generic-engine `options` action shadowing DRF's HTTP OPTIONS handler",
+        "track": "backend"
+      },
+      {
+        "hash": "a9006b03",
+        "at": "2026-07-28T06:22:35+04:00",
+        "subject": "crm+purchasing: fix generic-serializer field locks blocking real document registries",
+        "track": "backend"
+      },
+      {
+        "hash": "d3d1073d",
+        "at": "2026-07-28T06:10:45+04:00",
+        "subject": "fix(engineering,accounting): CREATE-path defects from file-upload audit",
+        "track": "backend"
+      },
+      {
+        "hash": "2625a9da",
+        "at": "2026-07-28T05:33:44+04:00",
+        "subject": "qc: add RCN/RCNDocument/RCNConcern registry endpoints (file-upload audit gap)",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
     "state": "Running",
     "paused": false,
-    "checked_at": "2026-07-28T11:27:55Z",
-    "carried": true
+    "checked_at": "2026-07-28T11:59:56Z"
   },
   "task_worker_live": {}
 }
