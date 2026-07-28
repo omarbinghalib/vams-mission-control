@@ -2327,10 +2327,10 @@
   },
   {
     "title": "HELD-FOR-USER: PII git-history purge (commit 5d88350c blob, force-push)",
-    "status": "pending",
+    "status": "done",
     "track": "incident",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + AUTHORIZED, may need a permission rule) -- Omar's decision-gate is now RESOLVED. HELD FOR VAMS-BACKEND QUIESCENCE instead: will dispatch once PAYROLL-ENABLE + DATA-FIX finish pushing (a force-push during their pushes would orphan commits). Then attempt (may still hit the classifier as force-push/history-rewrite is destructive -- lane will report the exact command if a permission rule is needed). HEAD is already redacted (47db9a63) so active exposure is minimized; residual PII is only in the historical 5d88350c blob. Exact git-filter-repo procedure documented (isolated clone, --replace-text scrub, force-push microservices-backend, legacy-ui untouched). NOTE: this will rewrite commit hashes from 5d88350c onward once run.",
+    "note": "Decision-gate CLOSED -- Omar directly re-confirmed authorization for the purge attempt. Execution now tracked as its own task: 'PII git-history purge (Omar directly authorized)'.",
     "started_at": "2026-07-27T17:26:04Z"
   },
   {
