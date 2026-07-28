@@ -2398,10 +2398,10 @@
   },
   {
     "title": "HELD-FOR-USER-AUTH: NEW-13 actual-OT sync enable",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "AUTHORIZED by Omar (returned + ENABLE NOW, with snapshots) -- now in the PAYROLL-ENABLE lane: snapshot -> enable -> verify-correctness -> keep-or-rollback. Was guarded off (HR_ACTUAL_OT_SYNC_ENABLED), zero-impact today (all data historical).",
+    "note": "DONE -- commit ca9013b7 (PAYROLL-ENABLE lane). Verified safe: HR_ACTUAL_OT_SYNC_ENABLED=1, zero rows in scope today, beat fires with guard on. Kept enabled.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
