@@ -2421,9 +2421,30 @@
   },
   {
     "title": "SYSTEM-WIDE file-upload/attachment audit + fix (QC-1 + QC-2 + all modules)",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- commits 506656fe/223b22c7/980857dd/754e3206. FIXED ~15 upload surfaces (qc QC-1/QC-2/qmDocument; crm approvals/specifications/datasheet; accounting bankRec/vendorBank/fa/pc; engineering cncProgram) all live-verified upload->delete->zero-residue. Corrected the mis-marked Q3. The audit revealed a deeper LONG TAIL (honest): 2 pre-existing backend create bugs, missing whole pages (RCN, ContractRenewalLog 6989, SODocumentation/SODocumentLineItem, GroupCompanyDocument, PJDocument 20710), HR doc surfaces at scale (EmployeeDocument 47707, JobActivityDocument 60017), eng part media (picture/casting_drawing 11079). Dispatched as a 3-lane long-tail tranche (see below).",
+    "started_at": "2026-07-27T23:36:57Z"
+  },
+  {
+    "title": "LONG-TAIL TRANCHE A: backend create defects (Drawing.partdefinition, ToolingAssembly number, FixedAsset/VendorBank required-fields)",
     "status": "in_progress",
     "track": "backend",
-    "note": "DISPATCHED -- QC-1 (supplierEval EvaluationDocument read-only, 782 rows) + QC-2 (calibrationCertificate missing file field, 57 rows) + audit ALL modules for the same class (read-only/missing upload where a live backend FileField exists) and wire them all using the proven AttachmentsLive pattern (already live 6x). Also corrects the mis-marked 'Q3 CLOSED' (was verified by display, not actual upload). Sequence: this lands -> sweep v7 (a THIRD new angle: endpoint-without-screen / screen-without-endpoint / filter+pagination coverage) -> certify when a fresh-angle pass comes back clean.",
-    "started_at": "2026-07-27T23:36:57Z"
+    "note": "DISPATCHED -- 2 pre-existing backend create bugs found by the file-upload audit: Drawing.partdefinition editable, ToolingAssembly number auto-gen, FixedAsset/VendorBank required-field wiring.",
+    "started_at": "2026-07-28T00:58:37Z"
+  },
+  {
+    "title": "LONG-TAIL TRANCHE B: missing document-registry pages (crm/qc/purchasing)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- missing whole pages found by the file-upload audit: RCN, ContractRenewalLog (6989), SODocumentation/SODocumentLineItem, GroupCompanyDocument, PJDocument (20710). Verify standalone-vs-subtab placement vs the monolith. tsc-only -- one integration rebuild after B+C land.",
+    "started_at": "2026-07-28T00:58:37Z"
+  },
+  {
+    "title": "LONG-TAIL TRANCHE C: HR + engineering scale document surfaces",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- HR doc surfaces at scale (EmployeeDocument 47707, JobActivityDocument 60017), eng part media (picture/casting_drawing 11079). Placement-verified, paginated. tsc-only -- one integration rebuild after B+C land. HONEST NOTE for capstone: each new audit angle/depth finds more long-tail (missing secondary pages, scale doc surfaces) -- this is the nature of a large ERP; convergence is angle-dependent. Sequence: tranche lands -> integration rebuild -> sweep v7 -> honest certification accounting.",
+    "started_at": "2026-07-28T00:58:37Z"
   }
 ]
