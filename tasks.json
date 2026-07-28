@@ -3,7 +3,7 @@
     "title": "SECURITY INCIDENT: PII-in-git (NEW-8 lane, docs/parity/NEW-8-ocn-identity-fix.md, commit 5d88350c)",
     "status": "in_progress",
     "track": "incident",
-    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard -- STILL OPEN. STATUS: HEAD-clean, history-purge held-for-user-auth. (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed, HEAD confirmed clean of personal emails/names; active exposure minimized. (2) git-HISTORY purge of the original PII blob at commit 5d88350c is HELD -- BLOCKED by the auto-mode classifier (force-push/history-rewrite = destructive, hard-to-reverse); not bypassed. Requires Omar's explicit authorization (see HELD-FOR-USER: PII git-history purge task). Sequence: INT-BEAT lands -> sweep v3 -> certify FUNCTIONAL zero-closeable-gaps (held git-purge + held data-writes documented, not blocking the functional cert). Incident stays open until the purge is authorized + run and verifies zero PII in history.",
+    "note": "TOP PRIORITY, ATTENTION RAISED on the dashboard -- STILL OPEN. STATUS: HEAD-clean, purge AUTHORIZED by Omar (returned), now held for VAMS-backend quiescence (not for authorization). (1) HEAD redaction DONE (backend 47db9a63): doc + ETL docstring scrubbed, HEAD confirmed clean of personal emails/names; active exposure minimized. (2) git-HISTORY purge of the original PII blob at commit 5d88350c: Omar authorized the force-push attempt; dispatching once PAYROLL-ENABLE + DATA-FIX finish pushing (concurrent force-push would orphan their commits). May still hit the classifier as force-push/history-rewrite is destructive -- will report if a permission rule is needed. Incident stays open until the purge runs and verifies zero PII in history.",
     "started_at": "2026-07-27T16:26:43Z"
   },
   {
@@ -2247,10 +2247,11 @@
   },
   {
     "title": "HELD-FOR-USER: PO 1-row straggler (POLineItem id=1, PO000000402, +$2,960.00)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "The ONLY financial-write item held (destructive-financial-write rule). Re-running the existing idempotent backfill_po_lineitem_grand_total command fixes only this 1 row (still $0.00, backfill missed it -> +$2,960.00 -> correct). Additive/idempotent but a real financial write -> queued for Omar's explicit authorization. NOT a blocking closeable gap for certification -- documented held-financial-write."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane. Re-running the existing idempotent backfill_po_lineitem_grand_total command fixes only this 1 row (still $0.00, backfill missed it -> +$2,960.00 -> correct).",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "_shared permissions back-port: ops access_hrms + can_evaluate_visitor",
@@ -2287,10 +2288,11 @@
   },
   {
     "title": "HELD-FOR-USER: restore sdasilva username/login (corrupted to invitee-1783708248)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "REAL login-credential change -> HELD for user authorization (snapshot+documented), not auto-applied. Underlying user id=7 is power-user sdasilva but username was corrupted to 'invitee-1783708248', stuck at roles:['member']. Fix = restore username + RBAC re-backfill, once authorized."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane. Underlying user id=7 is power-user sdasilva but username was corrupted to 'invitee-1783708248', stuck at roles:['member']. Fix = restore username + RBAC re-backfill.",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "FIX NEW-9: VS-Report beat + cache regen",
@@ -2327,8 +2329,8 @@
     "title": "HELD-FOR-USER: PII git-history purge (commit 5d88350c blob, force-push)",
     "status": "pending",
     "track": "incident",
-    "gated": true,
-    "note": "HELD -- the git-HISTORY purge dispatch was BLOCKED by the auto-mode classifier (force-push / history-rewrite = destructive, outward-facing, hard-to-reverse); not bypassed, per the hold-destructive-ops rule. Requires Omar's explicit authorization for the git push --force (or a Bash force-push permission rule). HEAD is already redacted (47db9a63) so active exposure is minimized; residual PII is only in the historical 5d88350c blob. Exact git-filter-repo procedure documented for when authorized (isolated clone, --replace-text scrub, force-push microservices-backend, legacy-ui untouched). NOTE: this will rewrite commit hashes from 5d88350c onward once run.",
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + AUTHORIZED, may need a permission rule) -- Omar's decision-gate is now RESOLVED. HELD FOR VAMS-BACKEND QUIESCENCE instead: will dispatch once PAYROLL-ENABLE + DATA-FIX finish pushing (a force-push during their pushes would orphan commits). Then attempt (may still hit the classifier as force-push/history-rewrite is destructive -- lane will report the exact command if a permission rule is needed). HEAD is already redacted (47db9a63) so active exposure is minimized; residual PII is only in the historical 5d88350c blob. Exact git-filter-repo procedure documented (isolated clone, --replace-text scrub, force-push microservices-backend, legacy-ui untouched). NOTE: this will rewrite commit hashes from 5d88350c onward once run.",
     "started_at": "2026-07-27T17:26:04Z"
   },
   {
@@ -2354,10 +2356,11 @@
   },
   {
     "title": "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave balances)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "LeaveTracker materially stale (225 rows untouched 24h, oldest 2016); Leave Balances screen reads stale value. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), held behind HR_LEAVE_ACCRUAL_CRON_ENABLED=0 guard (verified no-op, 225 rows stable). Dry check found a 100+ day balance swing, and this bulk call caused a dev-DB incident on 2026-07-22 -> needs HR/finance review before enable, not just Omar's routine sign-off. Snapshot taken (PII-free)."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + ENABLE NOW, with snapshots) -- now in the PAYROLL-ENABLE lane: snapshot -> enable -> verify-correctness -> keep-or-rollback. Code built+verified (mirrors monolith update_leave_tracker_data, crontab 4:30), was behind HR_LEAVE_ACCRUAL_CRON_ENABLED=0 guard. Dry check previously found a 100+ day balance swing and a dev-DB incident on 2026-07-22 -- lane will verify correctness carefully before keeping enabled.",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "DOCUMENTED B/decision: notification-platform deferral (~15 monolith email/Mattermost crons)",
@@ -2395,10 +2398,11 @@
   },
   {
     "title": "HELD-FOR-USER-AUTH: NEW-13 actual-OT sync enable",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "Payroll-relevant write, guarded off (HR_ACTUAL_OT_SYNC_ENABLED), zero-impact today (all data historical). Enable awaits Omar's explicit authorization."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + ENABLE NOW, with snapshots) -- now in the PAYROLL-ENABLE lane: snapshot -> enable -> verify-correctness -> keep-or-rollback. Was guarded off (HR_ACTUAL_OT_SYNC_ENABLED), zero-impact today (all data historical).",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "DOCUMENTED deferral: actual-OT approved->create_ot_entries payroll-posting branch",
@@ -2455,10 +2459,11 @@
   },
   {
     "title": "HELD (now BLOCKING live create): stray ToolingAssembly id=83 test artifact",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "RE-CONFIRMED blocking -- ToolingAssembly create still 500s LIVE, ONLY due to id=83 (number='', self-labeled 'LANE-TEST, safe to delete', our audit residue) poisoning the unique constraint. Code fix (Tranche A) confirmed correct by source -- create works once removed. Single-row DELETE ... WHERE id=83 AND number='' -- held for authorization (a DELETE, even though it's a test artifact not real data)."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane (one of the 2 test-row deletes). id=83, number='', self-labeled 'LANE-TEST, safe to delete', our audit residue; ToolingAssembly create works once removed.",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "DOCUMENTED deferral: ProcessData (valve-sizing wizard snapshot) needs Valve Manager backend",
@@ -2487,10 +2492,16 @@
   },
   {
     "title": "Schema-field-mismatch audit+fix (system-wide)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "RUNNING -- closes the recurring silently-empty-panel class (designation, employeeDocument) across ALL modules: grep every zod schema vs actual backend field names.",
+    "note": "DONE -- commit 2cd73f80. Fixed 5 real silently-empty-panel bugs (axProject project_name; glSchema.created nullable ~493K rows; positionSchema.created ~48K; budgetedBreakdown.month; salaryHistory->Renumeration nullable fields). 31 'empty' endpoints verified genuinely 0-row (data gap, not schema bug).",
     "started_at": "2026-07-28T03:01:42Z"
+  },
+  {
+    "title": "Backend prep for v7 coverage gaps",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- ALL 7 endpoints already exist + correct (zero backend changes); handoff spec produced for the frontend coverage lanes."
   },
   {
     "title": "Sweep v7 coverage (read-only)",
@@ -2508,51 +2519,79 @@
   },
   {
     "title": "HELD (data artifact, DELETE): PJ id=28019 ($1,000, null PO) causes count/sum divergence",
-    "status": "pending",
+    "status": "in_progress",
     "track": "backend",
-    "gated": true,
-    "note": "Leftover live-test residue (same class as ToolingAssembly id=83). Causes new=27,239 vs oracle=27,238 + $1,000 sum divergence. Single-row DELETE -- held for authorization."
+    "gated": false,
+    "note": "AUTHORIZED by Omar (returned + EXECUTE NOW, snapshotted) -- now in the DATA-FIX lane (the other of the 2 test-row deletes). Leftover live-test residue (same class as ToolingAssembly id=83); causes new=27,239 vs oracle=27,238 + $1,000 sum divergence.",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "Coverage gap: PRAdditionalRemark (63,118 rows, PR thread)",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane (avoid frontend api.ts races) as coverage Lane A (purchasing/inventory)."
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PUR lane (PRAdditionalRemark/SubPO/DebitNote frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "Coverage gap: SubPO (4,880 rows + naming-collision fix)",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane A (purchasing/inventory)."
-  },
-  {
-    "title": "Coverage gap: ApprovedVendor (22,770 rows, per-part vendor panel)",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane A (purchasing/inventory)."
-  },
-  {
-    "title": "Coverage gap: EWO/SWO activity panels",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
-  },
-  {
-    "title": "Coverage gap: NearMissReport.conditions M2M",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PUR lane (PRAdditionalRemark/SubPO/DebitNote frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "Coverage gap: DebitNote register (247 rows / $327,158.87)",
-    "status": "pending",
-    "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PUR lane (PRAdditionalRemark/SubPO/DebitNote frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "Coverage gap: ApprovedVendor (22,770 rows, per-part vendor panel)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PROD lane (ApprovedVendor/EWO-SWO activity frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "Coverage gap: EWO/SWO activity panels",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-PROD lane (ApprovedVendor/EWO-SWO activity frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "Coverage gap: NearMissReport.conditions M2M",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-QCCRM lane (NearMiss conditions/Policy library frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
   },
   {
     "title": "Coverage gap: Policy/PolicyCategory content library",
-    "status": "pending",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED -- backend already correct (zero backend changes needed). Now in the COV-QCCRM lane (NearMiss conditions/Policy library frontend, tsc-only).",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "PAYROLL-ENABLE lane (NEW-11 + NEW-13)",
+    "status": "in_progress",
     "track": "backend",
-    "note": "Found by sweep v7 coverage. QUEUED behind the schema-mismatch lane as coverage Lane B (production/qc/accounting/crm)."
+    "note": "RUNNING -- snapshot -> enable -> verify-correctness -> keep-or-rollback for both NEW-11 (HR leave-accrual) and NEW-13 (actual-OT sync), per Omar's authorization on return.",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "DATA-FIX lane (sdasilva + PO $2,960 + 2 test-row deletes)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "RUNNING, snapshotted -- sdasilva username/RBAC restore, PO 1-row straggler backfill, ToolingAssembly id=83 delete, PJ id=28019 delete. Per Omar's authorization on return.",
+    "started_at": "2026-07-28T07:58:09Z"
+  },
+  {
+    "title": "Integration rebuild (bakes 2cd73f80 + coverage lanes)",
+    "status": "pending",
+    "track": "deploy",
+    "note": "Queued after COV-PUR/COV-PROD/COV-QCCRM land. Then continue sweeps (v8, new angles) per Omar's KEEP-CLOSING decision."
   }
 ]
