@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-28T10:14:15Z",
-  "heartbeat_at": "2026-07-28T10:14:15Z",
-  "last_activity": "2026-07-28T10:14:19Z",
+  "updated": "2026-07-28T10:16:01Z",
+  "heartbeat_at": "2026-07-28T10:16:01Z",
+  "last_activity": "2026-07-28T10:15:58Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T10:14:14Z",
-      "out_age_min": 0.0,
+      "out_last_active": "2026-07-28T10:15:58Z",
+      "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -48,10 +48,10 @@
       "short_id": "ad8298fc",
       "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
       "head_commit_at": "2026-07-20T08:46:30+04:00",
-      "head_ago_min": 11847.8,
-      "out_last_active": "2026-07-28T10:09:11Z",
-      "out_age_min": 5.1,
-      "log_bytes": 1308928,
+      "head_ago_min": 11849.5,
+      "out_last_active": "2026-07-28T10:15:39Z",
+      "out_age_min": 0.4,
+      "log_bytes": 1309780,
       "output_tokens": 192685,
       "cache_read_tokens": 51791261,
       "cache_creation_tokens": 3194479,
@@ -72,13 +72,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-28T10:14:19Z",
-      "out_age_min": 0.0,
-      "log_bytes": 1096891,
-      "output_tokens": 111985,
-      "cache_read_tokens": 43633790,
-      "cache_creation_tokens": 1334050,
-      "msgs": 338,
+      "out_last_active": "2026-07-28T10:15:58Z",
+      "out_age_min": 0.1,
+      "log_bytes": 1123243,
+      "output_tokens": 113738,
+      "cache_read_tokens": 46188309,
+      "cache_creation_tokens": 1337062,
+      "msgs": 350,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -94,9 +94,9 @@
       "short_id": "a0c9037c",
       "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
       "head_commit_at": "2026-07-20T08:46:30+04:00",
-      "head_ago_min": 11847.8,
+      "head_ago_min": 11849.5,
       "out_last_active": "2026-07-28T08:56:53Z",
-      "out_age_min": 77.4,
+      "out_age_min": 79.1,
       "log_bytes": 1037706,
       "output_tokens": 94992,
       "cache_read_tokens": 36585132,
@@ -117,9 +117,9 @@
       "short_id": "a1e25e46",
       "head_commit": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
       "head_commit_at": "2026-07-20T08:46:30+04:00",
-      "head_ago_min": 11847.8,
+      "head_ago_min": 11849.5,
       "out_last_active": "2026-07-28T09:48:13Z",
-      "out_age_min": 26.0,
+      "out_age_min": 27.8,
       "log_bytes": 1440955,
       "output_tokens": 161588,
       "cache_read_tokens": 78610419,
@@ -140,9 +140,9 @@
       "short_id": "a1df77cc",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 26096.6,
+      "head_ago_min": 26098.4,
       "out_last_active": "2026-07-28T09:18:25Z",
-      "out_age_min": 55.8,
+      "out_age_min": 57.6,
       "log_bytes": 538688,
       "output_tokens": 79805,
       "cache_read_tokens": 9208922,
@@ -165,7 +165,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-28T08:59:28Z",
-      "out_age_min": 74.8,
+      "out_age_min": 76.6,
       "log_bytes": 550501,
       "output_tokens": 45382,
       "cache_read_tokens": 12692284,
@@ -187,8 +187,8 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-28T10:14:19Z",
-      "age_min": 0.0,
+      "last_active": "2026-07-28T10:15:58Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -204,7 +204,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 27509.8,
+      "age_min": 27511.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -219,7 +219,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 36332.9,
+      "age_min": 36334.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -234,7 +234,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30462.9,
+      "age_min": 30464.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -249,7 +249,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 30236.0,
+      "age_min": 30237.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -264,7 +264,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 26143.6,
+      "age_min": 26145.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -279,7 +279,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 27619.1,
+      "age_min": 27620.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -294,7 +294,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 26303.6,
+      "age_min": 26305.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -309,7 +309,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 30416.8,
+      "age_min": 30418.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -324,7 +324,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 30462.9,
+      "age_min": 30464.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -339,7 +339,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 37038.1,
+      "age_min": 37039.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -354,7 +354,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 37055.6,
+      "age_min": 37057.4,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -369,12 +369,12 @@
       "cache_read_tokens": 51791261,
       "cache_creation_tokens": 3194479,
       "msgs": 311,
-      "last_active": "2026-07-28T10:09:11Z",
-      "age_min": 5.1,
+      "last_active": "2026-07-28T10:15:39Z",
+      "age_min": 0.4,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1308928,
+      "log_bytes": 1309780,
       "recent": true
     },
     {
@@ -382,16 +382,16 @@
       "full_id": "a54c3f189c017f8f2",
       "group": "worker",
       "group_label": "Enable payroll engines (authorized)",
-      "output_tokens": 111985,
-      "cache_read_tokens": 43633790,
-      "cache_creation_tokens": 1334050,
-      "msgs": 338,
-      "last_active": "2026-07-28T10:14:19Z",
-      "age_min": 0.0,
+      "output_tokens": 113738,
+      "cache_read_tokens": 46188309,
+      "cache_creation_tokens": 1337062,
+      "msgs": 350,
+      "last_active": "2026-07-28T10:15:58Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 1096891,
+      "log_bytes": 1123243,
       "recent": true
     },
     {
@@ -404,7 +404,7 @@
       "cache_creation_tokens": 1519530,
       "msgs": 218,
       "last_active": "2026-07-28T08:56:53Z",
-      "age_min": 77.4,
+      "age_min": 79.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -421,7 +421,7 @@
       "cache_creation_tokens": 3894951,
       "msgs": 361,
       "last_active": "2026-07-28T09:48:13Z",
-      "age_min": 26.0,
+      "age_min": 27.8,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -438,7 +438,7 @@
       "cache_creation_tokens": 751473,
       "msgs": 140,
       "last_active": "2026-07-28T09:18:25Z",
-      "age_min": 55.8,
+      "age_min": 57.6,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -455,7 +455,7 @@
       "cache_creation_tokens": 215595,
       "msgs": 191,
       "last_active": "2026-07-28T08:59:28Z",
-      "age_min": 74.8,
+      "age_min": 76.6,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -658,9 +658,9 @@
       {
         "name": "vams_accounting_period_lock",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
@@ -676,18 +676,18 @@
       {
         "name": "vams_accounting_worker",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_bff",
         "state": "running",
-        "status": "Up 20 hours",
+        "status": "Up 21 hours",
         "health": "none",
-        "uptime": "20 hours",
+        "uptime": "21 hours",
         "ports": "8013",
         "up": true
       },
@@ -757,9 +757,9 @@
       {
         "name": "vams_frontend",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "3000",
         "up": true
       },
@@ -775,18 +775,18 @@
       {
         "name": "vams_hr",
         "state": "running",
-        "status": "Up 11 hours",
+        "status": "Up 12 hours",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "12 hours",
         "ports": "8004",
         "up": true
       },
       {
         "name": "vams_hr_beat",
         "state": "running",
-        "status": "Up 11 hours",
+        "status": "Up 15 minutes",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "15 minutes",
         "ports": "",
         "up": true
       },
@@ -802,18 +802,18 @@
       {
         "name": "vams_hr_worker",
         "state": "running",
-        "status": "Up 11 hours",
+        "status": "Up 15 minutes",
         "health": "none",
-        "uptime": "11 hours",
+        "uptime": "15 minutes",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_integrations",
         "state": "running",
-        "status": "Up 16 hours",
+        "status": "Up 17 hours",
         "health": "none",
-        "uptime": "16 hours",
+        "uptime": "17 hours",
         "ports": "8010",
         "up": true
       },
@@ -838,9 +838,9 @@
       {
         "name": "vams_monolith_app",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "8012",
         "up": true
       },
@@ -874,9 +874,9 @@
       {
         "name": "vams_original_ref",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
@@ -946,9 +946,9 @@
       {
         "name": "vams_purchasing_worker",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
@@ -973,18 +973,18 @@
       {
         "name": "vams_qc_worker",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_ref_proxy",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "8100",
         "up": true
       },
@@ -1000,27 +1000,27 @@
       {
         "name": "vams_reporting_worker",
         "state": "running",
-        "status": "Up 30 hours",
+        "status": "Up 31 hours",
         "health": "none",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "",
         "up": true
       },
       {
         "name": "vams_services_postgres",
         "state": "running",
-        "status": "Up 30 hours (healthy)",
+        "status": "Up 31 hours (healthy)",
         "health": "healthy",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "5432",
         "up": true
       },
       {
         "name": "vams_services_redis",
         "state": "running",
-        "status": "Up 30 hours (healthy)",
+        "status": "Up 31 hours (healthy)",
         "health": "healthy",
-        "uptime": "30 hours",
+        "uptime": "31 hours",
         "ports": "6379",
         "up": true
       },
@@ -1040,8 +1040,7 @@
       "healthy": 2,
       "problem": 0
     },
-    "checked_at": "2026-07-28T09:53:57Z",
-    "carried": true
+    "checked_at": "2026-07-28T10:16:01Z"
   },
   "health": [
     {
@@ -1054,8 +1053,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     },
     {
       "name": "auth token",
@@ -1069,8 +1067,7 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null,
-      "carried": true
+      "error": null
     }
   ],
   "commits": {
@@ -1078,8 +1075,9 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 24,
+        "commits_7d": 223
       },
       {
         "track": "frontend",
@@ -1088,7 +1086,44 @@
         "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "ca9013b7",
+        "at": "2026-07-28T14:11:39+04:00",
+        "subject": "hr: enable NEW-13 actual-OT sync guard, keep NEW-11 leave-accrual guard OFF",
+        "track": "backend"
+      },
+      {
+        "hash": "30005efb",
+        "at": "2026-07-28T12:57:32+04:00",
+        "subject": "docs(parity): log execution of 4 authorized corrective data fixes",
+        "track": "backend"
+      },
+      {
+        "hash": "c9671517",
+        "at": "2026-07-28T08:00:22+04:00",
+        "subject": "Fix generic-engine `options` action shadowing DRF's HTTP OPTIONS handler",
+        "track": "backend"
+      },
+      {
+        "hash": "a9006b03",
+        "at": "2026-07-28T06:22:35+04:00",
+        "subject": "crm+purchasing: fix generic-serializer field locks blocking real document registries",
+        "track": "backend"
+      },
+      {
+        "hash": "d3d1073d",
+        "at": "2026-07-28T06:10:45+04:00",
+        "subject": "fix(engineering,accounting): CREATE-path defects from file-upload audit",
+        "track": "backend"
+      },
+      {
+        "hash": "2625a9da",
+        "at": "2026-07-28T05:33:44+04:00",
+        "subject": "qc: add RCN/RCNDocument/RCNConcern registry endpoints (file-upload audit gap)",
+        "track": "backend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
