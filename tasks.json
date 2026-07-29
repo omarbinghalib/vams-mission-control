@@ -2617,10 +2617,10 @@
   },
   {
     "title": "DOCKER ENGINE DOWN post-reboot -- CURRENT CRITICAL BLOCKER (needs Omar / admin)",
-    "status": "in_progress",
+    "status": "done",
     "track": "operational",
-    "gated": true,
-    "note": "Bringing up (Omar authorized, away in full-auto mode): attempting Start-Service com.docker.service / Docker Desktop launch, then full integration rebuild + stack up. Red alert stays RAISED until the engine is CONFIRMED up.",
+    "gated": false,
+    "note": "RESOLVED -- Docker engine confirmed UP. Was a hung WSL2 state, fixed via `wsl --shutdown` + relaunch; NO admin needed after all. Blocker cleared.",
     "started_at": "2026-07-29T05:20:48Z"
   },
   {
@@ -2638,9 +2638,9 @@
   },
   {
     "title": "Docker bringup + integration rebuild completion",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "Rebuild stale images (9 services: options-fix, hr, engineering/accounting, crm/purchasing, frontend-web 76953a6f) + full stack up + smoke. NEXT (after stack up): live-verify coverage surfaces + NEW-11 fix live-verify (enable IF verified correct, else keep off) + resume exhaustive sweeps (v8+) -> converge -> certification.",
+    "note": "DONE -- all 9 backend services rebuilt (options-fix), frontend-web rebuilt (registry+coverage), full stack (40 containers) up, all /health/ 200, postgres+redis healthy. options() fix verified LIVE (raw OPTIONS on CRM/accounting detail -> 200, was 500). Frontend bundle confirmed new (registry markers served). Login + core screens 200 w/ real data. NOTE: hr image carries the committed NEW-11 ceiling fix (2170845f) on the balance-READ path (correct; makes reads accurate) -- the leave-accrual CRON write stays gated (HR_LEAVE_ACCRUAL_CRON_ENABLED=0). Being reconciled + verified by the NEW-11 verify lane.",
     "started_at": "2026-07-29T05:20:48Z"
   },
   {
@@ -2654,5 +2654,19 @@
     "status": "done",
     "track": "operational",
     "note": "~2026-07-29 09:35-09:38: a concurrent process silently reverted hr_app/accrual.py + histories.py mid-edit on the shared worktree (not a git error -- uncommitted edits vanished; worker recovered + committed). Reinforces: serialize VAMS-backend lanes + commit early/often; avoid concurrent git checkout/reset on the shared tree."
+  },
+  {
+    "title": "Coverage live-verify (all v7 surfaces + schema-fixes + options-fix, read-only)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Post-Docker live-verify sweep against the freshly rebuilt stack; read-only.",
+    "started_at": "2026-07-29T06:13:13Z"
+  },
+  {
+    "title": "NEW-11 live-verify + conditional enable",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Dry-verify bounded balances for the 69 tracked employees -> enable HR_LEAVE_ACCRUAL_CRON_ENABLED if correct, else keep off (snapshotted first).",
+    "started_at": "2026-07-29T06:13:13Z"
   }
 ]
