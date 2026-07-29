@@ -2971,9 +2971,9 @@
   },
   {
     "title": "BE-L2 qc/crm/ops (NCR-cancel-stamp, NCR-internal_persons filter, legal-doc validation, Task-Epic filter)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Round-2 backend, disjoint service-cluster lane, commit-per-file, edit+unit-test only.",
+    "note": "DONE -- commits 5cccda63/6f236ee1/d7b8f2d4/1c98e06d/6f12901f/a32647d3. NCR-cancel-stamp (cancelled_by/on, matching monolith CancelNcrView), NCR-internal_persons filter (jsonb @> containment, no more 502), GroupCompanyDocument expiry>=issued validation (per monolith AddCompanyDocumentForm.clean), Task-Epic M2M filter (epics__in). All unit-tested vs monolith; qc/crm/ops suites green. Live at integration rebuild.",
     "started_at": "2026-07-29T11:53:59Z"
   },
   {
