@@ -2749,9 +2749,9 @@
   },
   {
     "title": "Audit: filter/sort/pagination parity (all lists)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report scratchpad/capstone-audit/audit-filters-parity.md. CRM Companies confirmed at-parity. 7 closeable gaps found (all live-verified w/ row counts); queued to the batch-fix wave (FILTER-PARITY-2 below).",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2777,9 +2777,9 @@
   },
   {
     "title": "Audit: screen-depth + workflow/computed-field parity (all domains)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report at scratchpad/capstone-audit/audit-depth-workflow.md. Large swath CONFIRMED at-depth (SO review+completion live-verified, PO guards, NCR cost formula exact, PJ cent-exact 3-way, HR gratuity/EOSB verbatim, etc.). Found closeable gaps (see HIGH/MEDIUM/LOW pending items added to the batch-fix wave). PR price-escalation routing = already-disclosed-deferred (not a new gap).",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2788,5 +2788,53 @@
     "track": "operational",
     "note": "With 6+ concurrent read-only audit lanes the CPU may again starve the scheduled heartbeat, so the 'updated X ago' stamp MAY lag during the burst -- EXPECTED + self-recovers; board CONTENT stays current via explicit marks. Not a staleness alarm unless the engine truly wedges (LastTaskResult!=0 persistently).",
     "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "[HIGH] WO-QC-GATE: production WO completion bypasses component quality-approval gate",
+    "status": "pending",
+    "track": "backend",
+    "note": "Monolith can_complete requires all components QC-approved; carve set_status doesn't check quality_approval_status. production_app/views.py:195-211. From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "[HIGH] BOM-RESERVE-GUARDS: BOM/MR reserve+release lost stock/reservation integrity guards",
+    "status": "pending",
+    "track": "backend",
+    "note": "Lost can_be_reserved (stock-available) / can_be_released (fully-reserved) integrity guards. engineering_app/views.py reserve/release + production_app/inbox.py:59-79. From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "[MEDIUM] PR-BUDGET-VALIDATION: purchase_requisitions/validators.py entirely unported",
+    "status": "pending",
+    "track": "backend",
+    "note": "Unit-price-vs-estimate, qty-vs-budget validation entirely unported. From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "[LOW] NCR cancel doesn't stamp cancelled_by/on",
+    "status": "pending",
+    "track": "backend",
+    "note": "From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "[LOW] Company legal-doc expiry>=issued cross-field validation missing",
+    "status": "pending",
+    "track": "backend",
+    "note": "From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "[LOW] Quote currency-converted total not surfaced in SPA",
+    "status": "pending",
+    "track": "frontend",
+    "note": "From screen-depth+workflow-parity audit, queued for the batch-fix wave."
+  },
+  {
+    "title": "FILTER-PARITY-2 (7 list screens): frontend wiring over already-live backend params",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Purchase Journal (supplier/invoice-date/PO-type); Production WO (assigned-to/SO); Tasks (assigned-user/sprint); Engineering WO (MRB/assigned-to/SO); NCR (raised-on); Employees (live company/dept dropdowns); Sales Journal (invoice-date/aging/customer via 2-step like A3-PO). From filter/sort/pagination parity audit."
+  },
+  {
+    "title": "FILTER-PARITY-2 backend: 3 secondary sub-filters (small fixes)",
+    "status": "pending",
+    "track": "backend",
+    "note": "Task Epic filter, NCR internal_persons filter (currently __in -> 502), EWO R&D JSON-field filter (__contains) -- wire these in the respective service backends. From filter/sort/pagination parity audit."
   }
 ]
