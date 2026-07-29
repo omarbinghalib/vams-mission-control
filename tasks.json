@@ -2704,16 +2704,16 @@
   },
   {
     "title": "A3: SO/PO list filters missing",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED to frontend lane.",
+    "note": "DONE -- commit 38c70a50. SO: country/company/owner filters (via opportunity FK traversal) + open/current_year presets (SavedViews) + due-date-asc default sort; PO: approval_status + sales_order (JSON icontains) + invoice-date-range (2-step client algo). All live-narrow-verified with real counts. tsc clean, 76/76 tests. NOT yet built into frontend-web (deferred, concurrent backend A1 rebuild) -- goes live at the pending integration rebuild.",
     "started_at": "2026-07-29T08:33:43Z"
   },
   {
     "title": "A4: WO staff-hours CSV export missing",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "DISPATCHED to frontend lane.",
+    "note": "DONE -- same commit 38c70a50. pwo/ewo/swo export matching monolith columns. RESIDUAL (documented, honest): the 'Worked Hours' (HR attendance) column is left BLANK not guessed -- no verified user_id->employee_id mapping; refused to fabricate a payroll-adjacent number (see follow-on task). NOT yet built into frontend-web (deferred, concurrent backend A1 rebuild) -- goes live at the pending integration rebuild.",
     "started_at": "2026-07-29T08:33:43Z"
   },
   {
@@ -2733,5 +2733,11 @@
     "status": "done",
     "track": "audit",
     "note": "Genuine MONOLITH-side anomaly (present identically in vams_monolith_ref) -- the ceiling fix handles it gracefully; NOT carve-introduced, NOT fixed (it's the monolith's own source data)."
+  },
+  {
+    "title": "WO CSV Worked-Hours column needs a verified user->HR-employee mapping to populate",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Follow-on from A4: the 'Worked Hours' column is currently left blank rather than guessed, pending a verified user_id->employee_id mapping."
   }
 ]
