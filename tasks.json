@@ -3018,9 +3018,15 @@
   },
   {
     "title": "FINAL CERTIFICATION + capstone synthesis",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Updating docs/parity/ with the honest capability/logic/depth/SECURITY certification incl. this session's throttle-up (audits + A1 + SEC-1..7 + filters/exports/raw-id + logic guards + BS fix + 5 reports + PK-seq), the integration-rebuild PASS evidence, exceeds-original list (now security-hardened beyond monolith), honest-remaining (B/C/held/gated), deployment status. HOME STRETCH -- currency-fix + certification are the last 2 lanes; after them only DEFERRED/GATED items remain (WPS/iFile reports, go-live cutover, etc.).",
+    "note": "DONE -- committed 18519e15 (VAMS-backend/docs/parity/FINAL-CERTIFICATION.md). VERDICT: CERTIFIED (local scope). Grades: Capability A-(~96%), Logic A(~97% cent-verified, GL perfect exact match 989,768 rows), Depth A-(~94%), Complexity A, Security F->B+/A- HARDENED. RECONCILIATION: the cert doc's 'closed-state not yet live-re-verified' caveat is RESOLVED -- the integration rebuild DID live-verify the closed state (forged old-key token REJECTED 401, gates 403/200, on the rebuilt hardened stack). Security fixes = COMMIT+TEST+LIVE-VERIFIED. HONESTY CORRECTION: the security holes were mostly CARVE-INTRODUCED regressions (not monolith bugs); now fixed to/past monolith parity (salary redaction: monolith was stronger, SEC-4 restored it). REMAINING (all non-closeable this session): DEFERRED/B -- WPS/iFile payroll-compliance reports, ~14 ambiguous RBAC codenames, Part-list/NCR/PWO-machine filters (need backend fields), notification-platform/Maps/egress creds, P4 avatar infra, reporting per-slug perm tightening, Quote AED display. C/impossible -- I1 AX dead, R8 $1.92 residual, P4 avatar bytes. HELD -- blank NCR id=1606 cleanup, empty public-schema drop. GATED -- Phase-5 production go-live (#1 checklist item: inject REAL JWT secret via env). DECIDED -- embedded-PII leave-it.",
     "started_at": "2026-07-29T17:32:35Z"
+  },
+  {
+    "title": "SYSTEM CERTIFIED (local scope) -- fully deployed, hardened, all closeable work done + live-verified. Only DEFERRED/GATED remain.",
+    "status": "done",
+    "track": "mission-control",
+    "note": "FINAL MILESTONE. See 'FINAL CERTIFICATION + capstone synthesis' for the full grades/evidence. Everything closeable and functional this session is DONE and live-verified; only DEFERRED (B), C/impossible, HELD, GATED (Phase-5 go-live), and DECIDED (embedded-PII leave-it) items remain on the board."
   }
 ]
