@@ -2691,9 +2691,9 @@
   },
   {
     "title": "A1: generic-registry base CRUD gated only by IsAuthenticated across ALL 9 services -- TOP SEVERITY",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "CRITICAL: any authenticated (even roles=[]) user can create/update/delete any registry record (proven: zero-role token created a real NCR row). Fix: gate WRITE methods per-resource-role via PERM_ROLE_MAP in build_viewsets() (all 9 services), keep reads authenticated, is_superuser bypass. Verify write-403/entitled-200/reads-unaffected + coverage screens still work.",
+    "note": "DONE -- commits da512a97 + d56a9df3. RegistryWriteGate in _shared + all 9 services (per-resource role, gates base-CRUD writes only, reads+workflow-actions untouched). Over-locks self-corrected via test suites (engineering, ops Message/SMS/Visit->None opt-out). All 9 suites green. Rebuilt + live-verified: reads 200 for roles=[], non-entitled writes 403, entitled writes 200 across all coverage entities. Cleaned up stray blank NCR (id 1606, count 1601->1600).",
     "started_at": "2026-07-29T08:33:43Z"
   },
   {
@@ -2718,9 +2718,9 @@
   },
   {
     "title": "Cleanup: stray blank qc/ncrs row (~id 1605+) created by v8 zero-role audit probe",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Delete the stray row (classifier may block -- destructive DB write needs explicit authorization before executing)."
+    "note": "RESOLVED -- deleted as part of A1's rebuild/live-verify (stray blank NCR id 1606, count 1601->1600)."
   },
   {
     "title": "NOTE (documented residual, not a blocker): only 25/349 untracked employees live-computed for NEW-11 dry-verify",
@@ -2863,33 +2863,33 @@
   },
   {
     "title": "[CRITICAL] SEC-1 JWT-SECRET total auth bypass -- GO-LIVE BLOCKER",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "All 12 services fall back to PLATFORM_JWT_SIGNING_KEY which is literally 'dev-only-not-for-production' in every container -> a token can be FORGED with no login (auditor forged admin, gateway accepted, pulled 54,941-row ledger). Fix: strong secret via injected env (not committed), remove the public-default fallback (fail-closed). GO-LIVE BLOCKER for production -- NOT an active local-stack emergency (local secret is only exploitable by someone with access to this dev stack); needs Omar's sign-off before any production deploy."
+    "note": "All 12 services fall back to PLATFORM_JWT_SIGNING_KEY which is literally 'dev-only-not-for-production' in every container -> a token can be FORGED with no login (auditor forged admin, gateway accepted, pulled 54,941-row ledger). Fix: strong secret via injected env (not committed), remove the public-default fallback (fail-closed). GO-LIVE BLOCKER for production -- NOT an active local-stack emergency (local secret is only exploitable by someone with access to this dev stack); needs Omar's sign-off before any production deploy. FOLDED into BE-SEC critical security batch (SEC-1..7) -- see combined task."
   },
   {
     "title": "[CRITICAL] SEC-2 reporting/documents no gate -- cross-user data exposure",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "ReportRunView (reporting_app/report_tasks.py:57) only IsAuthenticated + render_payslip (documents.py:108) no ownership check -> any zero-role user rendered the company Trial Balance + ANOTHER employee's payslip via sequential id. Fix: role gate + object-level ownership on ReportRunView/render_payslip per monolith per-document perms."
+    "note": "ReportRunView (reporting_app/report_tasks.py:57) only IsAuthenticated + render_payslip (documents.py:108) no ownership check -> any zero-role user rendered the company Trial Balance + ANOTHER employee's payslip via sequential id. Fix: role gate + object-level ownership on ReportRunView/render_payslip per monolith per-document perms. FOLDED into BE-SEC critical security batch (SEC-1..7) -- see combined task."
   },
   {
     "title": "[HIGH] SEC-3 hr doc-permission self-escalation",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "hr_app/views.py:562 ungated -- any user self-grants DocumentPermission. Gate to HR staff."
+    "note": "hr_app/views.py:562 ungated -- any user self-grants DocumentPermission. Gate to HR staff. FOLDED into BE-SEC critical security batch (SEC-1..7) -- see combined task."
   },
   {
     "title": "[HIGH] SEC-4 hr renumerations salary fully exposed",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "No restricted_level/can_see_renumerations gate -- any authed user read all 3,331 salary rows. Port the monolith gate."
+    "note": "No restricted_level/can_see_renumerations gate -- any authed user read all 3,331 salary rows. Port the monolith gate. FOLDED into BE-SEC critical security batch (SEC-1..7) -- see combined task."
   },
   {
     "title": "[MEDIUM] SEC-5/6 ungated custom actions (crm + hr)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "crm upload-datasheet/rerun-sizing/compute-cv + hr employee-documents/upload -- peer actions are gated, these are omissions."
+    "note": "crm upload-datasheet/rerun-sizing/compute-cv + hr employee-documents/upload -- peer actions are gated, these are omissions. FOLDED into BE-SEC critical security batch (SEC-1..7) -- see combined task."
   },
   {
     "title": "RAWID-CLASS: ~32-site systematic raw-id-resolution lane (folds A2)",
@@ -2930,5 +2930,12 @@
     "track": "frontend",
     "note": "Parallel module lane, disjoint dir, tsc-only. Raw-id resolution deliberately NOT in this wave (separate wave, needs resolution-infra).",
     "started_at": "2026-07-29T10:28:38Z"
+  },
+  {
+    "title": "BE-SEC critical security batch (SEC-1..7)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "SOLE backend writer now. SEC-1 JWT hardening (fail-closed, strong .env key, no public default; go-live blocker); SEC-2 reporting/payslip gate+ownership; SEC-3 hr doc-perm gate; SEC-4 hr salary restricted_level; SEC-5/6 crm/hr ungated actions; SEC-7 qc nested_collection() writes (CorrectiveAction, Cmtr children) ungated on a different code path than build_viewsets -- same vuln class, qc-only. Edit+unit-test+commit; integration rebuild applies JWT later (recreate all services together).",
+    "started_at": "2026-07-29T10:29:59Z"
   }
 ]
