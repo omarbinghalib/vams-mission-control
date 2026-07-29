@@ -2905,9 +2905,9 @@
   },
   {
     "title": "FE fix wave: purchasing+accounting (PJ/SJ filters + exports)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "note": "DONE -- commit 71d9b9e9. PJ filters (supplier/invoice-date/PO-type, 27238->1497 etc.) + SJ filters (invoice-date/aging/customer via cross-service 2-step, 1085->23) live-verified. Generic backend /export/ wired on ~26 purchasing+accounting list screens + 3 re-pointed from page-only to full-dataset. tsc clean for both modules. Live at integration rebuild.",
     "started_at": "2026-07-29T10:28:38Z"
   },
   {
