@@ -2742,9 +2742,9 @@
   },
   {
     "title": "Audit: RBAC/tenant/field-level security (deep)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report scratchpad/capstone-audit/audit-security-deep.md. Tenant isolation + BFF + OCN + cross-service reads CONFIRMED SAFE. But found 6 real gaps (SEC-1..SEC-6, 2 CRITICAL/2 HIGH/1 combined MEDIUM), queued below as TOP PRIORITY in the batch-fix wave (backend, serialized after A1 registry-gate which is complementary).",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2860,5 +2860,35 @@
     "status": "pending",
     "track": "backend",
     "note": "Bank/government fixed-format compliance docs, not template work -- heavier lift, gated on an Omar (B/decision) call on priority/scope before starting. From export parity audit."
+  },
+  {
+    "title": "[CRITICAL] SEC-1 JWT-SECRET total auth bypass -- GO-LIVE BLOCKER",
+    "status": "pending",
+    "track": "backend",
+    "note": "All 12 services fall back to PLATFORM_JWT_SIGNING_KEY which is literally 'dev-only-not-for-production' in every container -> a token can be FORGED with no login (auditor forged admin, gateway accepted, pulled 54,941-row ledger). Fix: strong secret via injected env (not committed), remove the public-default fallback (fail-closed). GO-LIVE BLOCKER for production -- NOT an active local-stack emergency (local secret is only exploitable by someone with access to this dev stack); needs Omar's sign-off before any production deploy."
+  },
+  {
+    "title": "[CRITICAL] SEC-2 reporting/documents no gate -- cross-user data exposure",
+    "status": "pending",
+    "track": "backend",
+    "note": "ReportRunView (reporting_app/report_tasks.py:57) only IsAuthenticated + render_payslip (documents.py:108) no ownership check -> any zero-role user rendered the company Trial Balance + ANOTHER employee's payslip via sequential id. Fix: role gate + object-level ownership on ReportRunView/render_payslip per monolith per-document perms."
+  },
+  {
+    "title": "[HIGH] SEC-3 hr doc-permission self-escalation",
+    "status": "pending",
+    "track": "backend",
+    "note": "hr_app/views.py:562 ungated -- any user self-grants DocumentPermission. Gate to HR staff."
+  },
+  {
+    "title": "[HIGH] SEC-4 hr renumerations salary fully exposed",
+    "status": "pending",
+    "track": "backend",
+    "note": "No restricted_level/can_see_renumerations gate -- any authed user read all 3,331 salary rows. Port the monolith gate."
+  },
+  {
+    "title": "[MEDIUM] SEC-5/6 ungated custom actions (crm + hr)",
+    "status": "pending",
+    "track": "backend",
+    "note": "crm upload-datasheet/rerun-sizing/compute-cv + hr employee-documents/upload -- peer actions are gated, these are omissions."
   }
 ]
