@@ -2657,9 +2657,9 @@
   },
   {
     "title": "Coverage live-verify (all v7 surfaces + schema-fixes + options-fix, read-only)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Post-Docker live-verify sweep against the freshly rebuilt stack; read-only.",
+    "note": "DONE -- ALL 10 items PASS + 4/4 regression screens PASS, ZERO gaps (report at scratchpad/capstone-audit/post-docker-coverage-verify.md). Evidence: DebitNote 247/$327,158.87 cent-exact 3-way; ApprovedVendor 22,770 (production svc) company-names resolved; actual-OT 46,970 triple-matched; SWO 29 rows genuine low-volume (not synthetic); OPTIONS fix 6 routes->200; GL fix 989,768 rows / 493,023 null-created render clean + verified in the DEPLOYED minified bundle. No regressions. All v7 coverage gaps + the schema-mismatch class + options() fix are now LIVE-VERIFIED.",
     "started_at": "2026-07-29T06:13:13Z"
   },
   {
