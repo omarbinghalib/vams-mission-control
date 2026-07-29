@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-29T05:02:02Z",
-  "heartbeat_at": "2026-07-29T05:02:02Z",
-  "last_activity": "2026-07-29T05:01:57Z",
+  "updated": "2026-07-29T05:03:58Z",
+  "heartbeat_at": "2026-07-29T05:03:58Z",
+  "last_activity": "2026-07-29T05:03:53Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,7 +31,7 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T05:01:57Z",
+      "out_last_active": "2026-07-29T05:03:53Z",
       "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T05:01:57Z",
-      "out_age_min": 0.1,
-      "log_bytes": 115192,
-      "output_tokens": 1964,
-      "cache_read_tokens": 153520,
-      "cache_creation_tokens": 85744,
-      "msgs": 10,
+      "out_last_active": "2026-07-29T05:03:03Z",
+      "out_age_min": 0.9,
+      "log_bytes": 275474,
+      "output_tokens": 6571,
+      "cache_read_tokens": 778517,
+      "cache_creation_tokens": 196015,
+      "msgs": 20,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -73,7 +73,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T04:58:52Z",
-      "out_age_min": 3.2,
+      "out_age_min": 5.1,
       "log_bytes": 367627,
       "output_tokens": 32502,
       "cache_read_tokens": 4446861,
@@ -94,14 +94,14 @@
       "short_id": "a4fd76e3",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 27224.4,
-      "out_last_active": "2026-07-29T05:01:46Z",
-      "out_age_min": 0.3,
-      "log_bytes": 264579,
-      "output_tokens": 21051,
-      "cache_read_tokens": 2253202,
-      "cache_creation_tokens": 334968,
-      "msgs": 55,
+      "head_ago_min": 27226.3,
+      "out_last_active": "2026-07-29T05:03:53Z",
+      "out_age_min": 0.1,
+      "log_bytes": 302733,
+      "output_tokens": 27588,
+      "cache_read_tokens": 3061888,
+      "cache_creation_tokens": 358103,
+      "msgs": 65,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -118,7 +118,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-29T05:01:57Z",
+      "last_active": "2026-07-29T05:03:53Z",
       "age_min": 0.1,
       "live": true,
       "status": "live",
@@ -135,7 +135,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 28637.6,
+      "age_min": 28639.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -150,7 +150,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 37460.6,
+      "age_min": 37462.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -165,7 +165,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 31590.7,
+      "age_min": 31592.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -180,7 +180,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 31363.8,
+      "age_min": 31365.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -195,7 +195,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 27271.4,
+      "age_min": 27273.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -210,7 +210,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 28746.9,
+      "age_min": 28748.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -225,7 +225,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 27431.4,
+      "age_min": 27433.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -240,7 +240,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 31544.6,
+      "age_min": 31546.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -255,7 +255,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 31590.7,
+      "age_min": 31592.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -270,7 +270,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 38165.9,
+      "age_min": 38167.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -285,7 +285,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 38183.4,
+      "age_min": 38185.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -296,16 +296,16 @@
       "full_id": "afe24895ba2477e1c",
       "group": "worker",
       "group_label": "Fix NEW-11 histories.py accrual defect",
-      "output_tokens": 1964,
-      "cache_read_tokens": 153520,
-      "cache_creation_tokens": 85744,
-      "msgs": 10,
-      "last_active": "2026-07-29T05:01:57Z",
-      "age_min": 0.1,
+      "output_tokens": 6571,
+      "cache_read_tokens": 778517,
+      "cache_creation_tokens": 196015,
+      "msgs": 20,
+      "last_active": "2026-07-29T05:03:03Z",
+      "age_min": 0.9,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 115192,
+      "log_bytes": 275474,
       "recent": true
     },
     {
@@ -318,7 +318,7 @@
       "cache_creation_tokens": 217767,
       "msgs": 105,
       "last_active": "2026-07-29T04:58:52Z",
-      "age_min": 3.2,
+      "age_min": 5.1,
       "live": true,
       "status": "live",
       "subagent": true,
@@ -330,16 +330,16 @@
       "full_id": "a4fd76e3f39e01846",
       "group": "mission-control",
       "group_label": "Post-reboot: restore dashboard + updater",
-      "output_tokens": 21051,
-      "cache_read_tokens": 2253202,
-      "cache_creation_tokens": 334968,
-      "msgs": 55,
-      "last_active": "2026-07-29T05:01:46Z",
-      "age_min": 0.3,
+      "output_tokens": 27588,
+      "cache_read_tokens": 3061888,
+      "cache_creation_tokens": 358103,
+      "msgs": 65,
+      "last_active": "2026-07-29T05:03:53Z",
+      "age_min": 0.1,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 264579,
+      "log_bytes": 302733,
       "recent": true
     }
   ],
@@ -356,49 +356,50 @@
   "progress": {
     "overall_pct": 86,
     "remaining_hours": [
-      82,
-      164
+      84,
+      168
     ],
     "remaining_sessions": [
       22,
-      44
+      45
     ],
     "remaining_hours_autonomous": [
-      74,
-      148
+      75,
+      150
     ],
     "remaining_sessions_autonomous": [
       20,
       40
     ],
     "remaining_hours_gated": [
-      8,
-      15
+      9,
+      18
     ],
     "remaining_sessions_gated": [
       2,
-      4
+      5
     ],
-    "gated_open": 5,
+    "gated_open": 6,
     "gated_titles": [
       "DECISION (awaiting Omar): rotate leaked credentials found in original settings.py (AX/SMS/",
       "Run ALTER DATABASE ... SET search_path='vams,public' on 7 DBs",
       "Phase-5 production/cloud cutover",
       "Gated post-parity: :8012 avatar cutover",
-      "Optional: apply .github/workflows/pages.yml (uncommitted) to remove latent future Pages-th"
+      "Optional: apply .github/workflows/pages.yml (uncommitted) to remove latent future Pages-th",
+      "DOCKER ENGINE DOWN post-reboot -- CURRENT CRITICAL BLOCKER (needs Omar / admin)"
     ],
     "tracks": [
       {
         "track": "backend",
         "label": "Backend",
-        "pct": 77,
+        "pct": 76,
         "remaining_hours": [
-          51,
-          102
+          52,
+          104
         ],
         "remaining_sessions": [
           14,
-          27
+          28
         ],
         "weight": 1
       },
@@ -447,7 +448,7 @@
       {
         "track": "mission-control",
         "label": "Mission-control",
-        "pct": 91,
+        "pct": 92,
         "remaining_hours": [
           2,
           3
@@ -503,25 +504,25 @@
       {
         "track": "operational",
         "label": "Operational",
-        "pct": 67,
+        "pct": 50,
         "remaining_hours": [
-          2,
-          3
+          3,
+          6
         ],
         "remaining_sessions": [
-          0,
-          1
+          1,
+          2
         ],
         "weight": 1
       }
     ],
     "shipped": {
-      "done": 325,
-      "total": 384,
-      "pct": 85
+      "done": 327,
+      "total": 388,
+      "pct": 84
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (325/384 tasks done=85%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 5 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (327/388 tasks done=84%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 6 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
