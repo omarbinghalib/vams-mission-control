@@ -2899,9 +2899,9 @@
   },
   {
     "title": "BS-PL-CUTOFF: BalanceSheetView/ProfitAndLoss use naive Jan-1 cutoff instead of closed-year-aware _year_start_date()",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "reporting_app/views.py:822 -- TrialBalanceView already uses _year_start_date(); BS/P&L don't -> $1.75M BS imbalance (monolith has the identical bug; fixing = more correct). Propagate _year_start_date() to BS/P&L. HELD for after A1."
+    "note": "DONE (via BE-L3) -- _year_start_date() propagated to BS/P&L. RECLASSIFICATION: the old finding 'TB inherited imbalance (impossible)' was WRONG -- the $1,753,629.37 imbalance was CLOSEABLE (un-propagated cutoff), now fixed to -$1.92; only that $1.92 rounding residual is the true inherited item."
   },
   {
     "title": "FE fix wave: purchasing+accounting (PJ/SJ filters + exports)",
@@ -2978,9 +2978,9 @@
   },
   {
     "title": "BE-L3 reporting/platform (BS-PL-cutoff, 5 missing reports, resolution-infra UserCodesView ?ids=)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Round-2 backend, disjoint service-cluster lane, commit-per-file, edit+unit-test only. Its resolution-infra is a prerequisite for the upcoming RAW-ID frontend wave.",
+    "note": "DONE -- commits 04feff9a/8dedcdb5/77fc369c/d137fbe3/ce843c75/9fa2616e/1c66ce1c. BS-PL-CUTOFF fixed: _year_start_date() propagated to BalanceSheet + P&L (+ detail); live-confirmed $1,753,629.37 imbalance -> -$1.92 (= TB rounding residual). 5 missing reports ported (Fixed Asset Register PDF, Housing/Tenancy export, Monthly Approvals [fixed a monolith stage-index bug], PDM Patterns [fixed a matching bug 223->329], VS Sales per-company [honest omission of Message-activity -- no Message model in CRM carve]). Resolution-infra: UserCodesView ?ids= batch added; Employee/Inventory batch already work via generic ?id__in=. RAW-ID wave infra READY.",
     "started_at": "2026-07-29T11:53:59Z"
   }
 ]
