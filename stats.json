@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-29T14:51:55Z",
-  "heartbeat_at": "2026-07-29T14:51:55Z",
-  "last_activity": "2026-07-29T14:51:48Z",
+  "updated": "2026-07-29T14:54:21Z",
+  "heartbeat_at": "2026-07-29T14:54:21Z",
+  "last_activity": "2026-07-29T14:54:33Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -9,14 +9,14 @@
     "cache_read_tokens": 6267974779,
     "cache_creation_tokens": 57207801,
     "msgs": 15034,
-    "sessions": 15,
-    "live_sessions": 2,
+    "sessions": 16,
+    "live_sessions": 4,
     "transcript_sessions": 12,
-    "subagent_sessions": 3,
-    "workers": 4,
-    "live_workers": 2,
+    "subagent_sessions": 4,
+    "workers": 5,
+    "live_workers": 4,
     "stopped_workers": 0,
-    "current_workers": 4,
+    "current_workers": 5,
     "history_workers": 597,
     "recent_window_min": 120
   },
@@ -31,10 +31,56 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T14:51:48Z",
+      "out_last_active": "2026-07-29T14:54:14Z",
       "out_age_min": 0.1,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "Post-reboot: restore dashboard + updater",
+      "role": "mission-control",
+      "branch": "frontend-redesign",
+      "focus": "Post-PC-reboot: verify + restore the VAMS mission-control dashboard, then resume as the standing updater.",
+      "agent_id": "a4fd76e3f39e01846",
+      "short_id": "a4fd76e3",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-29T14:54:25Z",
+      "out_age_min": 0.0,
+      "log_bytes": 980878,
+      "output_tokens": 121164,
+      "cache_read_tokens": 27248069,
+      "cache_creation_tokens": 5409737,
+      "msgs": 256,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
+      "status": "live",
+      "live": true,
+      "recent": true
+    },
+    {
+      "name": "RAW-ID wave: resolve ~32 FK-id sites",
+      "role": "worker",
+      "branch": null,
+      "focus": "Close the RAW-ID resolution class app-wide (~32 sites across 6 modules, incl.",
+      "agent_id": "a4c18f9aa58e9f6f9",
+      "short_id": "a4c18f9a",
+      "head_commit": null,
+      "head_commit_at": null,
+      "head_ago_min": null,
+      "out_last_active": "2026-07-29T14:54:33Z",
+      "out_age_min": 0.0,
+      "log_bytes": 21140,
+      "output_tokens": 871,
+      "cache_read_tokens": 142936,
+      "cache_creation_tokens": 11660,
+      "msgs": 9,
+      "tokens_carried": false,
+      "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
       "recent": true
@@ -50,7 +96,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T14:50:59Z",
-      "out_age_min": 0.9,
+      "out_age_min": 3.4,
       "log_bytes": 2497122,
       "output_tokens": 204515,
       "cache_read_tokens": 185480589,
@@ -60,29 +106,6 @@
       "signal": "task-output mtime + git commit",
       "status": "live",
       "live": true,
-      "recent": true
-    },
-    {
-      "name": "Post-reboot: restore dashboard + updater",
-      "role": "mission-control",
-      "branch": "frontend-redesign",
-      "focus": "Post-PC-reboot: verify + restore the VAMS mission-control dashboard, then resume as the standing updater.",
-      "agent_id": "a4fd76e3f39e01846",
-      "short_id": "a4fd76e3",
-      "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
-      "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 27814.3,
-      "out_last_active": "2026-07-29T13:11:16Z",
-      "out_age_min": 100.7,
-      "log_bytes": 965690,
-      "output_tokens": 118677,
-      "cache_read_tokens": 26812631,
-      "cache_creation_tokens": 4971651,
-      "msgs": 252,
-      "tokens_carried": false,
-      "signal": "task-output mtime + git commit",
-      "status": "idle",
-      "live": false,
       "recent": true
     },
     {
@@ -96,13 +119,13 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T13:09:15Z",
-      "out_age_min": 102.7,
+      "out_age_min": 105.1,
       "log_bytes": 2117896,
       "output_tokens": 163203,
       "cache_read_tokens": 157334821,
       "cache_creation_tokens": 824156,
       "msgs": 600,
-      "tokens_carried": false,
+      "tokens_carried": true,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -118,8 +141,8 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-29T14:51:48Z",
-      "age_min": 0.1,
+      "last_active": "2026-07-29T14:54:50Z",
+      "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -135,7 +158,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 29227.5,
+      "age_min": 29229.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -150,7 +173,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 38050.5,
+      "age_min": 38053.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -165,7 +188,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 32180.6,
+      "age_min": 32183.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -180,7 +203,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 31953.6,
+      "age_min": 31956.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -195,7 +218,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 27861.2,
+      "age_min": 27863.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -210,7 +233,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 29336.8,
+      "age_min": 29339.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -225,7 +248,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 28021.3,
+      "age_min": 28023.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -240,7 +263,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 32134.5,
+      "age_min": 32136.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -255,7 +278,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 32180.6,
+      "age_min": 32183.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -270,7 +293,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 38755.8,
+      "age_min": 38758.2,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -285,10 +308,44 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 38773.3,
+      "age_min": 38775.7,
       "live": false,
       "status": "idle",
       "subagent": false,
+      "recent": true
+    },
+    {
+      "id": "a4fd76e3",
+      "full_id": "a4fd76e3f39e01846",
+      "group": "mission-control",
+      "group_label": "Post-reboot: restore dashboard + updater",
+      "output_tokens": 121164,
+      "cache_read_tokens": 27248069,
+      "cache_creation_tokens": 5409737,
+      "msgs": 256,
+      "last_active": "2026-07-29T14:54:25Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 980878,
+      "recent": true
+    },
+    {
+      "id": "a4c18f9a",
+      "full_id": "a4c18f9aa58e9f6f9",
+      "group": "worker",
+      "group_label": "RAW-ID wave: resolve ~32 FK-id sites",
+      "output_tokens": 871,
+      "cache_read_tokens": 142936,
+      "cache_creation_tokens": 11660,
+      "msgs": 9,
+      "last_active": "2026-07-29T14:54:33Z",
+      "age_min": 0.0,
+      "live": true,
+      "status": "live",
+      "subagent": true,
+      "log_bytes": 21140,
       "recent": true
     },
     {
@@ -301,28 +358,11 @@
       "cache_creation_tokens": 4205513,
       "msgs": 682,
       "last_active": "2026-07-29T14:50:59Z",
-      "age_min": 0.9,
+      "age_min": 3.4,
       "live": true,
       "status": "live",
       "subagent": true,
       "log_bytes": 2497122,
-      "recent": true
-    },
-    {
-      "id": "a4fd76e3",
-      "full_id": "a4fd76e3f39e01846",
-      "group": "mission-control",
-      "group_label": "Post-reboot: restore dashboard + updater",
-      "output_tokens": 118677,
-      "cache_read_tokens": 26812631,
-      "cache_creation_tokens": 4971651,
-      "msgs": 252,
-      "last_active": "2026-07-29T13:11:16Z",
-      "age_min": 100.7,
-      "live": false,
-      "status": "idle",
-      "subagent": true,
-      "log_bytes": 965690,
       "recent": true
     },
     {
@@ -335,7 +375,7 @@
       "cache_creation_tokens": 824156,
       "msgs": 600,
       "last_active": "2026-07-29T13:09:15Z",
-      "age_min": 102.7,
+      "age_min": 105.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -356,20 +396,20 @@
   "progress": {
     "overall_pct": 84,
     "remaining_hours": [
-      106,
-      213
+      105,
+      210
     ],
     "remaining_sessions": [
       28,
-      57
+      56
     ],
     "remaining_hours_autonomous": [
-      99,
-      198
+      98,
+      195
     ],
     "remaining_sessions_autonomous": [
       26,
-      53
+      52
     ],
     "remaining_hours_gated": [
       8,
@@ -393,22 +433,22 @@
         "label": "Backend",
         "pct": 76,
         "remaining_hours": [
-          63,
-          126
+          62,
+          124
         ],
         "remaining_sessions": [
           17,
-          34
+          33
         ],
         "weight": 1
       },
       {
         "track": "frontend",
         "label": "Frontend",
-        "pct": 85,
+        "pct": 86,
         "remaining_hours": [
-          16,
-          32
+          15,
+          30
         ],
         "remaining_sessions": [
           4,
@@ -516,12 +556,12 @@
       }
     ],
     "shipped": {
-      "done": 366,
-      "total": 442,
+      "done": 368,
+      "total": 443,
       "pct": 83
     },
     "estimate": true,
-    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (366/442 tasks done=83%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 5 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
+    "basis": "Overall % is shipped-plus-in-flight work over the WHOLE project (368/443 tasks done=83%, plus half-credit for in-flight tasks) \u2014 archiving old 100%-done tasks off the active list never shrinks this number. Per-track %, remaining hours/sessions below are scoped to the ACTIVE (decluttered) task list only \u2014 done=100%, in-progress=50%, pending=0% \u2014 so they reflect what's actually still in flight. Of that remaining total, 5 task(s) are GATED on an Omar decision/credential/sign-off (not fleet-executable) \u2014 see remaining_hours_gated vs remaining_hours_autonomous. All ESTIMATES; the measured signal is commit velocity (below)."
   },
   "docker": {
     "available": true,
@@ -934,7 +974,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     },
     {
       "name": "auth token",
@@ -948,7 +989,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     }
   ],
   "commits": {
@@ -956,68 +998,17 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 51,
-        "commits_7d": 231
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 0
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "b0e6ef36",
-        "at": "2026-07-29T18:47:51+04:00",
-        "subject": "test(production): unit tests for the EWO R&D filter (?rnd=)",
-        "track": "backend"
-      },
-      {
-        "hash": "dbc302f3",
-        "at": "2026-07-29T18:47:42+04:00",
-        "subject": "fix(production): wire the EWO R&D filter (?rnd=) [EWO-R&D-FILTER]",
-        "track": "backend"
-      },
-      {
-        "hash": "ed6f64d2",
-        "at": "2026-07-29T18:17:09+04:00",
-        "subject": "test(purchasing): unit tests for PR-BUDGET-VALIDATION",
-        "track": "backend"
-      },
-      {
-        "hash": "ed10bff4",
-        "at": "2026-07-29T18:16:56+04:00",
-        "subject": "test(purchasing): make EventInboundView's tenant-schema read sqlite-tolerant",
-        "track": "backend"
-      },
-      {
-        "hash": "45722040",
-        "at": "2026-07-29T18:16:28+04:00",
-        "subject": "fix(purchasing): wire PR-BUDGET-VALIDATION into the PR line-item create/update path [MEDIUM]",
-        "track": "backend"
-      },
-      {
-        "hash": "2431255a",
-        "at": "2026-07-29T18:16:09+04:00",
-        "subject": "feat(purchasing): port purchase_requisitions/validators.py [PR-BUDGET-VALIDATION, MEDIUM]",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
