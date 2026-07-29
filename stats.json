@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-29T05:48:22Z",
-  "heartbeat_at": "2026-07-29T05:48:22Z",
-  "last_activity": "2026-07-29T05:45:00Z",
+  "updated": "2026-07-29T05:49:57Z",
+  "heartbeat_at": "2026-07-29T05:49:57Z",
+  "last_activity": "2026-07-29T05:49:18Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T05:45:00Z",
-      "out_age_min": 3.4,
+      "out_last_active": "2026-07-29T05:49:18Z",
+      "out_age_min": 0.7,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -50,7 +50,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T05:45:00Z",
-      "out_age_min": 3.4,
+      "out_age_min": 5.0,
       "log_bytes": 1116935,
       "output_tokens": 103371,
       "cache_read_tokens": 33347819,
@@ -72,13 +72,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T05:40:07Z",
-      "out_age_min": 8.3,
-      "log_bytes": 513775,
-      "output_tokens": 37981,
-      "cache_read_tokens": 5950993,
-      "cache_creation_tokens": 366957,
-      "msgs": 78,
+      "out_last_active": "2026-07-29T05:49:18Z",
+      "out_age_min": 0.7,
+      "log_bytes": 522804,
+      "output_tokens": 38165,
+      "cache_read_tokens": 5974033,
+      "cache_creation_tokens": 681137,
+      "msgs": 80,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -96,7 +96,7 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T04:58:52Z",
-      "out_age_min": 49.5,
+      "out_age_min": 51.1,
       "log_bytes": 367627,
       "output_tokens": 32502,
       "cache_read_tokens": 4446861,
@@ -117,9 +117,9 @@
       "short_id": "a4fd76e3",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 27270.7,
+      "head_ago_min": 27272.3,
       "out_last_active": "2026-07-29T05:21:57Z",
-      "out_age_min": 26.4,
+      "out_age_min": 28.0,
       "log_bytes": 358621,
       "output_tokens": 35155,
       "cache_read_tokens": 4376759,
@@ -141,8 +141,8 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-29T05:45:00Z",
-      "age_min": 3.4,
+      "last_active": "2026-07-29T05:49:18Z",
+      "age_min": 0.7,
       "live": true,
       "status": "live",
       "subagent": false,
@@ -158,7 +158,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 28683.9,
+      "age_min": 28685.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -173,7 +173,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 37507.0,
+      "age_min": 37508.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -188,7 +188,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 31637.0,
+      "age_min": 31638.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -203,7 +203,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 31410.1,
+      "age_min": 31411.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -218,7 +218,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 27317.7,
+      "age_min": 27319.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -233,7 +233,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 28793.3,
+      "age_min": 28794.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -248,7 +248,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 27477.7,
+      "age_min": 27479.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -263,7 +263,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 31590.9,
+      "age_min": 31592.5,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -278,7 +278,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 31637.0,
+      "age_min": 31638.6,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -293,7 +293,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 38212.3,
+      "age_min": 38213.8,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -308,7 +308,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 38229.7,
+      "age_min": 38231.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -324,7 +324,7 @@
       "cache_creation_tokens": 668847,
       "msgs": 182,
       "last_active": "2026-07-29T05:45:00Z",
-      "age_min": 3.4,
+      "age_min": 5.0,
       "live": true,
       "status": "live",
       "subagent": true,
@@ -336,16 +336,16 @@
       "full_id": "a77297577e3aaf2f3",
       "group": "worker",
       "group_label": "Start Docker + complete integration rebuild",
-      "output_tokens": 37981,
-      "cache_read_tokens": 5950993,
-      "cache_creation_tokens": 366957,
-      "msgs": 78,
-      "last_active": "2026-07-29T05:40:07Z",
-      "age_min": 8.3,
+      "output_tokens": 38165,
+      "cache_read_tokens": 5974033,
+      "cache_creation_tokens": 681137,
+      "msgs": 80,
+      "last_active": "2026-07-29T05:49:18Z",
+      "age_min": 0.7,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 513775,
+      "log_bytes": 522804,
       "recent": true
     },
     {
@@ -358,7 +358,7 @@
       "cache_creation_tokens": 217767,
       "msgs": 105,
       "last_active": "2026-07-29T04:58:52Z",
-      "age_min": 49.5,
+      "age_min": 51.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -375,7 +375,7 @@
       "cache_creation_tokens": 548358,
       "msgs": 82,
       "last_active": "2026-07-29T05:21:57Z",
-      "age_min": 26.4,
+      "age_min": 28.0,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -570,7 +570,7 @@
       {
         "name": "vams_accounting",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8008",
@@ -579,7 +579,7 @@
       {
         "name": "vams_accounting_period_lock",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -588,7 +588,7 @@
       {
         "name": "vams_accounting_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -597,7 +597,7 @@
       {
         "name": "vams_accounting_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -606,7 +606,7 @@
       {
         "name": "vams_bff",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8013",
@@ -615,7 +615,7 @@
       {
         "name": "vams_crm",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8005",
@@ -624,7 +624,7 @@
       {
         "name": "vams_crm_beat",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -633,7 +633,7 @@
       {
         "name": "vams_crm_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -642,7 +642,7 @@
       {
         "name": "vams_docs",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8095",
@@ -651,7 +651,7 @@
       {
         "name": "vams_engineering",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8006",
@@ -660,7 +660,7 @@
       {
         "name": "vams_engineering_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -669,7 +669,7 @@
       {
         "name": "vams_engineering_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -678,7 +678,7 @@
       {
         "name": "vams_frontend",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "3000",
@@ -687,7 +687,7 @@
       {
         "name": "vams_gateway",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8080",
@@ -696,7 +696,7 @@
       {
         "name": "vams_hr",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8004",
@@ -705,7 +705,7 @@
       {
         "name": "vams_hr_beat",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -714,7 +714,7 @@
       {
         "name": "vams_hr_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -723,7 +723,7 @@
       {
         "name": "vams_hr_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -732,7 +732,7 @@
       {
         "name": "vams_integrations",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8010",
@@ -741,7 +741,7 @@
       {
         "name": "vams_integrations_beat",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -750,7 +750,7 @@
       {
         "name": "vams_integrations_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -759,7 +759,7 @@
       {
         "name": "vams_monolith_app",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8012",
@@ -768,7 +768,7 @@
       {
         "name": "vams_ops",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8009",
@@ -777,7 +777,7 @@
       {
         "name": "vams_ops_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -786,7 +786,7 @@
       {
         "name": "vams_ops_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -795,7 +795,7 @@
       {
         "name": "vams_original_ref",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -804,7 +804,7 @@
       {
         "name": "vams_platform",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8001",
@@ -813,7 +813,7 @@
       {
         "name": "vams_production",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8007",
@@ -822,7 +822,7 @@
       {
         "name": "vams_production_beat",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -831,7 +831,7 @@
       {
         "name": "vams_production_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -840,7 +840,7 @@
       {
         "name": "vams_production_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -849,7 +849,7 @@
       {
         "name": "vams_purchasing",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8003",
@@ -858,7 +858,7 @@
       {
         "name": "vams_purchasing_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -867,7 +867,7 @@
       {
         "name": "vams_purchasing_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -876,7 +876,7 @@
       {
         "name": "vams_qc",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8002",
@@ -885,7 +885,7 @@
       {
         "name": "vams_qc_relay",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -894,7 +894,7 @@
       {
         "name": "vams_qc_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -903,7 +903,7 @@
       {
         "name": "vams_ref_proxy",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8100",
@@ -912,7 +912,7 @@
       {
         "name": "vams_reporting",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8011",
@@ -921,7 +921,7 @@
       {
         "name": "vams_reporting_worker",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "",
@@ -930,7 +930,7 @@
       {
         "name": "vams_services_postgres",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "starting",
         "uptime": "",
         "ports": "5432",
@@ -939,7 +939,7 @@
       {
         "name": "vams_services_redis",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "starting",
         "uptime": "",
         "ports": "6379",
@@ -948,7 +948,7 @@
       {
         "name": "vams_web",
         "state": "exited",
-        "status": "Exited (255) About a minute ago",
+        "status": "Exited (255) 21 minutes ago",
         "health": "none",
         "uptime": "",
         "ports": "8090",
@@ -961,8 +961,7 @@
       "healthy": 0,
       "problem": 43
     },
-    "checked_at": "2026-07-29T05:29:55Z",
-    "carried": true
+    "checked_at": "2026-07-29T05:49:57Z"
   },
   "health": [
     {
@@ -999,17 +998,68 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 3,
+        "commits_7d": 199
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": false,
-        "error": "skipped: heartbeat budget exhausted"
+        "available": true,
+        "commits_24h": 0,
+        "commits_7d": 0
       }
     ],
-    "recent": []
+    "recent": [
+      {
+        "hash": "6557c575",
+        "at": "2026-07-29T09:38:18+04:00",
+        "subject": "hr: fix NEW-11 leave-accrual defect -- cap phantom absences at attendance data ceiling",
+        "track": "backend"
+      },
+      {
+        "hash": "afa3f471",
+        "at": "2026-07-28T14:11:39+04:00",
+        "subject": "hr: enable NEW-13 actual-OT sync guard, keep NEW-11 leave-accrual guard OFF",
+        "track": "backend"
+      },
+      {
+        "hash": "1fca5b83",
+        "at": "2026-07-28T12:57:32+04:00",
+        "subject": "docs(parity): log execution of 4 authorized corrective data fixes",
+        "track": "backend"
+      },
+      {
+        "hash": "01a1494b",
+        "at": "2026-07-28T08:00:22+04:00",
+        "subject": "Fix generic-engine `options` action shadowing DRF's HTTP OPTIONS handler",
+        "track": "backend"
+      },
+      {
+        "hash": "3441fda6",
+        "at": "2026-07-28T06:22:35+04:00",
+        "subject": "crm+purchasing: fix generic-serializer field locks blocking real document registries",
+        "track": "backend"
+      },
+      {
+        "hash": "cfd830c2",
+        "at": "2026-07-28T06:10:45+04:00",
+        "subject": "fix(engineering,accounting): CREATE-path defects from file-upload audit",
+        "track": "backend"
+      },
+      {
+        "hash": "899b5c8e",
+        "at": "2026-07-20T08:46:30+04:00",
+        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
+        "track": "frontend"
+      },
+      {
+        "hash": "113ddb26",
+        "at": "2026-07-16T10:20:07+04:00",
+        "subject": "feat(admin): surface user-profile message notes on a member detail page",
+        "track": "frontend"
+      }
+    ]
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
