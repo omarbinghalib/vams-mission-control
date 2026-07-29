@@ -2912,9 +2912,9 @@
   },
   {
     "title": "FE fix wave: production (PWO/EWO filters + exports)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "note": "DONE -- commit 0fb19f7b. PWO/EWO filters (assigned_to_user_id, sales_order_id, mrb) live-verified (PWO 21,161->2,799 etc.); generic backend /export/ CSV wired on all 12 production list screens (pwo/ewo/swo/jcr/countJournal/irn/assemblyBreak/machines x3/jobTracker/bomRevision); inventory page-only CSV re-pointed to full-dataset. tsc clean for production module. Goes live at the integration rebuild.",
     "started_at": "2026-07-29T10:28:38Z"
   },
   {
