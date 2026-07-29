@@ -2770,9 +2770,9 @@
   },
   {
     "title": "Audit: broad financial value-drift (cent-level vs oracle)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report scratchpad/capstone-audit/audit-value-drift.md. VALUE INTEGRITY EXCELLENT: 12/14 surfaces cent-exact 2014-2026 (GL 989,768 rows, inventory $1.04B exact, invoices/vouchers/notes/payroll/aging all exact). No corruption, no synthetic data. Non-gap: SO-header value delta = same correction class as PO grand_total (new system correctly backfilled stale monolith 0.00) + 1 post-cutover live edit -- documented, no fix needed. ALL 6 AUDITS NOW COMPLETE.",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2896,5 +2896,39 @@
     "status": "pending",
     "track": "frontend",
     "note": "Systematic FRONTEND wiring using existing hooks + A2's batch user-lookup pattern. Company FK: supplier/manufacturer/customer/vendorBank via useCompanies. User FK: pr/policy/pwo/ewo/swo/mes via UserCodesView ?ids= (folds A2's original 8 sites). Employee FK: andon/rcn/smsHistory/visit. Inventory-Item FK: bom/pdm/datasheet."
+  },
+  {
+    "title": "BS-PL-CUTOFF: BalanceSheetView/ProfitAndLoss use naive Jan-1 cutoff instead of closed-year-aware _year_start_date()",
+    "status": "pending",
+    "track": "backend",
+    "note": "reporting_app/views.py:822 -- TrialBalanceView already uses _year_start_date(); BS/P&L don't -> $1.75M BS imbalance (monolith has the identical bug; fixing = more correct). Propagate _year_start_date() to BS/P&L. HELD for after A1."
+  },
+  {
+    "title": "FE fix wave: purchasing+accounting (PJ/SJ filters + exports)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "started_at": "2026-07-29T10:28:38Z"
+  },
+  {
+    "title": "FE fix wave: production (PWO/EWO filters + exports)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "started_at": "2026-07-29T10:28:38Z"
+  },
+  {
+    "title": "FE fix wave: ops+qc+hr (Tasks/NCR/Employees filters + exports)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "started_at": "2026-07-29T10:28:38Z"
+  },
+  {
+    "title": "FE fix wave: crm+engineering (exports + any filter gaps)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "Parallel module lane, disjoint dir, tsc-only. Raw-id resolution deliberately NOT in this wave (separate wave, needs resolution-infra).",
+    "started_at": "2026-07-29T10:28:38Z"
   }
 ]
