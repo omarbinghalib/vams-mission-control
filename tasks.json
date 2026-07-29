@@ -2590,9 +2590,9 @@
   },
   {
     "title": "Integration rebuild (bakes 2cd73f80 + coverage lanes)",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "PARTIALLY COMPLETE pre-crash -- registry.ts consolidation (debit-notes+policies global entries) ALREADY landed + pushed (frontend HEAD 76953a6f). REMAINING (BLOCKED ON DOCKER): rebuild stale backend images (9 for options-fix c9671517, hr recreate for enables, engineering/accounting d3d1073d, crm/purchasing 3441fda6) + frontend-web rebuild (76953a6f) + bring up full stack + live-verify new coverage surfaces/options-fix/NEW-13. OPS HAZARD carried forward: shared session-scratchpad root is NOT per-worker isolated + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped.",
+    "note": "PARTIALLY COMPLETE pre-crash -- registry.ts consolidation (debit-notes+policies global entries) ALREADY landed + pushed (frontend HEAD 76953a6f). REMAINING (BLOCKED ON DOCKER): rebuild stale backend images (9 for options-fix c9671517, hr recreate for enables, engineering/accounting d3d1073d, crm/purchasing 3441fda6) + frontend-web rebuild (76953a6f) + bring up full stack + live-verify new coverage surfaces/options-fix/NEW-13. OPS HAZARD carried forward: shared session-scratchpad root is NOT per-worker isolated + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped. SUPERSEDED -- Docker bringup + coverage live-verify already completed separately; remaining rebuild scope folded into the new 'FINAL integration rebuild + full verify' task below.",
     "started_at": "2026-07-28T13:27:56Z"
   },
   {
@@ -2893,9 +2893,9 @@
   },
   {
     "title": "RAWID-CLASS: ~32-site systematic raw-id-resolution lane (folds A2)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Systematic FRONTEND wiring using existing hooks + A2's batch user-lookup pattern. Company FK: supplier/manufacturer/customer/vendorBank via useCompanies. User FK: pr/policy/pwo/ewo/swo/mes via UserCodesView ?ids= (folds A2's original 8 sites). Employee FK: andon/rcn/smsHistory/visit. Inventory-Item FK: bom/pdm/datasheet. DISPATCHED -- sole frontend lane now. Builds shared hooks (useUserNames via UserCodesView ?ids=, useEmployeeNames/useInventoryNumbers via ?id__in=, useCompanies existing) + wires all raw-id sites. tsc-only.",
+    "note": "DONE -- commits 4df3051c..e126ee8b. Shared hooks (useUserNames via UserCodesView ?ids=, useEmployeeNames/useInventoryNumbers via ?id__in=, useCompanies reused) in src/lib/refData.ts; 32 sites wired across 26 files/6 modules (Company/User/Employee/Inventory FKs -> resolved names, #id fallback). tsc clean. Documented no-source skips (manufacturer 0-rows, groupCompanyDoc). Live at integration rebuild. MILESTONE: ENTIRE throttle-up fix program is CODE-COMPLETE (6 audits + A1 + BE-SEC + 4 FE filters/exports + Round-2 BE-L1/L2/L3 + raw-id, all committed).",
     "started_at": "2026-07-29T14:54:54Z"
   },
   {
@@ -2989,5 +2989,12 @@
     "status": "done",
     "track": "incident",
     "note": "BE-L1's test step docker-cp'd the SEC-1-hardened settings.py into live vams_purchasing, which fail-closed-crashed on the old dev-default JWT key (its env + baked image predate SEC-1); the lane reverted SEC-1 in the CONTAINER ONLY (ephemeral, uncommitted) to reboot. COMMITTED source stays hardened. NOT a net regression (whole local stack already uses the dev-default). CONFIRMS the JWT-compose prerequisite concretely -- vams_purchasing/production/engineering are all in the pre-SEC-1 container state now, until the integration rebuild recreates them with the real key."
+  },
+  {
+    "title": "FINAL integration rebuild + full verify",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "THE final gate. STEP1 JWT switch (compose -> ${PLATFORM_JWT_SIGNING_KEY} from .env + recreate all 12 hardened together; stack must end UP+hardened). STEP2 rebuild all backend + frontend-web. STEP3 FULL live-verify (SEC-1 forged-old-key-token REJECTED, A1 403/200, SEC-2 payslip-blocked, filters, exports full-set, raw-id resolves, logic guards, BS -$1.92). STEP4 report per-area PASS/FAIL feeding certification. On PASS: final certification + capstone parity update (now including the security-hardening dimension).",
+    "started_at": "2026-07-29T15:55:20Z"
   }
 ]
