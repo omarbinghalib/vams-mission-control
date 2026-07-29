@@ -2698,9 +2698,9 @@
   },
   {
     "title": "A2: raw 'User #{id}' stub at 8 sites (ops/qc) -- PU1-class",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "HELD to serialize backend after A1. Fix via UserCodesView ?ids= batch lookup. Queued behind A1 to serialize backend writes (revert hazard)."
+    "note": "HELD to serialize backend after A1. Fix via UserCodesView ?ids= batch lookup. Queued behind A1 to serialize backend writes (revert hazard). FOLDED into RAWID-CLASS (~32-site systematic raw-id-resolution lane) -- see combined task."
   },
   {
     "title": "A3: SO/PO list filters missing",
@@ -2763,9 +2763,9 @@
   },
   {
     "title": "Audit: raw-id/cross-service-resolution completeness",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report scratchpad/capstone-audit/audit-rawid-resolution.md. Confirmed-resolved: accounting account-fallback family, PU1 PO-supplier (correct pattern is standard). NOT limited to A2's 8 sites -- ~24 more raw-id sites found across 4 modules, folded with A2 into ONE systematic lane (see RAWID-CLASS below). Disclosed, not fresh gaps: engineering_app_manufacturer has 0 rows (Django-proxy no-source-table, disclosed in migrate_engineering.py) -- that screen's raw-id moot until populated; groupCompanyDocument hr_company_id already-disclosed.",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2890,5 +2890,11 @@
     "status": "pending",
     "track": "backend",
     "note": "crm upload-datasheet/rerun-sizing/compute-cv + hr employee-documents/upload -- peer actions are gated, these are omissions."
+  },
+  {
+    "title": "RAWID-CLASS: ~32-site systematic raw-id-resolution lane (folds A2)",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Systematic FRONTEND wiring using existing hooks + A2's batch user-lookup pattern. Company FK: supplier/manufacturer/customer/vendorBank via useCompanies. User FK: pr/policy/pwo/ewo/swo/mes via UserCodesView ?ids= (folds A2's original 8 sites). Employee FK: andon/rcn/smsHistory/visit. Inventory-Item FK: bom/pdm/datasheet."
   }
 ]
