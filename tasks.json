@@ -3012,9 +3012,9 @@
   },
   {
     "title": "CURRENCY-CODE-LOCK: accounting ALWAYS_LOCKED forces Currency.code read-only",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Code is Currency's business identity -> currency create fails; + orphan test row id=282 (PROBE-A1-verify, code='') blocks it. Fix: per-model unlock code for Currency + delete the PROBE orphan. Live create-then-delete verify. Just dispatched."
+    "note": "DONE -- commit a30fb3be. Unlocked Currency.code via PER_MODEL_UNLOCKED (global ALWAYS_LOCKED untouched); deleted the verified PROBE orphan row id=282; rebuilt accounting; live-verified currency create 201 (code persists) -> delete 204, zero residue. Last real functional item closed."
   },
   {
     "title": "FINAL CERTIFICATION + capstone synthesis",
