@@ -2926,9 +2926,9 @@
   },
   {
     "title": "FE fix wave: crm+engineering (exports + any filter gaps)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Parallel module lane, disjoint dir, tsc-only. Raw-id resolution deliberately NOT in this wave (separate wave, needs resolution-infra).",
+    "note": "DONE -- commit fcbabc8e. Generic /export/ wired/re-pointed across ~40 crm+engineering list screens (assemblyQueue keeps a full-dataset client CSV -- BFF read, no registry /export/). Filters: crm/eng screens match-or-exceed monolith (no fabricated filters). tsc clean.",
     "started_at": "2026-07-29T10:28:38Z"
   },
   {
@@ -2937,5 +2937,11 @@
     "track": "backend",
     "note": "SOLE backend writer now. SEC-1 JWT hardening (fail-closed, strong .env key, no public default; go-live blocker); SEC-2 reporting/payslip gate+ownership; SEC-3 hr doc-perm gate; SEC-4 hr salary restricted_level; SEC-5/6 crm/hr ungated actions; SEC-7 qc nested_collection() writes (CorrectiveAction, Cmtr children) ungated on a different code path than build_viewsets -- same vuln class, qc-only. Edit+unit-test+commit; integration rebuild applies JWT later (recreate all services together).",
     "started_at": "2026-07-29T10:29:59Z"
+  },
+  {
+    "title": "Part list filters body_model/body_size/pressure_class -- needs backend model change",
+    "status": "pending",
+    "track": "backend",
+    "note": "Honest documented gap: carved Part has no backing fields (monolith pdm FILTER_PROPERTIES); would need those PDM part-property fields carried before the filter can be added. Not faked."
   }
 ]
