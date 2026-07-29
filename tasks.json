@@ -2756,9 +2756,9 @@
   },
   {
     "title": "Audit: export CSV/XLSX/PDF parity (all modules)",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "note": "DONE -- report scratchpad/capstone-audit/audit-exports-parity.md. PDF/report catalogue (25 docs+10 reports) confirmed strong. Ops/GRN/MR export = non-gap (absent in both systems). Closeable gaps queued to the batch-fix wave below.",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
@@ -2836,5 +2836,29 @@
     "status": "pending",
     "track": "backend",
     "note": "Task Epic filter, NCR internal_persons filter (currently __in -> 502), EWO R&D JSON-field filter (__contains) -- wire these in the respective service backends. From filter/sort/pagination parity audit."
+  },
+  {
+    "title": "EXPORT-WIRING: generic backend export/ CSV endpoint works but is wired to ZERO SPA screens",
+    "status": "pending",
+    "track": "frontend",
+    "note": "The generic backend <resource>/export/ CSV endpoint exists+works on EVERY resource but has no SPA wiring -> add an export button to ~90 list screens (no backend work needed). From export parity audit."
+  },
+  {
+    "title": "EXPORT-FULLSET: existing client-CSV buttons export only current page (25), not full filtered set",
+    "status": "pending",
+    "track": "frontend",
+    "note": "51 existing client-CSV buttons export only the current page(25) -> route them through the backend /export/ for full-dataset parity. From export parity audit."
+  },
+  {
+    "title": "Missing reports (5): Fixed Asset Register PDF, Housing/Tenancy monthly export, VS Sales per-company PDF, Monthly Approvals Report, PDM Patterns/Body-Bonnet Report",
+    "status": "pending",
+    "track": "backend",
+    "note": "Mostly reporting-backend + wiring work. From export parity audit."
+  },
+  {
+    "title": "[DEFERRED] WPS/iFile/iFile-Qatar/Salary-by-Bank/Semi-Annual payroll reports",
+    "status": "pending",
+    "track": "backend",
+    "note": "Bank/government fixed-format compliance docs, not template work -- heavier lift, gated on an Omar (B/decision) call on priority/scope before starting. From export parity audit."
   }
 ]
