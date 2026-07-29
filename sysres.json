@@ -1,16 +1,16 @@
 {
  "available": true,
- "checked_at": "2026-07-29T12:28:13Z",
+ "checked_at": "2026-07-29T12:33:13Z",
  "host": {
-  "cpu_pct": 75,
+  "cpu_pct": 74,
   "cores": [
-   75
+   74
   ],
-  "mem_pct": 97.1,
-  "mem_used_mb": 15625,
+  "mem_pct": 94.6,
+  "mem_used_mb": 15226,
   "mem_total_mb": 16091,
-  "uptime_sec": 30591,
-  "process_count": 398
+  "uptime_sec": 30890,
+  "process_count": 400
  },
  "disks": [
   {
@@ -21,134 +21,155 @@
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 966,
-  "tx_bytes_per_sec": 90276
+  "rx_bytes_per_sec": 1495,
+  "tx_bytes_per_sec": 196
  },
  "temp_c": null,
  "temp_available": false,
  "docker": {
   "containers": 43,
-  "total_cpu_pct": 40.0,
+  "total_cpu_pct": 56.0,
   "total_mem_mb": 4379.2,
   "list": [
    {
-    "name": "vams_services_redis",
-    "cpu_pct": 7.3,
-    "mem_used_mb": 13.5,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.17
-   },
-   {
-    "name": "vams_qc",
-    "cpu_pct": 5.8,
-    "mem_used_mb": 124.4,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.6
-   },
-   {
-    "name": "vams_crm",
-    "cpu_pct": 3.6,
-    "mem_used_mb": 127.5,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.63
-   },
-   {
-    "name": "vams_purchasing",
-    "cpu_pct": 3.2,
-    "mem_used_mb": 148.8,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.91
-   },
-   {
     "name": "vams_services_postgres",
-    "cpu_pct": 2.5,
-    "mem_used_mb": 695.9,
+    "cpu_pct": 15.2,
+    "mem_used_mb": 696.3,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 8.92
+    "mem_pct": 8.93
    },
    {
     "name": "vams_reporting",
-    "cpu_pct": 2.1,
-    "mem_used_mb": 114.4,
+    "cpu_pct": 8.8,
+    "mem_used_mb": 114.3,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.47
    },
    {
-    "name": "vams_platform",
-    "cpu_pct": 1.4,
-    "mem_used_mb": 99.4,
+    "name": "vams_purchasing",
+    "cpu_pct": 4.5,
+    "mem_used_mb": 149.0,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 1.27
-   },
-   {
-    "name": "vams_production",
-    "cpu_pct": 1.2,
-    "mem_used_mb": 133.3,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.71
+    "mem_pct": 1.91
    },
    {
     "name": "vams_accounting",
-    "cpu_pct": 1.1,
+    "cpu_pct": 2.2,
     "mem_used_mb": 133.3,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.71
    },
    {
-    "name": "vams_ops",
-    "cpu_pct": 1.1,
-    "mem_used_mb": 120.9,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.55
-   },
-   {
-    "name": "vams_bff",
-    "cpu_pct": 1.1,
-    "mem_used_mb": 85.4,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.1
-   },
-   {
-    "name": "vams_integrations",
-    "cpu_pct": 1.0,
-    "mem_used_mb": 113.1,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.45
-   },
-   {
-    "name": "vams_engineering",
-    "cpu_pct": 1.0,
-    "mem_used_mb": 129.8,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 1.66
-   },
-   {
     "name": "vams_hr",
-    "cpu_pct": 1.0,
+    "cpu_pct": 2.1,
     "mem_used_mb": 139.6,
     "mem_limit_mb": 7799.8,
     "mem_pct": 1.79
    },
    {
+    "name": "vams_bff",
+    "cpu_pct": 2.0,
+    "mem_used_mb": 85.4,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.09
+   },
+   {
+    "name": "vams_ops",
+    "cpu_pct": 1.9,
+    "mem_used_mb": 120.8,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.55
+   },
+   {
+    "name": "vams_hr_relay",
+    "cpu_pct": 1.9,
+    "mem_used_mb": 47.8,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.61
+   },
+   {
+    "name": "vams_ops_relay",
+    "cpu_pct": 1.6,
+    "mem_used_mb": 38.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.49
+   },
+   {
+    "name": "vams_engineering",
+    "cpu_pct": 1.5,
+    "mem_used_mb": 129.8,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.66
+   },
+   {
     "name": "vams_purchasing_relay",
-    "cpu_pct": 0.8,
-    "mem_used_mb": 43.6,
+    "cpu_pct": 1.5,
+    "mem_used_mb": 43.5,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.56
    },
    {
-    "name": "vams_engineering_relay",
-    "cpu_pct": 0.8,
-    "mem_used_mb": 43.8,
+    "name": "vams_crm",
+    "cpu_pct": 1.4,
+    "mem_used_mb": 127.4,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.56
+    "mem_pct": 1.63
+   },
+   {
+    "name": "vams_production",
+    "cpu_pct": 1.4,
+    "mem_used_mb": 133.3,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.71
+   },
+   {
+    "name": "vams_services_redis",
+    "cpu_pct": 1.4,
+    "mem_used_mb": 13.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.17
+   },
+   {
+    "name": "vams_qc",
+    "cpu_pct": 1.1,
+    "mem_used_mb": 124.2,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.59
+   },
+   {
+    "name": "vams_integrations",
+    "cpu_pct": 1.1,
+    "mem_used_mb": 113.1,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.45
+   },
+   {
+    "name": "vams_platform",
+    "cpu_pct": 1.1,
+    "mem_used_mb": 99.4,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 1.27
+   },
+   {
+    "name": "vams_hr_worker",
+    "cpu_pct": 0.6,
+    "mem_used_mb": 42.3,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.54
    },
    {
     "name": "vams_accounting_worker",
-    "cpu_pct": 0.5,
+    "cpu_pct": 0.6,
     "mem_used_mb": 46.0,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.59
+   },
+   {
+    "name": "vams_engineering_worker",
+    "cpu_pct": 0.5,
+    "mem_used_mb": 47.0,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.6
    },
    {
     "name": "vams_qc_worker",
@@ -165,13 +186,6 @@
     "mem_pct": 0.41
    },
    {
-    "name": "vams_production_worker",
-    "cpu_pct": 0.5,
-    "mem_used_mb": 1061.9,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 13.62
-   },
-   {
     "name": "vams_purchasing_worker",
     "cpu_pct": 0.5,
     "mem_used_mb": 45.8,
@@ -186,11 +200,18 @@
     "mem_pct": 0.54
    },
    {
-    "name": "vams_hr_worker",
+    "name": "vams_qc_relay",
     "cpu_pct": 0.4,
-    "mem_used_mb": 42.3,
+    "mem_used_mb": 41.2,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.54
+    "mem_pct": 0.53
+   },
+   {
+    "name": "vams_production_worker",
+    "cpu_pct": 0.4,
+    "mem_used_mb": 1061.9,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 13.62
    },
    {
     "name": "vams_crm_worker",
@@ -201,17 +222,17 @@
    },
    {
     "name": "vams_reporting_worker",
-    "cpu_pct": 0.4,
+    "cpu_pct": 0.3,
     "mem_used_mb": 44.3,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.57
    },
    {
-    "name": "vams_engineering_worker",
-    "cpu_pct": 0.3,
-    "mem_used_mb": 47.0,
+    "name": "vams_monolith_app",
+    "cpu_pct": 0.1,
+    "mem_used_mb": 74.7,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.6
+    "mem_pct": 0.96
    },
    {
     "name": "vams_hr_beat",
@@ -228,11 +249,11 @@
     "mem_pct": 0.11
    },
    {
-    "name": "vams_hr_relay",
+    "name": "vams_engineering_relay",
     "cpu_pct": 0.0,
-    "mem_used_mb": 47.8,
+    "mem_used_mb": 43.8,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.61
+    "mem_pct": 0.56
    },
    {
     "name": "vams_accounting_relay",
@@ -260,14 +281,7 @@
     "cpu_pct": 0.0,
     "mem_used_mb": 28.5,
     "mem_limit_mb": 7799.8,
-    "mem_pct": 0.36
-   },
-   {
-    "name": "vams_qc_relay",
-    "cpu_pct": 0.0,
-    "mem_used_mb": 41.0,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.53
+    "mem_pct": 0.37
    },
    {
     "name": "vams_integrations_beat",
@@ -275,13 +289,6 @@
     "mem_used_mb": 24.9,
     "mem_limit_mb": 7799.8,
     "mem_pct": 0.32
-   },
-   {
-    "name": "vams_ops_relay",
-    "cpu_pct": 0.0,
-    "mem_used_mb": 38.1,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.49
    },
    {
     "name": "vams_production_beat",
@@ -312,13 +319,6 @@
     "mem_pct": 0.07
    },
    {
-    "name": "vams_monolith_app",
-    "cpu_pct": 0.0,
-    "mem_used_mb": 74.7,
-    "mem_limit_mb": 7799.8,
-    "mem_pct": 0.96
-   },
-   {
     "name": "vams_ref_proxy",
     "cpu_pct": 0.0,
     "mem_used_mb": 9.4,
@@ -339,10 +339,10 @@
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-29T12:28:13Z",
- "disks_as_of": "2026-07-29T12:28:13Z",
- "network_as_of": "2026-07-29T12:28:13Z",
+ "host_as_of": "2026-07-29T12:33:13Z",
+ "disks_as_of": "2026-07-29T12:33:13Z",
+ "network_as_of": "2026-07-29T12:33:13Z",
  "temp_as_of": null,
- "docker_as_of": "2026-07-29T12:28:13Z",
+ "docker_as_of": "2026-07-29T12:33:13Z",
  "temp_error": "Not supported "
 }
