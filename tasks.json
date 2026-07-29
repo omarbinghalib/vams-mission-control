@@ -2617,10 +2617,11 @@
   },
   {
     "title": "DOCKER ENGINE DOWN post-reboot -- CURRENT CRITICAL BLOCKER (needs Omar / admin)",
-    "status": "pending",
+    "status": "in_progress",
     "track": "operational",
     "gated": true,
-    "note": "com.docker.service (privileged Windows service) is Stopped, StartType Manual; starting it needs Administrator (elevated `Start-Service com.docker.service`, or run Docker Desktop as admin). WSL2 VM healthy -- purely the Windows service layer. ALL live rebuild/verify/sweep work is blocked until Omar starts it."
+    "note": "Bringing up (Omar authorized, away in full-auto mode): attempting Start-Service com.docker.service / Docker Desktop launch, then full integration rebuild + stack up. Red alert stays RAISED until the engine is CONFIRMED up.",
+    "started_at": "2026-07-29T05:20:48Z"
   },
   {
     "title": "Git state post-crash: both repos clean + synced",
@@ -2634,5 +2635,12 @@
     "track": "backend",
     "note": "Docker-independent lane: fixing hr_app/histories.py absent-day-ceiling defect via code + sqlite unit tests only; guard stays OFF; live-verify against real DB deferred to post-Docker.",
     "started_at": "2026-07-29T05:02:53Z"
+  },
+  {
+    "title": "Docker bringup + integration rebuild completion",
+    "status": "in_progress",
+    "track": "deploy",
+    "note": "Rebuild stale images (9 services: options-fix, hr, engineering/accounting, crm/purchasing, frontend-web 76953a6f) + full stack up + smoke. NEXT (after stack up): live-verify coverage surfaces + NEW-11 fix live-verify (enable IF verified correct, else keep off) + resume exhaustive sweeps (v8+) -> converge -> certification.",
+    "started_at": "2026-07-29T05:20:48Z"
   }
 ]
