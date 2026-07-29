@@ -2933,9 +2933,9 @@
   },
   {
     "title": "BE-SEC critical security batch (SEC-1..7)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "SOLE backend writer now. SEC-1 JWT hardening (fail-closed, strong .env key, no public default; go-live blocker); SEC-2 reporting/payslip gate+ownership; SEC-3 hr doc-perm gate; SEC-4 hr salary restricted_level; SEC-5/6 crm/hr ungated actions; SEC-7 qc nested_collection() writes (CorrectiveAction, Cmtr children) ungated on a different code path than build_viewsets -- same vuln class, qc-only. Edit+unit-test+commit; integration rebuild applies JWT later (recreate all services together).",
+    "note": "DONE -- 6 commits pushed. SEC-1 JWT: all 12 services FAIL-CLOSED on missing/default key (no SECRET_KEY fallback), strong key in gitignored services/.env + .env.example + docs/security/jwt-signing-key.md, verified (old-key rejected/new verifies). SEC-2 reporting role-gate + payslip ownership. SEC-3/4/5 hr doc-perm/salary-blank/upload gates. SEC-5/6 crm action gates. SEC-7 qc nested_collection gate. All foreground-tested.",
     "started_at": "2026-07-29T10:29:59Z"
   },
   {
@@ -2955,5 +2955,32 @@
     "status": "pending",
     "track": "frontend",
     "note": "Non-archetype layouts, no export slot without a layout change. Honest documented gap, not faked."
+  },
+  {
+    "title": "[CRITICAL] INTEGRATION PREREQUISITE: docker-compose.yml still hardcodes OLD JWT key for all 12 services",
+    "status": "pending",
+    "track": "deploy",
+    "note": "Since services now fail-closed on the old/default key (SEC-1), the integration rebuild MUST switch compose to ${PLATFORM_JWT_SIGNING_KEY} (reading services/.env) + recreate ALL 12 services together, or the whole stack refuses to start. This is STEP 1 of the integration lane -- do not recreate services piecemeal."
+  },
+  {
+    "title": "BE-L1 prod/eng/purchasing (WO-QC-gate, BOM-reserve-guards, PR-budget-validation, EWO-R&D filter)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Round-2 backend, disjoint service-cluster lane, commit-per-file, edit+unit-test only.",
+    "started_at": "2026-07-29T11:53:59Z"
+  },
+  {
+    "title": "BE-L2 qc/crm/ops (NCR-cancel-stamp, NCR-internal_persons filter, legal-doc validation, Task-Epic filter)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Round-2 backend, disjoint service-cluster lane, commit-per-file, edit+unit-test only.",
+    "started_at": "2026-07-29T11:53:59Z"
+  },
+  {
+    "title": "BE-L3 reporting/platform (BS-PL-cutoff, 5 missing reports, resolution-infra UserCodesView ?ids=)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Round-2 backend, disjoint service-cluster lane, commit-per-file, edit+unit-test only. Its resolution-infra is a prerequisite for the upcoming RAW-ID frontend wave.",
+    "started_at": "2026-07-29T11:53:59Z"
   }
 ]
