@@ -2604,9 +2604,10 @@
   },
   {
     "title": "EMBEDDED-MONOLITH PII: reference source dir deamdev-kestrel_binghalib_vams_hcap-.../ (4,174 files)",
-    "status": "pending",
+    "status": "done",
     "track": "incident",
-    "note": "GATED on Omar's decision (bigger exposure than NEW-8, another history rewrite). The committed reference dir (original VAMS monolith source) contains extensive real employee PII (emails in settings.py/example-env/celery_tasks.py; payroll/HR CSVs with real names) + a 64MB phantomjs binary bloating the repo. Recommendation: remove the dir from the repo entirely (keep locally as reference, gitignore it) via git-filter-repo -- fixes both PII + bloat in one pass. Awaiting Omar's decision before any action. RE-SURFACED post-reboot -- still awaiting Omar's decision; no action taken."
+    "note": "Omar decided 2026-07-29 to leave the deamdev-...hcap reference dir as-is; documented known-exposure, no action.",
+    "gated": false
   },
   {
     "title": "Dashboard post-reboot recovery",
