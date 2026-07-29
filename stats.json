@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-29T14:42:01Z",
-  "heartbeat_at": "2026-07-29T14:42:01Z",
-  "last_activity": "2026-07-29T14:42:01Z",
+  "updated": "2026-07-29T14:44:22Z",
+  "heartbeat_at": "2026-07-29T14:44:22Z",
+  "last_activity": "2026-07-29T14:44:35Z",
   "generated_by": "mission-control (ad796e2c)",
   "schema": 5,
   "totals": {
@@ -31,8 +31,8 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T14:41:56Z",
-      "out_age_min": 0.1,
+      "out_last_active": "2026-07-29T14:43:59Z",
+      "out_age_min": 0.4,
       "log_bytes": null,
       "signal": "coordinating (orchestrator)",
       "status": "live",
@@ -49,13 +49,13 @@
       "head_commit": null,
       "head_commit_at": null,
       "head_ago_min": null,
-      "out_last_active": "2026-07-29T14:42:01Z",
+      "out_last_active": "2026-07-29T14:44:35Z",
       "out_age_min": 0.0,
-      "log_bytes": 2358262,
-      "output_tokens": 190216,
-      "cache_read_tokens": 159870700,
-      "cache_creation_tokens": 4164323,
-      "msgs": 631,
+      "log_bytes": 2390010,
+      "output_tokens": 192850,
+      "cache_read_tokens": 166774805,
+      "cache_creation_tokens": 4176231,
+      "msgs": 645,
       "tokens_carried": false,
       "signal": "task-output mtime + git commit",
       "status": "live",
@@ -71,9 +71,9 @@
       "short_id": "a4fd76e3",
       "head_commit": "docs(session-handoff): point mission-control to canonical vams-mission-control repo",
       "head_commit_at": "2026-07-10T11:17:39+04:00",
-      "head_ago_min": 27804.4,
+      "head_ago_min": 27806.7,
       "out_last_active": "2026-07-29T13:11:16Z",
-      "out_age_min": 90.8,
+      "out_age_min": 93.1,
       "log_bytes": 965690,
       "output_tokens": 118677,
       "cache_read_tokens": 26812631,
@@ -96,13 +96,13 @@
       "head_commit_at": null,
       "head_ago_min": null,
       "out_last_active": "2026-07-29T13:09:15Z",
-      "out_age_min": 92.8,
+      "out_age_min": 95.1,
       "log_bytes": 2117896,
       "output_tokens": 163203,
       "cache_read_tokens": 157334821,
       "cache_creation_tokens": 824156,
       "msgs": 600,
-      "tokens_carried": false,
+      "tokens_carried": true,
       "signal": "task-output mtime + git commit",
       "status": "idle",
       "live": false,
@@ -118,7 +118,7 @@
       "cache_read_tokens": 3960060,
       "cache_creation_tokens": 530517,
       "msgs": 68,
-      "last_active": "2026-07-29T14:42:03Z",
+      "last_active": "2026-07-29T14:44:44Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
@@ -135,7 +135,7 @@
       "cache_creation_tokens": 20330369,
       "msgs": 8727,
       "last_active": "2026-07-09T07:44:28Z",
-      "age_min": 29217.6,
+      "age_min": 29219.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -150,7 +150,7 @@
       "cache_creation_tokens": 20266145,
       "msgs": 3101,
       "last_active": "2026-07-03T04:41:24Z",
-      "age_min": 38040.6,
+      "age_min": 38043.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -165,7 +165,7 @@
       "cache_creation_tokens": 7338420,
       "msgs": 1829,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 32170.7,
+      "age_min": 32173.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -180,7 +180,7 @@
       "cache_creation_tokens": 6332775,
       "msgs": 614,
       "last_active": "2026-07-07T10:18:17Z",
-      "age_min": 31943.7,
+      "age_min": 31946.1,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -195,7 +195,7 @@
       "cache_creation_tokens": 1783895,
       "msgs": 402,
       "last_active": "2026-07-10T06:30:41Z",
-      "age_min": 27851.3,
+      "age_min": 27853.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -210,7 +210,7 @@
       "cache_creation_tokens": 319452,
       "msgs": 219,
       "last_active": "2026-07-09T05:55:07Z",
-      "age_min": 29326.9,
+      "age_min": 29329.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -225,7 +225,7 @@
       "cache_creation_tokens": 209179,
       "msgs": 22,
       "last_active": "2026-07-10T03:50:38Z",
-      "age_min": 28011.4,
+      "age_min": 28013.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -240,7 +240,7 @@
       "cache_creation_tokens": 0,
       "msgs": 24,
       "last_active": "2026-07-07T07:17:26Z",
-      "age_min": 32124.6,
+      "age_min": 32126.9,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -255,7 +255,7 @@
       "cache_creation_tokens": 62450,
       "msgs": 18,
       "last_active": "2026-07-07T06:31:20Z",
-      "age_min": 32170.7,
+      "age_min": 32173.0,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -270,7 +270,7 @@
       "cache_creation_tokens": 34599,
       "msgs": 9,
       "last_active": "2026-07-02T16:56:07Z",
-      "age_min": 38745.9,
+      "age_min": 38748.3,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -285,7 +285,7 @@
       "cache_creation_tokens": 0,
       "msgs": 1,
       "last_active": "2026-07-02T16:38:39Z",
-      "age_min": 38763.4,
+      "age_min": 38765.7,
       "live": false,
       "status": "idle",
       "subagent": false,
@@ -296,16 +296,16 @@
       "full_id": "a6ba883dcd4483cfd",
       "group": "worker",
       "group_label": "Round-2 BE: prod/eng/purchasing logic guards",
-      "output_tokens": 190216,
-      "cache_read_tokens": 159870700,
-      "cache_creation_tokens": 4164323,
-      "msgs": 631,
-      "last_active": "2026-07-29T14:42:01Z",
+      "output_tokens": 192850,
+      "cache_read_tokens": 166774805,
+      "cache_creation_tokens": 4176231,
+      "msgs": 645,
+      "last_active": "2026-07-29T14:44:35Z",
       "age_min": 0.0,
       "live": true,
       "status": "live",
       "subagent": true,
-      "log_bytes": 2358262,
+      "log_bytes": 2390010,
       "recent": true
     },
     {
@@ -318,7 +318,7 @@
       "cache_creation_tokens": 4971651,
       "msgs": 252,
       "last_active": "2026-07-29T13:11:16Z",
-      "age_min": 90.8,
+      "age_min": 93.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -335,7 +335,7 @@
       "cache_creation_tokens": 824156,
       "msgs": 600,
       "last_active": "2026-07-29T13:09:15Z",
-      "age_min": 92.8,
+      "age_min": 95.1,
       "live": false,
       "status": "idle",
       "subagent": true,
@@ -934,7 +934,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     },
     {
       "name": "auth token",
@@ -948,7 +949,8 @@
       ],
       "ok": true,
       "reachable": true,
-      "error": null
+      "error": null,
+      "carried": true
     }
   ],
   "commits": {
@@ -956,68 +958,17 @@
       {
         "track": "backend",
         "branch": "microservices-backend",
-        "available": true,
-        "commits_24h": 49,
-        "commits_7d": 229
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       },
       {
         "track": "frontend",
         "branch": "frontend-redesign",
-        "available": true,
-        "commits_24h": 0,
-        "commits_7d": 0
+        "available": false,
+        "error": "skipped: heartbeat budget exhausted"
       }
     ],
-    "recent": [
-      {
-        "hash": "ed6f64d2",
-        "at": "2026-07-29T18:17:09+04:00",
-        "subject": "test(purchasing): unit tests for PR-BUDGET-VALIDATION",
-        "track": "backend"
-      },
-      {
-        "hash": "ed10bff4",
-        "at": "2026-07-29T18:16:56+04:00",
-        "subject": "test(purchasing): make EventInboundView's tenant-schema read sqlite-tolerant",
-        "track": "backend"
-      },
-      {
-        "hash": "45722040",
-        "at": "2026-07-29T18:16:28+04:00",
-        "subject": "fix(purchasing): wire PR-BUDGET-VALIDATION into the PR line-item create/update path [MEDIUM]",
-        "track": "backend"
-      },
-      {
-        "hash": "2431255a",
-        "at": "2026-07-29T18:16:09+04:00",
-        "subject": "feat(purchasing): port purchase_requisitions/validators.py [PR-BUDGET-VALIDATION, MEDIUM]",
-        "track": "backend"
-      },
-      {
-        "hash": "d0a46e87",
-        "at": "2026-07-29T18:15:42+04:00",
-        "subject": "test(purchasing): make crm_ro._current_schema() sqlite-tolerant",
-        "track": "backend"
-      },
-      {
-        "hash": "d5e8e29d",
-        "at": "2026-07-29T18:15:33+04:00",
-        "subject": "feat(purchasing): add fetch_estimated_amounts cross-service read [PR-BUDGET-VALIDATION]",
-        "track": "backend"
-      },
-      {
-        "hash": "899b5c8e",
-        "at": "2026-07-20T08:46:30+04:00",
-        "subject": "fix(nav): add candidates, contract-renewals, leave-replacements to HR_ENTITIES",
-        "track": "frontend"
-      },
-      {
-        "hash": "113ddb26",
-        "at": "2026-07-16T10:20:07+04:00",
-        "subject": "feat(admin): surface user-profile message notes on a member detail page",
-        "track": "frontend"
-      }
-    ]
+    "recent": []
   },
   "publisher": {
     "task": "VAMS-MissionControl-Heartbeat",
