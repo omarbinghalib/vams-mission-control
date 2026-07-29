@@ -2992,9 +2992,22 @@
   },
   {
     "title": "FINAL integration rebuild + full verify",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "THE final gate. STEP1 JWT switch (compose -> ${PLATFORM_JWT_SIGNING_KEY} from .env + recreate all 12 hardened together; stack must end UP+hardened). STEP2 rebuild all backend + frontend-web. STEP3 FULL live-verify (SEC-1 forged-old-key-token REJECTED, A1 403/200, SEC-2 payslip-blocked, filters, exports full-set, raw-id resolves, logic guards, BS -$1.92). STEP4 report per-area PASS/FAIL feeding certification. On PASS: final certification + capstone parity update (now including the security-hardening dimension).",
+    "note": "DONE -- PASS across the board. Commits c82cfeaa (JWT compose switch) + c18b22b2 (fixed a regression: SEC-2..6 had clobbered the standalone connector_settings_app/permissions.py, crash-looping integrations; restored). Stack fully UP + HARDENED (41 containers, new strong JWT key, zero crash-loops). Live-verified ALL: SEC-1 forged-old-key-token REJECTED (401) / new-key 200 across all 12 (total-auth-bypass CLOSED); A1 403->200; SEC-2 payslip own-only+finance-gated; SEC-3 self-grant blocked; SEC-4 salary blanked; SEC-7 qc-nested gated; filters narrow; exports full-dataset (1462 not 25); raw-id resolves real names; WO-QC-gate/BOM-reserve/PR-budget all block correctly; BS balances -$1.92; Playwright smoke zero console/page/5xx errors.",
     "started_at": "2026-07-29T15:55:20Z"
+  },
+  {
+    "title": "PK-SEQUENCE-RESET: bulk-loaded explicit PKs never setval'd sequences -- new-row creation fails",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Systemic pre-existing ETL gap found during full-verify: duplicate-key errors on NEW-row creation (hr bank/doc-permission, accounting currencies + more), regardless of role. Fixing via a safe setval sweep across all services (tenant + public schemas), verify create-then-delete works. Real data-entry blocker for on-site use.",
+    "started_at": "2026-07-29T17:07:25Z"
+  },
+  {
+    "title": "NOTE (minor, flagged): SEC-3 verify test artifact on hr_app_documentpermission id=1",
+    "status": "done",
+    "track": "incident",
+    "note": "SEC-3 verify updated hr_app_documentpermission id=1 (departments -> []) as a test artifact; provenance unrecoverable (non-financial config). For Omar's awareness."
   }
 ]
