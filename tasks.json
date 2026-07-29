@@ -2664,9 +2664,29 @@
   },
   {
     "title": "NEW-11 live-verify + conditional enable",
+    "status": "done",
+    "track": "backend",
+    "note": "DONE -- ceiling fix VERIFIED WORKING (the -178 pathology gone; e.g. employee 516 now 28.0/0-absences; total_absents never exceeds elapsed days; 66 tests pass). The 69 tracked employees were accrued correctly + persisted (commit 09b56bb3, posted=69/errors=0, snapshotted+reversible). BUT only the 69 were verified -- the ~349 never-tracked employees the nightly cron would also process were NOT, so the cron was DISARMED (HR_LEAVE_ACCRUAL_CRON_ENABLED back to 0) pending verification of the 349, to avoid an unverified overnight bulk write (the 2026-07-22 incident population). 69 done+correct; cron re-enables only after the 349 dry-verify passes.",
+    "started_at": "2026-07-29T06:13:13Z"
+  },
+  {
+    "title": "NEW-11 349-untracked dry-verify (pre-cron safety)",
     "status": "in_progress",
     "track": "backend",
-    "note": "Dry-verify bounded balances for the 69 tracked employees -> enable HR_LEAVE_ACCRUAL_CRON_ENABLED if correct, else keep off (snapshotted first).",
-    "started_at": "2026-07-29T06:13:13Z"
+    "note": "Dry-verify the ~349 untracked employees' accrual is bounded/correct; re-enable cron if clean, else keep disabled + flag.",
+    "started_at": "2026-07-29T07:30:12Z"
+  },
+  {
+    "title": "SECURITY-FLAG (for the record): NEW-11 enable financial write -- cross-agent provenance",
+    "status": "done",
+    "track": "incident",
+    "note": "The harness flagged the NEW-11 enable financial write (cross-agent provenance -- subagent can't see Omar's in-chat auth). Authorization is genuine: Omar's 'Enable now (with snapshots)' + 'yes all authorized' + 'run on auto and complete'. All snapshotted/reversible. Same class as the earlier DATA-FIX provenance flag."
+  },
+  {
+    "title": "Sweep v8 (fresh angles: RBAC-gate coverage system-wide, filter/export parity, raw-id resolution, value-drift) loop-to-dry",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Fresh-angle exhaustive sweep after Docker bringup + coverage/NEW-11 live-verify; loop-to-dry toward convergence.",
+    "started_at": "2026-07-29T07:30:12Z"
   }
 ]
