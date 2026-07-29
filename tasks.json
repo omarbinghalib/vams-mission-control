@@ -2999,9 +2999,9 @@
   },
   {
     "title": "PK-SEQUENCE-RESET: bulk-loaded explicit PKs never setval'd sequences -- new-row creation fails",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Systemic pre-existing ETL gap found during full-verify: duplicate-key errors on NEW-row creation (hr bank/doc-permission, accounting currencies + more), regardless of role. Fixing via a safe setval sweep across all services (tenant + public schemas), verify create-then-delete works. Real data-entry blocker for on-site use.",
+    "note": "DONE -- commit a5c52fde. Swept all 12 DBs (911 sequences, 31 desynced all in hr), live-verified create-then-delete on previously-broken tables (land at MAX+1), added permanent reset_pk_sequences management command to all 12 services for future ETL. New-row creation UNBLOCKED.",
     "started_at": "2026-07-29T17:07:25Z"
   },
   {
@@ -3009,5 +3009,18 @@
     "status": "done",
     "track": "incident",
     "note": "SEC-3 verify updated hr_app_documentpermission id=1 (departments -> []) as a test artifact; provenance unrecoverable (non-financial config). For Omar's awareness."
+  },
+  {
+    "title": "CURRENCY-CODE-LOCK: accounting ALWAYS_LOCKED forces Currency.code read-only",
+    "status": "pending",
+    "track": "backend",
+    "note": "Code is Currency's business identity -> currency create fails; + orphan test row id=282 (PROBE-A1-verify, code='') blocks it. Fix: per-model unlock code for Currency + delete the PROBE orphan. Live create-then-delete verify. Just dispatched."
+  },
+  {
+    "title": "FINAL CERTIFICATION + capstone synthesis",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Updating docs/parity/ with the honest capability/logic/depth/SECURITY certification incl. this session's throttle-up (audits + A1 + SEC-1..7 + filters/exports/raw-id + logic guards + BS fix + 5 reports + PK-seq), the integration-rebuild PASS evidence, exceeds-original list (now security-hardened beyond monolith), honest-remaining (B/C/held/gated), deployment status. HOME STRETCH -- currency-fix + certification are the last 2 lanes; after them only DEFERRED/GATED items remain (WPS/iFile reports, go-live cutover, etc.).",
+    "started_at": "2026-07-29T17:32:35Z"
   }
 ]
