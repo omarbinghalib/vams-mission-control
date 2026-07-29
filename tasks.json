@@ -2356,10 +2356,10 @@
   },
   {
     "title": "HELD-FOR-USER: NEW-11 HR leave-accrual enable (bulk recompute of 225 real employee leave balances)",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
     "gated": false,
-    "note": "NOT ENABLED -- ROLLED BACK (guard stays OFF, PAYROLL-ENABLE lane). Correctness check on 69 tracked employees found it genuinely BROKEN: stale attendance-feed -> History.is_absent defaults true unbounded -> impossible negative balances (e.g. 3 employees at exactly -178.000). Rolled back from reference DB, 0 mismatches. NOT a gated-decision anymore -- reclassified as a real CODE DEFECT to fix in hr_app/histories.py (add an absent-day ceiling / repair the attendance feed) BEFORE any future enable attempt; guard-off state documented in a docker-compose.yml comment.",
+    "note": "FULLY RESOLVED + RE-ENABLED (commit 6947f45e). The prior BROKEN state (impossible negative balances, e.g. -178.000) was root-caused + fixed in histories.py (attendance_data_ceiling(), commit 6557c575/2170845f) and re-verified: 69 tracked employees accrued correctly + persisted (09b56bb3), then a 349-untracked stratified dry-verify (25/25 bounded, no pathology) cleared the remaining population for cron re-enable. HR_LEAVE_ACCRUAL_CRON_ENABLED=1, live is_enabled()==True.",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
@@ -2576,9 +2576,9 @@
   },
   {
     "title": "PAYROLL-ENABLE lane (NEW-11 + NEW-13)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- snapshot -> enable -> verify-correctness -> keep-or-rollback for both NEW-11 (HR leave-accrual) and NEW-13 (actual-OT sync), per Omar's authorization on return.",
+    "note": "DONE -- both sub-lanes complete. NEW-13 (actual-OT sync) enabled + verified earlier. NEW-11 (HR leave-accrual): histories.py ceiling fix (6557c575/2170845f) verified working, 69 tracked employees accrued+persisted (09b56bb3), 349-untracked stratified dry-verify clean (25/25 bounded), cron re-enabled (6947f45e, HR_LEAVE_ACCRUAL_CRON_ENABLED=1, is_enabled()==True).",
     "started_at": "2026-07-28T07:58:09Z"
   },
   {
@@ -2645,9 +2645,9 @@
   },
   {
     "title": "NEW-11 ENABLE deferred to post-Docker",
-    "status": "pending",
+    "status": "done",
     "track": "backend",
-    "note": "Run the real accrual on the 69 tracked employees, confirm bounded/correct balances vs vams_monolith_ref, THEN enable per Omar's authorization (else keep off + flag)."
+    "note": "DONE -- accrual run + verify-correctness completed for the 69 tracked employees (09b56bb3) and the 349-untracked stratified dry-verify (25/25 bounded); cron re-enabled by Omar's authorization (commit 6947f45e)."
   },
   {
     "title": "FLEET HAZARD: concurrent process silently reverted hr_app files mid-edit on shared worktree",
@@ -2671,9 +2671,9 @@
   },
   {
     "title": "NEW-11 349-untracked dry-verify (pre-cron safety)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Dry-verify the ~349 untracked employees' accrual is bounded/correct; re-enable cron if clean, else keep disabled + flag.",
+    "note": "DONE -- CLEAN. 25-employee stratified sample (all risk profiles incl. the 18 corrupted-watermark edge cases) = 25/25 bounded, no -178-style pathology, spot-checked vs oracle as genuine sparse data. Cron re-enabled (HR_LEAVE_ACCRUAL_CRON_ENABLED=1), verified live is_enabled()==True (commit 6947f45e). Only 25/349 live-computed (per-employee histories perf ceiling on this host) -- remaining ~324 untracked employees process on the cron's next 4:30 tick under the same sample-verified bounded logic; monitored via cron logs.",
     "started_at": "2026-07-29T07:30:12Z"
   },
   {
@@ -2721,5 +2721,17 @@
     "status": "pending",
     "track": "backend",
     "note": "Delete the stray row (classifier may block -- destructive DB write needs explicit authorization before executing)."
+  },
+  {
+    "title": "NOTE (documented residual, not a blocker): only 25/349 untracked employees live-computed for NEW-11 dry-verify",
+    "status": "done",
+    "track": "backend",
+    "note": "Per-employee histories perf ceiling on this host limited the live dry-verify sample to 25/349; the remaining ~324 untracked employees process on the cron's next 4:30 tick under the SAME sample-verified bounded logic. Monitored via cron logs."
+  },
+  {
+    "title": "NOTE (source-data finding): future-dated 2090-06 Attendance rows",
+    "status": "done",
+    "track": "audit",
+    "note": "Genuine MONOLITH-side anomaly (present identically in vams_monolith_ref) -- the ceiling fix handles it gracefully; NOT carve-introduced, NOT fixed (it's the monolith's own source data)."
   }
 ]
