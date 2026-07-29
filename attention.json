@@ -1,9 +1,6 @@
 {
-  "active": true,
-  "message": "DOCKER ENGINE DOWN post-reboot: com.docker.service is Stopped (StartType Manual). ALL live rebuild/verify/sweep work (final integration rebuild) is blocked until it's started -- needs Administrator.",
-  "options": [
-    "A: Omar starts com.docker.service (elevated Start-Service com.docker.service, or run Docker Desktop as admin) -- unblocks the rebuild",
-    "B: hold -- continue only Docker-independent lanes (e.g. NEW-11 code/unit-test fix) until Omar is available"
-  ],
-  "raised_at": "2026-07-29T05:03:17Z"
+  "active": false,
+  "message": "",
+  "options": [],
+  "raised_at": null
 }
