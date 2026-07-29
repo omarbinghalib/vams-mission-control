@@ -2592,7 +2592,7 @@
     "title": "Integration rebuild (bakes 2cd73f80 + coverage lanes)",
     "status": "in_progress",
     "track": "deploy",
-    "note": "RUNNING (final) -- frontend-web + all backend container rebuilds for enables/options-fix/coverage + registry.ts consolidation (debit-notes/policies global entries), then live-verify the new coverage surfaces + options-fix + NEW-13. PII purge landed first (VAMS-backend afa3f471, clean) so this rebuild is unblocked. OPS HAZARD carried forward: shared session-scratchpad root is NOT per-worker isolated + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped.",
+    "note": "PARTIALLY COMPLETE pre-crash -- registry.ts consolidation (debit-notes+policies global entries) ALREADY landed + pushed (frontend HEAD 76953a6f). REMAINING (BLOCKED ON DOCKER): rebuild stale backend images (9 for options-fix c9671517, hr recreate for enables, engineering/accounting d3d1073d, crm/purchasing 3441fda6) + frontend-web rebuild (76953a6f) + bring up full stack + live-verify new coverage surfaces/options-fix/NEW-13. OPS HAZARD carried forward: shared session-scratchpad root is NOT per-worker isolated + concurrent tsc -b on shared tsbuildinfo stalls ~25min -- keep lane concurrency capped.",
     "started_at": "2026-07-28T13:27:56Z"
   },
   {
@@ -2606,6 +2606,32 @@
     "title": "EMBEDDED-MONOLITH PII: reference source dir deamdev-kestrel_binghalib_vams_hcap-.../ (4,174 files)",
     "status": "pending",
     "track": "incident",
-    "note": "GATED on Omar's decision (bigger exposure than NEW-8, another history rewrite). The committed reference dir (original VAMS monolith source) contains extensive real employee PII (emails in settings.py/example-env/celery_tasks.py; payroll/HR CSVs with real names) + a 64MB phantomjs binary bloating the repo. Recommendation: remove the dir from the repo entirely (keep locally as reference, gitignore it) via git-filter-repo -- fixes both PII + bloat in one pass. Awaiting Omar's decision before any action."
+    "note": "GATED on Omar's decision (bigger exposure than NEW-8, another history rewrite). The committed reference dir (original VAMS monolith source) contains extensive real employee PII (emails in settings.py/example-env/celery_tasks.py; payroll/HR CSVs with real names) + a 64MB phantomjs binary bloating the repo. Recommendation: remove the dir from the repo entirely (keep locally as reference, gitignore it) via git-filter-repo -- fixes both PII + bloat in one pass. Awaiting Omar's decision before any action. RE-SURFACED post-reboot -- still awaiting Omar's decision; no action taken."
+  },
+  {
+    "title": "Dashboard post-reboot recovery",
+    "status": "done",
+    "track": "mission-control",
+    "note": "Heartbeat/scheduled-tasks auto-resumed post-reboot (VAMS-MissionControl-Heartbeat/-Cleanup/-Sysres all LastTaskResult=0, 0 missed runs, Schedule service Running); session-pin correct (a49f5cc3-b0f2-48bb-9a39-375e69aae05d); board republished, live Pages + raw.githubusercontent byte-identical + fresh; attention banner confirmed clear."
+  },
+  {
+    "title": "DOCKER ENGINE DOWN post-reboot -- CURRENT CRITICAL BLOCKER (needs Omar / admin)",
+    "status": "pending",
+    "track": "operational",
+    "gated": true,
+    "note": "com.docker.service (privileged Windows service) is Stopped, StartType Manual; starting it needs Administrator (elevated `Start-Service com.docker.service`, or run Docker Desktop as admin). WSL2 VM healthy -- purely the Windows service layer. ALL live rebuild/verify/sweep work is blocked until Omar starts it."
+  },
+  {
+    "title": "Git state post-crash: both repos clean + synced",
+    "status": "done",
+    "track": "mission-control",
+    "note": "VAMS-backend afa3f471 (PII purged), VAMS-frontend 76953a6f -- both clean working trees, in sync with origin. Nothing lost in the crash."
+  },
+  {
+    "title": "NEW-11 histories.py defect fix (code + sqlite unit tests only)",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "Docker-independent lane: fixing hr_app/histories.py absent-day-ceiling defect via code + sqlite unit tests only; guard stays OFF; live-verify against real DB deferred to post-Docker.",
+    "started_at": "2026-07-29T05:02:53Z"
   }
 ]
