@@ -1412,9 +1412,9 @@
   },
   {
     "title": ":8100-vs-:8090 internal screen-by-screen comparison (re-skin gap spec)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Producing a re-skin gap spec via the safe local :8100 mirror (screen-by-screen vs :8090). Live 192.168.58.223 auto-login is blocked by the env safety classifier -- not attempted; do not touch that live-network host.",
+    "note": "DONE -- UI-fidelity re-audit vs original VAMS. Report: scratchpad/capstone-audit/ui-fidelity-reaudit.md. SPA is LARGELY FAITHFUL (confirmed: 3 logos byte-identical, header gradient/tokens exact, menubar labels/order 1:1, global tokens hex-exact, even reproduces original bugs faithfully). Found 4 clear closeable chrome gaps (queued to UI-FIDELITY-FIXES) + 3 items needing Omar's eye (queued as pending judgment calls).",
     "started_at": "2026-07-23T17:37:51Z"
   },
   {
@@ -3028,5 +3028,30 @@
     "status": "done",
     "track": "mission-control",
     "note": "FINAL MILESTONE. See 'FINAL CERTIFICATION + capstone synthesis' for the full grades/evidence. Everything closeable and functional this session is DONE and live-verified; only DEFERRED (B), C/impossible, HELD, GATED (Phase-5 go-live), and DECIDED (embedded-PII leave-it) items remain on the board."
+  },
+  {
+    "title": "UI-FIDELITY-FIXES (4 chrome gaps)",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "(1) login card ~17% too narrow (legacyAuth.css:53 border-box); (2) pre-auth missing the 37px black header bar; (3) .grouped_btn CSS rule missing (A-Z alpha filter renders oversized); (4) ModuleGate 'module not enabled' screen is raw Tailwind. Fix + rebuild + live-verify. After these land: the UI-fidelity track is CLOSED and the ENTIRE effort (functional + security + UI) is complete + certified.",
+    "started_at": "2026-07-29T18:23:35Z"
+  },
+  {
+    "title": "UI judgment call (Omar's eye): login focus-ring blue vs original red",
+    "status": "pending",
+    "track": "frontend",
+    "note": "react-hook-form vs native-validation trade-off; not a bug, a style/library trade-off."
+  },
+  {
+    "title": "UI judgment call (Omar's eye): breadcrumb-row spacing",
+    "status": "pending",
+    "track": "frontend",
+    "note": "May be a faithfully-inherited original quirk -- needs a real :8100 login to settle."
+  },
+  {
+    "title": "UI judgment call (Omar's eye): plain <select> vs original's Chosen.js combobox",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Functionally equivalent; a style/library trade-off, not a bug."
   }
 ]
