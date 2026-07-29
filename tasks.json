@@ -2919,9 +2919,9 @@
   },
   {
     "title": "FE fix wave: ops+qc+hr (Tasks/NCR/Employees filters + exports)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "Parallel module lane, disjoint dir, tsc-only. Uses already-live filter params + the existing generic /export/ endpoint.",
+    "note": "DONE -- commit 2da1f18b. Tasks (assigned-user/sprint), NCR (raised-on), Employees (live company/dept dropdowns replacing wrong hardcoded ids) filters live-verified. Generic /export/ wired on ~20 ops/qc/hr screens + 15+ re-pointed page-only->full-dataset (contractRenewal exports via crm service, its real home). tsc clean. MILESTONE: ALL 4 frontend fix-wave lanes now DONE (production, purchasing+accounting, crm+engineering, ops+qc+hr) -- filters + full-dataset exports wired across the ENTIRE app, live at the integration rebuild.",
     "started_at": "2026-07-29T10:28:38Z"
   },
   {
@@ -2943,5 +2943,17 @@
     "status": "pending",
     "track": "backend",
     "note": "Honest documented gap: carved Part has no backing fields (monolith pdm FILTER_PROPERTIES); would need those PDM part-property fields carried before the filter can be added. Not faked."
+  },
+  {
+    "title": "Export gap (documented, out-of-scope): ops support.tsx",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Bespoke user-scoped route, no generic export/ endpoint applies. Honest documented gap, not faked."
+  },
+  {
+    "title": "Export gap (documented, out-of-scope): hr biometric.tsx + documentLookup.tsx",
+    "status": "pending",
+    "track": "frontend",
+    "note": "Non-archetype layouts, no export slot without a layout change. Honest documented gap, not faked."
   }
 ]
