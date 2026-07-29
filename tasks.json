@@ -2700,7 +2700,7 @@
     "title": "A2: raw 'User #{id}' stub at 8 sites (ops/qc) -- PU1-class",
     "status": "pending",
     "track": "backend",
-    "note": "HELD to serialize backend after A1. Fix via UserCodesView ?ids= batch lookup."
+    "note": "HELD to serialize backend after A1. Fix via UserCodesView ?ids= batch lookup. Queued behind A1 to serialize backend writes (revert hazard)."
   },
   {
     "title": "A3: SO/PO list filters missing",
@@ -2739,5 +2739,54 @@
     "status": "pending",
     "track": "frontend",
     "note": "Follow-on from A4: the 'Worked Hours' column is currently left blank rather than guessed, pending a verified user_id->employee_id mapping."
+  },
+  {
+    "title": "Audit: RBAC/tenant/field-level security (deep)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Audit: filter/sort/pagination parity (all lists)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Audit: export CSV/XLSX/PDF parity (all modules)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Audit: raw-id/cross-service-resolution completeness",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Audit: broad financial value-drift (cent-level vs oracle)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Audit: screen-depth + workflow/computed-field parity (all domains)",
+    "status": "in_progress",
+    "track": "audit",
+    "note": "Read-only fresh-angle audit lane -- part of the throttle-up wide-parallel sweep (Omar: 'throttle up, add as many workers as needed'). Distinct angle across all domains, converges loop-to-dry.",
+    "started_at": "2026-07-29T09:41:22Z"
+  },
+  {
+    "title": "Operational note: high-parallelism throttle-up may transiently lag heartbeat stamp",
+    "status": "in_progress",
+    "track": "operational",
+    "note": "With 6+ concurrent read-only audit lanes the CPU may again starve the scheduled heartbeat, so the 'updated X ago' stamp MAY lag during the burst -- EXPECTED + self-recovers; board CONTENT stays current via explicit marks. Not a staleness alarm unless the engine truly wedges (LastTaskResult!=0 persistently).",
+    "started_at": "2026-07-29T09:41:22Z"
   }
 ]
