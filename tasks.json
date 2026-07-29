@@ -2684,9 +2684,42 @@
   },
   {
     "title": "Sweep v8 (fresh angles: RBAC-gate coverage system-wide, filter/export parity, raw-id resolution, value-drift) loop-to-dry",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "Fresh-angle exhaustive sweep after Docker bringup + coverage/NEW-11 live-verify; loop-to-dry toward convergence.",
+    "note": "DONE -- value-drift DRY (FixedAsset/Bonus/PettyCash cent-exact), options()/coverage/NEW-13 hold. NOT dry: 4 new closeable gaps found (A1-A4, see below).",
     "started_at": "2026-07-29T07:30:12Z"
+  },
+  {
+    "title": "A1: generic-registry base CRUD gated only by IsAuthenticated across ALL 9 services -- TOP SEVERITY",
+    "status": "in_progress",
+    "track": "backend",
+    "note": "CRITICAL: any authenticated (even roles=[]) user can create/update/delete any registry record (proven: zero-role token created a real NCR row). Fix: gate WRITE methods per-resource-role via PERM_ROLE_MAP in build_viewsets() (all 9 services), keep reads authenticated, is_superuser bypass. Verify write-403/entitled-200/reads-unaffected + coverage screens still work.",
+    "started_at": "2026-07-29T08:33:43Z"
+  },
+  {
+    "title": "A2: raw 'User #{id}' stub at 8 sites (ops/qc) -- PU1-class",
+    "status": "pending",
+    "track": "backend",
+    "note": "HELD to serialize backend after A1. Fix via UserCodesView ?ids= batch lookup."
+  },
+  {
+    "title": "A3: SO/PO list filters missing",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED to frontend lane.",
+    "started_at": "2026-07-29T08:33:43Z"
+  },
+  {
+    "title": "A4: WO staff-hours CSV export missing",
+    "status": "in_progress",
+    "track": "frontend",
+    "note": "DISPATCHED to frontend lane.",
+    "started_at": "2026-07-29T08:33:43Z"
+  },
+  {
+    "title": "Cleanup: stray blank qc/ncrs row (~id 1605+) created by v8 zero-role audit probe",
+    "status": "pending",
+    "track": "backend",
+    "note": "Delete the stray row (classifier may block -- destructive DB write needs explicit authorization before executing)."
   }
 ]
