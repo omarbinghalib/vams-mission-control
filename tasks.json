@@ -8,9 +8,9 @@
   },
   {
     "title": "CERTIFICATION STATUS: BLOCKED pending consolidated fix wave",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "All 4 final-verify lanes complete (crm/purchasing/qc/hr/platform+chrome, ops/production/engineering, financials, gap-sweep-to-dry): 19/26 category-A gaps fully closed, 5 partial, 7 new/refined closeable gaps found. Consolidated 6-lane fix wave dispatched (P2/RBAC, ops_app RBAC, VS-Report perf/cache/names, Trial Balance dedup, PO $27M assess, superscreen assess/port) + a follow-on single frontend-integration rebuild. Certification will NOT be declared until the fix wave lands and re-verify passes.",
+    "note": "All 4 final-verify lanes complete (crm/purchasing/qc/hr/platform+chrome, ops/production/engineering, financials, gap-sweep-to-dry): 19/26 category-A gaps fully closed, 5 partial, 7 new/refined closeable gaps found. Consolidated 6-lane fix wave dispatched (P2/RBAC, ops_app RBAC, VS-Report perf/cache/names, Trial Balance dedup, PO $27M assess, superscreen assess/port) + a follow-on single frontend-integration rebuild. Certification will NOT be declared until the fix wave lands and re-verify passes. SUPERSEDED -- this work stream's results were folded into the FINAL CERTIFICATION + capstone synthesis (18519e15); certification has since been declared CERTIFIED (local scope).",
     "started_at": "2026-07-27T13:09:51Z"
   },
   {
@@ -1885,9 +1885,9 @@
   },
   {
     "title": "Autonomous close-today run: category-A closer lanes (platform/CRM/ops/small/QC/reporting/connector-settings)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "RUNNING -- umbrella for the parallel category-A closer lanes below (P1-P3, C1-C4, O2-O5, PU1/H1, Q1/PU2, R1/R3-R7, connector-settings). Wave-2 queued behind this: engineering E1, R2/PR2 seam, PR1 GPS, I2.",
+    "note": "RUNNING -- umbrella for the parallel category-A closer lanes below (P1-P3, C1-C4, O2-O5, PU1/H1, Q1/PU2, R1/R3-R7, connector-settings). Wave-2 queued behind this: engineering E1, R2/PR2 seam, PR1 GPS, I2. SUPERSEDED -- this work stream's results were folded into the FINAL CERTIFICATION + capstone synthesis (18519e15); certification has since been declared CERTIFIED (local scope).",
     "started_at": "2026-07-27T07:52:08Z"
   },
   {
@@ -2119,9 +2119,9 @@
   },
   {
     "title": "CAPSTONE running list: cases where the new system EXCEEDS the original",
-    "status": "in_progress",
+    "status": "done",
     "track": "audit",
-    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end (independently reconfirmed broken-original). (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). (5) O4 SMS History -- 2 prior bugs fixed, exact bucket parity vs the original. (6) PO grand_total_price -- new system serves correct totals for 10,758 historical POs the monolith itself displays as $0.00 (fixes a real monolith financial-display bug). Keep appending as more surface.",
+    "note": "For the final parity comparison deliverable. So far: (1) CRM company detail -- ~22 sub-panels vs original's ~19-20. (2) Valve Builder guided configurator (E1) -- the ORIGINAL is itself broken at :8100 (list-complete-options crashes w/ Py3.12 TypeError; its React never wires a submit handler); our version works end-to-end (independently reconfirmed broken-original). (3) C1 add-as-supplier/customer is idempotent (get_or_create) where the monolith does bare .create() on a unique FK and 500s on a 2nd click. (4) connector-settings admin page is net-new self-service UI the monolith never had (it had bare settings.py constants for SMS/Nexa/BioStar2/Maps/Mattermost/AX). (5) O4 SMS History -- 2 prior bugs fixed, exact bucket parity vs the original. (6) PO grand_total_price -- new system serves correct totals for 10,758 historical POs the monolith itself displays as $0.00 (fixes a real monolith financial-display bug). Keep appending as more surface. SUPERSEDED -- this work stream's results were folded into the FINAL CERTIFICATION + capstone synthesis (18519e15); certification has since been declared CERTIFIED (local scope).",
     "started_at": "2026-07-27T09:44:34Z"
   },
   {
