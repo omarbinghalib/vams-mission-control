@@ -2631,9 +2631,9 @@
   },
   {
     "title": "NEW-11 histories.py defect fix (code + sqlite unit tests only)",
-    "status": "in_progress",
+    "status": "done",
     "track": "backend",
-    "note": "Docker-independent lane: fixing hr_app/histories.py absent-day-ceiling defect via code + sqlite unit tests only; guard stays OFF; live-verify against real DB deferred to post-Docker.",
+    "note": "DONE -- commits 6557c575 (fix) + 2170845f (tests). Root cause: the carve-only ensure_histories_through lazily backfilled History to wall-clock 'yesterday'; with Attendance frozen at ETL snapshot, the no-attendance->absent branch counted phantom absences. Fix: new attendance_data_ceiling() clamps the backfill/summation window to the latest real Attendance date; single-day classification untouched (100% monolith fidelity); guard stays OFF. 6/6 new tests + 120/129 hr suite (9 pre-existing unrelated failures).",
     "started_at": "2026-07-29T05:02:53Z"
   },
   {
@@ -2642,5 +2642,17 @@
     "track": "deploy",
     "note": "Rebuild stale images (9 services: options-fix, hr, engineering/accounting, crm/purchasing, frontend-web 76953a6f) + full stack up + smoke. NEXT (after stack up): live-verify coverage surfaces + NEW-11 fix live-verify (enable IF verified correct, else keep off) + resume exhaustive sweeps (v8+) -> converge -> certification.",
     "started_at": "2026-07-29T05:20:48Z"
+  },
+  {
+    "title": "NEW-11 ENABLE deferred to post-Docker",
+    "status": "pending",
+    "track": "backend",
+    "note": "Run the real accrual on the 69 tracked employees, confirm bounded/correct balances vs vams_monolith_ref, THEN enable per Omar's authorization (else keep off + flag)."
+  },
+  {
+    "title": "FLEET HAZARD: concurrent process silently reverted hr_app files mid-edit on shared worktree",
+    "status": "done",
+    "track": "operational",
+    "note": "~2026-07-29 09:35-09:38: a concurrent process silently reverted hr_app/accrual.py + histories.py mid-edit on the shared worktree (not a git error -- uncommitted edits vanished; worker recovered + committed). Reinforces: serialize VAMS-backend lanes + commit early/often; avoid concurrent git checkout/reset on the shared tree."
   }
 ]
