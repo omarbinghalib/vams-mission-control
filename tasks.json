@@ -1587,9 +1587,9 @@
   },
   {
     "title": "Operational note: docker engine distress under heavy parallel load",
-    "status": "in_progress",
+    "status": "done",
     "track": "operational",
-    "note": "Docker engine distress observed under heavy parallel docker load (compose build/docker exec) -- a container briefly died+self-recovered; commander now staggering docker-heavy backend lanes to protect containers/DB.",
+    "note": "Docker engine distress observed under heavy parallel docker load (compose build/docker exec) -- a container briefly died+self-recovered; commander now staggering docker-heavy backend lanes to protect containers/DB. [Recorded lesson/informational note -- not active work; converted from in_progress at final board tidy.]",
     "started_at": "2026-07-24T08:43:11Z"
   },
   {
@@ -1677,9 +1677,9 @@
   },
   {
     "title": "INTEGRATION FINALE -- rebuild complete stack + pixel-diff re-audit every screen vs :8100",
-    "status": "in_progress",
+    "status": "done",
     "track": "deploy",
-    "note": "IN PROGRESS -- pixel-diff re-audit #1 landed a residual fix-wave (reporting/CoA/production/purchasing/CRM, see below) + 2 user-decision lanes now in flight (home BI dashboard, frontend polish). NEXT: after those land, FINAL re-audit (pixel-diff loop #2) to verify zero.",
+    "note": "SUPERSEDED -- subsumed by the completed 'UI-fidelity re-audit vs original VAMS' (which did live headless-Chrome pixel measurements at :8090 vs :8100/monolith-templates) + the 4 UI-FIDELITY-FIXES. See scratchpad/capstone-audit/ui-fidelity-reaudit.md + commit b5b58997. No separate pixel-diff work remains.",
     "started_at": "2026-07-24T15:26:28Z"
   },
   {
@@ -1734,9 +1734,9 @@
   },
   {
     "title": "PERF note: shared Postgres ambient contention from vams_monolith_ref message-polling flood",
-    "status": "in_progress",
+    "status": "done",
     "track": "operational",
-    "note": "~250-300% CPU, 22-24 concurrent, degrading expensive queries service-wide. The reporting fix is resilient to it, but a quiet DB would be faster.",
+    "note": "~250-300% CPU, 22-24 concurrent, degrading expensive queries service-wide. The reporting fix is resilient to it, but a quiet DB would be faster. [Recorded lesson/informational note -- not active work; converted from in_progress at final board tidy.]",
     "started_at": "2026-07-25T16:00:55Z"
   },
   {
@@ -2784,9 +2784,9 @@
   },
   {
     "title": "Operational note: high-parallelism throttle-up may transiently lag heartbeat stamp",
-    "status": "in_progress",
+    "status": "done",
     "track": "operational",
-    "note": "With 6+ concurrent read-only audit lanes the CPU may again starve the scheduled heartbeat, so the 'updated X ago' stamp MAY lag during the burst -- EXPECTED + self-recovers; board CONTENT stays current via explicit marks. Not a staleness alarm unless the engine truly wedges (LastTaskResult!=0 persistently).",
+    "note": "With 6+ concurrent read-only audit lanes the CPU may again starve the scheduled heartbeat, so the 'updated X ago' stamp MAY lag during the burst -- EXPECTED + self-recovers; board CONTENT stays current via explicit marks. Not a staleness alarm unless the engine truly wedges (LastTaskResult!=0 persistently). [Recorded lesson/informational note -- not active work; converted from in_progress at final board tidy.]",
     "started_at": "2026-07-29T09:41:22Z"
   },
   {
