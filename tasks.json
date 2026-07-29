@@ -3024,16 +3024,16 @@
     "started_at": "2026-07-29T17:32:35Z"
   },
   {
-    "title": "SYSTEM CERTIFIED (local scope) -- fully deployed, hardened, all closeable work done + live-verified. Only DEFERRED/GATED remain.",
+    "title": "ALL TRACKS COMPLETE + CERTIFIED (local scope) -- only DEFERRED/GATED remain",
     "status": "done",
     "track": "mission-control",
-    "note": "FINAL MILESTONE. See 'FINAL CERTIFICATION + capstone synthesis' for the full grades/evidence. Everything closeable and functional this session is DONE and live-verified; only DEFERRED (B), C/impossible, HELD, GATED (Phase-5 go-live), and DECIDED (embedded-PII leave-it) items remain on the board."
+    "note": "FINAL STATE. The ENTIRE effort is now COMPLETE + CERTIFIED across all dimensions: functional (capability/logic cent-verified/depth), SECURITY (A- hardened, live-verified), and UI-FIDELITY (faithful to the original). Everything closeable + autonomously-fixable is DONE + live-verified. REMAINING = only items genuinely for Omar (non-blocking): B/decision deferred (WPS/iFile compliance reports, ~14 codenames, field-dependent filters, notification-platform/Maps/egress creds, avatar infra, reporting per-slug perms, Quote AED display, the 3 UI judgment-calls), C/impossible (AX dead, $1.92 residual, avatar bytes), HELD (blank NCR id=1606 cleanup), GATED (Phase-5 production go-live: #1 = inject REAL JWT secret via env), DECIDED (embedded-PII leave-it). See FINAL-CERTIFICATION.md (18519e15) for full grades/evidence."
   },
   {
     "title": "UI-FIDELITY-FIXES (4 chrome gaps)",
-    "status": "in_progress",
+    "status": "done",
     "track": "frontend",
-    "note": "(1) login card ~17% too narrow (legacyAuth.css:53 border-box); (2) pre-auth missing the 37px black header bar; (3) .grouped_btn CSS rule missing (A-Z alpha filter renders oversized); (4) ModuleGate 'module not enabled' screen is raw Tailwind. Fix + rebuild + live-verify. After these land: the UI-fidelity track is CLOSED and the ENTIRE effort (functional + security + UI) is complete + certified.",
+    "note": "DONE -- commit b5b58997. Login card 360px content-box (matches monolith 300+58+2), 37px black pre-auth header bar added, .grouped_btn tight strip (27 buttons connected), ModuleGate legacy-restyled (zero Tailwind). Rebuilt + live-verified at :8090, tsc clean, tests green. UI-FIDELITY TRACK CLOSED: (A) 4 chrome gaps fixed+verified, (B) 3 nuances documented for Omar's eye, (C) extensive confirmed-faithful.",
     "started_at": "2026-07-29T18:23:35Z"
   },
   {
