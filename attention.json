@@ -1,10 +1,6 @@
 {
-  "active": true,
-  "message": "LEAKED-CRED: plaintext local-admin password 'vams-local-admin-2026' was committed + is LIVE-SERVED right now on the docs hub (:8095). Redaction of the HTML mirrors is in progress (autonomous), but the credential remains valid and is in git history -- needs your decision.",
-  "options": [
-    "A: Rotate the vams-local-admin password now (primary fix)",
-    "B: Also authorize a git-history purge (force-push) to scrub it from history, like the earlier PII purge",
-    "C: Hold -- review the redaction fix first before deciding on history purge"
-  ],
-  "raised_at": "2026-07-30T03:01:16Z"
+  "active": false,
+  "message": "",
+  "options": [],
+  "raised_at": null
 }
