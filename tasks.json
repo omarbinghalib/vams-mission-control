@@ -3053,5 +3053,30 @@
     "status": "pending",
     "track": "frontend",
     "note": "Functionally equivalent; a style/library trade-off, not a bug."
+  },
+  {
+    "title": "Docs (.md) update sweep + git hygiene",
+    "status": "done",
+    "track": "docs",
+    "note": "DONE -- backend docs 16 micro-commits (final 4dfaf4e2), frontend docs 6 (final c9a3e873), all pushed. VAMS-backend, VAMS-frontend, VAMS(Productization), mission-control-kit, CV-sizing ALL clean + synced with origin (0 ahead/0 behind). New docs/security/authorization-model.md; container counts + JWT/.env + reset_pk_sequences + new endpoints/reports documented; stale handoff docs superseded-bannered."
+  },
+  {
+    "title": "[SECURITY] LEAKED-CRED-REDACT: plaintext local-admin password live-served on docs hub",
+    "status": "in_progress",
+    "track": "incident",
+    "note": "Plaintext local-admin password 'vams-local-admin-2026' was committed + is LIVE-SERVED on the docs hub (:8095) in docs/hub/vams-docs-hub.html + docs/index.html (the .md was already redacted at HEAD). Redacting HTML mirrors + re-serving docs container; verifying :8095 clean.",
+    "started_at": "2026-07-30T03:00:59Z"
+  },
+  {
+    "title": "[FOR OMAR - security] ROTATE the vams-local-admin password",
+    "status": "pending",
+    "track": "incident",
+    "note": "It remains in git history; rotation is the primary fix. Optional: authorize a git-history purge (force-push, like the earlier PII one) to scrub it from history. The docs-hub static HTML also had stale claims, being refreshed with the redaction."
+  },
+  {
+    "title": "Minor: 4 stale git stashes in the shared VAMS repo (old autostash/phase4 wip)",
+    "status": "pending",
+    "track": "operational",
+    "note": "Harmless cruft; Omar can `git stash drop` when confirmed superseded."
   }
 ]
