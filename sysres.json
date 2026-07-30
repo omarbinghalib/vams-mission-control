@@ -1,42 +1,54 @@
 {
  "available": true,
- "checked_at": "2026-07-30T03:03:12Z",
+ "checked_at": "2026-07-30T03:08:13Z",
  "host": {
-  "cpu_pct": 39,
+  "cpu_pct": 51,
   "cores": [
-   39
+   51
   ],
-  "mem_pct": 80.8,
-  "mem_used_mb": 13009,
+  "mem_pct": 96,
+  "mem_used_mb": 15455,
   "mem_total_mb": 16091,
-  "uptime_sec": 26773,
-  "process_count": 334
+  "uptime_sec": 27076,
+  "process_count": 361
  },
  "disks": [
   {
    "drive": "C:",
-   "used_gb": 848.8,
+   "used_gb": 848.9,
    "total_gb": 934.7,
    "pct": 90.8
   }
  ],
  "network": {
-  "rx_bytes_per_sec": 5486,
-  "tx_bytes_per_sec": 1589
+  "rx_bytes_per_sec": 5230,
+  "tx_bytes_per_sec": 10809
  },
  "temp_c": null,
  "temp_available": false,
- "docker": {},
+ "docker": {
+  "containers": 1,
+  "total_cpu_pct": 0.0,
+  "total_mem_mb": 9.5,
+  "list": [
+   {
+    "name": "vams_docs",
+    "cpu_pct": 0.0,
+    "mem_used_mb": 9.5,
+    "mem_limit_mb": 7799.8,
+    "mem_pct": 0.12
+   }
+  ]
+ },
  "host_carried": false,
  "disks_carried": false,
  "network_carried": false,
  "temp_carried": false,
  "docker_carried": false,
- "host_as_of": "2026-07-30T03:03:12Z",
- "disks_as_of": "2026-07-30T03:03:12Z",
- "network_as_of": "2026-07-30T03:03:12Z",
+ "host_as_of": "2026-07-30T03:08:13Z",
+ "disks_as_of": "2026-07-30T03:08:13Z",
+ "network_as_of": "2026-07-30T03:08:13Z",
  "temp_as_of": null,
- "docker_as_of": null,
- "temp_error": "Not supported ",
- "docker_error": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot f"
+ "docker_as_of": "2026-07-30T03:08:13Z",
+ "temp_error": "Not supported "
 }
