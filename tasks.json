@@ -3024,10 +3024,10 @@
     "started_at": "2026-07-29T17:32:35Z"
   },
   {
-    "title": "ALL TRACKS COMPLETE + CERTIFIED (local scope) -- only DEFERRED/GATED remain",
+    "title": "SESSION CLOSED (2026-07-29) -- VAMS productization COMPLETE + CERTIFIED",
     "status": "done",
     "track": "mission-control",
-    "note": "FINAL STATE. The ENTIRE effort is now COMPLETE + CERTIFIED across all dimensions: functional (capability/logic cent-verified/depth), SECURITY (A- hardened, live-verified), and UI-FIDELITY (faithful to the original). Everything closeable + autonomously-fixable is DONE + live-verified. REMAINING = only items genuinely for Omar (non-blocking): B/decision deferred (WPS/iFile compliance reports, ~14 codenames, field-dependent filters, notification-platform/Maps/egress creds, avatar infra, reporting per-slug perms, Quote AED display, the 3 UI judgment-calls), C/impossible (AX dead, $1.92 residual, avatar bytes), HELD (blank NCR id=1606 cleanup), GATED (Phase-5 production go-live: #1 = inject REAL JWT secret via env), DECIDED (embedded-PII leave-it). See FINAL-CERTIFICATION.md (18519e15) for full grades/evidence."
+    "note": "FINAL HEADLINE: SESSION CLOSED (2026-07-29) -- VAMS productization COMPLETE + CERTIFIED (functional + security-hardened + UI-faithful); all work committed + pushed; docs current; Docker stack intentionally shut down (data preserved in volumes). RESTART: docker compose up -d (set PLATFORM_JWT_SIGNING_KEY in services/.env first) + re-enable the 3 scheduled tasks. OPEN FOR-OMAR ITEMS (on this frozen board): ROTATE vams-local-admin password + inject prod JWT secret; GATED Phase-5 go-live (#1 checklist item: inject REAL JWT secret via env); documented B/decision (WPS/iFile compliance reports, ~14 codenames, field-dependent filters, notification-platform/Maps/egress creds, avatar infra, reporting per-slug perms, Quote AED display, 3 UI judgment-calls) + C/impossible (AX dead, $1.92 residual, avatar bytes); optional git-history purge (PII + leaked-cred commit message); 4 stale git stashes (harmless cruft). See FINAL-CERTIFICATION.md (18519e15) for full grades/evidence."
   },
   {
     "title": "UI-FIDELITY-FIXES (4 chrome gaps)",
@@ -3062,9 +3062,9 @@
   },
   {
     "title": "[SECURITY] LEAKED-CRED-REDACT: plaintext local-admin password live-served on docs hub",
-    "status": "in_progress",
+    "status": "done",
     "track": "incident",
-    "note": "Plaintext local-admin password 'vams-local-admin-2026' was committed + is LIVE-SERVED on the docs hub (:8095) in docs/hub/vams-docs-hub.html + docs/index.html (the .md was already redacted at HEAD). Redacting HTML mirrors + re-serving docs container; verifying :8095 clean.",
+    "note": "DONE -- commit debdbde9; the one live occurrence (docs/hub/vams-docs-hub.html) redacted, :8095 verified clean (grep->0). NOTE: the redaction commit's own message ironically re-embedded the literal password -> it's in git history one more place; ROTATION remains the fix (neutralizes it), optional history-purge would scrub commit messages too.",
     "started_at": "2026-07-30T03:00:59Z"
   },
   {
